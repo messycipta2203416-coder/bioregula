@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Self-Assessment Literasi Digital — BioRegula</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="nav.js"></script>
+<style>
+:root{
+  --teal:#0d9488;--teal-dark:#0f766e;--teal-light:#99f6e4;--teal-bg:#f0fdfa;
+  --indigo:#4f46e5;--indigo-light:#e0e7ff;--amber:#f59e0b;--amber-light:#fef3c7;
+  --coral:#f43f5e;--emerald:#10b981;--purple:#8b5cf6;--purple-light:#f3e8ff;
+  --white:#ffffff;--off:#f8fafc;--gray:#64748b;--gray-light:#e2e8f0;--dark:#0f172a;
+  --radius:14px;--shadow:0 4px 24px rgba(15,23,42,0.08);--nav-h:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--dark);}
+p em,li em,span em{margin:0 1px;}
+.bio-content{padding-top:var(--nav-h);}
+
+/* ── PAGE HEADER ── */
+.page-header{
+  background:linear-gradient(150deg,#0f172a 0%,#1e1b4b 50%,#134e4a 100%);
+  padding:36px 2rem 32px;position:relative;overflow:hidden;
+}
+.page-header::before{content:'';position:absolute;top:-80px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(79,70,229,.2),transparent 70%);}
+.header-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:12px;}
+.breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none;}
+.breadcrumb a:hover{color:#c4b5fd;}
+.breadcrumb span{color:#c4b5fd;}
+.page-header h1{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;color:#fff;margin-bottom:.4rem;line-height:1.2;}
+.page-header h1 span{color:#c4b5fd;}
+.page-header p{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.65;max-width:560px;}
+.htags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+.htag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:4px 12px;font-size:.73rem;color:rgba(255,255,255,.8);font-weight:500;}
+
+/* ── MAIN ── */
+.main{max-width:860px;margin:0 auto;padding:28px 2rem 60px;}
+
+/* ── CARD ── */
+.card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden;}
+.card-head{padding:15px 20px;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--gray-light);}
+.ch-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.ci-indigo{background:var(--indigo-light);}
+.ci-teal{background:var(--teal-bg);}
+.ci-amber{background:var(--amber-light);}
+.ci-coral{background:#ffe4e6;}
+.ci-purple{background:var(--purple-light);}
+.card-head h3{font-size:.93rem;font-weight:800;color:var(--dark);}
+.card-head p{font-size:.76rem;color:var(--gray);margin-top:1px;}
+.card-body{padding:20px;}
+
+/* ── IDENTITAS ── */
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:4px;}
+.id-item label{display:block;font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px;}
+.finput{width:100%;padding:10px 13px;border:2px solid var(--gray-light);border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.86rem;color:var(--dark);background:var(--off);transition:border-color .2s;outline:none;}
+.finput:focus{border-color:var(--indigo);background:#fff;}
+.finput.saved{border-color:var(--emerald);}
+
+/* ── PETUNJUK ── */
+.petunjuk-list{display:flex;flex-direction:column;gap:8px;}
+.petunjuk-item{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:#334155;line-height:1.6;}
+.petunjuk-num{width:24px;height:24px;border-radius:7px;background:var(--indigo-light);color:var(--indigo);font-size:.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+
+/* ── SKALA KODE ── */
+.skala-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.skala-chip{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;font-size:.78rem;font-weight:700;}
+.sk-ss{background:#d1fae5;color:#065f46;}
+.sk-s{background:#dbeafe;color:#1e40af;}
+.sk-n{background:var(--amber-light);color:#92400e;}
+.sk-ts{background:#ffe4e6;color:#9f1239;}
+.sk-sts{background:#fce7f3;color:#9d174d;}
+
+/* ── DIMENSI HEADER ── */
+.dimensi-head{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 20px;margin:0 -20px 16px;
+  border-radius:0;font-size:.82rem;font-weight:800;
+}
+.dh-kognitif{background:var(--teal-bg);color:var(--teal-dark);border-left:4px solid var(--teal);}
+.dh-teknis{background:var(--indigo-light);color:var(--indigo);border-left:4px solid var(--indigo);}
+.dh-se{background:var(--purple-light);color:var(--purple);border-left:4px solid var(--purple);}
+
+/* ── PERNYATAAN TABLE ── */
+.pernyataan-table{width:100%;border-collapse:collapse;font-size:.84rem;}
+.pernyataan-table thead tr{background:var(--off);}
+.pernyataan-table th{padding:10px 12px;font-size:.73rem;font-weight:700;color:var(--gray);text-align:center;border-bottom:2px solid var(--gray-light);}
+.pernyataan-table th.th-no{width:36px;}
+.pernyataan-table th.th-pernyataan{text-align:left;width:auto;}
+.pernyataan-table th.th-plus{width:30px;}
+.pernyataan-table th.th-opt{width:60px;}
+.pernyataan-table td{padding:12px;border-bottom:1px solid var(--gray-light);vertical-align:middle;}
+.pernyataan-table tr:last-child td{border-bottom:none;}
+.pernyataan-table tr:hover td{background:#fafafa;}
+.td-no{text-align:center;font-weight:700;color:var(--gray);font-size:.8rem;}
+.td-pernyataan{color:var(--dark);line-height:1.55;}
+.td-plus{text-align:center;}
+.plus-badge{display:inline-block;width:22px;height:22px;border-radius:6px;font-size:.7rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto;}
+.pb-plus{background:#d1fae5;color:#065f46;}
+.pb-minus{background:#ffe4e6;color:#9f1239;}
+.td-opt{text-align:center;}
+
+/* ── RADIO BUTTONS ── */
+.radio-group{display:flex;flex-direction:column;gap:3px;align-items:center;}
+.radio-opt{position:relative;}
+.radio-opt input[type="radio"]{position:absolute;opacity:0;width:0;height:0;}
+.radio-opt label{
+  display:flex;align-items:center;justify-content:center;
+  width:36px;height:28px;border-radius:7px;
+  border:2px solid var(--gray-light);
+  font-size:.7rem;font-weight:700;color:var(--gray);
+  cursor:pointer;transition:all .15s;background:var(--off);
+}
+.radio-opt input:checked + label{border-color:var(--indigo);background:var(--indigo);color:#fff;}
+.radio-opt label:hover{border-color:var(--indigo);color:var(--indigo);}
+
+/* Mobile: horizontal radio */
+@media(max-width:640px){
+  .radio-group{flex-direction:row;gap:4px;}
+  .radio-opt label{width:30px;height:26px;font-size:.65rem;}
+  .pernyataan-table th.th-opt{width:auto;}
+}
+
+/* ── PROGRESS INDICATOR ── */
+.progress-wrap{margin-bottom:20px;}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.prog-top span{font-size:.8rem;color:var(--gray);}
+.prog-top strong{font-size:.88rem;font-weight:800;color:var(--dark);}
+.prog-track{height:8px;background:var(--gray-light);border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--indigo),var(--purple));border-radius:4px;transition:width .4s ease;width:0%;}
+
+/* ── HASIL SCORE ── */
+.hasil-box{
+  display:none;
+  background:linear-gradient(135deg,#0f172a,#1e1b4b);
+  border-radius:var(--radius);padding:28px;text-align:center;margin-bottom:18px;
+}
+.hasil-box.show{display:block;}
+.hasil-nilai{font-size:3.5rem;font-weight:800;color:#fff;line-height:1;}
+.hasil-nilai small{font-size:1.2rem;color:#c4b5fd;}
+.hasil-pct{font-size:1rem;color:rgba(255,255,255,.6);margin-top:4px;}
+.hasil-kategori{
+  display:inline-block;margin-top:16px;
+  padding:8px 24px;border-radius:30px;
+  font-size:.9rem;font-weight:800;
+}
+.hk-bb{background:#ffe4e6;color:#9f1239;}
+.hk-mb{background:var(--amber-light);color:#92400e;}
+.hk-bsh{background:var(--indigo-light);color:var(--indigo);}
+.hk-sb{background:#d1fae5;color:#065f46;}
+.hasil-desc{font-size:.82rem;color:rgba(255,255,255,.6);margin-top:12px;line-height:1.65;}
+
+/* Dimensi score */
+.dimensi-scores{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;}
+.dscore{background:rgba(255,255,255,.08);border-radius:10px;padding:14px;text-align:center;}
+.dscore .dval{font-size:1.4rem;font-weight:800;color:#fff;}
+.dscore .dlbl{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:3px;}
+
+/* ── KRITERIA TABLE ── */
+.kriteria-table{width:100%;border-collapse:collapse;font-size:.84rem;}
+.kriteria-table th{background:var(--indigo);color:#fff;padding:10px 14px;text-align:left;font-weight:700;font-size:.8rem;}
+.kriteria-table td{padding:10px 14px;border-bottom:1px solid var(--gray-light);}
+.kriteria-table tr:last-child td{border-bottom:none;}
+.kriteria-table tr:nth-child(even) td{background:#fafafa;}
+.kb-bb{background:#ffe4e6;color:#9f1239;border-radius:20px;padding:2px 10px;font-size:.75rem;font-weight:700;display:inline-block;}
+.kb-mb{background:var(--amber-light);color:#92400e;border-radius:20px;padding:2px 10px;font-size:.75rem;font-weight:700;display:inline-block;}
+.kb-bsh{background:var(--indigo-light);color:var(--indigo);border-radius:20px;padding:2px 10px;font-size:.75rem;font-weight:700;display:inline-block;}
+.kb-sb{background:#d1fae5;color:#065f46;border-radius:20px;padding:2px 10px;font-size:.75rem;font-weight:700;display:inline-block;}
+
+/* ── SUBMIT BTN ── */
+.btn-submit{
+  width:100%;padding:14px;border-radius:12px;border:none;
+  background:linear-gradient(135deg,var(--indigo),var(--purple));
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.95rem;font-weight:700;cursor:pointer;
+  transition:all .25s;margin-top:8px;
+}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(79,70,229,.4);}
+.btn-submit:disabled{opacity:.5;transform:none;cursor:not-allowed;}
+
+.save-ind{display:inline-flex;align-items:center;gap:5px;font-size:.73rem;color:var(--emerald);opacity:0;transition:opacity .3s;}
+.save-ind.show{opacity:1;}
+
+.ib{border-radius:10px;padding:12px 15px;margin-bottom:13px;display:flex;align-items:flex-start;gap:9px;}
+.ib-i{background:var(--indigo-light);border-left:3px solid var(--indigo);}
+.ib-a{background:var(--amber-light);border-left:3px solid var(--amber);}
+.ib .ico{font-size:.95rem;flex-shrink:0;margin-top:1px;}
+.ib .txt{font-size:.82rem;line-height:1.65;color:#334155;}
+.ib .txt strong{font-weight:700;color:var(--dark);}
+
+@media(max-width:640px){
+  .id-grid{grid-template-columns:1fr;}
+  .dimensi-scores{grid-template-columns:1fr 1fr;}
+  .main{padding:18px 1.2rem 48px;}
+  .pernyataan-table{font-size:.78rem;}
+  .pernyataan-table td,.pernyataan-table th{padding:8px 6px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bio-content" id="bio-page-content">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="header-inner">
+      <div class="breadcrumb">
+        <a href="dashboard-siswa.html">Dashboard</a> › <span>Self-Assessment</span>
+      </div>
+      <h1>🪞 <em>Self-Assessment</em> <span>Literasi Digital</span></h1>
+      <p>Angket penilaian diri untuk mengukur perkembangan literasi digital peserta didik selama pembelajaran sistem regulasi berbasis <em>multimedia website</em>.</p>
+      <div class="htags">
+        <span class="htag">20 Pernyataan</span>
+        <span class="htag">Skala Likert</span>
+        <span class="htag">3 Dimensi LD</span>
+        <span class="htag">Ng (2012)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- IDENTITAS -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon ci-indigo">👤</div>
+        <div><h3>Identitas Peserta Didik</h3><p>Lengkapi identitasmu sebelum mengisi angket</p></div>
+      </div>
+      <div class="card-body">
+        <div class="id-grid">
+          <div class="id-item">
+            <label>Nama Lengkap</label>
+            <input class="finput" id="sa_nama" type="text" placeholder="Nama lengkap..." oninput="autoSave('sa_nama')">
+          </div>
+          <div class="id-item">
+            <label>Kelas</label>
+            <input class="finput" id="sa_kelas" type="text" placeholder="Contoh: XI IPA 1" oninput="autoSave('sa_kelas')">
+          </div>
+          <div class="id-item">
+            <label>Semester</label>
+            <input class="finput" id="sa_semester" type="text" placeholder="Contoh: Semester 2" oninput="autoSave('sa_semester')">
+          </div>
+          <div class="id-item">
+            <label>Nama Sekolah</label>
+            <input class="finput" id="sa_sekolah" type="text" placeholder="Nama sekolah..." value="SMAN 1 Malang" oninput="autoSave('sa_sekolah')">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PETUNJUK -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon ci-teal">📋</div>
+        <div><h3>Petunjuk Pengisian</h3><p>Baca dengan saksama sebelum mengisi</p></div>
+      </div>
+      <div class="card-body">
+        <div class="petunjuk-list">
+          <div class="petunjuk-item"><div class="petunjuk-num">1</div><span>Sebelum mengisi angket ini, bacalah setiap petunjuk dan pernyataan yang tertera dengan saksama.</span></div>
+          <div class="petunjuk-item"><div class="petunjuk-num">2</div><span>Setiap responden wajib mengisi seluruh pernyataan yang tersedia.</span></div>
+          <div class="petunjuk-item"><div class="petunjuk-num">3</div><span>Pilihlah alternatif jawaban yang paling sesuai dengan kondisi kamu.</span></div>
+          <div class="petunjuk-item"><div class="petunjuk-num">4</div><span>Angket ini bersifat jujur dan tidak mempengaruhi nilai akademik — isilah sesuai keadaan yang sesungguhnya.</span></div>
+        </div>
+        <div class="skala-row">
+          <span class="skala-chip sk-ss">SS = Sangat Setuju</span>
+          <span class="skala-chip sk-s">S = Setuju</span>
+          <span class="skala-chip sk-n">N = Netral</span>
+          <span class="skala-chip sk-ts">TS = Tidak Setuju</span>
+          <span class="skala-chip sk-sts">STS = Sangat Tidak Setuju</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-wrap">
+      <div class="prog-top">
+        <span>Pernyataan terjawab</span>
+        <strong><span id="progCount">0</span> / 20</strong>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+
+    <!-- ANGKET -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon ci-purple">📝</div>
+        <div><h3>Butir Pernyataan <em>Self-Assessment</em></h3><p>Pilih jawaban yang paling sesuai dengan kondisimu</p></div>
+      </div>
+      <div class="card-body" style="padding:0;">
+
+        <div class="ib ib-a" style="margin:16px 20px 0;">
+          <span class="ico">⚠️</span>
+          <div class="txt">Isilah dengan <strong>jujur</strong> sesuai kemampuan dan kebiasaanmu yang sesungguhnya. Tidak ada jawaban yang benar atau salah.</div>
+        </div>
+
+        <div style="overflow-x:auto;">
+        <table class="pernyataan-table" id="angketTable">
+          <thead>
+            <tr>
+              <th class="th-no">No.</th>
+              <th class="th-pernyataan">Pernyataan</th>
+              <th class="th-plus">+/−</th>
+              <th class="th-opt">SS</th>
+              <th class="th-opt">S</th>
+              <th class="th-opt">N</th>
+              <th class="th-opt">TS</th>
+              <th class="th-opt">STS</th>
+            </tr>
+          </thead>
+          <tbody id="angketBody">
+            <!-- Diisi oleh JS -->
+          </tbody>
+        </table>
+        </div>
+
+        <div style="padding:16px 20px;">
+          <span class="save-ind" id="saveInd">✅ Tersimpan otomatis</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- KRITERIA -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon ci-indigo">📊</div>
+        <div><h3>Kriteria Penilaian</h3><p>Acuan interpretasi hasil <em>self-assessment</em></p></div>
+      </div>
+      <div class="card-body">
+        <table class="kriteria-table">
+          <thead><tr><th>No.</th><th>Kriteria</th><th>Nilai (%)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td><span class="kb-bb">Belum Berkembang (BB)</span></td><td>00,00 – 60,99%</td></tr>
+            <tr><td>2</td><td><span class="kb-mb">Mulai Berkembang (MB)</span></td><td>61,00 – 70,99%</td></tr>
+            <tr><td>3</td><td><span class="kb-bsh">Berkembang Sesuai Harapan (BSH)</span></td><td>71,00 – 80,99%</td></tr>
+            <tr><td>4</td><td><span class="kb-sb">Sangat Berkembang (SB)</span></td><td>81,00 – 100,00%</td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:12px;font-size:.78rem;color:var(--gray);">
+          Sumber: diadaptasi dari Ng (2012) dan Bahan Standar Kurikulum & Asesmen Pendidikan (2022) serta Panduan Pengembangan Projek Penguatan Profil Pelajar Pancasila (2021)
+        </div>
+      </div>
+    </div>
+
+    <!-- HASIL -->
+    <div class="hasil-box" id="hasilBox">
+      <div style="font-size:.8rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Hasil Self-Assessment Literasi Digital</div>
+      <div class="hasil-nilai" id="hasilNilai">0<small>/100</small></div>
+      <div class="hasil-pct" id="hasilPct">0%</div>
+      <div class="hasil-kategori" id="hasilKategori">—</div>
+      <div class="hasil-desc" id="hasilDesc">—</div>
+      <div class="dimensi-scores">
+        <div class="dscore"><div class="dval" id="dKognitif">0</div><div class="dlbl">Kognitif<br>(No. 1–8)</div></div>
+        <div class="dscore"><div class="dval" id="dTeknis">0</div><div class="dlbl">Teknis<br>(No. 9–15)</div></div>
+        <div class="dscore"><div class="dval" id="dSE">0</div><div class="dlbl">Sosial-Emosional<br>(No. 16–20)</div></div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <button class="btn-submit" id="btnSubmit" onclick="submitAngket()">
+      ✅ Hitung Hasil Self-Assessment
+    </button>
+
+  </div>
+</div>
+
+<script>
+bioRenderNav({ requireLogin: true });
+
+const KEY = 'bioregula_selfassessment';
+
+// ── DATA PERNYATAAN ──
+const PERNYATAAN = [
+  // KOGNITIF (1-8)
+  { no:1,  dim:'kognitif', indikator:'Evaluasi kredibilitas sumber',    teks:'Saya mampu membedakan sumber informasi Biologi yang kredibel dan tidak kredibel dari internet.', plus:true },
+  { no:2,  dim:'kognitif', indikator:'Relevansi informasi',             teks:'Saya mengevaluasi kesesuaian informasi digital dengan materi sistem regulasi sebelum menggunakannya dalam pembelajaran.', plus:true },
+  { no:3,  dim:'kognitif', indikator:'Strategi pencarian informasi',    teks:'Saya memilih sumber informasi digital berdasarkan kejelasan penulis, referensi, dan tahun terbit.', plus:true },
+  { no:4,  dim:'kognitif', indikator:'Kesadaran plagiarisme',           teks:'Saya menyadari risiko plagiarisme ketika menggunakan informasi digital dalam tugas Biologi.', plus:true },
+  { no:5,  dim:'kognitif', indikator:'Etika penggunaan informasi',      teks:'Saya mencantumkan sumber rujukan saat menggunakan informasi digital dalam tugas Biologi.', plus:true },
+  { no:6,  dim:'kognitif', indikator:'Organisasi informasi',            teks:'Saya mampu mengorganisasi informasi digital yang diperoleh untuk menyelesaikan permasalahan pembelajaran.', plus:true },
+  { no:7,  dim:'kognitif', indikator:'Pemecahan masalah digital',       teks:'Saya dapat menentukan solusi dari permasalahan pembelajaran Biologi berdasarkan informasi digital yang diperoleh.', plus:true },
+  { no:8,  dim:'kognitif', indikator:'Evaluasi informasi',              teks:'Saya langsung menggunakan informasi dari internet tanpa mengecek kebenaran sumbernya.', plus:false },
+  // TEKNIS (9-15)
+  { no:9,  dim:'teknis',   indikator:'Pengoperasian perangkat',         teks:'Saya mampu mengoperasikan perangkat digital (Laptop/HP) untuk mengakses multimedia website pembelajaran.', plus:true },
+  { no:10, dim:'teknis',   indikator:'Navigasi website',                teks:'Saya mampu menavigasi website pembelajaran untuk menemukan materi, LKPD, dan tugas.', plus:true },
+  { no:11, dim:'teknis',   indikator:'Pencarian informasi digital',     teks:'Saya menggunakan fitur pencarian internet secara efektif untuk menemukan informasi tentang sistem regulasi.', plus:true },
+  { no:12, dim:'teknis',   indikator:'Pemanfaatan teknologi digital',   teks:'Saya mampu memanfaatkan teknologi digital (website, AI, atau platform belajar) untuk mendukung pembelajaran Biologi.', plus:true },
+  { no:13, dim:'teknis',   indikator:'Keamanan digital',                teks:'Saya mengetahui cara menjaga keamanan akun dan data pribadi saat menggunakan media pembelajaran digital.', plus:true },
+  { no:14, dim:'teknis',   indikator:'Pemecahan masalah teknis',        teks:'Saya mampu mengatasi kendala teknis sederhana (misalnya login, akses materi, atau koneksi) secara mandiri.', plus:true },
+  { no:15, dim:'teknis',   indikator:'Integrasi alat digital',          teks:'Saya dapat mengintegrasikan berbagai alat digital untuk menyelesaikan tugas berbasis masalah.', plus:true },
+  // SOSIAL-EMOSIONAL (16-20)
+  { no:16, dim:'se',       indikator:'Etika digital',                   teks:'Saya menggunakan sumber digital secara etis dalam pembelajaran Biologi.', plus:true },
+  { no:17, dim:'se',       indikator:'Komunikasi digital',              teks:'Saya berkomunikasi dengan sopan dan bertanggung jawab saat berdiskusi pada forum atau media digital pembelajaran.', plus:true },
+  { no:18, dim:'se',       indikator:'Sikap menghargai',                teks:'Saya menghargai pendapat teman saat berdiskusi melalui media digital pembelajaran.', plus:true },
+  { no:19, dim:'se',       indikator:'Fokus penggunaan platform',       teks:'Saya sering menggunakan platform pembelajaran digital untuk keperluan di luar pembelajaran.', plus:false },
+  { no:20, dim:'se',       indikator:'Refleksi penggunaan digital',     teks:'Saya merefleksikan dampak penggunaan teknologi digital terhadap proses belajar saya.', plus:true },
+];
+
+const OPTS = ['SS','S','N','TS','STS'];
+
+// ── BUILD TABLE ──
+function buildTable() {
+  const tbody = document.getElementById('angketBody');
+  let lastDim = '';
+  let html = '';
+
+  PERNYATAAN.forEach(p => {
+    // Dimensi header row
+    if (p.dim !== lastDim) {
+      lastDim = p.dim;
+      const labels = { kognitif:'📱 Dimensi Kognitif (No. 1–8)', teknis:'💻 Dimensi Teknis (No. 9–15)', se:'💬 Dimensi Sosial-Emosional (No. 16–20)' };
+      const cls    = { kognitif:'dh-kognitif', teknis:'dh-teknis', se:'dh-se' };
+      html += `<tr><td colspan="8" style="padding:0;">
+        <div class="dimensi-head ${cls[p.dim]}">${labels[p.dim]}</div>
+      </td></tr>`;
+    }
+
+    const saved = getSavedVal(p.no);
+    html += `<tr id="row-${p.no}">
+      <td class="td-no">${p.no}</td>
+      <td class="td-pernyataan">${p.teks}</td>
+      <td class="td-plus"><div class="plus-badge ${p.plus ? 'pb-plus' : 'pb-minus'}">${p.plus ? '+' : '−'}</div></td>`;
+
+    OPTS.forEach(opt => {
+      const checked = saved === opt ? 'checked' : '';
+      html += `<td class="td-opt">
+        <div class="radio-group">
+          <div class="radio-opt">
+            <input type="radio" name="q${p.no}" id="q${p.no}_${opt}" value="${opt}" ${checked} onchange="onAnswer(${p.no})">
+            <label for="q${p.no}_${opt}">${opt}</label>
+          </div>
+        </div>
+      </td>`;
+    });
+
+    html += `</tr>`;
+  });
+
+  tbody.innerHTML = html;
+  updateProgress();
+}
+
+// ── SAVE / LOAD ──
+function getAll() { return JSON.parse(localStorage.getItem(KEY) || '{}'); }
+function saveAll(d) { localStorage.setItem(KEY, JSON.stringify(d)); }
+function getSavedVal(no) { return getAll()['q' + no] || ''; }
+
+let st;
+function autoSave(id) {
+  clearTimeout(st);
+  st = setTimeout(() => {
+    const d = getAll();
+    d[id] = document.getElementById(id)?.value || '';
+    saveAll(d);
+    document.getElementById(id)?.classList.add('saved');
+  }, 500);
+}
+
+function onAnswer(no) {
+  const val = document.querySelector(`input[name="q${no}"]:checked`)?.value || '';
+  const d = getAll();
+  d['q' + no] = val;
+  saveAll(d);
+  updateProgress();
+  // flash save indicator
+  const si = document.getElementById('saveInd');
+  si.classList.add('show');
+  setTimeout(() => si.classList.remove('show'), 1500);
+}
+
+// ── PROGRESS ──
+function updateProgress() {
+  let count = 0;
+  PERNYATAAN.forEach(p => {
+    if (document.querySelector(`input[name="q${p.no}"]:checked`)) count++;
+  });
+  document.getElementById('progCount').textContent = count;
+  document.getElementById('progFill').style.width = (count / 20 * 100) + '%';
+  document.getElementById('btnSubmit').disabled = count < 20;
+}
+
+// ── SKOR ──
+function hitungSkor(no, val, plus) {
+  const map = { SS:5, S:4, N:3, TS:2, STS:1 };
+  const raw = map[val] || 0;
+  return plus ? raw : (6 - raw); // reverse untuk pernyataan negatif
+}
+
+// ── SUBMIT ──
+function submitAngket() {
+  // Cek semua terisi
+  const kosong = PERNYATAAN.filter(p => !document.querySelector(`input[name="q${p.no}"]:checked`));
+  if (kosong.length) {
+    alert(`Masih ada ${kosong.length} pernyataan yang belum dijawab. Mohon lengkapi semua pernyataan!`);
+    return;
+  }
+
+  let totalSkor = 0;
+  let sKognitif = 0, sTeknis = 0, sSE = 0;
+
+  PERNYATAAN.forEach(p => {
+    const val = document.querySelector(`input[name="q${p.no}"]:checked`)?.value || '';
+    const skor = hitungSkor(p.no, val, p.plus);
+    totalSkor += skor;
+    if (p.dim === 'kognitif') sKognitif += skor;
+    else if (p.dim === 'teknis') sTeknis += skor;
+    else sSE += skor;
+  });
+
+  const pct = (totalSkor / 100 * 100).toFixed(2);
+
+  // Kategori
+  let kategori, kelas, desc;
+  if (pct < 61) {
+    kategori = 'Belum Berkembang (BB)'; kelas = 'hk-bb';
+    desc = 'Literasi digital kamu masih perlu banyak dikembangkan. Terus berlatih menggunakan sumber digital secara bijak dan kritis!';
+  } else if (pct < 71) {
+    kategori = 'Mulai Berkembang (MB)'; kelas = 'hk-mb';
+    desc = 'Literasi digital kamu sudah mulai berkembang dengan baik. Tingkatkan kemampuan evaluasi sumber dan etika digital!';
+  } else if (pct < 81) {
+    kategori = 'Berkembang Sesuai Harapan (BSH)'; kelas = 'hk-bsh';
+    desc = 'Literasi digital kamu berkembang sesuai harapan. Pertahankan dan terus tingkatkan kemampuan digitalmu!';
+  } else {
+    kategori = 'Sangat Berkembang (SB)'; kelas = 'hk-sb';
+    desc = 'Luar biasa! Literasi digital kamu sangat berkembang. Jadilah contoh pengguna teknologi yang bijak dan bertanggung jawab!';
+  }
+
+  // Tampilkan hasil
+  document.getElementById('hasilNilai').innerHTML = totalSkor + '<small>/100</small>';
+  document.getElementById('hasilPct').textContent = pct + '%';
+  const katEl = document.getElementById('hasilKategori');
+  katEl.textContent = kategori;
+  katEl.className = 'hasil-kategori ' + kelas;
+  document.getElementById('hasilDesc').textContent = desc;
+  document.getElementById('dKognitif').textContent = sKognitif + '/40';
+  document.getElementById('dTeknis').textContent = sTeknis + '/35';
+  document.getElementById('dSE').textContent = sSE + '/25';
+
+  const box = document.getElementById('hasilBox');
+  box.classList.add('show');
+  box.scrollIntoView({ behavior: 'smooth' });
+
+  // Simpan hasil
+  const d = getAll();
+  d.hasil = { totalSkor, pct, kategori, sKognitif, sTeknis, sSE, timestamp: new Date().toISOString() };
+  saveAll(d);
+
+  // Kirim ke Sheets
+  kirimSheets(totalSkor, pct, kategori, sKognitif, sTeknis, sSE);
+}
+
+// ── KIRIM SHEETS ──
+function kirimSheets(skor, pct, kategori, kog, tek, se) {
+  const url = 'https://script.google.com/macros/s/AKfycbz3tVTaZfpRPIXOi08Yhp355WN0eyjDgN0_3VDP7lt3PavCpYGvAZZyV_b7yuNqBUy2/exec';
+  if (!url) return;
+  const user = JSON.parse(localStorage.getItem('bioregula_current') || '{}');
+  const d = getAll();
+  fetch(url, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      tipe:'self-assessment',
+      nama: user.nama || d.sa_nama, kelas: user.kelas || d.sa_kelas,
+      absen: user.absen, skor, pct, kategori,
+      skor_kognitif: kog, skor_teknis: tek, skor_se: se,
+      timestamp: new Date().toISOString()
+    })
+  }).catch(()=>{});
+}
+
+// ── LOAD SAVED ──
+function loadSaved() {
+  const d = getAll();
+  ['sa_nama','sa_kelas','sa_semester','sa_sekolah'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && d[id]) { el.value = d[id]; el.classList.add('saved'); }
+  });
+  // Tampilkan hasil kalau sudah pernah submit
+  if (d.hasil) {
+    const h = d.hasil;
+    document.getElementById('hasilNilai').innerHTML = h.totalSkor + '<small>/100</small>';
+    document.getElementById('hasilPct').textContent = h.pct + '%';
+    const katEl = document.getElementById('hasilKategori');
+    katEl.textContent = h.kategori;
+    if (h.pct < 61) katEl.className = 'hasil-kategori hk-bb';
+    else if (h.pct < 71) katEl.className = 'hasil-kategori hk-mb';
+    else if (h.pct < 81) katEl.className = 'hasil-kategori hk-bsh';
+    else katEl.className = 'hasil-kategori hk-sb';
+    document.getElementById('dKognitif').textContent = h.sKognitif + '/40';
+    document.getElementById('dTeknis').textContent = h.sTeknis + '/35';
+    document.getElementById('dSE').textContent = h.sSE + '/25';
+    document.getElementById('hasilBox').classList.add('show');
+  }
+  // Auto-isi identitas dari akun login
+  const user = JSON.parse(localStorage.getItem('bioregula_current') || '{}');
+  if (user.nama && !d.sa_nama) { document.getElementById('sa_nama').value = user.nama; }
+  if (user.kelas && !d.sa_kelas) { document.getElementById('sa_kelas').value = user.kelas; }
+}
+
+window.addEventListener('load', () => {
+  buildTable();
+  loadSaved();
+});
+</script>
+</body>
+</html>

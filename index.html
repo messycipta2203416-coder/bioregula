@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioRegula — Sistem Regulasi Manusia</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:       #0d9488;
+  --teal-dark:  #0f766e;
+  --teal-light: #99f6e4;
+  --teal-bg:    #f0fdfa;
+  --indigo:     #4f46e5;
+  --indigo-light:#e0e7ff;
+  --amber:      #f59e0b;
+  --amber-light:#fef3c7;
+  --coral:      #f43f5e;
+  --white:      #ffffff;
+  --off:        #f8fafc;
+  --gray:       #64748b;
+  --dark:       #0f172a;
+  --card:       #ffffff;
+  --radius:     16px;
+  --shadow:     0 4px 24px rgba(15,23,42,0.08);
+  --shadow-lg:  0 12px 48px rgba(15,23,42,0.14);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--dark);min-height:100vh;overflow-x:hidden;}
+
+/* ── NAVBAR ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2rem;height:64px;
+  background:rgba(255,255,255,0.85);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(13,148,136,0.12);
+  box-shadow:0 2px 12px rgba(15,23,42,0.06);
+}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-box{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--teal),var(--indigo));
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;
+}
+.nav-brand-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.25rem;font-weight:800;color:var(--dark);}
+.nav-brand-text span{color:var(--teal);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-nav-login{
+  padding:8px 20px;border-radius:30px;border:2px solid var(--teal);
+  background:transparent;color:var(--teal);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;
+}
+.btn-nav-login:hover{background:var(--teal);color:#fff;}
+.btn-nav-daftar{
+  padding:8px 20px;border-radius:30px;border:none;
+  background:linear-gradient(135deg,var(--teal),var(--indigo));
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;
+}
+.btn-nav-daftar:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(13,148,136,.4);}
+
+/* ── PAGES ── */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ══════════════════════════════
+   LANDING PAGE
+══════════════════════════════ */
+/* HERO */
+.hero{
+  min-height:100vh;
+  background: linear-gradient(150deg, #0f172a 0%, #134e4a 45%, #1e1b4b 100%);
+  position:relative;overflow:hidden;
+  display:flex;align-items:center;
+  padding:80px 2rem 60px;
+}
+/* decorative blobs */
+.hero::before{
+  content:'';position:absolute;top:-120px;right:-120px;
+  width:560px;height:560px;border-radius:50%;
+  background:radial-gradient(circle,rgba(13,148,136,.25),transparent 70%);
+}
+.hero::after{
+  content:'';position:absolute;bottom:-80px;left:-80px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(79,70,229,.2),transparent 70%);
+}
+.hero-grid{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;
+  position:relative;z-index:1;width:100%;
+}
+.hero-left{}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);
+  border-radius:30px;padding:6px 16px;margin-bottom:1.5rem;
+  font-size:.78rem;font-weight:600;color:var(--teal-light);letter-spacing:.5px;
+}
+.hero-badge span{background:var(--teal);border-radius:20px;padding:2px 8px;color:#fff;font-size:.72rem;}
+.hero h1{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2.2rem,4.5vw,3.4rem);
+  color:#fff;font-weight:800;line-height:1.12;margin-bottom:1.2rem;
+}
+.hero h1 .hl{
+  background:linear-gradient(90deg,#5eead4,#818cf8);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-desc{
+  font-size:1rem;color:rgba(255,255,255,.7);line-height:1.75;
+  margin-bottom:2rem;max-width:480px;
+}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-hero-main{
+  padding:14px 32px;border-radius:30px;border:none;
+  background:linear-gradient(135deg,var(--teal),#0891b2);
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.95rem;font-weight:700;cursor:pointer;
+  transition:all .25s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-hero-main:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(13,148,136,.5);}
+.btn-hero-sec{
+  padding:14px 28px;border-radius:30px;
+  border:2px solid rgba(255,255,255,.25);background:transparent;
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.95rem;font-weight:600;cursor:pointer;transition:all .25s;
+}
+.btn-hero-sec:hover{border-color:rgba(255,255,255,.6);background:rgba(255,255,255,.08);}
+.hero-stats{
+  display:flex;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap;
+}
+.hstat{text-align:center;}
+.hstat .num{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.7rem;font-weight:800;color:#fff;}
+.hstat .num span{color:var(--teal-light);}
+.hstat .lbl{font-size:.72rem;color:rgba(255,255,255,.5);margin-top:2px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* HERO RIGHT — floating card */
+.hero-right{display:flex;justify-content:center;}
+.hero-card-float{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:24px;padding:28px;width:100%;max-width:360px;
+  backdrop-filter:blur(10px);
+}
+.hc-title{font-size:.8rem;font-weight:700;color:var(--teal-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+.siklus-list{display:flex;flex-direction:column;gap:12px;}
+.siklus-item{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.06);border-radius:12px;padding:12px 14px;
+  border:1px solid rgba(255,255,255,.08);transition:background .2s;
+}
+.siklus-item:hover{background:rgba(255,255,255,.12);}
+.siklus-icon{
+  width:40px;height:40px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;
+}
+.si-1{background:rgba(13,148,136,.3);}
+.si-2{background:rgba(245,158,11,.25);}
+.si-3{background:rgba(79,70,229,.3);}
+.siklus-info h4{font-size:.88rem;font-weight:700;color:#fff;margin-bottom:2px;}
+.siklus-info p{font-size:.75rem;color:rgba(255,255,255,.55);}
+.siklus-badge{
+  margin-left:auto;font-size:.7rem;font-weight:700;
+  padding:3px 10px;border-radius:20px;white-space:nowrap;
+}
+.sb-green{background:rgba(13,148,136,.3);color:#5eead4;}
+.sb-amber{background:rgba(245,158,11,.2);color:#fcd34d;}
+.sb-indigo{background:rgba(79,70,229,.3);color:#a5b4fc;}
+
+/* FEATURES SECTION */
+.features-section{padding:5rem 2rem;background:var(--white);}
+.section-wrap{max-width:1100px;margin:0 auto;}
+.sec-label{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin-bottom:.6rem;}
+.sec-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--dark);margin-bottom:.8rem;}
+.sec-sub{color:var(--gray);font-size:1rem;line-height:1.7;max-width:560px;margin-bottom:3rem;}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px;}
+.feat-card{
+  background:var(--off);border-radius:var(--radius);padding:24px;
+  border:1px solid #e2e8f0;transition:all .25s;
+}
+.feat-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--teal-light);}
+.feat-icon{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:14px;
+}
+.fi-teal{background:var(--teal-bg);}
+.fi-indigo{background:var(--indigo-light);}
+.fi-amber{background:var(--amber-light);}
+.fi-coral{background:#ffe4e6;}
+.feat-card h3{font-size:.97rem;font-weight:700;color:var(--dark);margin-bottom:6px;}
+.feat-card p{font-size:.85rem;color:var(--gray);line-height:1.6;}
+.feat-for{
+  margin-top:12px;font-size:.75rem;font-weight:600;
+  padding:3px 10px;border-radius:20px;display:inline-block;
+}
+.ff-all{background:var(--teal-bg);color:var(--teal-dark);}
+.ff-siswa{background:var(--indigo-light);color:var(--indigo);}
+.ff-guru{background:#ffe4e6;color:var(--coral);}
+
+/* INFO BAND */
+.info-band{
+  background:linear-gradient(135deg,#0f172a,#134e4a);
+  padding:4rem 2rem;color:#fff;
+}
+.info-band-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+.info-band h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.9rem;font-weight:800;margin-bottom:1rem;}
+.info-band h2 span{color:var(--teal-light);}
+.info-band p{color:rgba(255,255,255,.7);line-height:1.75;font-size:.95rem;margin-bottom:1.5rem;}
+.info-list{display:flex;flex-direction:column;gap:12px;}
+.info-item{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:rgba(255,255,255,.8);}
+.info-item::before{content:'✓';color:var(--teal-light);font-weight:800;flex-shrink:0;margin-top:1px;}
+.info-right-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.info-stat-box{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:14px;padding:18px;text-align:center;
+}
+.info-stat-box .val{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.9rem;font-weight:800;color:#fff;}
+.info-stat-box .val span{color:var(--teal-light);}
+.info-stat-box .lbl{font-size:.75rem;color:rgba(255,255,255,.5);margin-top:4px;}
+
+/* FOOTER */
+footer{
+  background:var(--dark);color:rgba(255,255,255,.5);
+  text-align:center;padding:2rem;font-size:.82rem;
+}
+footer strong{color:rgba(255,255,255,.8);}
+
+/* ══════════════════════════════
+   AUTH PAGES (Login & Register)
+══════════════════════════════ */
+.auth-page{
+  min-height:100vh;
+  display:grid;grid-template-columns:1fr 1fr;
+}
+.auth-left{
+  background:linear-gradient(150deg,#0f172a,#134e4a 50%,#1e1b4b);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:3rem;position:relative;overflow:hidden;
+}
+.auth-left::before{
+  content:'';position:absolute;top:-100px;right:-100px;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(13,148,136,.2),transparent 70%);
+}
+.auth-left-content{position:relative;z-index:1;}
+.auth-logo{
+  display:flex;align-items:center;gap:10px;margin-bottom:2.5rem;
+  text-decoration:none;
+}
+.auth-logo-box{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--indigo));display:flex;align-items:center;justify-content:center;font-size:20px;}
+.auth-logo-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.4rem;font-weight:800;color:#fff;}
+.auth-logo-text span{color:var(--teal-light);}
+.auth-tagline{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.9rem;font-weight:800;color:#fff;line-height:1.25;margin-bottom:1rem;}
+.auth-tagline span{background:linear-gradient(90deg,#5eead4,#818cf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.auth-desc{color:rgba(255,255,255,.6);font-size:.92rem;line-height:1.7;margin-bottom:2rem;}
+.auth-pills{display:flex;flex-wrap:wrap;gap:8px;}
+.auth-pill{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  border-radius:20px;padding:6px 14px;font-size:.78rem;color:rgba(255,255,255,.75);font-weight:500;
+}
+
+.auth-right{
+  background:var(--white);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:3rem;overflow-y:auto;
+}
+.auth-form-wrap{max-width:420px;margin:0 auto;width:100%;}
+
+/* Role selector */
+.role-selector{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.8rem;}
+.role-btn{
+  padding:14px 10px;border-radius:14px;border:2px solid #e2e8f0;
+  background:var(--off);cursor:pointer;transition:all .2s;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  font-family:'Plus Jakarta Sans',sans-serif;
+}
+.role-btn .r-icon{font-size:1.6rem;}
+.role-btn .r-label{font-size:.82rem;font-weight:700;color:var(--dark);}
+.role-btn .r-sub{font-size:.72rem;color:var(--gray);}
+.role-btn.active.siswa{border-color:var(--indigo);background:var(--indigo-light);}
+.role-btn.active.guru{border-color:var(--coral);background:#ffe4e6;}
+.role-btn.active.siswa .r-label{color:var(--indigo);}
+.role-btn.active.guru .r-label{color:var(--coral);}
+
+.auth-title{font-family:'Plus Jakarta Sans',sans-serif;font-size:1.6rem;font-weight:800;color:var(--dark);margin-bottom:.4rem;}
+.auth-subtitle{font-size:.88rem;color:var(--gray);margin-bottom:1.8rem;}
+
+/* Form */
+.form-group{margin-bottom:1.2rem;}
+.form-group label{display:block;font-size:.83rem;font-weight:700;color:var(--dark);margin-bottom:6px;}
+.form-group label span{color:var(--coral);}
+.form-input{
+  width:100%;padding:12px 16px;
+  border:2px solid #e2e8f0;border-radius:12px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;
+  color:var(--dark);background:var(--off);
+  transition:border-color .2s,background .2s;outline:none;
+}
+.form-input:focus{border-color:var(--teal);background:#fff;}
+.form-input.error{border-color:var(--coral);}
+.form-error{font-size:.78rem;color:var(--coral);margin-top:4px;display:none;}
+.form-error.show{display:block;}
+
+/* Password toggle */
+.input-wrap{position:relative;}
+.input-wrap .form-input{padding-right:42px;}
+.toggle-pw{
+  position:absolute;right:14px;top:50%;transform:translateY(-50%);
+  background:none;border:none;cursor:pointer;font-size:1rem;color:var(--gray);
+}
+
+/* Submit button */
+.btn-auth{
+  width:100%;padding:14px;border-radius:12px;border:none;
+  background:linear-gradient(135deg,var(--teal),var(--indigo));
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.95rem;font-weight:700;cursor:pointer;
+  transition:all .25s;margin-top:.5rem;
+}
+.btn-auth:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(13,148,136,.4);}
+.btn-auth:disabled{opacity:.6;transform:none;cursor:not-allowed;}
+
+.auth-divider{display:flex;align-items:center;gap:12px;margin:1.2rem 0;}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:#e2e8f0;}
+.auth-divider span{font-size:.8rem;color:var(--gray);}
+
+.auth-switch{text-align:center;font-size:.85rem;color:var(--gray);margin-top:1rem;}
+.auth-switch a{color:var(--teal);font-weight:700;cursor:pointer;text-decoration:none;}
+.auth-switch a:hover{text-decoration:underline;}
+
+/* Alert */
+.auth-alert{
+  padding:12px 16px;border-radius:10px;font-size:.85rem;
+  margin-bottom:1rem;display:none;
+  display:flex;align-items:center;gap:8px;
+}
+.auth-alert.error{background:#ffe4e6;color:#be123c;border:1px solid #fecdd3;}
+.auth-alert.success{background:var(--teal-bg);color:var(--teal-dark);border:1px solid var(--teal-light);}
+.auth-alert.hidden{display:none!important;}
+
+/* Loading spinner */
+.spinner{
+  width:18px;height:18px;border:2px solid rgba(255,255,255,.3);
+  border-top-color:#fff;border-radius:50%;
+  animation:spin .7s linear infinite;display:none;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+.fade-up{animation:fadeUp .55s ease both;}
+.fade-up-2{animation:fadeUp .55s .1s ease both;}
+.fade-up-3{animation:fadeUp .55s .2s ease both;}
+.fade-up-4{animation:fadeUp .55s .3s ease both;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.float{animation:float 4s ease-in-out infinite;}
+
+/* Fix inline em spacing */
+p em, li em, label em, span em { margin: 0 1px; }
+.num { letter-spacing: -1px; }
+.num span { font-size: 1.1rem; margin-left: 2px; letter-spacing: 0; }
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .auth-page{grid-template-columns:1fr;}
+  .auth-left{display:none;}
+  .info-band-inner{grid-template-columns:1fr;}
+}
+@media(max-width:480px){
+  nav{padding:0 1rem;}
+  .hero{padding:80px 1.2rem 50px;}
+  .auth-right{padding:2rem 1.2rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAVBAR ══════════ -->
+<nav id="mainNav">
+  <a class="nav-brand" href="#" onclick="showPage('landing')">
+    <div class="nav-logo-box">🧬</div>
+    <span class="nav-brand-text">Bio<span>Regula</span></span>
+  </a>
+  <div class="nav-right">
+    <button class="btn-nav-login" onclick="showPage('login')">Masuk</button>
+    <button class="btn-nav-daftar" onclick="showPage('register')">Daftar</button>
+  </div>
+</nav>
+
+<!-- ══════════ LANDING PAGE ══════════ -->
+<div class="page active" id="page-landing">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-badge fade-up">
+          Media Pembelajaran Interaktif · SMAN 1 Malang
+        </div>
+        <h1 class="fade-up-2">
+          Belajar <span class="hl">Sistem Regulasi</span> Jadi Seru & Mudah
+        </h1>
+        <p class="hero-desc fade-up-3">
+          Website pembelajaran biologi dengan model <em>Problem-Based Learning</em> (PBL) untuk kelas XI. Dilengkapi materi, video, <em>LKPD</em> digital, kuis <em>game</em>, dan refleksi per siklus.
+        </p>
+        <div class="hero-btns fade-up-4">
+          <button class="btn-hero-main" onclick="showPage('register')">
+            🚀 Mulai Belajar
+          </button>
+          <button class="btn-hero-sec" onclick="showPage('login')">
+            Sudah punya akun? Masuk
+          </button>
+        </div>
+        <div class="hero-stats fade-up-4">
+          <div class="hstat"><div class="num">3<span>×</span></div><div class="lbl">Siklus PBL</div></div>
+          <div class="hstat"><div class="num">15 <span>JP</span></div><div class="lbl">Alokasi Waktu</div></div>
+          <div class="hstat"><div class="num">9 <span>TP</span></div><div class="lbl">Tujuan Pembelajaran</div></div>
+          <div class="hstat"><div class="num">6<span>×</span></div><div class="lbl">Pertemuan</div></div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-card-float float">
+          <div class="hc-title">📚 Topik Pembelajaran</div>
+          <div class="siklus-list">
+            <div class="siklus-item">
+              <div class="siklus-icon si-1">🧠</div>
+              <div class="siklus-info">
+                <h4>Sistem Saraf</h4>
+                <p>Siklus 1 · Pertemuan 1–2</p>
+              </div>
+              <span class="siklus-badge sb-green">5 JP</span>
+            </div>
+            <div class="siklus-item">
+              <div class="siklus-icon si-2">💉</div>
+              <div class="siklus-info">
+                <h4>Sistem Hormon</h4>
+                <p>Siklus 2 · Pertemuan 3–4</p>
+              </div>
+              <span class="siklus-badge sb-amber">5 JP</span>
+            </div>
+            <div class="siklus-item">
+              <div class="siklus-icon si-3">👁️</div>
+              <div class="siklus-info">
+                <h4>Alat Indera</h4>
+                <p>Siklus 3 · Pertemuan 5–6</p>
+              </div>
+              <span class="siklus-badge sb-indigo">5 JP</span>
+            </div>
+          </div>
+          <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);">
+            <div style="font-size:.75rem;color:rgba(255,255,255,.45);text-align:center;">Kurikulum Merdeka · CP 046/2025 · Fase F</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features-section">
+    <div class="section-wrap">
+      <div class="sec-label">Fitur Website</div>
+      <h2 class="sec-title">Semua yang Kamu Butuhkan<br>Ada di Sini</h2>
+      <p class="sec-sub">Dari materi hingga kuis <em>game</em>, semuanya dirancang khusus untuk mendukung pembelajaran aktif dengan model <em>Problem-Based Learning</em>.</p>
+      <div class="features-grid">
+        <div class="feat-card">
+          <div class="feat-icon fi-teal">📖</div>
+          <h3>Materi 3 Siklus</h3>
+          <p>Materi lengkap per siklus dengan model PBL dilengkapi studi kasus kontekstual dan pertanyaan pemantik.</p>
+          <span class="feat-for ff-siswa">Siswa</span>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon fi-indigo">🎥</div>
+          <h3>Video Pembelajaran</h3>
+          <p>Video <em>embed</em> YouTube terkurasi per topik untuk memperkuat pemahaman konsep biologi.</p>
+          <span class="feat-for ff-siswa">Siswa</span>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon fi-amber">📝</div>
+          <h3>LKPD Digital</h3>
+          <p>Lembar kerja interaktif 3 siklus sesuai sintaks PBL. Jawaban langsung tersimpan &amp; dikirim ke guru.</p>
+          <span class="feat-for ff-siswa">Siswa</span>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon fi-coral">🎮</div>
+          <h3>Kuis <em>Game</em></h3>
+          <p>Kuis berbasis studi kasus dengan sistem poin, <em>combo</em>, dan <em>timer</em>. Belajar sambil bermain!</p>
+          <span class="feat-for ff-siswa">Siswa</span>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon fi-teal">✏️</div>
+          <h3><em>Pre-test</em> &amp; <em>Post-test</em></h3>
+          <p>Soal esai mengukur literasi digital dan keterampilan berpikir kritis sebelum &amp; sesudah belajar.</p>
+          <span class="feat-for ff-siswa">Siswa</span>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon fi-indigo">🪞</div>
+          <h3>Refleksi Siklus</h3>
+          <p><em>Form</em> evaluasi diri di akhir setiap siklus dengan model PBL untuk mengukur perkembangan belajar.</p>
+          <span class="feat-for ff-siswa">Siswa</span>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon fi-amber">📚</div>
+          <h3>Glosarium</h3>
+          <p>Kamus 26+ istilah biologi sistem regulasi dengan fitur pencarian cepat.</p>
+          <span class="feat-for ff-all">Semua</span>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon fi-coral">📊</div>
+          <h3><em>Dashboard</em> Guru</h3>
+          <p>Rekap nilai, grafik performa kelas, kelola soal kuis, dan <em>download</em> data CSV siswa.</p>
+          <span class="feat-for ff-guru">Guru</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO BAND -->
+  <section class="info-band">
+    <div class="info-band-inner">
+      <div>
+        <h2>Dirancang Sesuai<br><span>Kurikulum Merdeka</span></h2>
+        <p>Website ini dikembangkan berdasarkan modul ajar resmi dengan model pembelajaran <em>Problem-Based Learning</em> (PBL) untuk mata pelajaran Biologi kelas XI Fase F.</p>
+        <div class="info-list">
+          <div class="info-item">CP Fase F — CP 046 Tahun 2025</div>
+          <div class="info-item">9 Tujuan Pembelajaran dalam 3 Siklus PBL</div>
+          <div class="info-item">Mengukur Literasi Digital &amp; Keterampilan Berpikir Kritis</div>
+          <div class="info-item">Dimensi Profil Lulusan: Penalaran Kritis, Kolaborasi, Kreativitas</div>
+          <div class="info-item">SMAN 1 Malang · Kelas XI · Tahun Ajaran 2025/2026</div>
+        </div>
+      </div>
+      <div class="info-right-grid">
+        <div class="info-stat-box"><div class="val">18<span>+</span></div><div class="lbl">Halaman Interaktif</div></div>
+        <div class="info-stat-box"><div class="val">3<span>×</span></div><div class="lbl">Siklus PBL</div></div>
+        <div class="info-stat-box"><div class="val">30<span>+</span></div><div class="lbl">Soal Kuis</div></div>
+        <div class="info-stat-box"><div class="val">6<span>×</span></div><div class="lbl">Video Belajar</div></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>BioRegula</strong> — Media Pembelajaran Biologi Sistem Regulasi Manusia · SMAN 1 Malang</p>
+    <p style="margin-top:6px;font-size:.76rem;">Dikembangkan oleh Messy Cipta Handayani · Universitas Negeri Malang · 2025/2026</p>
+  </footer>
+</div><!-- end landing -->
+
+<!-- ══════════ LOGIN PAGE ══════════ -->
+<div class="page" id="page-login">
+  <div class="auth-page" style="padding-top:0;">
+
+    <!-- LEFT PANEL -->
+    <div class="auth-left">
+      <div class="auth-left-content">
+        <a class="auth-logo" href="#" onclick="showPage('landing')">
+          <div class="auth-logo-box">🧬</div>
+          <span class="auth-logo-text">Bio<span>Regula</span></span>
+        </a>
+        <h2 class="auth-tagline">Selamat Datang<br>Kembali di <span>BioRegula</span></h2>
+        <p class="auth-desc">Masuk ke akunmu untuk melanjutkan perjalanan belajar sistem regulasi manusia yang seru dan interaktif.</p>
+        <div class="auth-pills">
+          <span class="auth-pill">🧠 Sistem Saraf</span>
+          <span class="auth-pill">💉 Sistem Hormon</span>
+          <span class="auth-pill">👁️ Alat Indera</span>
+          <span class="auth-pill">🎮 Kuis <em>Game</em></span>
+          <span class="auth-pill">📝 LKPD Digital</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="auth-right">
+      <div class="auth-form-wrap">
+        <h1 class="auth-title">Masuk</h1>
+        <p class="auth-subtitle">Pilih peranmu terlebih dahulu</p>
+
+        <!-- Role selector -->
+        <div class="role-selector">
+          <button class="role-btn siswa active" id="login-role-siswa" onclick="selectRole('login','siswa')">
+            <span class="r-icon">🎓</span>
+            <span class="r-label">Siswa</span>
+            <span class="r-sub">Akses materi &amp; kuis</span>
+          </button>
+          <button class="role-btn guru" id="login-role-guru" onclick="selectRole('login','guru')">
+            <span class="r-icon">👩‍🏫</span>
+            <span class="r-label">Guru</span>
+            <span class="r-sub">Kelola &amp; pantau kelas</span>
+          </button>
+        </div>
+
+        <!-- Alert -->
+        <div class="auth-alert error hidden" id="login-alert">
+          ⚠️ <span id="login-alert-msg"><em>Username</em> atau <em>password</em> salah.</span>
+        </div>
+
+        <!-- Form -->
+        <div class="form-group">
+          <label><em>Username</em> <span>*</span></label>
+          <input class="form-input" id="login-username" type="text" placeholder="Masukkan username kamu" autocomplete="username">
+          <div class="form-error" id="err-login-username"><em>Username</em> tidak boleh kosong.</div>
+        </div>
+        <div class="form-group">
+          <label><em>Password</em> <span>*</span></label>
+          <div class="input-wrap">
+            <input class="form-input" id="login-password" type="password" placeholder="Masukkan password kamu" autocomplete="current-password">
+            <button class="toggle-pw" type="button" onclick="togglePw('login-password',this)">👁️</button>
+          </div>
+          <div class="form-error" id="err-login-password"><em>Password</em> tidak boleh kosong.</div>
+        </div>
+
+        <button class="btn-auth" id="btn-login" onclick="doLogin()">
+          <span id="login-btn-text">Masuk →</span>
+          <div class="spinner" id="login-spinner"></div>
+        </button>
+
+        <div class="auth-divider"><span>atau</span></div>
+        <div class="auth-switch">Belum punya akun? <a onclick="showPage('register')">Daftar sekarang</a></div>
+        <div class="auth-switch" style="margin-top:8px;"><a onclick="showPage('landing')">← Kembali ke beranda</a></div>
+
+        <!-- Demo hint -->
+        <div style="margin-top:1.5rem;padding:12px 16px;background:var(--teal-bg);border-radius:10px;font-size:.8rem;color:var(--teal-dark);">
+          💡 <strong>Demo:</strong> Belum punya akun? Klik "Daftar sekarang" untuk membuat akun baru!
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- end login -->
+
+<!-- ══════════ REGISTER PAGE ══════════ -->
+<div class="page" id="page-register">
+  <div class="auth-page" style="padding-top:0;">
+
+    <!-- LEFT PANEL -->
+    <div class="auth-left">
+      <div class="auth-left-content">
+        <a class="auth-logo" href="#" onclick="showPage('landing')">
+          <div class="auth-logo-box">🧬</div>
+          <span class="auth-logo-text">Bio<span>Regula</span></span>
+        </a>
+        <h2 class="auth-tagline">Bergabung &amp;<br>Mulai <span>Belajar</span></h2>
+        <p class="auth-desc">Daftarkan akunmu sekarang dan nikmati pengalaman belajar biologi yang interaktif, seru, dan sesuai Kurikulum Merdeka.</p>
+        <div class="auth-pills">
+          <span class="auth-pill">✅ Gratis sepenuhnya</span>
+          <span class="auth-pill">🔒 Data aman</span>
+          <span class="auth-pill">📱 Akses kapan saja</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL -->
+    <div class="auth-right">
+      <div class="auth-form-wrap">
+        <h1 class="auth-title">Buat Akun</h1>
+        <p class="auth-subtitle">Pilih peranmu terlebih dahulu</p>
+
+        <!-- Role selector - hanya siswa -->
+        <div class="role-selector" style="grid-template-columns:1fr;">
+          <button class="role-btn siswa active" id="reg-role-siswa" style="pointer-events:none;">
+            <span class="r-icon">🎓</span>
+            <span class="r-label">Siswa</span>
+            <span class="r-sub">Akses materi &amp; kuis</span>
+          </button>
+        </div>
+        <div class="ib-t" style="background:var(--teal-bg);border-left:3px solid var(--teal);border-radius:8px;padding:8px 14px;font-size:.78rem;color:var(--teal-dark);margin-bottom:12px;">
+          ℹ️ Halaman pendaftaran ini hanya untuk <strong>siswa</strong>. Akun guru dikelola oleh administrator.
+        </div>
+
+        <!-- Alert -->
+        <div class="auth-alert error hidden" id="reg-alert">
+          ⚠️ <span id="reg-alert-msg">Terjadi kesalahan.</span>
+        </div>
+
+        <!-- Form Register -->
+        <div class="form-group">
+          <label>Nama Lengkap <span>*</span></label>
+          <input class="form-input" id="reg-nama" type="text" placeholder="Masukkan nama lengkap kamu">
+          <div class="form-error" id="err-reg-nama">Nama tidak boleh kosong.</div>
+        </div>
+        <div id="reg-siswa-fields">
+          <div class="form-group">
+            <label>Kelas <span>*</span></label>
+            <input class="form-input" id="reg-kelas" type="text" placeholder="Contoh: XI IPA 2">
+            <div class="form-error" id="err-reg-kelas">Kelas tidak boleh kosong.</div>
+          </div>
+          <div class="form-group">
+            <label>No. Absen</label>
+            <input class="form-input" id="reg-absen" type="text" placeholder="Nomor absen kamu">
+          </div>
+        </div>
+        <div id="reg-guru-fields" style="display:none;"></div>
+        <div class="form-group">
+          <label><em>Username</em> <span>*</span></label>
+          <input class="form-input" id="reg-username" type="text" placeholder="Buat username unik kamu">
+          <div class="form-error" id="err-reg-username"><em>Username</em> tidak boleh kosong.</div>
+        </div>
+        <div class="form-group">
+          <label><em>Password</em> <span>*</span></label>
+          <div class="input-wrap">
+            <input class="form-input" id="reg-password" type="password" placeholder="Buat password (min. 6 karakter)">
+            <button class="toggle-pw" type="button" onclick="togglePw('reg-password',this)">👁️</button>
+          </div>
+          <div class="form-error" id="err-reg-password"><em>Password</em> min. 6 karakter.</div>
+        </div>
+        <div class="form-group">
+          <label>Konfirmasi <em>Password</em> <span>*</span></label>
+          <div class="input-wrap">
+            <input class="form-input" id="reg-confirm" type="password" placeholder="Ulangi password kamu">
+            <button class="toggle-pw" type="button" onclick="togglePw('reg-confirm',this)">👁️</button>
+          </div>
+          <div class="form-error" id="err-reg-confirm"><em>Password</em> tidak cocok.</div>
+        </div>
+
+        <button class="btn-auth" id="btn-register" onclick="doRegister()">
+          <span id="reg-btn-text">Buat Akun →</span>
+          <div class="spinner" id="reg-spinner"></div>
+        </button>
+
+        <div class="auth-divider"><span>atau</span></div>
+        <div class="auth-switch">Sudah punya akun? <a onclick="showPage('login')">Masuk di sini</a></div>
+        <div class="auth-switch" style="margin-top:8px;"><a onclick="showPage('landing')">← Kembali ke beranda</a></div>
+      </div>
+    </div>
+  </div>
+</div><!-- end register -->
+
+<script>
+// ═══════════════════════════════════
+//  NAVIGATION
+// ═══════════════════════════════════
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  // Show/hide navbar on auth pages
+  const nav = document.getElementById('mainNav');
+  nav.style.display = (page === 'login' || page === 'register') ? 'none' : 'flex';
+}
+
+// ═══════════════════════════════════
+//  ROLE SELECTOR
+// ═══════════════════════════════════
+let loginRole = 'siswa';
+let regRole   = 'siswa';
+
+function selectRole(form, role) {
+  if (form === 'login') {
+    loginRole = role;
+    document.getElementById('login-role-siswa').className = 'role-btn siswa' + (role==='siswa'?' active':'');
+    document.getElementById('login-role-guru').className  = 'role-btn guru'  + (role==='guru' ?' active':'');
+  } else {
+    regRole = role;
+    document.getElementById('reg-role-siswa').className = 'role-btn siswa' + (role==='siswa'?' active':'');
+    document.getElementById('reg-role-guru').className  = 'role-btn guru'  + (role==='guru' ?' active':'');
+    document.getElementById('reg-siswa-fields').style.display = role==='siswa' ? 'block' : 'none';
+    document.getElementById('reg-guru-fields').style.display  = role==='guru'  ? 'block' : 'none';
+  }
+}
+
+// ═══════════════════════════════════
+//  PASSWORD TOGGLE
+// ═══════════════════════════════════
+function togglePw(id, btn) {
+  const inp = document.getElementById(id);
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+  btn.textContent = inp.type === 'password' ? '👁️' : '🙈';
+}
+
+// ═══════════════════════════════════
+//  HELPER: localStorage users
+// ═══════════════════════════════════
+// ── Akun guru dikunci (tidak bisa didaftar dari halaman register) ──
+const GURU_ACCOUNTS = [
+  { username:'Messy', password:'meijaee1614!', role:'guru', nama:'Messy Cipta Handay ani', mapel:'Biologi' }
+];
+
+function getUsers() {
+  return JSON.parse(localStorage.getItem('bioregula_users') || '[]');
+}
+function saveUsers(users) {
+  localStorage.setItem('bioregula_users', JSON.stringify(users));
+}
+function setCurrentUser(user) {
+  localStorage.setItem('bioregula_current', JSON.stringify(user));
+}
+function getCurrentUser() {
+  return JSON.parse(localStorage.getItem('bioregula_current') || 'null');
+}
+
+// Seed akun siswa demo saja
+(function seedDemo() {
+  let users = getUsers();
+  if (!users.length) {
+    users = [
+      { username:'siswa1', password:'siswa123', role:'siswa', nama:'Andi Pratama', kelas:'XI IPA 1', absen:'01' },
+    ];
+    saveUsers(users);
+  }
+})();
+
+// ═══════════════════════════════════
+//  SHOW ALERT
+// ═══════════════════════════════════
+function showAlert(id, msgId, msg, type='error') {
+  const el = document.getElementById(id);
+  document.getElementById(msgId).textContent = msg;
+  el.className = `auth-alert ${type}`;
+}
+function hideAlert(id) {
+  document.getElementById(id).className = 'auth-alert error hidden';
+}
+function showErr(id) { document.getElementById(id).classList.add('show'); }
+function hideErr(id) { document.getElementById(id).classList.remove('show'); }
+function errInput(id) { document.getElementById(id).classList.add('error'); }
+function okInput(id)  { document.getElementById(id).classList.remove('error'); }
+
+// ═══════════════════════════════════
+//  LOGIN
+// ═══════════════════════════════════
+function doLogin() {
+  hideAlert('login-alert');
+  const username = document.getElementById('login-username').value.trim();
+  const password = document.getElementById('login-password').value;
+  let valid = true;
+
+  if (!username) { showErr('err-login-username'); errInput('login-username'); valid=false; }
+  else { hideErr('err-login-username'); okInput('login-username'); }
+  if (!password) { showErr('err-login-password'); errInput('login-password'); valid=false; }
+  else { hideErr('err-login-password'); okInput('login-password'); }
+  if (!valid) return;
+
+  // Loading state
+  document.getElementById('login-btn-text').style.display = 'none';
+  document.getElementById('login-spinner').style.display = 'block';
+  document.getElementById('btn-login').disabled = true;
+
+  setTimeout(() => {
+    document.getElementById('login-btn-text').style.display = 'inline';
+    document.getElementById('login-spinner').style.display = 'none';
+    document.getElementById('btn-login').disabled = false;
+
+    let user = null;
+
+    if (loginRole === 'guru') {
+      // Cek HANYA dari akun guru yang dikunci
+      user = GURU_ACCOUNTS.find(u => u.username === username && u.password === password);
+    } else {
+      // Cek dari localStorage untuk siswa
+      const users = getUsers();
+      user = users.find(u => u.username === username && u.password === password && u.role === 'siswa');
+    }
+
+    if (!user) {
+      showAlert('login-alert', 'login-alert-msg', '<em>Username</em>, <em>password</em>, atau peran tidak sesuai. Coba lagi!');
+      return;
+    }
+
+    setCurrentUser(user);
+    goToDashboard(user.role);
+  }, 900);
+}
+
+// ═══════════════════════════════════
+//  REGISTER
+// ═══════════════════════════════════
+function doRegister() {
+  hideAlert('reg-alert');
+  const nama     = document.getElementById('reg-nama').value.trim();
+  const username = document.getElementById('reg-username').value.trim();
+  const password = document.getElementById('reg-password').value;
+  const confirm  = document.getElementById('reg-confirm').value;
+  const kelas    = document.getElementById('reg-kelas').value.trim();
+  let valid = true;
+
+  // Validate
+  if (!nama)   { showErr('err-reg-nama');   errInput('reg-nama');   valid=false; } else { hideErr('err-reg-nama');   okInput('reg-nama'); }
+  if (!username){ showErr('err-reg-username');errInput('reg-username');valid=false;} else { hideErr('err-reg-username');okInput('reg-username'); }
+  if (password.length < 6) { showErr('err-reg-password');errInput('reg-password');valid=false;} else { hideErr('err-reg-password');okInput('reg-password'); }
+  if (password !== confirm) { showErr('err-reg-confirm');errInput('reg-confirm');valid=false;} else { hideErr('err-reg-confirm');okInput('reg-confirm'); }
+  if (regRole === 'siswa' && !kelas) { showErr('err-reg-kelas');errInput('reg-kelas');valid=false;} else { hideErr('err-reg-kelas');okInput('reg-kelas'); }
+  if (!valid) return;
+
+  // Blokir registrasi sebagai guru — role selalu siswa
+  if (regRole === 'guru') {
+    showAlert('reg-alert','reg-alert-msg','Pendaftaran akun guru tidak tersedia. Hubungi administrator.');
+    return;
+  }
+
+  // Check duplicate username
+  const users = getUsers();
+  if (users.find(u => u.username === username)) {
+    showAlert('reg-alert','reg-alert-msg','Username sudah digunakan. Coba username lain!');
+    errInput('reg-username'); return;
+  }
+
+  // Loading
+  document.getElementById('reg-btn-text').style.display = 'none';
+  document.getElementById('reg-spinner').style.display = 'block';
+  document.getElementById('btn-register').disabled = true;
+
+  setTimeout(() => {
+    document.getElementById('reg-btn-text').style.display = 'inline';
+    document.getElementById('reg-spinner').style.display = 'none';
+    document.getElementById('btn-register').disabled = false;
+
+    const newUser = {
+      username, password, role: regRole, nama,
+      kelas: regRole==='siswa' ? kelas : '',
+      absen: regRole==='siswa' ? document.getElementById('reg-absen').value.trim() : '',
+      mapel: regRole==='guru'  ? document.getElementById('reg-mapel').value.trim() : '',
+      createdAt: new Date().toISOString(),
+      quizPlayed: 0, bestScore: 0, lkpdDone: 0,
+    };
+    users.push(newUser);
+    saveUsers(users);
+    setCurrentUser(newUser);
+    goToDashboard(regRole);
+  }, 900);
+}
+
+// ═══════════════════════════════════
+//  GOTO DASHBOARD (placeholder)
+// ═══════════════════════════════════
+function goToDashboard(role) {
+  if (role === 'guru') {
+    window.location.replace('dashboard-guru.html');
+  } else {
+    window.location.replace('dashboard-siswa.html');
+  }
+}
+</script>
+</body>
+</html>

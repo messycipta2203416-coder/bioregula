@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identitas Pembelajaran — BioRegula</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:#0d9488;--teal-dark:#0f766e;--teal-light:#99f6e4;--teal-bg:#f0fdfa;
+  --indigo:#4f46e5;--indigo-light:#e0e7ff;
+  --amber:#f59e0b;--amber-light:#fef3c7;
+  --coral:#f43f5e;--off:#f8fafc;--white:#ffffff;
+  --gray:#64748b;--gray-light:#e2e8f0;--dark:#0f172a;
+  --radius:16px;--shadow:0 4px 24px rgba(15,23,42,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--dark);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:64px;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(13,148,136,.12);box-shadow:0 2px 12px rgba(15,23,42,.06);}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo-box{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--teal),var(--indigo));display:flex;align-items:center;justify-content:center;font-size:18px;}
+.nav-brand-text{font-size:1.2rem;font-weight:800;color:var(--dark);}
+.nav-brand-text span{color:var(--teal);}
+.nav-back{display:flex;align-items:center;gap:6px;padding:8px 18px;border-radius:30px;border:2px solid var(--gray-light);background:transparent;color:var(--gray);font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .2s;text-decoration:none;}
+.nav-back:hover{border-color:var(--teal);color:var(--teal);}
+
+/* HEADER */
+.page-header{background:linear-gradient(150deg,#0f172a,#134e4a 50%,#1e1b4b);padding:100px 2rem 60px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(13,148,136,.2),transparent 70%);}
+.header-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+.header-tag{display:inline-block;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 16px;font-size:.78rem;font-weight:600;color:var(--teal-light);letter-spacing:.5px;margin-bottom:1rem;}
+.page-header h1{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;color:#fff;margin-bottom:.8rem;line-height:1.2;}
+.page-header h1 span{background:linear-gradient(90deg,#5eead4,#a5b4fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.page-header p{font-size:.95rem;color:rgba(255,255,255,.65);line-height:1.7;max-width:560px;}
+
+/* MAIN */
+.main{max-width:900px;margin:0 auto;padding:2.5rem 2rem 4rem;}
+
+/* SECTION */
+.sec{margin-bottom:2.5rem;}
+.sec-tag{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal);margin-bottom:.6rem;}
+.sec-tag::before{content:'';width:20px;height:2px;background:var(--teal);border-radius:2px;}
+.sec h2{font-size:1.3rem;font-weight:800;color:var(--dark);margin-bottom:1.2rem;}
+
+/* IDENTITY TABLE CARD */
+.id-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:1.5rem;}
+.id-card-head{background:linear-gradient(135deg,#0f172a,#134e4a);padding:20px 28px;display:flex;align-items:center;gap:14px;}
+.id-card-head .icon{font-size:1.6rem;}
+.id-card-head h3{font-size:1rem;font-weight:800;color:#fff;}
+.id-card-head p{font-size:.8rem;color:rgba(255,255,255,.6);margin-top:2px;}
+.id-table{width:100%;border-collapse:collapse;}
+.id-table tr{border-bottom:1px solid #f1f5f9;}
+.id-table tr:last-child{border-bottom:none;}
+.id-table td{padding:13px 28px;font-size:.87rem;vertical-align:top;}
+.id-table td:first-child{width:200px;font-weight:700;color:var(--gray);background:#fafbfc;white-space:nowrap;}
+.id-table td:last-child{color:var(--dark);font-weight:500;}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.74rem;font-weight:700;}
+.bt{background:var(--teal-bg);color:var(--teal-dark);}
+.bi{background:var(--indigo-light);color:var(--indigo);}
+.ba{background:var(--amber-light);color:#92400e;}
+
+/* CP BOX */
+.cp-box{background:linear-gradient(135deg,#0f172a,#134e4a);border-radius:var(--radius);padding:28px 32px;margin-bottom:1.5rem;position:relative;overflow:hidden;}
+.cp-box::after{content:'CP';position:absolute;right:20px;bottom:-10px;font-size:6rem;font-weight:800;color:rgba(255,255,255,.04);pointer-events:none;}
+.cp-label{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--teal-light);margin-bottom:4px;}
+.cp-elemen{font-size:.78rem;color:rgba(255,255,255,.45);margin-bottom:12px;}
+.cp-text{font-size:.9rem;color:rgba(255,255,255,.85);line-height:1.85;}
+.cp-text strong{color:#fff;}
+.cp-src{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.12);font-size:.78rem;color:var(--amber);font-weight:600;}
+
+/* KP GRID */
+.kp-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem;}
+.kp-card{background:var(--white);border-radius:14px;padding:16px 18px;box-shadow:0 2px 10px rgba(15,23,42,.06);border-left:3px solid var(--teal);}
+.kp-card h4{font-size:.87rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.kp-card p{font-size:.79rem;color:var(--gray);line-height:1.6;}
+
+/* SIKLUS ACCORDION */
+.siklus-wrap{display:flex;flex-direction:column;gap:14px;}
+.siklus-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.sk-header{padding:18px 24px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .15s;user-select:none;}
+.sk-header:hover{background:#fafbfc;}
+.sk-left{display:flex;align-items:center;gap:14px;}
+.sk-num{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+.sn1{background:linear-gradient(135deg,#0d9488,#0891b2);}
+.sn2{background:linear-gradient(135deg,#f59e0b,#f97316);}
+.sn3{background:linear-gradient(135deg,#4f46e5,#7c3aed);}
+.sk-header h3{font-size:.97rem;font-weight:800;color:var(--dark);}
+.sk-header p{font-size:.79rem;color:var(--gray);margin-top:2px;}
+.sk-right{display:flex;align-items:center;gap:10px;}
+.sk-jp{font-size:.77rem;font-weight:700;padding:4px 12px;border-radius:20px;white-space:nowrap;}
+.jp1{background:var(--teal-bg);color:var(--teal-dark);}
+.jp2{background:var(--amber-light);color:#92400e;}
+.jp3{background:var(--indigo-light);color:var(--indigo);}
+.sk-chev{font-size:.75rem;color:var(--gray);transition:transform .3s;}
+.sk-chev.open{transform:rotate(180deg);}
+.sk-body{padding:0 24px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease;}
+.sk-body.open{max-height:1200px;padding:0 24px 24px;}
+.sk-divider{border:none;border-top:1px solid var(--gray-light);margin-bottom:18px;}
+
+/* TP ITEMS */
+.tp-list{display:flex;flex-direction:column;gap:12px;}
+.tp-item{border-radius:12px;padding:15px 17px;border-left:3px solid transparent;}
+.f1{background:#f0fdfa;border-left-color:var(--teal);}
+.f2{background:#fffbeb;border-left-color:var(--amber);}
+.f3{background:#eef2ff;border-left-color:var(--indigo);}
+.tp-fase{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px;}
+.f1 .tp-fase{color:var(--teal-dark);}
+.f2 .tp-fase{color:#92400e;}
+.f3 .tp-fase{color:var(--indigo);}
+.tp-item > p{font-size:.86rem;color:var(--dark);line-height:1.6;margin-bottom:9px;}
+.ind-list{display:flex;flex-direction:column;gap:4px;}
+.ind-item{display:flex;align-items:flex-start;gap:7px;font-size:.79rem;color:var(--gray);line-height:1.5;}
+.ind-dot{width:5px;height:5px;border-radius:50%;background:var(--gray);flex-shrink:0;margin-top:6px;}
+.ctag{display:inline-block;font-size:.68rem;font-weight:700;padding:1px 7px;border-radius:6px;margin-left:3px;}
+.c3{background:#d1fae5;color:#065f46;}
+.c4{background:#fee2e2;color:#991b1b;}
+.c5{background:#ede9fe;color:#5b21b6;}
+.c6{background:#dbeafe;color:#1e40af;}
+.profil-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.pchip{font-size:.71rem;font-weight:600;padding:2px 9px;border-radius:20px;background:rgba(0,0,0,.05);color:var(--gray);}
+
+/* PBL GRID */
+.pbl-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.pbl-step{background:var(--white);border-radius:14px;padding:18px 14px;box-shadow:0 2px 10px rgba(15,23,42,.06);text-align:center;border-top:3px solid var(--teal);transition:transform .2s;}
+.pbl-step:hover{transform:translateY(-3px);}
+.pbl-step:nth-child(2){border-top-color:var(--amber);}
+.pbl-step:nth-child(3){border-top-color:var(--coral);}
+.pbl-step:nth-child(4){border-top-color:var(--indigo);}
+.pbl-num{width:32px;height:32px;border-radius:50%;background:var(--teal-bg);color:var(--teal-dark);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;margin:0 auto 10px;}
+.pbl-step:nth-child(2) .pbl-num{background:var(--amber-light);color:#92400e;}
+.pbl-step:nth-child(3) .pbl-num{background:#ffe4e6;color:#9f1239;}
+.pbl-step:nth-child(4) .pbl-num{background:var(--indigo-light);color:var(--indigo);}
+.pbl-step h4{font-size:.81rem;font-weight:700;color:var(--dark);margin-bottom:5px;line-height:1.4;}
+.pbl-step p{font-size:.74rem;color:var(--gray);line-height:1.5;}
+
+/* WAKTU */
+.waktu-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:1.2rem;}
+.waktu-card{background:var(--white);border-radius:14px;padding:20px;box-shadow:0 2px 10px rgba(15,23,42,.06);text-align:center;}
+.waktu-val{font-size:2rem;font-weight:800;color:var(--dark);line-height:1;}
+.waktu-val span{font-size:1rem;color:var(--teal);font-weight:700;}
+.waktu-lbl{font-size:.77rem;color:var(--gray);margin-top:4px;}
+.ptm-list{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.ptm-item{display:flex;align-items:center;gap:14px;padding:15px 24px;border-bottom:1px solid #f1f5f9;transition:background .15s;}
+.ptm-item:last-child{border-bottom:none;}
+.ptm-item:hover{background:#fafbfc;}
+.ptm-n{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.83rem;color:#fff;flex-shrink:0;}
+.ptm-body{flex:1;}
+.ptm-body h4{font-size:.88rem;font-weight:700;color:var(--dark);margin-bottom:2px;}
+.ptm-body p{font-size:.78rem;color:var(--gray);}
+.ptm-badge{font-size:.74rem;font-weight:700;padding:4px 11px;border-radius:20px;white-space:nowrap;}
+
+/* VARIABEL */
+.var-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.var-card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.var-head{padding:15px 20px;display:flex;align-items:center;gap:10px;}
+.var-head.vld{background:linear-gradient(135deg,#1e3a5f,#2d7dd2);}
+.var-head.vkbk{background:linear-gradient(135deg,#78350f,#d97706);}
+.var-head h3{font-size:.9rem;font-weight:800;color:#fff;}
+.var-body{padding:14px 18px;}
+.var-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid #f1f5f9;}
+.var-item:last-child{border-bottom:none;}
+.vcode{font-size:.7rem;font-weight:800;padding:3px 8px;border-radius:7px;flex-shrink:0;margin-top:1px;font-family:monospace;}
+.vc-ld{background:#dbeafe;color:#1e40af;}
+.vc-kbk{background:#fef3c7;color:#92400e;}
+.var-desc strong{font-size:.82rem;font-weight:700;color:var(--dark);}
+.var-desc p{font-size:.77rem;color:var(--gray);line-height:1.5;margin-top:1px;}
+
+/* ASSESS */
+.assess-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.assess-card{background:var(--white);border-radius:14px;padding:17px 14px;box-shadow:0 2px 10px rgba(15,23,42,.06);text-align:center;}
+.assess-icon{font-size:1.5rem;margin-bottom:7px;}
+.assess-card h4{font-size:.84rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.assess-card p{font-size:.74rem;color:var(--gray);line-height:1.5;}
+.av{font-size:.69rem;font-weight:700;padding:2px 8px;border-radius:10px;display:inline-block;margin-top:6px;}
+.av-ld{background:#dbeafe;color:#1e40af;}
+.av-both{background:#f3e8ff;color:#6b21a8;}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.fade-up{animation:fadeUp .5s ease both;}
+.fade-up-2{animation:fadeUp .5s .1s ease both;}
+.fade-up-3{animation:fadeUp .5s .2s ease both;}
+
+@media(max-width:700px){
+  .kp-grid,.var-grid,.assess-grid{grid-template-columns:1fr;}
+  .pbl-grid{grid-template-columns:1fr 1fr;}
+  .waktu-row{grid-template-columns:repeat(3,1fr);}
+  .id-table td:first-child{width:130px;}
+  nav{padding:0 1rem;}
+  .main{padding:2rem 1rem 3rem;}
+}
+</style>
+<script src="nav.js"></script>
+</head>
+<body>
+
+<div id="bio-page-content" class="bio-content">
+<div class="page-header">
+  <div class="header-inner">
+    <div class="header-tag">📋 Informasi Pembelajaran</div>
+    <h1>Identitas <span>Pembelajaran</span></h1>
+    <p>Informasi lengkap modul ajar, capaian pembelajaran, model <em>Problem-Based Learning</em>, dan alokasi waktu pembelajaran Biologi kelas XI.</p>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- 1. IDENTITAS MODUL -->
+  <div class="sec fade-up">
+    <div class="sec-tag">Identitas Modul</div>
+    <h2>Informasi Umum</h2>
+    <div class="id-card">
+      <div class="id-card-head">
+        <span class="icon">🏫</span>
+        <div>
+          <h3>Modul Ajar Sistem Regulasi</h3>
+          <p>Biologi · Kelas XI · Fase F · SMAN 1 Malang</p>
+        </div>
+      </div>
+      <table class="id-table">
+        <tr><td>Mata Pelajaran</td><td>Biologi</td></tr>
+        <tr><td>Kelas / Fase</td><td>XI / Fase F &nbsp;<span class="badge bt">Kurikulum Merdeka</span></td></tr>
+        <tr><td>Satuan Pendidikan</td><td>SMA Negeri 1 Malang</td></tr>
+        <tr><td>Tahun Ajaran</td><td>2025/2026</td></tr>
+        <tr><td>Alokasi Waktu</td><td>10 JP × 45 menit (4 Pertemuan)</td></tr>
+        <tr><td>Model Pembelajaran</td><td><em>Problem-Based Learning</em> (PBL) &nbsp;<span class="badge bi">2 Siklus</span></td></tr>
+        <tr><td>Materi Pokok</td><td>Sistem Regulasi Manusia: Sistem Saraf, Sistem Hormon, Alat Indera</td></tr>
+        <tr><td>Sarana &amp; Prasarana</td><td>Laptop/HP, akses internet, multimedia <em>website</em>, LKPD digital, artikel ilmiah, video pembelajaran, infografis, LCD proyektor</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 2. CP -->
+  <div class="sec fade-up-2">
+    <div class="sec-tag">Capaian Pembelajaran</div>
+    <h2>CP Fase F — CP 046 Tahun 2025</h2>
+    <div class="cp-box">
+      <div class="cp-label">Capaian Pembelajaran Fase F</div>
+      <div class="cp-elemen">Elemen: Pemahaman Biologi</div>
+      <p class="cp-text">Pada akhir Fase F, peserta didik memiliki kemampuan <strong>mengaitkan hubungan antara struktur dan fungsi organel di dalam sel</strong>; menerapkan prinsip-prinsip bioproses yang terjadi di dalam sel; <strong>menganalisis keterkaitan antar sistem organ dalam tubuh untuk merespons stimulus internal dan eksternal</strong>; menerapkan prinsip pewarisan sifat; mengaitkan mekanisme evolusi dengan proses terjadi keanekaragaman dan kelangsungan hidup organisme; menerapkan prinsip pertumbuhan dan perkembangan; serta menganalisis proses bioteknologi modern.</p>
+      <div class="cp-src">📌 Fokus materi ini: Menganalisis keterkaitan antar sistem organ → merespons stimulus internal &amp; eksternal</div>
+    </div>
+    <div class="sec-tag" style="margin-top:1.4rem;">Keterampilan Proses</div>
+    <div class="kp-grid">
+      <div class="kp-card"><h4>🔍 Mengamati</h4><p>Mengamati fenomena ilmiah dalam kehidupan sehari-hari dan mencatat hasil pengamatan secara detail.</p></div>
+      <div class="kp-card"><h4>❓ Mempertanyakan &amp; Memprediksi</h4><p>Merumuskan pertanyaan ilmiah tentang hubungan antar variabel dan hipotesis yang dapat diselidiki.</p></div>
+      <div class="kp-card"><h4>🔬 Merencanakan &amp; Melakukan Penyelidikan</h4><p>Merencanakan metode yang sesuai, mengendalikan variabel, menggunakan teknologi digital secara sistematis.</p></div>
+      <div class="kp-card"><h4>📊 Memproses &amp; Menganalisis Data</h4><p>Menafsirkan informasi secara jujur, menganalisis pola, dan menarik kesimpulan berbasis data.</p></div>
+      <div class="kp-card"><h4>✅ Mengevaluasi &amp; Refleksi</h4><p>Mengidentifikasi sumber ketidakpastian dan mengevaluasi validitas informasi dari berbagai sumber.</p></div>
+      <div class="kp-card"><h4>📢 Mengkomunikasikan Hasil</h4><p>Mengkomunikasikan hasil penyelidikan secara sistematis dan utuh dengan argumen ilmiah.</p></div>
+    </div>
+  </div>
+
+  <!-- 3. TUJUAN PEMBELAJARAN -->
+  <div class="sec fade-up-3">
+    <div class="sec-tag">Tujuan Pembelajaran</div>
+    <h2>6 Tujuan Pembelajaran dalam 2 Siklus PBL</h2>
+    <div class="siklus-wrap">
+
+      <!-- SIKLUS 1 -->
+      <div class="siklus-card">
+        <div class="sk-header" onclick="toggleSiklus(1)">
+          <div class="sk-left">
+            <div class="sk-num sn1">🔬</div>
+            <div>
+              <h3>Siklus 1 — Sistem Saraf dan Sistem Hormon</h3>
+              <p>Pertemuan 1–2 · Stres akademik sebagai permasalahan terpadu sistem regulasi</p>
+            </div>
+          </div>
+          <div class="sk-right">
+            <span class="sk-jp jp1">5 JP</span>
+            <span class="sk-chev" id="chev-1">▼</span>
+          </div>
+        </div>
+        <div class="sk-body" id="body-1">
+          <hr class="sk-divider">
+          <div style="background:#f0fdfa;border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:.82rem;color:var(--teal-dark);">
+            💬 <strong>Pertanyaan Pemantik:</strong> <em>"Pernahkah kalian merasa jantung berdebar, sulit berkonsentrasi, atau mudah panik saat menghadapi ujian atau tugas menumpuk? Menurut kalian, bagaimana sistem saraf dan hormon bekerja bersama-sama dalam merespons kondisi stres akademik tersebut dan mengapa dampaknya bisa memengaruhi kondisi fisik maupun emosional kalian?"</em>
+          </div>
+          <div class="tp-list">
+            <div class="tp-item f1">
+              <div class="tp-fase">TP 1 · Orientasi &amp; Formulasi Masalah — Pertemuan 1 (35 menit)</div>
+              <p>Menelaah komponen dan fungsi sistem saraf serta sistem hormon manusia melalui studi kasus stres akademik sebagai permasalahan terpadu yang memengaruhi kedua sistem regulasi secara bersamaan, berbasis konteks kehidupan nyata dengan memanfaatkan sumber digital.</p>
+              <div class="ind-list">
+                <div class="ind-item"><span class="ind-dot"></span><span>1.1 Menelaah komponen sistem saraf pusat dan tepi serta kelenjar endokrin yang terlibat dalam respons stres akademik berdasarkan studi kasus yang disajikan melalui multimedia <em>website</em> <span class="ctag c4">C4</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>1.2 Menguraikan mekanisme penghantaran impuls saraf dan respons hormonal (kortisol dan adrenalin) dalam menghadapi stres akademik berdasarkan literatur digital melalui diskusi kelompok <span class="ctag c3">C3</span></span></div>
+              </div>
+              <div class="profil-row"><span class="pchip">Penalaran Kritis</span><span class="pchip">Kemandirian</span><span class="pchip">Keimanan &amp; Ketakwaan</span></div>
+            </div>
+            <div class="tp-item f2">
+              <div class="tp-fase">TP 2 · Mengorganisasi &amp; Membimbing Penyelidikan — Pertemuan 1–2</div>
+              <p>Menganalisis dampak stres akademik terhadap mekanisme kerja sistem saraf dan respons sistem hormon dalam upaya menjaga <em>homeostasis</em> tubuh, serta merancang rencana penyelidikannya secara ilmiah.</p>
+              <div class="ind-list">
+                <div class="ind-item"><span class="ind-dot"></span><span>2.1 Merumuskan permasalahan terkait dampak stres akademik terhadap sistem saraf dan sistem hormon secara terpadu berdasarkan fenomena kontekstual melalui diskusi kelompok <span class="ctag c4">C4</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>2.2 Menyusun rencana penyelidikan untuk mengkaji dampak stres akademik terhadap sistem saraf dan sistem hormon melalui pembagian tugas dan pemanfaatan sumber digital <span class="ctag c3">C3</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>2.3 Menganalisis dampak stres akademik terhadap mekanisme sistem saraf dan ketidakseimbangan hormon serta <em>homeostasis</em> tubuh berdasarkan hasil diskusi dan literatur digital <span class="ctag c4">C4</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>2.4 Menyimpulkan hubungan antara gangguan sistem saraf, respons hormonal, dan perubahan <em>homeostasis</em> tubuh berdasarkan hasil penyelidikan kelompok <span class="ctag c5">C5</span></span></div>
+              </div>
+              <div class="profil-row"><span class="pchip">Penalaran Kritis</span><span class="pchip">Kolaborasi</span><span class="pchip">Kemandirian</span><span class="pchip">Keimanan &amp; Ketakwaan</span></div>
+            </div>
+            <div class="tp-item f3">
+              <div class="tp-fase">TP 3 · Mengembangkan Hasil &amp; Analisis Evaluasi — Pertemuan 2</div>
+              <p>Merancang dan menyajikan solusi pengelolaan stres akademik berdasarkan pemahaman terpadu sistem saraf dan sistem hormon, serta mengevaluasi proses pemecahan masalah melalui pemanfaatan teknologi digital.</p>
+              <div class="ind-list">
+                <div class="ind-item"><span class="ind-dot"></span><span>3.1 Merancang solusi pengelolaan stres akademik berdasarkan pemahaman terpadu sistem saraf dan sistem hormon melalui diskusi kelompok dengan memanfaatkan teknologi digital secara kreatif dan kolaboratif <span class="ctag c6">C6</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>3.2 Menyajikan hasil solusi pengelolaan stres akademik melalui presentasi berbantuan multimedia <em>website</em> secara jelas dan komunikatif <span class="ctag c3">C3</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>3.3 Mengevaluasi solusi dan proses pemecahan masalah yang telah dilakukan melalui kegiatan refleksi pembelajaran pada multimedia <em>website</em> <span class="ctag c5">C5</span></span></div>
+              </div>
+              <div class="profil-row"><span class="pchip">Kreativitas</span><span class="pchip">Kolaborasi</span><span class="pchip">Komunikasi</span><span class="pchip">Penalaran Kritis</span><span class="pchip">Kemandirian</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIKLUS 2 -->
+      <div class="siklus-card">
+        <div class="sk-header" onclick="toggleSiklus(2)">
+          <div class="sk-left">
+            <div class="sk-num sn3">👁️</div>
+            <div>
+              <h3>Siklus 2 — Alat Indera</h3>
+              <p>Pertemuan 3–4 · Dampak penggunaan perangkat digital terhadap indera penglihatan &amp; pendengaran</p>
+            </div>
+          </div>
+          <div class="sk-right">
+            <span class="sk-jp jp3">5 JP</span>
+            <span class="sk-chev" id="chev-2">▼</span>
+          </div>
+        </div>
+        <div class="sk-body" id="body-2">
+          <hr class="sk-divider">
+          <div style="background:#eef2ff;border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:.82rem;color:var(--indigo);">
+            💬 <strong>Pertanyaan Pemantik:</strong> <em>"Dalam aktivitas belajar sehari-hari, peserta didik terus menerima berbagai rangsangan seperti cahaya layar <em>gawai</em>, suara bising kelas, dan informasi visual dari media digital. Bagaimana alat indera berperan dalam menerima stimulus tersebut dan apa dampaknya jika fungsi alat indera tidak bekerja secara optimal?"</em>
+          </div>
+          <div style="background:#fef9e7;border-radius:10px;padding:10px 14px;margin-bottom:14px;font-size:.8rem;color:#92400e;">
+            🎯 <strong>Konteks khusus:</strong> Studi kasus berbasis <em>digital eye strain</em> (kelelahan mata akibat layar) dan gangguan pendengaran akibat penggunaan <em>earphone</em>.
+          </div>
+          <div class="tp-list">
+            <div class="tp-item f1">
+              <div class="tp-fase">TP 4 · Orientasi &amp; Formulasi Masalah — Pertemuan 3 (35 menit)</div>
+              <p>Menelaah komponen dan fungsi alat indera manusia melalui studi kasus gangguan indera penglihatan dan pendengaran akibat penggunaan perangkat digital berbasis konteks kehidupan nyata dengan memanfaatkan sumber digital.</p>
+              <div class="ind-list">
+                <div class="ind-item"><span class="ind-dot"></span><span>4.1 Menelaah komponen struktur mata dan telinga berdasarkan studi kasus <em>digital eye strain</em> dan gangguan pendengaran akibat <em>earphone</em> melalui multimedia <em>website</em> <span class="ctag c4">C4</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>4.2 Menguraikan mekanisme kerja indera penglihatan dan pendengaran dalam menerima dan memproses stimulus selama proses belajar digital berdasarkan literatur digital <span class="ctag c3">C3</span></span></div>
+              </div>
+              <div class="profil-row"><span class="pchip">Penalaran Kritis</span><span class="pchip">Kemandirian</span><span class="pchip">Keimanan &amp; Ketakwaan</span></div>
+            </div>
+            <div class="tp-item f2">
+              <div class="tp-fase">TP 5 · Mengorganisasi &amp; Membimbing Penyelidikan — Pertemuan 3–4</div>
+              <p>Menganalisis dampak gangguan alat indera akibat penggunaan perangkat digital terhadap proses belajar remaja dan merancang rencana penyelidikannya secara ilmiah.</p>
+              <div class="ind-list">
+                <div class="ind-item"><span class="ind-dot"></span><span>5.1 Merumuskan permasalahan terkait dampak penggunaan perangkat digital terhadap fungsi indera penglihatan dan pendengaran berdasarkan fenomena kontekstual <span class="ctag c4">C4</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>5.2 Menyusun rencana penyelidikan untuk mengkaji dampak penggunaan perangkat digital terhadap fungsi alat indera melalui pembagian tugas dan pemanfaatan sumber digital <span class="ctag c3">C3</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>5.3 Menganalisis keterkaitan paparan cahaya biru dan intensitas suara tinggi terhadap gangguan fungsi alat indera berdasarkan hasil diskusi dan literatur digital <span class="ctag c4">C4</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>5.4 Menyimpulkan hubungan antara kebiasaan penggunaan perangkat digital dan penurunan fungsi alat indera berdasarkan hasil penyelidikan kelompok <span class="ctag c5">C5</span></span></div>
+              </div>
+              <div class="profil-row"><span class="pchip">Penalaran Kritis</span><span class="pchip">Kolaborasi</span><span class="pchip">Kemandirian</span><span class="pchip">Keimanan &amp; Ketakwaan</span></div>
+            </div>
+            <div class="tp-item f3">
+              <div class="tp-fase">TP 6 · Mengembangkan Hasil &amp; Analisis Evaluasi — Pertemuan 4</div>
+              <p>Merancang dan menyajikan solusi kebiasaan penggunaan perangkat digital yang sehat untuk menjaga fungsi alat indera serta mengevaluasi proses pemecahan masalah melalui pemanfaatan teknologi digital.</p>
+              <div class="ind-list">
+                <div class="ind-item"><span class="ind-dot"></span><span>6.1 Merancang solusi kebiasaan sehat dalam penggunaan perangkat digital untuk menjaga fungsi indera penglihatan dan pendengaran melalui diskusi kelompok secara kreatif dan kolaboratif <span class="ctag c6">C6</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>6.2 Menyajikan hasil solusi pemecahan masalah gangguan alat indera melalui presentasi berbantuan multimedia <em>website</em> secara jelas dan komunikatif <span class="ctag c3">C3</span></span></div>
+                <div class="ind-item"><span class="ind-dot"></span><span>6.3 Mengevaluasi solusi dan proses pemecahan masalah yang telah dilakukan melalui kegiatan refleksi pembelajaran pada multimedia <em>website</em> <span class="ctag c5">C5</span></span></div>
+              </div>
+              <div class="profil-row"><span class="pchip">Kreativitas</span><span class="pchip">Kolaborasi</span><span class="pchip">Komunikasi</span><span class="pchip">Penalaran Kritis</span><span class="pchip">Kemandirian</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 4. MODEL PBL -->
+  <div class="sec">
+    <div class="sec-tag">Model Pembelajaran</div>
+    <h2><em>Problem-Based Learning</em> (PBL) — 5 Fase</h2>
+    <div class="pbl-grid">
+      <div class="pbl-step"><div class="pbl-num">1</div><h4>Orientasi &amp; Formulasi Masalah</h4><p>Membaca studi kasus kontekstual, menelaah komponen sistem regulasi, dan merumuskan pertanyaan esensial melalui multimedia <em>website</em>.</p></div>
+      <div class="pbl-step"><div class="pbl-num">2</div><h4>Mengorganisasikan Peserta Didik untuk Belajar</h4><p>Diskusi kelompok memilih satu rumusan masalah fokus, pembagian tugas, dan menyusun rencana penyelidikan via sumber digital.</p></div>
+      <div class="pbl-step"><div class="pbl-num">3</div><h4>Membimbing Penyelidikan Mandiri &amp; Kelompok</h4><p>Penelusuran literatur digital secara mandiri dan kelompok, analisis mekanisme, serta penyusunan simpulan berbasis data secara ilmiah.</p></div>
+      <div class="pbl-step"><div class="pbl-num">4</div><h4>Mengembangkan &amp; Menyajikan Hasil Karya</h4><p>Merancang solusi berbasis fisiologi sistem regulasi, presentasi hasil kepada kelas, dan menerima umpan balik antar kelompok.</p></div>
+      <div class="pbl-step"><div class="pbl-num">5</div><h4>Menganalisis &amp; Mengevaluasi Proses Pemecahan Masalah</h4><p>Evaluasi kelebihan dan kekurangan solusi, refleksi proses belajar melalui fitur evaluasi digital pada multimedia <em>website</em>.</p></div>
+    </div>
+  </div>
+
+  <!-- 5. ALOKASI WAKTU -->
+  <div class="sec">
+    <div class="sec-tag">Alokasi Waktu</div>
+    <h2>Pembagian Pertemuan &amp; Waktu</h2>
+    <div class="waktu-row">
+      <div class="waktu-card"><div class="waktu-val">10 <span>JP</span></div><div class="waktu-lbl">Total Jam Pelajaran</div></div>
+      <div class="waktu-card"><div class="waktu-val">45 <span>mnt</span></div><div class="waktu-lbl">Per Jam Pelajaran</div></div>
+      <div class="waktu-card"><div class="waktu-val">4 <span>×</span></div><div class="waktu-lbl">Total Pertemuan</div></div>
+    </div>
+    <div class="ptm-list">
+      <div class="ptm-item"><div class="ptm-n" style="background:linear-gradient(135deg,#0d9488,#0891b2);">1</div><div class="ptm-body"><h4>Pertemuan 1 — Siklus 1: Sistem Saraf &amp; Hormon</h4><p><em>Pre-test</em> (20 menit) · Orientasi &amp; Formulasi Masalah (35 menit) · Mengorganisasi Peserta Didik (25 menit) · Membimbing Penyelidikan (30 menit) · Penutup (10 menit)</p></div><span class="ptm-badge" style="background:var(--teal-bg);color:var(--teal-dark);">3 JP · 135 mnt</span></div>
+      <div class="ptm-item"><div class="ptm-n" style="background:linear-gradient(135deg,#0d9488,#0891b2);">2</div><div class="ptm-body"><h4>Pertemuan 2 — Siklus 1: Mengembangkan &amp; Evaluasi</h4><p>Mengembangkan &amp; Menyajikan Hasil (40 menit) · Menganalisis &amp; Mengevaluasi Pemecahan Masalah (25 menit) · Penutup (10 menit)</p></div><span class="ptm-badge" style="background:var(--teal-bg);color:var(--teal-dark);">2 JP · 90 mnt</span></div>
+      <div class="ptm-item"><div class="ptm-n" style="background:linear-gradient(135deg,#4f46e5,#7c3aed);">3</div><div class="ptm-body"><h4>Pertemuan 3 — Siklus 2: Alat Indera</h4><p>Orientasi &amp; Formulasi Masalah (35 menit) · Mengorganisasi Peserta Didik (25 menit) · Membimbing Penyelidikan (30 menit) · Penutup (10 menit)</p></div><span class="ptm-badge" style="background:var(--indigo-light);color:var(--indigo);">3 JP · 135 mnt</span></div>
+      <div class="ptm-item"><div class="ptm-n" style="background:linear-gradient(135deg,#4f46e5,#7c3aed);">4</div><div class="ptm-body"><h4>Pertemuan 4 — Siklus 2: Mengembangkan &amp; Evaluasi</h4><p>Mengembangkan &amp; Menyajikan Hasil (35 menit) · Menganalisis &amp; Mengevaluasi Pemecahan Masalah (15 menit) · <em>Post-test</em> (20 menit) · Penutup (10 menit)</p></div><span class="ptm-badge" style="background:var(--indigo-light);color:var(--indigo);">2 JP · 90 mnt</span></div>
+    </div>
+  </div>
+
+  <!-- 6. VARIABEL PENELITIAN -->
+  <div class="sec">
+    <div class="sec-tag">Variabel Penelitian</div>
+    <h2>Literasi Digital &amp; Keterampilan Berpikir Kritis</h2>
+    <div class="var-grid">
+      <div class="var-card">
+        <div class="var-head vld"><span style="font-size:1.2rem;">📱</span><h3>Literasi Digital (Ng, 2012)</h3></div>
+        <div class="var-body">
+          <div class="var-item"><span class="vcode vc-ld">[LD-K]</span><div class="var-desc"><strong>Kognitif</strong><p>Mencari, mengevaluasi, dan menggunakan informasi digital secara kritis</p></div></div>
+          <div class="var-item"><span class="vcode vc-ld">[LD-T]</span><div class="var-desc"><strong>Teknis</strong><p>Mengoperasikan perangkat dan platform digital secara fungsional</p></div></div>
+          <div class="var-item"><span class="vcode vc-ld">[LD-SE]</span><div class="var-desc"><strong>Sosial-Emosional</strong><p>Etika digital, keamanan data, komunikasi bertanggung jawab</p></div></div>
+        </div>
+      </div>
+      <div class="var-card">
+        <div class="var-head vkbk"><span style="font-size:1.2rem;">🧠</span><h3>Berpikir Kritis (Greenstein, 2012)</h3></div>
+        <div class="var-body">
+          <div class="var-item"><span class="vcode vc-kbk">[KBK-AN]</span><div class="var-desc"><strong><em>Analyze</em></strong><p>Menganalisis komponen, hubungan, dan pola informasi</p></div></div>
+          <div class="var-item"><span class="vcode vc-kbk">[KBK-SY]</span><div class="var-desc"><strong><em>Synthesize</em></strong><p>Mengintegrasikan berbagai informasi menjadi satu kesimpulan</p></div></div>
+          <div class="var-item"><span class="vcode vc-kbk">[KBK-EV]</span><div class="var-desc"><strong><em>Evaluate</em></strong><p>Menilai kualitas, relevansi, dan validitas informasi atau solusi</p></div></div>
+          <div class="var-item"><span class="vcode vc-kbk">[KBK-UD]</span><div class="var-desc"><strong><em>Use Data</em></strong><p>Menggunakan data secara akurat untuk menarik kesimpulan</p></div></div>
+          <div class="var-item"><span class="vcode vc-kbk">[KBK-AP]</span><div class="var-desc"><strong><em>Apply</em></strong><p>Menerapkan konsep dan solusi dalam konteks nyata</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. PENILAIAN -->
+  <div class="sec">
+    <div class="sec-tag">Penilaian</div>
+    <h2>Teknik &amp; Instrumen Penilaian</h2>
+    <div class="assess-grid">
+      <div class="assess-card"><div class="assess-icon">📋</div><h4>Afektif</h4><p>Observasi keterlaksanaan pembelajaran menggunakan lembar observasi</p><span class="av av-ld">Keterlaksanaan</span></div>
+      <div class="assess-card"><div class="assess-icon">✏️</div><h4>Kognitif — Tes</h4><p>Soal esai <em>pre-test</em> (P1) dan <em>post-test</em> (P6) mengukur literasi digital dan KBK</p><span class="av av-both">LD + KBK</span></div>
+      <div class="assess-card"><div class="assess-icon">📝</div><h4>Kognitif — Tugas</h4><p>LKPD digital 2 siklus mengukur literasi digital dan keterampilan berpikir kritis</p><span class="av av-both">LD + KBK</span></div>
+      <div class="assess-card"><div class="assess-icon">🧾</div><h4>Psikomotorik</h4><p>Angket <em>self-assessment</em> mengukur dimensi literasi digital peserta didik</p><span class="av av-ld">Literasi Digital</span></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function toggleSiklus(n) {
+  const body = document.getElementById('body-' + n);
+  const chev = document.getElementById('chev-' + n);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  chev.classList.toggle('open', !isOpen);
+}
+toggleSiklus(1);
+bioRenderNav({ requireLogin: true });
+</script>
+</div>
+</body>
+</html>

@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Guru — BioRegula</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="nav.js"></script>
+<style>
+:root{
+  --teal:#0d9488;--teal-dark:#0f766e;--teal-light:#99f6e4;--teal-bg:#f0fdfa;
+  --indigo:#4f46e5;--indigo-light:#e0e7ff;--amber:#f59e0b;--amber-light:#fef3c7;
+  --coral:#f43f5e;--emerald:#10b981;--purple:#8b5cf6;--purple-light:#f3e8ff;
+  --white:#ffffff;--off:#f8fafc;--gray:#64748b;--gray-light:#e2e8f0;--dark:#0f172a;
+  --radius:14px;--shadow:0 4px 24px rgba(15,23,42,0.08);--nav-h:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--dark);}
+p em,li em,span em{margin:0 1px;}
+.bio-content{padding-top:var(--nav-h);}
+
+/* HEADER */
+.page-header{
+  background:linear-gradient(150deg,#0f172a 0%,#1e1b4b 50%,#0f3028 100%);
+  padding:36px 2rem 32px;position:relative;overflow:hidden;
+}
+.page-header::before{content:'';position:absolute;top:-80px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(244,63,94,.15),transparent 70%);}
+.header-inner{max-width:1100px;margin:0 auto;position:relative;z-index:1;}
+.header-top{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+.header-title h1{font-size:clamp(1.4rem,3vw,2rem);font-weight:800;color:#fff;margin-bottom:4px;}
+.header-title h1 span{color:#fca5a5;}
+.header-title p{font-size:.85rem;color:rgba(255,255,255,.6);}
+.btn-setup{
+  padding:10px 20px;border-radius:20px;border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.08);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;
+}
+.btn-setup:hover{background:rgba(255,255,255,.15);}
+
+/* STATS ROW */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.stat-card{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;padding:16px 18px;
+}
+.stat-val{font-size:1.9rem;font-weight:800;color:#fff;}
+.stat-val small{font-size:1rem;color:rgba(255,255,255,.5);}
+.stat-lbl{font-size:.73rem;color:rgba(255,255,255,.5);margin-top:3px;text-transform:uppercase;letter-spacing:.5px;}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:28px 2rem 60px;}
+
+/* CARD */
+.card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);box-shadow:var(--shadow);margin-bottom:20px;overflow:hidden;}
+.card-head{padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--gray-light);}
+.card-head-left{display:flex;align-items:center;gap:11px;}
+.ch-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.ci-coral{background:#ffe4e6;}
+.ci-teal{background:var(--teal-bg);}
+.ci-indigo{background:var(--indigo-light);}
+.ci-amber{background:var(--amber-light);}
+.ci-purple{background:var(--purple-light);}
+.card-head h3{font-size:.93rem;font-weight:800;color:var(--dark);}
+.card-head p{font-size:.76rem;color:var(--gray);margin-top:1px;}
+.card-body{padding:20px;}
+
+/* SETUP GOOGLE SHEETS */
+.setup-box{
+  background:linear-gradient(135deg,#0f172a,#1e1b4b);
+  border-radius:var(--radius);padding:24px;margin-bottom:20px;
+}
+.setup-box h3{font-size:1rem;font-weight:800;color:#fff;margin-bottom:4px;}
+.setup-box p{font-size:.84rem;color:rgba(255,255,255,.65);line-height:1.65;margin-bottom:16px;}
+.setup-input-row{display:flex;gap:10px;}
+.setup-input{
+  flex:1;padding:10px 14px;border-radius:10px;border:2px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.08);color:#fff;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;outline:none;
+  transition:border-color .2s;
+}
+.setup-input::placeholder{color:rgba(255,255,255,.35);}
+.setup-input:focus{border-color:var(--teal);}
+.btn-simpan-url{
+  padding:10px 20px;border-radius:10px;border:none;
+  background:var(--teal);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.btn-simpan-url:hover{background:var(--teal-dark);}
+.setup-status{font-size:.78rem;margin-top:8px;}
+.ss-ok{color:#6ee7b7;}
+.ss-err{color:#fca5a5;}
+
+/* TABS */
+.tab-row{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;}
+.tab-row::-webkit-scrollbar{display:none;}
+.tab-btn{
+  padding:8px 18px;border-radius:20px;border:2px solid var(--gray-light);
+  background:var(--white);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.82rem;font-weight:700;color:var(--gray);cursor:pointer;
+  transition:all .2s;white-space:nowrap;
+}
+.tab-btn:hover{border-color:var(--coral);color:var(--coral);}
+.tab-btn.active{border-color:var(--coral);background:var(--coral);color:#fff;}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* SISWA TABLE */
+.siswa-table{width:100%;border-collapse:collapse;font-size:.83rem;}
+.siswa-table th{background:var(--dark);color:#fff;padding:10px 14px;text-align:left;font-weight:700;font-size:.78rem;white-space:nowrap;}
+.siswa-table td{padding:10px 14px;border-bottom:1px solid var(--gray-light);vertical-align:middle;}
+.siswa-table tr:last-child td{border-bottom:none;}
+.siswa-table tr:hover td{background:var(--off);}
+.siswa-table td:first-child{font-weight:700;}
+.prog-mini{height:6px;background:var(--gray-light);border-radius:3px;overflow:hidden;min-width:80px;}
+.prog-mini-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--emerald));border-radius:3px;}
+.badge-sm{font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:20px;display:inline-block;}
+.bg-done{background:#d1fae5;color:#065f46;}
+.bg-prog{background:var(--amber-light);color:#92400e;}
+.bg-none{background:var(--gray-light);color:var(--gray);}
+.bg-sub{background:var(--indigo-light);color:var(--indigo);}
+
+/* JAWABAN DETAIL */
+.jawaban-card{
+  background:var(--off);border-radius:10px;border:1px solid var(--gray-light);
+  padding:16px;margin-bottom:12px;
+}
+.jawaban-card h4{font-size:.85rem;font-weight:800;color:var(--dark);margin-bottom:8px;}
+.jawaban-text{font-size:.83rem;color:#334155;line-height:1.7;white-space:pre-wrap;background:var(--white);border-radius:8px;padding:12px;border:1px solid var(--gray-light);}
+.jawaban-empty{font-size:.82rem;color:var(--gray);font-style:italic;}
+
+/* SEARCH & FILTER */
+.filter-row{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.search-input{
+  flex:1;min-width:200px;padding:9px 14px;border-radius:10px;
+  border:2px solid var(--gray-light);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.85rem;color:var(--dark);background:var(--white);outline:none;transition:border-color .2s;
+}
+.search-input:focus{border-color:var(--coral);}
+.filter-select{
+  padding:9px 14px;border-radius:10px;border:2px solid var(--gray-light);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.85rem;color:var(--dark);
+  background:var(--white);outline:none;cursor:pointer;
+}
+.btn-refresh{
+  padding:9px 16px;border-radius:10px;border:none;
+  background:var(--teal);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;
+}
+.btn-refresh:hover{background:var(--teal-dark);}
+
+/* CHART */
+.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px;}
+.chart-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);box-shadow:var(--shadow);padding:18px;}
+.chart-title{font-size:.85rem;font-weight:800;color:var(--dark);margin-bottom:14px;}
+.bar-chart{display:flex;flex-direction:column;gap:10px;}
+.bar-row{display:flex;align-items:center;gap:10px;}
+.bar-label{font-size:.75rem;color:var(--gray);width:100px;flex-shrink:0;text-align:right;}
+.bar-track{flex:1;height:20px;background:var(--gray-light);border-radius:4px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:4px;transition:width .6s ease;display:flex;align-items:center;padding-left:8px;font-size:.68rem;font-weight:700;color:#fff;}
+.bar-val{font-size:.75rem;font-weight:700;color:var(--dark);width:32px;text-align:right;flex-shrink:0;}
+
+/* MODAL DETAIL */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:500;
+  background:rgba(15,23,42,.5);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;padding:1rem;
+}
+.modal-overlay.show{display:flex;}
+.modal{
+  background:var(--white);border-radius:var(--radius);
+  width:100%;max-width:680px;max-height:90vh;overflow-y:auto;
+  box-shadow:0 24px 60px rgba(15,23,42,.25);
+}
+.modal-head{
+  padding:18px 20px;display:flex;align-items:center;
+  justify-content:space-between;border-bottom:1px solid var(--gray-light);
+  position:sticky;top:0;background:var(--white);z-index:1;
+}
+.modal-head h3{font-size:.95rem;font-weight:800;color:var(--dark);}
+.modal-close{
+  width:32px;height:32px;border-radius:8px;border:none;
+  background:var(--off);cursor:pointer;font-size:1.1rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s;
+}
+.modal-close:hover{background:var(--gray-light);}
+.modal-body{padding:20px;}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:48px 20px;}
+.empty-state .eico{font-size:3rem;margin-bottom:12px;}
+.empty-state h3{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:6px;}
+.empty-state p{font-size:.83rem;color:var(--gray);line-height:1.65;}
+
+/* INFO BOX */
+.ib{border-radius:10px;padding:12px 15px;margin-bottom:13px;display:flex;align-items:flex-start;gap:9px;}
+.ib-a{background:var(--amber-light);border-left:3px solid var(--amber);}
+.ib-t{background:var(--teal-bg);border-left:3px solid var(--teal);}
+.ib-c{background:#ffe4e6;border-left:3px solid var(--coral);}
+.ib .ico{font-size:.95rem;flex-shrink:0;margin-top:1px;}
+.ib .txt{font-size:.82rem;line-height:1.65;color:#334155;}
+.ib .txt strong{font-weight:700;color:var(--dark);}
+
+@media(max-width:768px){
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .chart-grid{grid-template-columns:1fr;}
+  .main{padding:18px 1.2rem 48px;}
+  .setup-input-row{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<div class="bio-content" id="bio-page-content">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="header-inner">
+      <div class="header-top">
+        <div class="header-title">
+          <h1>📊 Dashboard <span>Guru</span></h1>
+          <p>Pantau progress dan jawaban peserta didik · SMAN 1 Malang · Biologi Kelas XI</p>
+        </div>
+        <button class="btn-setup" onclick="toggleSetup()">⚙️ Setup Google Sheets</button>
+      </div>
+      <div class="stats-row">
+        <div class="stat-card"><div class="stat-val" id="statTotal">0</div><div class="stat-lbl">Total Siswa Terdaftar</div></div>
+        <div class="stat-card"><div class="stat-val" id="statPretest">0</div><div class="stat-lbl">Sudah Kerjakan Pre-test</div></div>
+        <div class="stat-card"><div class="stat-val" id="statS1">0</div><div class="stat-lbl">Selesai Siklus 1</div></div>
+        <div class="stat-card"><div class="stat-val" id="statS2">0</div><div class="stat-lbl">Selesai Siklus 2</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- SETUP GOOGLE SHEETS -->
+    <div class="setup-box" id="setupBox" style="display:none;">
+      <h3>⚙️ Koneksi Google Sheets</h3>
+      <p>Masukkan URL Google Apps Script untuk menghubungkan website dengan Google Sheets. Data pre-test, siklus, dan self-assessment siswa akan otomatis terkirim ke Sheets.</p>
+      <div class="setup-input-row">
+        <input class="setup-input" id="sheetUrl" type="url" placeholder="https://script.google.com/macros/s/...">
+        <button class="btn-simpan-url" onclick="simpanUrl()">Simpan URL</button>
+      </div>
+      <div class="setup-status" id="setupStatus"></div>
+    </div>
+
+    <!-- INFO JIKA BELUM TERHUBUNG -->
+    <div class="ib ib-a" id="infoSheets">
+      <span class="ico">⚠️</span>
+      <div class="txt"><strong>Google Sheets belum terhubung.</strong> Data yang ditampilkan di bawah diambil dari <em>localStorage</em> browser yang sama. Untuk melihat data semua siswa secara <em>real-time</em>, hubungkan Google Sheets via tombol ⚙️ di atas.</div>
+    </div>
+
+    <!-- TABS -->
+    <div class="tab-row">
+      <button class="tab-btn active" onclick="switchTab('progress')">📊 Progress Siswa</button>
+      <button class="tab-btn" onclick="switchTab('pretest')">✏️ Pre-test</button>
+      <button class="tab-btn" onclick="switchTab('siklus1')">🔬 Siklus 1</button>
+      <button class="tab-btn" onclick="switchTab('siklus2')">👁️ Siklus 2</button>
+      <button class="tab-btn" onclick="switchTab('selfassess')">🪞 Self-Assessment</button>
+      <button class="tab-btn" onclick="switchTab('posttest')">📝 Post-test</button>
+    </div>
+
+    <!-- TAB: PROGRESS -->
+    <div class="tab-panel active" id="tab-progress">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-head-left">
+            <div class="ch-icon ci-coral">👥</div>
+            <div><h3>Progress Seluruh Peserta Didik</h3><p>Ringkasan pencapaian belajar per siswa</p></div>
+          </div>
+          <button class="btn-refresh" onclick="loadDashboard()">🔄 Refresh</button>
+        </div>
+        <div class="card-body" style="padding:0;">
+          <div style="padding:16px 20px;">
+            <div class="filter-row">
+              <input class="search-input" id="searchSiswa" type="text" placeholder="🔍 Cari nama siswa..." oninput="filterSiswa()">
+              <select class="filter-select" id="filterKelas" onchange="filterSiswa()">
+                <option value="">Semua Kelas</option>
+              </select>
+            </div>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="siswa-table" id="siswaTabel">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>Nama</th>
+                  <th>Kelas</th>
+                  <th>Absen</th>
+                  <th>Pre-test</th>
+                  <th>Siklus 1</th>
+                  <th>Siklus 2</th>
+                  <th>Self-Assess.</th>
+                  <th>Post-test</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="siswaTabelBody">
+                <tr><td colspan="10" style="text-align:center;padding:32px;color:var(--gray);">Memuat data...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHART -->
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-title">📈 Progress Siklus PBL</div>
+          <div class="bar-chart" id="chartSiklus">
+            <div class="bar-row"><span class="bar-label">Pre-test</span><div class="bar-track"><div class="bar-fill" id="barPretest" style="width:0%;background:linear-gradient(90deg,#f59e0b,#ef4444);">0</div></div><span class="bar-val" id="valPretest">0%</span></div>
+            <div class="bar-row"><span class="bar-label">Siklus 1</span><div class="bar-track"><div class="bar-fill" id="barS1" style="width:0%;background:linear-gradient(90deg,var(--teal),var(--emerald));">0</div></div><span class="bar-val" id="valS1">0%</span></div>
+            <div class="bar-row"><span class="bar-label">Siklus 2</span><div class="bar-track"><div class="bar-fill" id="barS2" style="width:0%;background:linear-gradient(90deg,var(--indigo),var(--purple));">0</div></div><span class="bar-val" id="valS2">0%</span></div>
+            <div class="bar-row"><span class="bar-label">Self-Assess.</span><div class="bar-track"><div class="bar-fill" id="barSA" style="width:0%;background:linear-gradient(90deg,var(--purple),#ec4899);">0</div></div><span class="bar-val" id="valSA">0%</span></div>
+            <div class="bar-row"><span class="bar-label">Post-test</span><div class="bar-track"><div class="bar-fill" id="barPosttest" style="width:0%;background:linear-gradient(90deg,var(--emerald),var(--teal));">0</div></div><span class="bar-val" id="valPosttest">0%</span></div>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">🪞 Distribusi Literasi Digital</div>
+          <div class="bar-chart" id="chartLD">
+            <div class="bar-row"><span class="bar-label">Sangat Berkembang</span><div class="bar-track"><div class="bar-fill" id="barSB" style="width:0%;background:#10b981;">0</div></div><span class="bar-val" id="valSB">0</span></div>
+            <div class="bar-row"><span class="bar-label">BSH</span><div class="bar-track"><div class="bar-fill" id="barBSH" style="width:0%;background:var(--indigo);">0</div></div><span class="bar-val" id="valBSH">0</span></div>
+            <div class="bar-row"><span class="bar-label">Mulai Berkembang</span><div class="bar-track"><div class="bar-fill" id="barMB" style="width:0%;background:var(--amber);">0</div></div><span class="bar-val" id="valMB">0</span></div>
+            <div class="bar-row"><span class="bar-label">Belum Berkembang</span><div class="bar-track"><div class="bar-fill" id="barBB" style="width:0%;background:var(--coral);">0</div></div><span class="bar-val" id="valBB">0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: PRE-TEST -->
+    <div class="tab-panel" id="tab-pretest">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-head-left">
+            <div class="ch-icon ci-amber">✏️</div>
+            <div><h3>Jawaban Pre-test Siswa</h3><p>Klik nama siswa untuk melihat jawaban lengkap</p></div>
+          </div>
+        </div>
+        <div class="card-body" id="pretestContent">
+          <div class="empty-state"><div class="eico">📋</div><h3>Belum ada data pre-test</h3><p>Data akan muncul setelah siswa mengerjakan pre-test dan Google Sheets terhubung.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: SIKLUS 1 -->
+    <div class="tab-panel" id="tab-siklus1">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-head-left">
+            <div class="ch-icon ci-teal">🔬</div>
+            <div><h3>Jawaban LKPD Siklus 1 — Sistem Saraf &amp; Hormon</h3><p>Klik nama siswa untuk melihat jawaban lengkap per fase</p></div>
+          </div>
+        </div>
+        <div class="card-body" id="siklus1Content">
+          <div class="empty-state"><div class="eico">🔬</div><h3>Belum ada data Siklus 1</h3><p>Data akan muncul setelah siswa menyelesaikan Siklus 1.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: SIKLUS 2 -->
+    <div class="tab-panel" id="tab-siklus2">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-head-left">
+            <div class="ch-icon ci-indigo">👁️</div>
+            <div><h3>Jawaban LKPD Siklus 2 — Alat Indera</h3><p>Klik nama siswa untuk melihat jawaban lengkap per fase</p></div>
+          </div>
+        </div>
+        <div class="card-body" id="siklus2Content">
+          <div class="empty-state"><div class="eico">👁️</div><h3>Belum ada data Siklus 2</h3><p>Data akan muncul setelah siswa menyelesaikan Siklus 2.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: SELF-ASSESSMENT -->
+    <div class="tab-panel" id="tab-selfassess">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-head-left">
+            <div class="ch-icon ci-purple">🪞</div>
+            <div><h3>Hasil Self-Assessment Literasi Digital</h3><p>Skor dan kategori per siswa</p></div>
+          </div>
+        </div>
+        <div class="card-body" id="selfassessContent">
+          <div class="empty-state"><div class="eico">🪞</div><h3>Belum ada data self-assessment</h3><p>Data akan muncul setelah siswa mengisi angket self-assessment.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB: POST-TEST -->
+    <div class="tab-panel" id="tab-posttest">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-head-left">
+            <div class="ch-icon ci-teal">📝</div>
+            <div><h3>Jawaban Post-test Siswa</h3><p>Klik nama siswa untuk melihat jawaban lengkap</p></div>
+          </div>
+        </div>
+        <div class="card-body" id="posttestContent">
+          <div class="empty-state"><div class="eico">📝</div><h3>Belum ada data post-test</h3><p>Data akan muncul setelah siswa mengerjakan post-test.</p></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL DETAIL SISWA -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modalBox">
+    <div class="modal-head">
+      <h3 id="modalTitle">Detail Siswa</h3>
+      <button class="modal-close" onclick="tutupModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+bioRenderNav({ requireGuru: true });
+
+// ── DATA ──
+let allSiswa = [];
+let filteredSiswa = [];
+
+function getUsers(){ return JSON.parse(localStorage.getItem('bioregula_users')||'[]'); }
+function getSiswaData(username, key){ return JSON.parse(localStorage.getItem(key+'_'+username)||localStorage.getItem(key)||'{}'); }
+
+// ── SETUP SHEETS ──
+function toggleSetup(){
+  const box = document.getElementById('setupBox');
+  box.style.display = box.style.display==='none' ? 'block' : 'none';
+  const url = localStorage.getItem('bioregula_sheet_url')||'';
+  document.getElementById('sheetUrl').value = url;
+}
+function simpanUrl(){
+  const url = document.getElementById('sheetUrl').value.trim();
+  const status = document.getElementById('setupStatus');
+  if(!url){ status.className='setup-status ss-err'; status.textContent='URL tidak boleh kosong!'; return; }
+  localStorage.setItem('bioregula_sheet_url', url);
+  status.className='setup-status ss-ok';
+  status.textContent='✅ URL berhasil disimpan! Data siswa akan terkirim ke Google Sheets.';
+  document.getElementById('infoSheets').style.display='none';
+}
+
+// ── TABS ──
+function switchTab(name){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name)?.classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ── LOAD DASHBOARD ──
+function loadDashboard(){
+  const users = getUsers().filter(u=>u.role==='siswa');
+  allSiswa = users;
+
+  // Statistik
+  document.getElementById('statTotal').textContent = users.length;
+
+  let cPretest=0, cS1=0, cS2=0, cSA=0, cPosttest=0;
+  let ldDist = {SB:0,BSH:0,MB:0,BB:0};
+
+  users.forEach(u=>{
+    // Cek dari localStorage (hanya browser yang sama)
+    const pt = localStorage.getItem('bioregula_pretest');
+    const s1 = localStorage.getItem('bioregula_s1');
+    const s2 = localStorage.getItem('bioregula_s2');
+    const sa = localStorage.getItem('bioregula_selfassessment');
+    const po = localStorage.getItem('bioregula_posttest');
+
+    if(pt && JSON.parse(pt)._submitted) cPretest++;
+    if(s1){ const d=JSON.parse(s1); if(d.done && d.done.length>=5) cS1++; }
+    if(s2){ const d=JSON.parse(s2); if(d.done && d.done.length>=5) cS2++; }
+    if(sa && JSON.parse(sa).hasil) {
+      cSA++;
+      const kat = JSON.parse(sa).hasil.kategori||'';
+      if(kat.includes('Sangat')) ldDist.SB++;
+      else if(kat.includes('Harapan')) ldDist.BSH++;
+      else if(kat.includes('Mulai')) ldDist.MB++;
+      else ldDist.BB++;
+    }
+    if(po && JSON.parse(po)._submitted) cPosttest++;
+  });
+
+  document.getElementById('statPretest').textContent = cPretest;
+  document.getElementById('statS1').textContent = cS1;
+  document.getElementById('statS2').textContent = cS2;
+
+  const total = Math.max(users.length, 1);
+
+  // Bar chart progress
+  const bars = [
+    {id:'Pretest',val:cPretest},{id:'S1',val:cS1},{id:'S2',val:cS2},
+    {id:'SA',val:cSA},{id:'Posttest',val:cPosttest}
+  ];
+  bars.forEach(b=>{
+    const pct = Math.round(b.val/total*100);
+    const fill = document.getElementById('bar'+b.id);
+    const valEl = document.getElementById('val'+b.id);
+    if(fill){ fill.style.width=pct+'%'; fill.textContent=b.val||''; }
+    if(valEl) valEl.textContent=pct+'%';
+  });
+
+  // Bar chart LD
+  const ldBars = [{id:'SB',val:ldDist.SB},{id:'BSH',val:ldDist.BSH},{id:'MB',val:ldDist.MB},{id:'BB',val:ldDist.BB}];
+  ldBars.forEach(b=>{
+    const pct = cSA>0 ? Math.round(b.val/cSA*100) : 0;
+    const fill = document.getElementById('bar'+b.id);
+    const valEl = document.getElementById('val'+b.id);
+    if(fill){ fill.style.width=pct+'%'; fill.textContent=b.val||''; }
+    if(valEl) valEl.textContent=b.val;
+  });
+
+  // Filter kelas
+  const kelas = [...new Set(users.map(u=>u.kelas).filter(Boolean))].sort();
+  const filterKelas = document.getElementById('filterKelas');
+  filterKelas.innerHTML = '<option value="">Semua Kelas</option>' + kelas.map(k=>`<option value="${k}">${k}</option>`).join('');
+
+  filteredSiswa = users;
+  renderTabel(users);
+  renderPretest();
+  renderSiklus('siklus1Content','bioregula_s1','Siklus 1');
+  renderSiklus('siklus2Content','bioregula_s2','Siklus 2');
+  renderSelfAssess();
+  renderPretest('posttestContent','bioregula_posttest','Post-test');
+}
+
+// ── RENDER TABEL ──
+function renderTabel(users){
+  const tbody = document.getElementById('siswaTabelBody');
+  if(!users.length){
+    tbody.innerHTML='<tr><td colspan="10" style="text-align:center;padding:32px;color:var(--gray);">Belum ada siswa terdaftar</td></tr>';
+    return;
+  }
+
+  const pt  = localStorage.getItem('bioregula_pretest');
+  const s1  = localStorage.getItem('bioregula_s1');
+  const s2  = localStorage.getItem('bioregula_s2');
+  const sa  = localStorage.getItem('bioregula_selfassessment');
+  const po  = localStorage.getItem('bioregula_posttest');
+
+  const ptDone = pt && JSON.parse(pt)._submitted;
+  const s1Done = s1 && JSON.parse(s1).done?.length>=5;
+  const s2Done = s2 && JSON.parse(s2).done?.length>=5;
+  const saDone = sa && JSON.parse(sa).hasil;
+  const poDone = po && JSON.parse(po)._submitted;
+  const saKat  = saDone ? (JSON.parse(sa).hasil.kategori||'') : '';
+  const saSkor = saDone ? JSON.parse(sa).hasil.totalSkor : '—';
+
+  tbody.innerHTML = users.map((u,i)=>`
+    <tr>
+      <td>${i+1}</td>
+      <td><strong>${u.nama}</strong></td>
+      <td>${u.kelas||'—'}</td>
+      <td>${u.absen||'—'}</td>
+      <td>${ptDone ? '<span class="badge-sm bg-done">✅ Selesai</span>' : '<span class="badge-sm bg-none">Belum</span>'}</td>
+      <td>
+        ${s1Done ? '<span class="badge-sm bg-done">✅ Selesai</span>' : s1 ? '<span class="badge-sm bg-prog">Sedang</span>' : '<span class="badge-sm bg-none">Belum</span>'}
+      </td>
+      <td>
+        ${s2Done ? '<span class="badge-sm bg-done">✅ Selesai</span>' : s2 ? '<span class="badge-sm bg-prog">Sedang</span>' : '<span class="badge-sm bg-none">Belum</span>'}
+      </td>
+      <td>${saDone ? `<span class="badge-sm bg-sub">${saSkor}/100</span>` : '<span class="badge-sm bg-none">Belum</span>'}</td>
+      <td>${poDone ? '<span class="badge-sm bg-done">✅ Selesai</span>' : '<span class="badge-sm bg-none">Belum</span>'}</td>
+      <td><button onclick="lihatDetail('${u.username}','${u.nama}')" style="padding:5px 12px;border-radius:8px;border:none;background:var(--indigo-light);color:var(--indigo);font-size:.75rem;font-weight:700;cursor:pointer;">Lihat →</button></td>
+    </tr>
+  `).join('');
+}
+
+// ── FILTER ──
+function filterSiswa(){
+  const q = document.getElementById('searchSiswa').value.toLowerCase();
+  const k = document.getElementById('filterKelas').value;
+  filteredSiswa = allSiswa.filter(u=>
+    (!q || u.nama.toLowerCase().includes(q) || (u.kelas||'').toLowerCase().includes(q)) &&
+    (!k || u.kelas===k)
+  );
+  renderTabel(filteredSiswa);
+}
+
+// ── RENDER PRE/POST TEST ──
+function renderPretest(contentId='pretestContent', key='bioregula_pretest', label='Pre-test'){
+  const el = document.getElementById(contentId);
+  const raw = localStorage.getItem(key);
+  if(!raw){ el.innerHTML='<div class="empty-state"><div class="eico">📋</div><h3>Belum ada data '+label+'</h3><p>Data muncul setelah siswa mengerjakan dan Google Sheets terhubung.</p></div>'; return; }
+  const d = JSON.parse(raw);
+  if(!d._submitted){ el.innerHTML='<div class="empty-state"><div class="eico">⏳</div><h3>'+label+' belum dikirim</h3><p>Siswa sudah mulai mengerjakan tapi belum submit.</p></div>'; return; }
+
+  const soalLD = [
+    {id:'ld1',label:'Soal 1 — Literasi Digital (Kognitif)'},
+    {id:'ld2',label:'Soal 2 — Literasi Digital (Teknis)'},
+    {id:'ld3',label:'Soal 3 — Literasi Digital (Sosial-Emosional)'},
+  ];
+  const soalKBK = [
+    {id:'kbk1',label:'Soal 4 — KBK: Apply'},
+    {id:'kbk2',label:'Soal 5 — KBK: Evaluate'},
+    {id:'kbk3',label:'Soal 6 — KBK: Use Data'},
+    {id:'kbk4',label:'Soal 7 — KBK: Analyze'},
+    {id:'kbk5',label:'Soal 8 — KBK: Synthesize'},
+  ];
+
+  el.innerHTML = `
+    <div style="margin-bottom:14px;padding:12px 16px;background:var(--teal-bg);border-radius:10px;font-size:.82rem;color:var(--teal-dark);">
+      👤 <strong>${d.pt_nama||'—'}</strong> · Kelas ${d.pt_kelas||'—'} · No. Absen ${d.pt_absen||'—'} · ${d._submitTime ? new Date(d._submitTime).toLocaleDateString('id-ID') : '—'}
+    </div>
+    <div style="font-weight:800;font-size:.85rem;color:var(--dark);margin-bottom:10px;">📱 Bagian A — Literasi Digital</div>
+    ${soalLD.map(s=>`
+      <div class="jawaban-card">
+        <h4>${s.label}</h4>
+        ${d[s.id] ? `<div class="jawaban-text">${escHtml(d[s.id])}</div>` : '<p class="jawaban-empty">Belum dijawab</p>'}
+      </div>`).join('')}
+    <div style="font-weight:800;font-size:.85rem;color:var(--dark);margin:16px 0 10px;">🧠 Bagian B — Keterampilan Berpikir Kritis</div>
+    ${soalKBK.map(s=>`
+      <div class="jawaban-card">
+        <h4>${s.label}</h4>
+        ${d[s.id] ? `<div class="jawaban-text">${escHtml(d[s.id])}</div>` : '<p class="jawaban-empty">Belum dijawab</p>'}
+      </div>`).join('')}
+  `;
+}
+
+// ── RENDER SIKLUS ──
+function renderSiklus(contentId, key, label){
+  const el = document.getElementById(contentId);
+  const raw = localStorage.getItem(key);
+  if(!raw){ el.innerHTML='<div class="empty-state"><div class="eico">📋</div><h3>Belum ada data '+label+'</h3><p>Data muncul setelah siswa menyelesaikan siklus.</p></div>'; return; }
+  const d = JSON.parse(raw);
+  const done = d.done||[];
+  if(!done.length){ el.innerHTML='<div class="empty-state"><div class="eico">⏳</div><h3>'+label+' belum dimulai</h3></div>'; return; }
+
+  const fase1Fields = [{id:'f1_rumusan',label:'Rumusan Masalah (5 pertanyaan)'}];
+  const fase2Fields = [{id:'f2_rumusan_pilih',label:'Rumusan masalah yang dipilih'},{id:'f2_penyebab_dampak',label:'Penyebab & dampak permasalahan'},{id:'f2_sumber',label:'Sumber digital yang digunakan'}];
+  const fase3Fields = [{id:'f3_konsep',label:'Konsep penting hasil penelusuran'},{id:'f3_analisis',label:'Analisis mekanisme & homeostasis'}];
+  const fase4Fields = [{id:'f4_solusi',label:'Solusi yang diusulkan'},{id:'f4_dasar_ilmiah',label:'Dasar ilmiah solusi'},{id:'f4_masukan',label:'Masukan dari kelompok lain'}];
+  const fase5Fields = [{id:'f5_kelebihan',label:'Kelebihan solusi'},{id:'f5_kekurangan',label:'Kekurangan solusi'},{id:'f5_refleksi',label:'Refleksi pembelajaran'}];
+
+  const fases = [
+    {n:1,label:'Fase 1 — Orientasi Masalah',fields:fase1Fields},
+    {n:2,label:'Fase 2 — Mengorganisasi',fields:fase2Fields},
+    {n:3,label:'Fase 3 — Membimbing Penyelidikan',fields:fase3Fields},
+    {n:4,label:'Fase 4 — Mengembangkan Hasil',fields:fase4Fields},
+    {n:5,label:'Fase 5 — Analisis & Evaluasi',fields:fase5Fields},
+  ];
+
+  el.innerHTML = `
+    <div style="margin-bottom:14px;padding:12px 16px;background:var(--teal-bg);border-radius:10px;font-size:.82rem;color:var(--teal-dark);">
+      👥 <strong>Kelompok: ${d.id_kelompok||'—'}</strong> · Kelas ${d.id_kelas||'—'} · ${done.length} dari 5 fase selesai
+    </div>
+    ${fases.map(f=>`
+      <div style="margin-bottom:16px;">
+        <div style="font-weight:800;font-size:.85rem;color:var(--dark);margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+          ${done.includes(f.n) ? '✅' : '⏳'} ${f.label}
+        </div>
+        ${f.fields.map(fi=>`
+          <div class="jawaban-card">
+            <h4>${fi.label}</h4>
+            ${d[fi.id] ? `<div class="jawaban-text">${escHtml(d[fi.id])}</div>` : '<p class="jawaban-empty">Belum diisi</p>'}
+          </div>`).join('')}
+      </div>`).join('')}
+  `;
+}
+
+// ── RENDER SELF-ASSESSMENT ──
+function renderSelfAssess(){
+  const el = document.getElementById('selfassessContent');
+  const raw = localStorage.getItem('bioregula_selfassessment');
+  if(!raw){ el.innerHTML='<div class="empty-state"><div class="eico">🪞</div><h3>Belum ada data</h3></div>'; return; }
+  const d = JSON.parse(raw);
+  if(!d.hasil){ el.innerHTML='<div class="empty-state"><div class="eico">⏳</div><h3>Angket belum diselesaikan</h3></div>'; return; }
+  const h = d.hasil;
+
+  let katClass = 'bg-none';
+  if(h.kategori?.includes('Sangat')) katClass='bg-done';
+  else if(h.kategori?.includes('Harapan')) katClass='bg-sub';
+  else if(h.kategori?.includes('Mulai')) katClass='bg-prog';
+
+  el.innerHTML = `
+    <div style="margin-bottom:16px;padding:16px;background:var(--off);border-radius:12px;display:flex;gap:24px;flex-wrap:wrap;align-items:center;">
+      <div style="text-align:center;"><div style="font-size:2rem;font-weight:800;color:var(--dark);">${h.totalSkor}<small style="font-size:1rem;color:var(--gray);">/100</small></div><div style="font-size:.72rem;color:var(--gray);">Total Skor</div></div>
+      <div><span class="badge-sm ${katClass}" style="font-size:.8rem;padding:4px 14px;">${h.kategori||'—'}</span></div>
+      <div style="display:flex;gap:16px;">
+        <div style="text-align:center;"><div style="font-weight:800;color:var(--dark);">${h.sKognitif||0}<small style="font-size:.7rem;color:var(--gray);">/40</small></div><div style="font-size:.7rem;color:var(--gray);">Kognitif</div></div>
+        <div style="text-align:center;"><div style="font-weight:800;color:var(--dark);">${h.sTeknis||0}<small style="font-size:.7rem;color:var(--gray);">/35</small></div><div style="font-size:.7rem;color:var(--gray);">Teknis</div></div>
+        <div style="text-align:center;"><div style="font-weight:800;color:var(--dark);">${h.sSE||0}<small style="font-size:.7rem;color:var(--gray);">/25</small></div><div style="font-size:.7rem;color:var(--gray);">Sosial-Emosional</div></div>
+      </div>
+    </div>
+    <div style="font-size:.8rem;color:var(--gray);">Nama: <strong>${d.sa_nama||'—'}</strong> · Kelas: ${d.sa_kelas||'—'} · Sekolah: ${d.sa_sekolah||'—'}</div>
+  `;
+}
+
+// ── MODAL DETAIL ──
+function lihatDetail(username, nama){
+  const modal = document.getElementById('modalOverlay');
+  document.getElementById('modalTitle').textContent = '👤 Detail: ' + nama;
+
+  const s1  = localStorage.getItem('bioregula_s1');
+  const s2  = localStorage.getItem('bioregula_s2');
+  const sa  = localStorage.getItem('bioregula_selfassessment');
+
+  let html = `<div style="font-size:.82rem;color:var(--gray);margin-bottom:16px;">Data dari browser yang sedang digunakan</div>`;
+
+  // Ringkasan
+  const saH = sa ? JSON.parse(sa).hasil : null;
+  const s1D = s1 ? JSON.parse(s1) : null;
+  const s2D = s2 ? JSON.parse(s2) : null;
+
+  html += `<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px;">
+    <div style="background:var(--teal-bg);border-radius:10px;padding:12px;text-align:center;">
+      <div style="font-weight:800;color:var(--teal-dark);">${s1D?.done?.length||0}/5</div>
+      <div style="font-size:.72rem;color:var(--gray);">Fase Siklus 1</div>
+    </div>
+    <div style="background:var(--indigo-light);border-radius:10px;padding:12px;text-align:center;">
+      <div style="font-weight:800;color:var(--indigo);">${s2D?.done?.length||0}/5</div>
+      <div style="font-size:.72rem;color:var(--gray);">Fase Siklus 2</div>
+    </div>
+    <div style="background:var(--purple-light);border-radius:10px;padding:12px;text-align:center;">
+      <div style="font-weight:800;color:var(--purple);">${saH ? saH.totalSkor+'/100' : '—'}</div>
+      <div style="font-size:.72rem;color:var(--gray);">Skor Literasi Digital</div>
+    </div>
+  </div>`;
+
+  if(saH){
+    html += `<div style="margin-bottom:12px;padding:12px;background:var(--off);border-radius:10px;font-size:.82rem;">
+      <strong>Kategori Literasi Digital:</strong> ${saH.kategori||'—'}<br>
+      Kognitif: ${saH.sKognitif}/40 · Teknis: ${saH.sTeknis}/35 · Sosial-Emosional: ${saH.sSE}/25
+    </div>`;
+  }
+
+  document.getElementById('modalBody').innerHTML = html;
+  modal.classList.add('show');
+}
+function tutupModal(){ document.getElementById('modalOverlay').classList.remove('show'); }
+function closeModal(e){ if(e.target===document.getElementById('modalOverlay')) tutupModal(); }
+
+// ── HELPER ──
+function escHtml(str){ return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── INIT ──
+window.addEventListener('load', ()=>{
+  const url = localStorage.getItem('bioregula_sheet_url');
+  if(url) document.getElementById('infoSheets').style.display='none';
+  loadDashboard();
+});
+</script>
+</body>
+</html>

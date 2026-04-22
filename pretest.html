@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-test — BioRegula</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="nav.js"></script>
+<style>
+:root{
+  --teal:#0d9488;--teal-dark:#0f766e;--teal-light:#99f6e4;--teal-bg:#f0fdfa;
+  --indigo:#4f46e5;--indigo-light:#e0e7ff;--amber:#f59e0b;--amber-light:#fef3c7;
+  --coral:#f43f5e;--emerald:#10b981;--purple:#8b5cf6;--purple-light:#f3e8ff;
+  --white:#ffffff;--off:#f8fafc;--gray:#64748b;--gray-light:#e2e8f0;--dark:#0f172a;
+  --radius:14px;--shadow:0 4px 24px rgba(15,23,42,0.08);--nav-h:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--dark);}
+p em,li em,span em{margin:0 1px;}
+.bio-content{padding-top:var(--nav-h);}
+
+.page-header{
+  background:linear-gradient(150deg,#0f172a 0%,#7c2d12 50%,#1e1b4b 100%);
+  padding:36px 2rem 32px;position:relative;overflow:hidden;
+}
+.page-header::before{content:'';position:absolute;top:-80px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(245,158,11,.2),transparent 70%);}
+.header-inner{max-width:860px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:12px;}
+.breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none;}
+.breadcrumb a:hover{color:#fcd34d;}
+.breadcrumb span{color:#fcd34d;}
+.page-header h1{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;color:#fff;margin-bottom:.4rem;line-height:1.2;}
+.page-header h1 span{color:#fcd34d;}
+.page-header p{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.65;max-width:560px;}
+.htags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+.htag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:4px 12px;font-size:.73rem;color:rgba(255,255,255,.8);font-weight:500;}
+
+.main{max-width:860px;margin:0 auto;padding:28px 2rem 60px;}
+
+.card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden;}
+.card-head{padding:15px 20px;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--gray-light);}
+.ch-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.ci-amber{background:var(--amber-light);}
+.ci-teal{background:var(--teal-bg);}
+.ci-indigo{background:var(--indigo-light);}
+.ci-coral{background:#ffe4e6;}
+.ci-purple{background:var(--purple-light);}
+.ci-emerald{background:#d1fae5;}
+.card-head h3{font-size:.93rem;font-weight:800;color:var(--dark);}
+.card-head p{font-size:.76rem;color:var(--gray);margin-top:1px;}
+.card-body{padding:20px;}
+
+/* IDENTITAS */
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.id-item label{display:block;font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px;}
+.finput{width:100%;padding:10px 13px;border:2px solid var(--gray-light);border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.86rem;color:var(--dark);background:var(--off);transition:border-color .2s;outline:none;resize:vertical;}
+.finput:focus{border-color:var(--amber);background:#fff;}
+.finput.saved{border-color:var(--emerald);}
+textarea.finput{min-height:120px;line-height:1.65;}
+textarea.finput.tall{min-height:160px;}
+
+/* PETUNJUK */
+.petunjuk-list{display:flex;flex-direction:column;gap:8px;}
+.petunjuk-item{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:#334155;line-height:1.6;}
+.petunjuk-num{width:24px;height:24px;border-radius:7px;background:var(--amber-light);color:#92400e;font-size:.75rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+
+/* SOAL */
+.soal-block{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--gray-light);}
+.soal-block:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+
+.soal-header{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px;}
+.soal-num{
+  flex-shrink:0;width:36px;height:36px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;font-weight:800;color:#fff;
+}
+.sn-ld{background:linear-gradient(135deg,var(--teal),#0891b2);}
+.sn-kbk{background:linear-gradient(135deg,var(--indigo),var(--purple));}
+.soal-meta{flex:1;}
+.soal-meta h4{font-size:.92rem;font-weight:800;color:var(--dark);margin-bottom:4px;}
+.soal-badges{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px;}
+.sbadge{font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:20px;}
+.sb-ld{background:var(--teal-bg);color:var(--teal-dark);}
+.sb-kbk{background:var(--indigo-light);color:var(--indigo);}
+.sb-kognitif{background:var(--teal-bg);color:var(--teal-dark);}
+.sb-teknis{background:var(--indigo-light);color:var(--indigo);}
+.sb-se{background:var(--purple-light);color:var(--purple);}
+.sb-an{background:#fef3c7;color:#92400e;}
+.sb-sy{background:#d1fae5;color:#065f46;}
+.sb-ev{background:#ffe4e6;color:#9f1239;}
+.sb-ud{background:#dbeafe;color:#1e40af;}
+.sb-ap{background:#f3e8ff;color:#6b21a8;}
+
+/* WACANA */
+.wacana-box{
+  background:var(--off);border-radius:10px;
+  border:1px solid var(--gray-light);border-left:4px solid var(--amber);
+  padding:16px 18px;margin-bottom:14px;font-size:.86rem;
+  color:#334155;line-height:1.75;
+}
+.wacana-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#92400e;margin-bottom:8px;}
+.wacana-box p{margin-bottom:8px;}
+.wacana-box p:last-child{margin-bottom:0;}
+.link-artikel{margin-top:10px;}
+.link-artikel p{font-size:.78rem;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.link-artikel a{font-size:.78rem;color:var(--indigo);text-decoration:none;display:block;margin-bottom:2px;}
+.link-artikel a:hover{text-decoration:underline;}
+
+/* TABEL DATA */
+.data-table-wrap{overflow-x:auto;margin-bottom:14px;}
+.data-table{width:100%;border-collapse:collapse;font-size:.83rem;}
+.data-table th{background:var(--dark);color:#fff;padding:9px 14px;text-align:left;font-weight:700;font-size:.78rem;}
+.data-table td{padding:9px 14px;border-bottom:1px solid var(--gray-light);}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tr:nth-child(even) td{background:#fafafa;}
+.data-table tr:hover td{background:var(--teal-bg);}
+.tabel-sumber{font-size:.73rem;color:var(--gray);margin-top:4px;font-style:italic;}
+.tabel-keterangan{font-size:.78rem;color:#334155;background:var(--amber-light);border-radius:8px;padding:10px 14px;margin-bottom:10px;line-height:1.65;}
+
+/* PERTANYAAN */
+.pertanyaan-box{
+  background:linear-gradient(135deg,#0f172a,#1e1b4b);
+  border-radius:10px;padding:14px 18px;margin-bottom:12px;
+}
+.pertanyaan-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#c4b5fd;margin-bottom:6px;}
+.pertanyaan-box p{font-size:.86rem;color:rgba(255,255,255,.9);line-height:1.7;}
+
+/* JAWABAN */
+.jawab-label{font-size:.8rem;font-weight:700;color:var(--dark);margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.jawab-label .req{color:var(--coral);}
+
+/* PROGRESS */
+.progress-wrap{margin-bottom:20px;}
+.prog-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.prog-top span{font-size:.8rem;color:var(--gray);}
+.prog-top strong{font-size:.88rem;font-weight:800;color:var(--dark);}
+.prog-track{height:8px;background:var(--gray-light);border-radius:4px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--coral));border-radius:4px;transition:width .4s ease;width:0%;}
+
+/* SECTION DIVIDER */
+.sec-div{
+  display:flex;align-items:center;gap:12px;margin:24px 0 18px;
+  font-size:.82rem;font-weight:800;
+}
+.sec-div .sd-label{
+  padding:6px 16px;border-radius:20px;white-space:nowrap;
+  font-size:.8rem;font-weight:800;
+}
+.sd-ld{background:var(--teal-bg);color:var(--teal-dark);}
+.sd-kbk{background:var(--indigo-light);color:var(--indigo);}
+.sec-div::before,.sec-div::after{content:'';flex:1;height:1px;background:var(--gray-light);}
+
+/* SAVE & SUBMIT */
+.save-ind{display:inline-flex;align-items:center;gap:5px;font-size:.73rem;color:var(--emerald);opacity:0;transition:opacity .3s;}
+.save-ind.show{opacity:1;}
+.btn-submit{
+  width:100%;padding:14px;border-radius:12px;border:none;
+  background:linear-gradient(135deg,var(--amber),var(--coral));
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.95rem;font-weight:700;cursor:pointer;transition:all .25s;margin-top:8px;
+}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,158,11,.4);}
+.btn-submit:disabled{opacity:.5;transform:none;cursor:not-allowed;}
+
+/* SELESAI */
+.selesai{
+  display:none;text-align:center;padding:28px;
+  background:linear-gradient(135deg,var(--teal-bg),var(--indigo-light));
+  border-radius:var(--radius);border:1px solid var(--teal-light);margin-top:16px;
+}
+.selesai .sico{font-size:2.8rem;margin-bottom:10px;}
+.selesai h3{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:5px;}
+.selesai p{font-size:.84rem;color:var(--gray);margin-bottom:18px;line-height:1.65;}
+.btn-lanjut{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border-radius:30px;border:none;background:linear-gradient(135deg,var(--teal),var(--indigo));color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;margin:4px;text-decoration:none;}
+.btn-lanjut:hover{transform:translateY(-2px);}
+
+.ib{border-radius:10px;padding:12px 15px;margin-bottom:13px;display:flex;align-items:flex-start;gap:9px;}
+.ib-a{background:var(--amber-light);border-left:3px solid var(--amber);}
+.ib-t{background:var(--teal-bg);border-left:3px solid var(--teal);}
+.ib .ico{font-size:.95rem;flex-shrink:0;margin-top:1px;}
+.ib .txt{font-size:.82rem;line-height:1.65;color:#334155;}
+.ib .txt strong{font-weight:700;color:var(--dark);}
+
+@media(max-width:640px){
+  .id-grid{grid-template-columns:1fr;}
+  .main{padding:18px 1.2rem 48px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bio-content" id="bio-page-content">
+
+  <!-- HEADER -->
+  <div class="page-header">
+    <div class="header-inner">
+      <div class="breadcrumb">
+        <a href="dashboard-siswa.html">Dashboard</a> › <span>Pre-test</span>
+      </div>
+      <h1>✏️ <em>Pre-test</em> — <span>Sistem Regulasi Manusia</span></h1>
+      <p>Tes awal untuk mengukur kondisi awal literasi digital dan keterampilan berpikir kritis peserta didik sebelum pembelajaran sistem regulasi dimulai.</p>
+      <div class="htags">
+        <span class="htag">8 Soal Esai</span>
+        <span class="htag">3 Soal Literasi Digital</span>
+        <span class="htag">5 Soal KBK</span>
+        <span class="htag">Kerjakan Secara Mandiri</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- IDENTITAS -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon ci-amber">👤</div>
+        <div><h3>Identitas Peserta Didik</h3><p>Lengkapi identitasmu sebelum mengerjakan soal</p></div>
+      </div>
+      <div class="card-body">
+        <div class="id-grid">
+          <div class="id-item"><label>Nama Lengkap</label><input class="finput" id="pt_nama" type="text" placeholder="Nama lengkap..." oninput="autoSave('pt_nama')"></div>
+          <div class="id-item"><label>Kelas</label><input class="finput" id="pt_kelas" type="text" placeholder="Contoh: XI IPA 1" oninput="autoSave('pt_kelas')"></div>
+          <div class="id-item"><label>No. Absen</label><input class="finput" id="pt_absen" type="text" placeholder="Nomor absen..." oninput="autoSave('pt_absen')"></div>
+          <div class="id-item"><label>Tanggal</label><input class="finput" id="pt_tanggal" type="date" oninput="autoSave('pt_tanggal')"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PETUNJUK -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon ci-amber">📋</div>
+        <div><h3>Petunjuk Pengerjaan</h3><p>Baca dengan saksama sebelum memulai</p></div>
+      </div>
+      <div class="card-body">
+        <div class="petunjuk-list">
+          <div class="petunjuk-item"><div class="petunjuk-num">1</div><span>Kerjakan soal secara <strong>mandiri dan jujur</strong>. Tidak diperkenankan berdiskusi dengan teman.</span></div>
+          <div class="petunjuk-item"><div class="petunjuk-num">2</div><span>Bacalah setiap wacana dan pertanyaan dengan <strong>saksama</strong> sebelum menjawab.</span></div>
+          <div class="petunjuk-item"><div class="petunjuk-num">3</div><span>Jawablah setiap soal dengan <strong>lengkap dan sistematis</strong> sesuai perintah soal.</span></div>
+          <div class="petunjuk-item"><div class="petunjuk-num">4</div><span>Untuk soal yang meminta sumber, <strong>cantumkan referensi</strong> yang digunakan.</span></div>
+          <div class="petunjuk-item"><div class="petunjuk-num">5</div><span>Jawaban tersimpan otomatis. Klik <strong>"Kirim Jawaban"</strong> setelah semua soal selesai dikerjakan.</span></div>
+        </div>
+        <div class="ib ib-a" style="margin-top:14px;margin-bottom:0;">
+          <span class="ico">⚠️</span>
+          <div class="txt"><strong>Perhatian:</strong> Pre-test ini tidak dinilai benar/salah — tujuannya adalah mengukur pemahaman awalmu. Jawablah dengan sejujurnya!</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="progress-wrap">
+      <div class="prog-top"><span>Soal terjawab</span><strong><span id="progCount">0</span> / 8</strong></div>
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+    </div>
+
+    <!-- SOAL -->
+    <div class="card">
+      <div class="card-head">
+        <div class="ch-icon ci-amber">📝</div>
+        <div><h3>Soal Esai <em>Pre-test</em></h3><p>SMAN 1 Malang · Biologi · Sistem Regulasi Manusia</p></div>
+      </div>
+      <div class="card-body">
+
+        <!-- ══ BAGIAN A: LITERASI DIGITAL ══ -->
+        <div class="sec-div"><span class="sd-label sd-ld">📱 Bagian A — Soal Literasi Digital (No. 1–3)</span></div>
+
+        <!-- SOAL LD 1 -->
+        <div class="soal-block">
+          <div class="soal-header">
+            <div class="soal-num sn-ld">1</div>
+            <div class="soal-meta">
+              <h4>Soal 1 — Literasi Digital</h4>
+              <div class="soal-badges">
+                <span class="sbadge sb-ld">Literasi Digital</span>
+                <span class="sbadge sb-kognitif">Kognitif [LD-K]</span>
+              </div>
+            </div>
+          </div>
+          <div class="wacana-box">
+            <div class="wacana-label">📖 Wacana</div>
+            <p>Untuk memahami mekanisme stres akademik terhadap sistem saraf dan sistem hormon secara ilmiah, peserta didik perlu mencari, mengevaluasi, dan mengorganisasikan informasi dari berbagai sumber digital. Namun, tidak semua informasi yang tersedia di internet dapat dipercaya — banyak konten tentang stres, kesehatan otak, dan hormon yang beredar di media sosial tanpa dasar ilmiah yang kuat.</p>
+            <div class="link-artikel">
+              <p>🔗 Artikel Ilmiah:</p>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5718343/" target="_blank">1. https://pmc.ncbi.nlm.nih.gov/articles/PMC5718343/</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10041935/" target="_blank">2. https://pmc.ncbi.nlm.nih.gov/articles/PMC10041935/</a>
+            </div>
+          </div>
+          <div class="pertanyaan-box">
+            <div class="pertanyaan-label">❓ Pertanyaan</div>
+            <p>Berdasarkan artikel ilmiah yang tersedia, evaluasilah kredibilitas dan relevansi kedua sumber tersebut sebagai referensi untuk memahami hubungan stres akademik dengan sistem saraf dan sistem hormon, bandingkan dengan sumber non-ilmiah seperti blog atau media sosial, kemudian organisasikan informasi yang paling relevan untuk menyimpulkan solusi ilmiah bagaimana stres akademik memengaruhi keseimbangan sistem regulasi tubuh!</p>
+          </div>
+          <div class="jawab-label">Jawaban <span class="req">*</span></div>
+          <textarea class="finput tall" id="ld1" placeholder="Tuliskan jawabanmu di sini secara lengkap dan sistematis..." oninput="autoSave('ld1');updateProgress()"></textarea>
+        </div>
+
+        <!-- SOAL LD 2 -->
+        <div class="soal-block">
+          <div class="soal-header">
+            <div class="soal-num sn-ld">2</div>
+            <div class="soal-meta">
+              <h4>Soal 2 — Literasi Digital</h4>
+              <div class="soal-badges">
+                <span class="sbadge sb-ld">Literasi Digital</span>
+                <span class="sbadge sb-teknis">Teknis [LD-T]</span>
+              </div>
+            </div>
+          </div>
+          <div class="wacana-box">
+            <div class="wacana-label">📖 Wacana</div>
+            <p>Dalam proses mengkaji kasus stres akademik dan dampaknya terhadap sistem regulasi manusia, peserta didik diminta memanfaatkan sumber belajar digital seperti jurnal ilmiah, <em>multimedia website</em> pembelajaran, dan platform pencarian akademik. Kemampuan teknis dalam mengoperasikan perangkat, menavigasi internet secara efektif, dan mengintegrasikan alat digital menjadi keterampilan yang sangat dibutuhkan agar penyelidikan ilmiah dapat berjalan optimal. Dalam prosesnya, peserta didik juga sering menghadapi kendala teknis seperti kesulitan mengakses artikel ilmiah atau gagal mengunggah hasil kerja pada platform pembelajaran.</p>
+          </div>
+          <div class="pertanyaan-box">
+            <div class="pertanyaan-label">❓ Pertanyaan</div>
+            <p>Jelaskan bagaimana kamu mengoperasikan perangkat dan menavigasi sumber digital untuk menemukan informasi ilmiah tentang mekanisme sistem saraf dan sistem hormon dalam merespons stres akademik, integrasikan penggunaan alat digital tersebut dalam proses penyelidikan, serta jelaskan langkah pemecahan masalah teknis yang kamu lakukan apabila mengalami kendala saat mengakses sumber digital tersebut!</p>
+          </div>
+          <div class="jawab-label">Jawaban <span class="req">*</span></div>
+          <textarea class="finput tall" id="ld2" placeholder="Tuliskan jawabanmu di sini secara lengkap dan sistematis..." oninput="autoSave('ld2');updateProgress()"></textarea>
+        </div>
+
+        <!-- SOAL LD 3 -->
+        <div class="soal-block">
+          <div class="soal-header">
+            <div class="soal-num sn-ld">3</div>
+            <div class="soal-meta">
+              <h4>Soal 3 — Literasi Digital</h4>
+              <div class="soal-badges">
+                <span class="sbadge sb-ld">Literasi Digital</span>
+                <span class="sbadge sb-se">Sosial-Emosional [LD-SE]</span>
+              </div>
+            </div>
+          </div>
+          <div class="wacana-box">
+            <div class="wacana-label">📖 Wacana</div>
+            <p>Berdasarkan pengalamanmu selama proses penyelidikan sistem regulasi manusia, peserta didik mengakses berbagai sumber digital seperti artikel ilmiah, <em>multimedia website</em>, dan platform diskusi kelompok. Penggunaan sumber digital ini menuntut tanggung jawab etika akademik, mulai dari cara mengutip informasi tentang mekanisme sistem saraf dan hormon, cara berkomunikasi saat berdiskusi hasil penyelidikan di forum digital, hingga menjaga keamanan data pribadi saat mengakses platform pembelajaran. Tanpa kesadaran sosial-emosional yang baik, penggunaan teknologi dalam belajar Biologi justru dapat menimbulkan pelanggaran etika dan risiko keamanan.</p>
+          </div>
+          <div class="pertanyaan-box">
+            <div class="pertanyaan-label">❓ Pertanyaan</div>
+            <p>Berdasarkan pengalamanmu selama proses penyelidikan sistem regulasi manusia secara digital, refleksikan bagaimana kamu menerapkan etika dalam mengambil dan menggunakan informasi Biologi dari sumber digital (termasuk cara menghindari plagiarisme), bagaimana kamu berkomunikasi secara bertanggung jawab saat berdiskusi hasil penyelidikan di forum digital, serta bagaimana bentuk tanggung jawabmu dalam menjaga keamanan data pribadi saat mengakses platform pembelajaran!</p>
+          </div>
+          <div class="jawab-label">Jawaban <span class="req">*</span></div>
+          <textarea class="finput tall" id="ld3" placeholder="Tuliskan jawabanmu di sini secara lengkap dan sistematis..." oninput="autoSave('ld3');updateProgress()"></textarea>
+        </div>
+
+        <!-- ══ BAGIAN B: KBK ══ -->
+        <div class="sec-div"><span class="sd-label sd-kbk">🧠 Bagian B — Soal Keterampilan Berpikir Kritis (No. 4–8)</span></div>
+
+        <!-- SOAL KBK 1 -->
+        <div class="soal-block">
+          <div class="soal-header">
+            <div class="soal-num sn-kbk">4</div>
+            <div class="soal-meta">
+              <h4>Soal 4 — Keterampilan Berpikir Kritis</h4>
+              <div class="soal-badges">
+                <span class="sbadge sb-kbk">KBK</span>
+                <span class="sbadge sb-ap">Apply [KBK-AP]</span>
+              </div>
+            </div>
+          </div>
+          <div class="wacana-box">
+            <div class="wacana-label">📖 Wacana</div>
+            <p>Dalam kehidupan sehari-hari, peserta didik sering mengalami tekanan akademik seperti tugas menumpuk, persiapan ujian, dan gangguan pola tidur. Stimulus stres pertama kali diterima oleh alat indera, kemudian diproses oleh sistem saraf pusat untuk menghasilkan respons yang sesuai. Respons awal ditandai dengan aktivasi sistem saraf simpatis yang memicu pelepasan hormon adrenalin dan noradrenalin dari medula adrenal, serta aktivasi sumbu HPA (<em>Hypothalamic-Pituitary-Adrenal</em>) yang menghasilkan hormon kortisol. Jika stres berlangsung terus-menerus, keseimbangan antara sistem saraf simpatis dan parasimpatis dapat terganggu dan memengaruhi kondisi fisik maupun psikologis peserta didik.</p>
+            <div class="link-artikel">
+              <p>🔗 Artikel Ilmiah:</p>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5718343/" target="_blank">1. https://pmc.ncbi.nlm.nih.gov/articles/PMC5718343/</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10041935/" target="_blank">2. https://pmc.ncbi.nlm.nih.gov/articles/PMC10041935/</a>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/29126903/" target="_blank">3. https://pubmed.ncbi.nlm.nih.gov/29126903/</a>
+            </div>
+          </div>
+          <div class="pertanyaan-box">
+            <div class="pertanyaan-label">❓ Pertanyaan</div>
+            <p>Berdasarkan minimal dua sumber ilmiah yang tersedia dan pengalaman kamu sebagai peserta didik, jelaskan bagaimana sistem saraf dan sistem hormon bekerja secara terpadu dalam merespons stres akademik dan kaitkan dengan situasi yang pernah kamu alami di lingkungan sekolah! Cantumkan sumber yang kalian gunakan!</p>
+          </div>
+          <div class="jawab-label">Jawaban <span class="req">*</span></div>
+          <textarea class="finput tall" id="kbk1" placeholder="Tuliskan jawabanmu di sini. Cantumkan sumber yang digunakan..." oninput="autoSave('kbk1');updateProgress()"></textarea>
+        </div>
+
+        <!-- SOAL KBK 2 -->
+        <div class="soal-block">
+          <div class="soal-header">
+            <div class="soal-num sn-kbk">5</div>
+            <div class="soal-meta">
+              <h4>Soal 5 — Keterampilan Berpikir Kritis</h4>
+              <div class="soal-badges">
+                <span class="sbadge sb-kbk">KBK</span>
+                <span class="sbadge sb-ev">Evaluate [KBK-EV]</span>
+              </div>
+            </div>
+          </div>
+          <div class="wacana-box">
+            <div class="wacana-label">📖 Wacana</div>
+            <p>Sheppard &amp; Wolffsohn (2018) melaporkan bahwa prevalensi <em>digital eye strain</em> diperkirakan mencapai 50% atau lebih pada pengguna perangkat digital, ditandai dengan mata kering, penglihatan kabur, dan sakit kepala akibat paparan cahaya biru berlebihan. Sementara itu, WHO (2015) memperingatkan bahwa sekitar 1,1 miliar remaja usia 12–35 tahun berisiko mengalami gangguan pendengaran akibat kebiasaan mendengarkan yang tidak aman, dengan hampir 50% terpapar tingkat suara tidak aman dari perangkat audio pribadi. Kedua kondisi tersebut secara langsung memengaruhi efektivitas penerimaan stimulus selama proses belajar berbasis digital.</p>
+            <div class="link-artikel">
+              <p>📚 Sumber:</p>
+              <a href="#" style="cursor:default;color:var(--gray);">Sheppard, A.L., &amp; Wolffsohn, J.S. (2018). <em>Digital eye strain</em>. BMJ Open Ophthalmology, 3(1), e000146.</a>
+              <a href="#" style="cursor:default;color:var(--gray);">World Health Organization. (2015). 1.1 billion people at risk of hearing loss. WHO Press.</a>
+            </div>
+          </div>
+          <div class="pertanyaan-box">
+            <div class="pertanyaan-label">❓ Pertanyaan</div>
+            <p>Berdasarkan kedua bukti ilmiah di atas, nilailah dampak kebiasaan penggunaan perangkat digital peserta didik saat ini terhadap fungsi indera penglihatan dan pendengaran, serta hubungkan penilaian tersebut dengan efektivitas proses belajar di sekolah!</p>
+          </div>
+          <div class="jawab-label">Jawaban <span class="req">*</span></div>
+          <textarea class="finput tall" id="kbk2" placeholder="Tuliskan jawabanmu di sini..." oninput="autoSave('kbk2');updateProgress()"></textarea>
+        </div>
+
+        <!-- SOAL KBK 3 -->
+        <div class="soal-block">
+          <div class="soal-header">
+            <div class="soal-num sn-kbk">6</div>
+            <div class="soal-meta">
+              <h4>Soal 6 — Keterampilan Berpikir Kritis</h4>
+              <div class="soal-badges">
+                <span class="sbadge sb-kbk">KBK</span>
+                <span class="sbadge sb-ud">Use Data [KBK-UD]</span>
+              </div>
+            </div>
+          </div>
+          <div class="wacana-box">
+            <div class="wacana-label">📊 Data</div>
+            <p style="margin-bottom:10px;">Tabel berikut menyajikan data hasil penelitian mengenai hubungan tingkat stres akademik dengan respons fisiologis tubuh pada remaja.</p>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Tingkat Stres</th><th>Kadar Kortisol (nmol/L)</th><th>Detak Jantung (bpm)</th><th>HRV (ms)</th><th>Kualitas Tidur</th></tr></thead>
+                <tbody>
+                  <tr><td>Rendah</td><td>150–200</td><td>65–75</td><td>60–80</td><td>Baik</td></tr>
+                  <tr><td>Sedang</td><td>250–350</td><td>80–90</td><td>40–55</td><td>Terganggu</td></tr>
+                  <tr><td>Tinggi</td><td>400–600</td><td>95–110</td><td>20–35</td><td>Buruk</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tabel-keterangan">
+              <strong>Keterangan:</strong> Kortisol = hormon stres yang dilepaskan melalui aktivasi sumbu HPA. HRV (<em>Heart Rate Variability</em>) = mencerminkan keseimbangan aktivitas sistem saraf simpatis dan parasimpatis; nilai HRV tinggi → dominasi parasimpatis (tubuh rileks), nilai HRV rendah → dominasi simpatis (tubuh stres).
+            </div>
+            <p class="tabel-sumber">Sumber data diadaptasi dari: Herman et al. (2016); Thayer &amp; Lane (2009); Yuksel et al. (2023)</p>
+          </div>
+          <div class="pertanyaan-box">
+            <div class="pertanyaan-label">❓ Pertanyaan</div>
+            <p>Gunakan data pada tabel di atas secara akurat untuk menarik kesimpulan tentang bagaimana tingkat stres akademik memengaruhi keseimbangan sistem saraf otonom dan sistem hormon pada peserta didik, serta apa implikasinya terhadap <em>homeostasis</em> tubuh!</p>
+          </div>
+          <div class="jawab-label">Jawaban <span class="req">*</span></div>
+          <textarea class="finput tall" id="kbk3" placeholder="Tuliskan jawabanmu berdasarkan data tabel di atas..." oninput="autoSave('kbk3');updateProgress()"></textarea>
+        </div>
+
+        <!-- SOAL KBK 4 -->
+        <div class="soal-block">
+          <div class="soal-header">
+            <div class="soal-num sn-kbk">7</div>
+            <div class="soal-meta">
+              <h4>Soal 7 — Keterampilan Berpikir Kritis</h4>
+              <div class="soal-badges">
+                <span class="sbadge sb-kbk">KBK</span>
+                <span class="sbadge sb-an">Analyze [KBK-AN]</span>
+              </div>
+            </div>
+          </div>
+          <div class="wacana-box">
+            <div class="wacana-label">📊 Data</div>
+            <p style="margin-bottom:10px;font-weight:700;">Tabel 1. Durasi Penggunaan Layar dan Kondisi Indera Penglihatan</p>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Durasi Penggunaan Layar/Hari</th><th>Frekuensi Kedipan Mata (kali/menit)</th><th>Keluhan Mata Kering (%)</th></tr></thead>
+                <tbody>
+                  <tr><td>&lt; 2 jam</td><td>18</td><td>12%</td></tr>
+                  <tr><td>2–4 jam</td><td>14</td><td>38%</td></tr>
+                  <tr><td>&gt; 4 jam</td><td>9</td><td>67%</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="margin:10px 0;font-weight:700;">Tabel 2. Durasi Penggunaan <em>Earphone</em> dan Kondisi Indera Pendengaran</p>
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead><tr><th>Durasi Penggunaan <em>Earphone</em>/Hari</th><th>Volume Rata-rata (dB)</th><th>Keluhan <em>Tinnitus</em> (%)</th></tr></thead>
+                <tbody>
+                  <tr><td>&lt; 1 jam</td><td>65 dB</td><td>8%</td></tr>
+                  <tr><td>1–3 jam</td><td>78 dB</td><td>24%</td></tr>
+                  <tr><td>&gt; 3 jam</td><td>89 dB</td><td>51%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="pertanyaan-box">
+            <div class="pertanyaan-label">❓ Pertanyaan</div>
+            <p>Berdasarkan kedua tabel di atas, identifikasi masalah utama yang paling diprioritaskan terkait gangguan alat indera akibat penggunaan perangkat digital berlebihan, jelaskan implikasinya terhadap proses belajar peserta didik, dan analisis dari berbagai perspektif termasuk perspektifmu sebagai peserta didik!</p>
+          </div>
+          <div class="jawab-label">Jawaban <span class="req">*</span></div>
+          <textarea class="finput tall" id="kbk4" placeholder="Tuliskan jawabanmu berdasarkan analisis kedua tabel di atas..." oninput="autoSave('kbk4');updateProgress()"></textarea>
+        </div>
+
+        <!-- SOAL KBK 5 -->
+        <div class="soal-block">
+          <div class="soal-header">
+            <div class="soal-num sn-kbk">8</div>
+            <div class="soal-meta">
+              <h4>Soal 8 — Keterampilan Berpikir Kritis</h4>
+              <div class="soal-badges">
+                <span class="sbadge sb-kbk">KBK</span>
+                <span class="sbadge sb-sy">Synthesize [KBK-SY]</span>
+              </div>
+            </div>
+          </div>
+          <div class="wacana-box">
+            <div class="wacana-label">📖 Wacana</div>
+            <p>Sistem regulasi manusia terdiri atas tiga komponen yang saling berkaitan: sistem saraf, sistem hormon, dan alat indera. Stres akademik mengaktifkan sistem saraf simpatis dan sumbu HPA sehingga memicu pelepasan kortisol dan adrenalin yang memengaruhi <em>homeostasis</em> tubuh. Di sisi lain, penggunaan perangkat digital berlebihan menyebabkan <em>digital eye strain</em> pada indera penglihatan dan kerusakan sel rambut koklea pada indera pendengaran. Kedua permasalahan tersebut saling memperburuk: stres akademik memperpanjang durasi penggunaan perangkat digital, sementara gangguan alat indera justru menghambat efektivitas belajar dan memperparah stres.</p>
+            <div class="link-artikel">
+              <p>📚 Sumber:</p>
+              <a href="#" style="cursor:default;color:var(--gray);">Sheppard, A.L., &amp; Wolffsohn, J.S. (2018). <em>Digital eye strain</em>. BMJ Open Ophthalmology, 3(1), e000146.</a>
+              <a href="#" style="cursor:default;color:var(--gray);">World Health Organization. (2015). 1.1 billion people at risk of hearing loss. WHO Press.</a>
+              <a href="#" style="cursor:default;color:var(--gray);">Herman, J.P., et al. (2016). Regulation of the hypothalamic-pituitary-adrenocortical stress response. Comprehensive Physiology, 6(2), 603–621.</a>
+            </div>
+          </div>
+          <div class="pertanyaan-box">
+            <div class="pertanyaan-label">❓ Pertanyaan</div>
+            <p>Berdasarkan wacana di atas, buatlah ringkasan yang kohesif dengan menggabungkan peran ketiga komponen sistem regulasi (sistem saraf, sistem hormon, dan alat indera) dalam menjelaskan bagaimana stres akademik dan penggunaan perangkat digital berlebihan secara bersamaan dapat menurunkan kualitas belajar peserta didik lebih besar dibandingkan jika hanya mengalami salah satunya!</p>
+          </div>
+          <div class="jawab-label">Jawaban <span class="req">*</span></div>
+          <textarea class="finput tall" id="kbk5" placeholder="Tuliskan ringkasan kohesifmu di sini..." oninput="autoSave('kbk5');updateProgress()"></textarea>
+        </div>
+
+        <span class="save-ind" id="saveInd">✅ Tersimpan otomatis</span>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <button class="btn-submit" id="btnSubmit" onclick="submitTest()" disabled>
+      📤 Kirim Jawaban Pre-test
+    </button>
+
+    <!-- SELESAI -->
+    <div class="selesai" id="selesaiBox">
+      <div class="sico">✅</div>
+      <h3>Jawaban Pre-test Berhasil Dikirim!</h3>
+      <p>Terima kasih! Jawabanmu sudah tersimpan dan akan dinilai oleh guru. Sekarang kamu bisa mulai pembelajaran Siklus 1.</p>
+      <div>
+        <a class="btn-lanjut" href="siklus1.html">🔬 Mulai Siklus 1</a>
+        <a class="btn-lanjut" href="dashboard-siswa.html" style="background:linear-gradient(135deg,var(--gray),#334155);">🏠 Dashboard</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+bioRenderNav({ requireLogin: true });
+
+const KEY = 'bioregula_pretest';
+const FIELDS = ['pt_nama','pt_kelas','pt_absen','pt_tanggal','ld1','ld2','ld3','kbk1','kbk2','kbk3','kbk4','kbk5'];
+const SOAL_FIELDS = ['ld1','ld2','ld3','kbk1','kbk2','kbk3','kbk4','kbk5'];
+
+function getAll(){ return JSON.parse(localStorage.getItem(KEY)||'{}'); }
+function saveAll(d){ localStorage.setItem(KEY,JSON.stringify(d)); }
+
+let st;
+function autoSave(id){
+  clearTimeout(st);
+  st = setTimeout(()=>{
+    const d = getAll();
+    d[id] = document.getElementById(id)?.value || '';
+    saveAll(d);
+    document.getElementById(id)?.classList.add('saved');
+    const si = document.getElementById('saveInd');
+    si.classList.add('show');
+    setTimeout(()=>si.classList.remove('show'),1500);
+  },600);
+}
+
+function updateProgress(){
+  const count = SOAL_FIELDS.filter(id=>(document.getElementById(id)?.value||'').trim().length > 10).length;
+  document.getElementById('progCount').textContent = count;
+  document.getElementById('progFill').style.width = (count/8*100)+'%';
+  document.getElementById('btnSubmit').disabled = count < 8;
+}
+
+function loadSaved(){
+  const d = getAll();
+  FIELDS.forEach(id=>{
+    const el = document.getElementById(id);
+    if(el && d[id]){ el.value = d[id]; el.classList.add('saved'); }
+  });
+  // Auto-isi dari akun
+  const user = JSON.parse(localStorage.getItem('bioregula_current')||'{}');
+  if(user.nama && !d.pt_nama) document.getElementById('pt_nama').value = user.nama;
+  if(user.kelas && !d.pt_kelas) document.getElementById('pt_kelas').value = user.kelas;
+  if(user.absen && !d.pt_absen) document.getElementById('pt_absen').value = user.absen;
+  if(!d.pt_tanggal) document.getElementById('pt_tanggal').value = new Date().toISOString().split('T')[0];
+  // Tampilkan selesai kalau sudah submit
+  if(d._submitted){
+    document.getElementById('selesaiBox').style.display='block';
+    document.getElementById('btnSubmit').disabled = true;
+    document.getElementById('btnSubmit').textContent = '✅ Sudah Dikirim';
+  }
+  updateProgress();
+}
+
+function submitTest(){
+  const kosong = SOAL_FIELDS.filter(id=>(document.getElementById(id)?.value||'').trim().length < 10);
+  if(kosong.length){
+    alert(`Masih ada ${kosong.length} soal yang belum dijawab dengan lengkap!`);
+    return;
+  }
+  // Simpan semua
+  const d = getAll();
+  FIELDS.forEach(id=>{ d[id] = document.getElementById(id)?.value||''; });
+  d._submitted = true;
+  d._submitTime = new Date().toISOString();
+  saveAll(d);
+  // Tandai di dashboard
+  localStorage.setItem('bioregula_pretest_done','1');
+  // Kirim ke Sheets
+  kirimSheets(d);
+  document.getElementById('selesaiBox').style.display='block';
+  document.getElementById('selesaiBox').scrollIntoView({behavior:'smooth'});
+  document.getElementById('btnSubmit').disabled = true;
+  document.getElementById('btnSubmit').textContent = '✅ Sudah Dikirim';
+}
+
+function kirimSheets(d){
+  const url = 'https://script.google.com/macros/s/AKfycbz3tVTaZfpRPIXOi08Yhp355WN0eyjDgN0_3VDP7lt3PavCpYGvAZZyV_b7yuNqBUy2/exec';
+  if(!url) return;
+  const user = JSON.parse(localStorage.getItem('bioregula_current')||'{}');
+  fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({tipe:'pretest',nama:user.nama||d.pt_nama,kelas:user.kelas||d.pt_kelas,absen:user.absen||d.pt_absen,timestamp:d._submitTime,...d})
+  }).catch(()=>{});
+}
+
+window.addEventListener('load', loadSaved);
+</script>
+</body>
+</html>
