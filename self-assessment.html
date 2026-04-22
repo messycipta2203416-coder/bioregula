@@ -554,20 +554,33 @@ function submitAngket() {
 // ── KIRIM SHEETS ──
 function kirimSheets(skor, pct, kategori, kog, tek, se) {
   const url = 'https://script.google.com/macros/s/AKfycbz3tVTaZfpRPIXOi08Yhp355WN0eyjDgN0_3VDP7lt3PavCpYGvAZZyV_b7yuNqBUy2/exec';
-  if (!url) return;
   const user = JSON.parse(localStorage.getItem('bioregula_current') || '{}');
   const d = getAll();
+
+  // Kumpulkan jawaban q1-q20
+  const jawaban = {};
+  for (let i = 1; i <= 20; i++) {
+    jawaban['q' + i] = d['q' + i] || '';
+  }
+
   fetch(url, {
-    method:'POST', mode:'no-cors',
-    headers:{'Content-Type':'application/json'},
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      tipe:'self-assessment',
-      nama: user.nama || d.sa_nama, kelas: user.kelas || d.sa_kelas,
-      absen: user.absen, skor, pct, kategori,
-      skor_kognitif: kog, skor_teknis: tek, skor_se: se,
-      timestamp: new Date().toISOString()
+      tipe: 'self-assessment',
+      nama: user.nama || d.sa_nama || '',
+      kelas: user.kelas || d.sa_kelas || '',
+      absen: user.absen || '',
+      hasil: { totalSkor: skor, pct, kategori, sKognitif: kog, sTeknis: tek, sSE: se },
+      sa_nama: d.sa_nama || '',
+      sa_kelas: d.sa_kelas || '',
+      sa_semester: d.sa_semester || '',
+      sa_sekolah: d.sa_sekolah || '',
+      timestamp: new Date().toISOString(),
+      ...jawaban
     })
-  }).catch(()=>{});
+  }).catch(() => {});
 }
 
 // ── LOAD SAVED ──
