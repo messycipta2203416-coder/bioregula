@@ -17,9 +17,8 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--dark);}
-p em,li em,span em,td em,label em{margin:0 1px;}
+p em,li em,span em,label em{margin:0 1px;}
 .bio-content{padding-top:var(--nav-h);}
-
 .page-header{background:linear-gradient(150deg,#0f172a 0%,#1e1b4b 55%,#134e4a 100%);padding:36px 2rem 32px;position:relative;overflow:hidden;}
 .page-header::before{content:'';position:absolute;top:-80px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(79,70,229,.2),transparent 70%);}
 .header-inner{max-width:960px;margin:0 auto;position:relative;z-index:1;}
@@ -38,14 +37,11 @@ p em,li em,span em,td em,label em{margin:0 1px;}
 .hp-val{font-size:1.6rem;font-weight:800;color:#fff;}
 .hp-val small{font-size:.9rem;color:#c4b5fd;}
 .hp-sub{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:3px;}
-
 .main{max-width:960px;margin:0 auto;padding:28px 2rem 60px;}
-
 .fase-progress{display:flex;gap:4px;margin-bottom:20px;}
 .fp{flex:1;height:5px;border-radius:3px;background:var(--gray-light);transition:background .3s;}
 .fp.done{background:var(--emerald);}
 .fp.active{background:var(--indigo);}
-
 .fase-tabs{display:flex;gap:6px;margin-bottom:24px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
 .fase-tabs::-webkit-scrollbar{display:none;}
 .ftab{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:30px;border:2px solid var(--gray-light);background:var(--white);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:700;color:var(--gray);transition:all .2s;white-space:nowrap;}
@@ -55,11 +51,9 @@ p em,li em,span em,td em,label em{margin:0 1px;}
 .tnum{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;background:rgba(255,255,255,.2);}
 .ftab:not(.active) .tnum{background:var(--gray-light);color:var(--gray);}
 .ftab.done .tnum{background:#d1fae5;color:var(--emerald);}
-
 .fpanel{display:none;}
 .fpanel.active{display:block;animation:fadeUp .3s ease both;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-
 .card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden;}
 .card-head{padding:15px 20px;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--gray-light);}
 .ch-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
@@ -72,38 +66,29 @@ p em,li em,span em,td em,label em{margin:0 1px;}
 .card-head h3{font-size:.93rem;font-weight:800;color:var(--dark);}
 .card-head p{font-size:.76rem;color:var(--gray);margin-top:1px;}
 .card-body{padding:20px;}
-
 .id-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
-.id-item{display:flex;flex-direction:column;gap:4px;}
-.id-item label{font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;}
+.id-item label{display:block;font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px;}
 .anggota-list{display:flex;flex-direction:column;gap:8px;}
 .anggota-row{display:flex;align-items:center;gap:10px;}
 .anggota-num{width:28px;height:28px;border-radius:8px;background:var(--indigo-light);color:var(--indigo);font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-
-.artikel-box{background:#f8fafc;border-radius:12px;border:1px solid var(--gray-light);padding:20px 22px;margin-bottom:16px;font-size:.87rem;line-height:1.78;color:#334155;}
-.artikel-box p{margin-bottom:10px;}
+.artikel-box{background:#f8fafc;border-radius:12px;border:1px solid var(--gray-light);border-left:4px solid var(--amber);padding:18px 20px;margin-bottom:14px;font-size:.86rem;line-height:1.78;color:#334155;}
+.artikel-box p{margin-bottom:8px;}
 .artikel-box p:last-child{margin-bottom:0;}
-.artikel-sumber{background:var(--indigo-light);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:.78rem;color:var(--indigo);line-height:1.65;}
-.artikel-sumber strong{font-weight:700;display:block;margin-bottom:4px;}
-
-.pemantik{background:linear-gradient(135deg,#0f172a,#1e1b4b);border-radius:12px;padding:20px 24px;margin-bottom:14px;position:relative;overflow:hidden;}
+.artikel-sumber{background:var(--indigo-light);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:.76rem;color:var(--indigo);line-height:1.65;}
+.pemantik{background:linear-gradient(135deg,#0f172a,#1e1b4b);border-radius:12px;padding:18px 22px;margin-bottom:14px;position:relative;overflow:hidden;}
 .pemantik::before{content:'"';position:absolute;top:-14px;left:12px;font-size:7rem;color:rgba(255,255,255,.05);font-family:serif;line-height:1;}
 .pm-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#c4b5fd;margin-bottom:8px;}
 .pemantik p{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.75;font-style:italic;position:relative;z-index:1;}
-
 .ib{border-radius:10px;padding:12px 15px;margin-bottom:13px;display:flex;align-items:flex-start;gap:9px;}
 .ib-t{background:var(--teal-bg);border-left:3px solid var(--teal);}
 .ib-i{background:var(--indigo-light);border-left:3px solid var(--indigo);}
 .ib-a{background:var(--amber-light);border-left:3px solid var(--amber);}
-.ib-c{background:#ffe4e6;border-left:3px solid var(--coral);}
 .ib .ico{font-size:.95rem;flex-shrink:0;margin-top:1px;}
 .ib .txt{font-size:.82rem;line-height:1.65;color:#334155;}
 .ib .txt strong{font-weight:700;color:var(--dark);}
-
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
 .chip{display:inline-flex;align-items:center;gap:5px;background:var(--indigo-light);border:1px solid #c7d2fe;border-radius:7px;padding:4px 11px;font-size:.75rem;font-weight:700;color:var(--indigo);}
 .chip .ck{font-size:.68rem;background:#c7d2fe;border-radius:4px;padding:1px 5px;}
-
 .fgroup{margin-bottom:16px;}
 .fgroup label{display:block;font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.5;}
 .fgroup label .req{color:var(--coral);}
@@ -113,21 +98,17 @@ p em,li em,span em,td em,label em{margin:0 1px;}
 .finput.saved{border-color:var(--emerald);background:#f0fdf4;}
 textarea.finput{min-height:100px;line-height:1.65;}
 textarea.finput.tall{min-height:140px;}
-
-.save-ind{display:inline-flex;align-items:center;gap:5px;font-size:.73rem;color:var(--emerald);opacity:0;transition:opacity .3s;margin-top:4px;}
-.save-ind.show{opacity:1;}
-
-.sec-div{display:flex;align-items:center;gap:10px;margin:20px 0 14px;}
-.sec-div span{font-size:.82rem;font-weight:800;color:var(--dark);white-space:nowrap;}
-.sec-div::before,.sec-div::after{content:'';flex:1;height:1px;background:var(--gray-light);}
-
+.rencana-table{width:100%;border-collapse:collapse;font-size:.83rem;margin-bottom:14px;}
+.rencana-table th{background:var(--dark);color:#fff;padding:9px 12px;text-align:left;font-weight:700;font-size:.78rem;}
+.rencana-table td{padding:6px 8px;border:1px solid var(--gray-light);vertical-align:top;}
+.rencana-table td:first-child{background:#fafafa;font-weight:600;color:var(--dark);font-size:.8rem;width:30%;}
+.rencana-table textarea{width:100%;border:none;background:transparent;font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;color:var(--dark);outline:none;resize:none;min-height:48px;line-height:1.5;padding:2px;}
 .eval-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
 .eval-card{border-radius:12px;overflow:hidden;}
 .eval-head{padding:10px 14px;font-size:.8rem;font-weight:800;}
 .eh-plus{background:#d1fae5;color:#065f46;}
 .eh-minus{background:#ffe4e6;color:#9f1239;}
-.eval-body{padding:10px 14px 0;background:var(--off);border:1px solid var(--gray-light);border-top:none;border-radius:0 0 12px 12px;}
-
+.eval-body{padding:0 14px 10px;background:var(--off);border:1px solid var(--gray-light);border-top:none;border-radius:0 0 12px 12px;}
 .refleksi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
 .rcard{background:var(--off);border-radius:10px;border:2px solid var(--gray-light);padding:12px 8px;cursor:pointer;transition:all .2s;text-align:center;}
 .rcard:hover{border-color:#c4b5fd;}
@@ -135,7 +116,11 @@ textarea.finput.tall{min-height:140px;}
 .rcard .rem{font-size:1.5rem;margin-bottom:4px;}
 .rcard .rlbl{font-size:.72rem;font-weight:700;color:var(--dark);}
 .rcard.sel .rlbl{color:var(--indigo);}
-
+.save-ind{display:inline-flex;align-items:center;gap:5px;font-size:.73rem;color:var(--emerald);opacity:0;transition:opacity .3s;margin-top:4px;}
+.save-ind.show{opacity:1;}
+.sec-div{display:flex;align-items:center;gap:10px;margin:18px 0 12px;}
+.sec-div span{font-size:.82rem;font-weight:800;color:var(--dark);white-space:nowrap;}
+.sec-div::before,.sec-div::after{content:'';flex:1;height:1px;background:var(--gray-light);}
 .nav-btns{display:flex;gap:10px;justify-content:space-between;margin-top:22px;padding-top:18px;border-top:1px solid var(--gray-light);}
 .btn{display:flex;align-items:center;gap:7px;padding:10px 22px;border-radius:30px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .2s;border:none;}
 .btn-prev{background:var(--off);border:2px solid var(--gray-light);color:var(--gray);}
@@ -144,14 +129,12 @@ textarea.finput.tall{min-height:140px;}
 .btn-next:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(79,70,229,.35);}
 .btn-submit{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff;}
 .btn-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(16,185,129,.35);}
-
 .selesai{text-align:center;padding:30px;background:linear-gradient(135deg,var(--indigo-light),var(--teal-bg));border-radius:var(--radius);border:1px solid #c7d2fe;margin-top:18px;display:none;}
 .selesai .sico{font-size:2.8rem;margin-bottom:10px;}
 .selesai h3{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:5px;}
 .selesai p{font-size:.84rem;color:var(--gray);margin-bottom:18px;line-height:1.65;}
 .btn-lanjut{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border-radius:30px;border:none;background:linear-gradient(135deg,var(--indigo),var(--purple));color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;margin:4px;text-decoration:none;}
-.btn-lanjut:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(79,70,229,.35);}
-
+.btn-lanjut:hover{transform:translateY(-2px);}
 @media(max-width:640px){
   .id-grid{grid-template-columns:1fr;}
   .eval-grid{grid-template-columns:1fr;}
@@ -163,24 +146,17 @@ textarea.finput.tall{min-height:140px;}
 </style>
 </head>
 <body>
-
 <div class="bio-content" id="bio-page-content">
-
-  <!-- HEADER -->
   <div class="page-header">
     <div class="header-inner">
-      <div class="breadcrumb">
-        <a href="dashboard-siswa.html">Dashboard</a> › <span>Siklus 2 — Alat Indera</span>
-      </div>
+      <div class="breadcrumb"><a href="dashboard-siswa.html">Dashboard</a> › <span>Siklus 2 — Alat Indera</span></div>
       <div class="header-row">
         <div>
           <h1>👁️ Siklus 2 — <span>Alat Indera</span></h1>
-          <p>Menganalisis dampak penggunaan perangkat digital terhadap fungsi indera penglihatan dan pendengaran remaja melalui model <em>Problem-Based Learning</em>.</p>
+          <p>Menganalisis dampak penggunaan perangkat digital terhadap fungsi indera penglihatan dan pendengaran melalui model <em>Problem-Based Learning</em>. (Kelompok Genap)</p>
           <div class="htags">
-            <span class="htag">Pertemuan 3–4</span>
-            <span class="htag">5 JP × 45 menit</span>
-            <span class="htag">TP 4, 5, 6</span>
-            <span class="htag"><em>Digital Eye Strain</em> &amp; <em>Earphone</em></span>
+            <span class="htag">Pertemuan 3–4</span><span class="htag">5 JP × 45 menit</span>
+            <span class="htag">TP 4, 5, 6</span><span class="htag">Kelompok Genap</span>
           </div>
         </div>
         <div class="h-progress">
@@ -193,15 +169,10 @@ textarea.finput.tall{min-height:140px;}
   </div>
 
   <div class="main">
-
     <div class="fase-progress">
-      <div class="fp active" id="fp1"></div>
-      <div class="fp" id="fp2"></div>
-      <div class="fp" id="fp3"></div>
-      <div class="fp" id="fp4"></div>
-      <div class="fp" id="fp5"></div>
+      <div class="fp active" id="fp1"></div><div class="fp" id="fp2"></div>
+      <div class="fp" id="fp3"></div><div class="fp" id="fp4"></div><div class="fp" id="fp5"></div>
     </div>
-
     <div class="fase-tabs">
       <button class="ftab active" id="tab1" onclick="goFase(1)"><span class="tnum">1</span>Orientasi Masalah</button>
       <button class="ftab" id="tab2" onclick="goFase(2)"><span class="tnum">2</span>Mengorganisasi</button>
@@ -210,25 +181,14 @@ textarea.finput.tall{min-height:140px;}
       <button class="ftab" id="tab5" onclick="goFase(5)"><span class="tnum">5</span>Analisis &amp; Evaluasi</button>
     </div>
 
-    <!-- ══ FASE 1 — ORIENTASI MASALAH ══ -->
+    <!-- FASE 1 -->
     <div class="fpanel active" id="fase1">
-
-      <!-- Identitas Kelompok -->
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-indigo">👥</div>
-          <div><h3>Identitas Kelompok</h3><p>Lengkapi identitas kelompokmu sebelum memulai</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-indigo">👥</div><div><h3>Identitas Kelompok</h3><p>Lengkapi sebelum memulai</p></div></div>
         <div class="card-body">
-          <div class="id-grid">
-            <div class="id-item">
-              <label>Nama Kelompok</label>
-              <input class="finput" id="id_kelompok" type="text" placeholder="Nama kelompok..." oninput="autoSave('id_kelompok')" style="min-height:auto;padding:9px 12px;">
-            </div>
-            <div class="id-item">
-              <label>Kelas</label>
-              <input class="finput" id="id_kelas" type="text" placeholder="Contoh: XI IPA 1" oninput="autoSave('id_kelas')" style="min-height:auto;padding:9px 12px;">
-            </div>
+          <div class="id-grid" style="margin-bottom:16px;">
+            <div class="id-item"><label>Nama Kelompok</label><input class="finput" id="id_kelompok" type="text" placeholder="Nama kelompok..." oninput="autoSave('id_kelompok')" style="min-height:auto;padding:9px 12px;"></div>
+            <div class="id-item"><label>Kelas</label><input class="finput" id="id_kelas" type="text" placeholder="Contoh: XI IPA 1" oninput="autoSave('id_kelas')" style="min-height:auto;padding:9px 12px;"></div>
           </div>
           <div style="font-size:.8rem;font-weight:700;color:var(--dark);margin-bottom:8px;">Anggota Kelompok:</div>
           <div class="anggota-list">
@@ -241,221 +201,186 @@ textarea.finput.tall{min-height:140px;}
         </div>
       </div>
 
-      <!-- Pertanyaan Pemantik -->
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-indigo">💬</div>
-          <div><h3>Pertanyaan Pemantik</h3><p>Diskusikan bersama kelompokmu</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-indigo">💬</div><div><h3>Pertanyaan Pemantik</h3><p>Diskusikan bersama kelompokmu</p></div></div>
         <div class="card-body">
           <div class="pemantik">
             <div class="pm-label">💡 Pertanyaan Pemantik Siklus 2</div>
             <p>"Dalam aktivitas belajar sehari-hari, peserta didik terus menerima berbagai rangsangan seperti cahaya layar <em>gawai</em>, suara bising kelas, dan informasi visual dari media digital. Bagaimana alat indera berperan dalam menerima stimulus tersebut dan apa dampaknya jika fungsi alat indera tidak bekerja secara optimal?"</p>
           </div>
-          <div class="ib ib-i"><span class="ico">⏱️</span><div class="txt">Diskusikan pertanyaan pemantik ini bersama kelompokmu selama <strong>5 menit</strong> sebelum membaca artikel di bawah. Kaitkan dengan pengalaman sehari-harimu menggunakan <em>gadget</em>!</div></div>
+          <div class="ib ib-i"><span class="ico">⏱️</span><div class="txt">Diskusikan pertanyaan pemantik ini bersama kelompokmu selama <strong>5 menit</strong> sebelum membaca artikel.</div></div>
         </div>
       </div>
 
-      <!-- Artikel + Orientasi -->
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-amber">📰</div>
-          <div><h3>Orientasi terhadap Masalah</h3><p>Bacalah artikel berikut dengan saksama</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-amber">📰</div><div><h3>Fase 1 — Orientasi terhadap Masalah</h3><p>Baca artikel, identifikasi, dan rumuskan masalah</p></div></div>
         <div class="card-body">
           <div class="ib ib-a"><span class="ico">📖</span><div class="txt"><strong>Instruksi:</strong> Bacalah artikel berikut dengan saksama, kemudian identifikasi permasalahan yang berkaitan dengan mekanisme kerja alat indera penglihatan dan pendengaran dalam menerima rangsangan dari penggunaan perangkat digital!</div></div>
 
           <div class="artikel-box">
             <p>Pemanfaatan perangkat digital dalam aktivitas belajar remaja semakin meningkat seiring dengan berkembangnya pembelajaran berbasis teknologi. Kondisi ini menjadikan alat indera, khususnya indera penglihatan dan pendengaran, berperan penting dalam menerima dan memproses berbagai stimulus selama proses belajar. Namun, penggunaan perangkat digital dalam durasi panjang tanpa pengelolaan yang tepat dapat memengaruhi fungsi kerja alat indera secara signifikan.</p>
-            <p>Sheppard &amp; Wolffsohn (2018) melaporkan bahwa prevalensi <em>digital eye strain</em> (DES) diperkirakan mencapai 50% atau lebih pada pengguna perangkat digital. DES atau kelelahan mata digital merupakan kondisi yang ditandai oleh mata kering, penglihatan kabur, sakit kepala, serta kesulitan fokus setelah menatap layar dalam waktu lama. Kondisi ini terjadi akibat paparan cahaya biru (<em>blue light</em>) yang berlebihan dari layar, yang dapat mengganggu akomodasi mata dan menurunkan kenyamanan visual selama proses belajar. Jika berlangsung terus-menerus tanpa istirahat yang cukup, paparan cahaya biru juga dapat mengganggu ritme sirkadian, yaitu jam biologis tubuh sehingga kualitas tidur remaja turut terganggu.</p>
-            <p>Selain gangguan penglihatan, fungsi indera pendengaran juga berisiko terganggu akibat kebiasaan mendengarkan suara dengan intensitas tinggi melalui <em>earphone</em>. WHO (2015) memperingatkan bahwa sekitar 1,1 miliar remaja dan dewasa muda usia 12–35 tahun berisiko mengalami gangguan pendengaran akibat kebiasaan mendengarkan yang tidak aman. Data menunjukkan bahwa hampir 50% remaja dan dewasa muda di negara berpenghasilan menengah dan tinggi terpapar tingkat suara yang tidak aman dari penggunaan perangkat audio pribadi. Paparan suara keras yang berulang dan berkepanjangan dapat merusak sel-sel rambut pada koklea yang merupakan bagian telinga dalam yang bertugas mengubah gelombang suara menjadi sinyal saraf. Kerusakan ini bersifat permanen karena sel rambut koklea tidak dapat beregenerasi. Gejala awal yang sering muncul adalah telinga berdenging (<em>tinnitus</em>) dan penurunan sensitivitas terhadap suara pada frekuensi tertentu.</p>
-          </div>
-
-          <div class="artikel-sumber">
-            <strong>Sumber Artikel:</strong>
-            Sheppard, A.L., &amp; Wolffsohn, J.S. (2018). <em>Digital eye strain</em>: prevalence, measurement and amelioration. <em>BMJ Open Ophthalmology</em>, 3(1), e000146. https://doi.org/10.1136/bmjophth-2018-000146<br>
-            World Health Organization. (2015). 1.1 billion people at risk of hearing loss. https://www.who.int/vietnam/news/detail/10-03-2015-1.1-billion-people-at-risk-of-hearing-loss
+            <p>Sheppard &amp; Wolffsohn (2018) melaporkan bahwa prevalensi <em>digital eye strain</em> (DES) diperkirakan mencapai 50% atau lebih pada pengguna perangkat digital. DES atau kelelahan mata digital merupakan kondisi yang ditandai oleh mata kering, penglihatan kabur, sakit kepala, serta kesulitan fokus setelah menatap layar dalam waktu lama. Kondisi ini terjadi akibat paparan cahaya biru (<em>blue light</em>) yang berlebihan dari layar, yang dapat mengganggu akomodasi mata dan menurunkan kenyamanan visual selama proses belajar. Jika berlangsung terus-menerus tanpa istirahat yang cukup, paparan cahaya biru juga dapat mengganggu ritme sirkadian, yaitu jam biologis tubuh, sehingga kualitas tidur remaja turut terganggu.</p>
+            <p>Selain gangguan penglihatan, fungsi indera pendengaran juga berisiko terganggu akibat kebiasaan mendengarkan suara dengan intensitas tinggi melalui <em>earphone</em>. WHO (2015) memperingatkan bahwa sekitar 1,1 miliar remaja dan dewasa muda usia 12–35 tahun berisiko mengalami gangguan pendengaran akibat kebiasaan mendengarkan yang tidak aman. Paparan suara keras yang berulang dan berkepanjangan dapat merusak sel-sel rambut pada koklea yang merupakan bagian telinga dalam yang bertugas mengubah gelombang suara menjadi sinyal saraf. Kerusakan ini bersifat permanen karena sel rambut koklea tidak dapat beregenerasi. Gejala awal yang sering muncul adalah telinga berdenging (<em>tinnitus</em>) dan penurunan sensitivitas terhadap suara pada frekuensi tertentu.</p>
+            <div class="artikel-sumber"><strong>Sumber:</strong> Sheppard, A.L., &amp; Wolffsohn, J.S. (2018). <em>Digital eye strain</em>: prevalence, measurement and amelioration. <em>BMJ Open Ophthalmology</em>, 3(1), e000146. · World Health Organization. (2015). 1.1 billion people at risk of hearing loss. WHO.</div>
           </div>
 
           <div class="chips">
             <div class="chip"><span class="ck">TP 4.1</span> Menelaah komponen struktur mata &amp; telinga <span class="ck">C4</span></div>
-            <div class="chip"><span class="ck">TP 4.2</span> Menguraikan mekanisme kerja indera penglihatan &amp; pendengaran <span class="ck">C3</span></div>
+            <div class="chip"><span class="ck">TP 4.2</span> Menguraikan mekanisme kerja indera <span class="ck">C3</span></div>
             <div class="chip"><span class="ck">TP 5.1</span> Merumuskan permasalahan <span class="ck">C4</span></div>
+          </div>
+
+          <!-- ACTIVITY TAMBAHAN FASE 1 -->
+          <div class="fgroup">
+            <label>Berdasarkan artikel di atas, identifikasi komponen struktur mata dan telinga yang berperan dalam menerima rangsangan dari perangkat digital! <span class="req">*</span>
+              <span class="hint">Sebutkan komponen struktur mata dan telinga beserta perannya masing-masing dalam konteks penggunaan perangkat digital</span>
+            </label>
+            <textarea class="finput tall" id="f1_identifikasi" placeholder="Komponen struktur mata yang berperan:&#10;1. Kornea — berperan sebagai ...&#10;2. Lensa — berperan sebagai ...&#10;3. Retina — berperan sebagai ...&#10;&#10;Komponen struktur telinga yang berperan:&#10;1. Koklea — berperan sebagai ...&#10;2. Sel rambut — berperan sebagai ..." oninput="autoSave('f1_identifikasi')"></textarea>
           </div>
 
           <div class="sec-div"><span>Rumusan Masalah</span></div>
           <div class="fgroup">
-            <label>
-              Berdasarkan artikel di atas, rumuskan <strong>5 pertanyaan masalah</strong> yang berkaitan dengan dampak penggunaan perangkat digital terhadap fungsi indera penglihatan dan pendengaran! <span class="req">*</span>
-              <span class="hint">Gunakan kata tanya: Bagaimana, Mengapa, Apa, Sejauh mana. Contoh: "Bagaimana paparan cahaya biru dari layar dapat mengganggu mekanisme akomodasi mata?"</span>
+            <label>Berdasarkan artikel di atas, rumuskan <strong>5 pertanyaan masalah</strong> yang berkaitan dengan dampak penggunaan perangkat digital terhadap fungsi indera penglihatan dan pendengaran! <span class="req">*</span>
+              <span class="hint">Gunakan kata tanya: Bagaimana, Mengapa, Apa, Sejauh mana</span>
             </label>
             <textarea class="finput tall" id="f1_rumusan" placeholder="1. ...&#10;2. ...&#10;3. ...&#10;4. ...&#10;5. ..." oninput="autoSave('f1_rumusan')"></textarea>
           </div>
           <span class="save-ind" id="si1">✅ Tersimpan otomatis</span>
         </div>
       </div>
-
       <div class="nav-btns"><div></div><button class="btn btn-next" onclick="nextFase(1)">Mengorganisasi →</button></div>
     </div>
 
-    <!-- ══ FASE 2 — MENGORGANISASI ══ -->
+    <!-- FASE 2 -->
     <div class="fpanel" id="fase2">
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-indigo">🗂️</div>
-          <div><h3>Mengorganisasi Peserta Didik untuk Belajar</h3><p>Diskusikan fokus penyelidikan bersama kelompok</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-indigo">🗂️</div><div><h3>Fase 2 — Mengorganisasi Peserta Didik untuk Belajar</h3><p>Pilih fokus penyelidikan dan susun rencana studi dokumentasi</p></div></div>
         <div class="card-body">
-          <div class="chips">
-            <div class="chip"><span class="ck">TP 5.2</span> Menyusun rencana penyelidikan <span class="ck">C3</span></div>
-          </div>
-          <div class="ib ib-i"><span class="ico">🎯</span><div class="txt"><strong>Instruksi:</strong> Diskusikan bersama kelompok <strong>satu rumusan masalah</strong> yang akan menjadi fokus penyelidikan, kemudian identifikasi penyebab dan dampaknya ditinjau dari mekanisme kerja indera penglihatan dan pendengaran!</div></div>
+          <div class="chips"><div class="chip"><span class="ck">TP 5.2</span> Menyusun rencana penyelidikan <span class="ck">C3</span></div></div>
+          <div class="ib ib-i"><span class="ico">🎯</span><div class="txt"><strong>Instruksi:</strong> Diskusikan bersama kelompok satu rumusan masalah yang akan menjadi fokus penyelidikan, kemudian susunlah rencana studi dokumentasi!</div></div>
 
           <div class="fgroup">
-            <label>Rumusan masalah yang dipilih kelompok: <span class="req">*</span>
-              <span class="hint">Pilih salah satu dari 5 rumusan masalah yang telah dibuat di Fase 1</span>
-            </label>
+            <label>Rumusan masalah yang dipilih kelompok: <span class="req">*</span></label>
             <textarea class="finput" id="f2_rumusan_pilih" rows="3" placeholder="Rumusan masalah yang dipilih kelompok kami adalah..." oninput="autoSave('f2_rumusan_pilih')"></textarea>
           </div>
-
           <div class="fgroup">
-            <label>Penyebab dan dampak permasalahan (ditinjau dari mekanisme kerja indera penglihatan dan pendengaran): <span class="req">*</span>
-              <span class="hint">Jelaskan: apa penyebab gangguan pada alat indera akibat perangkat digital, dan apa dampaknya terhadap fungsi indera &amp; proses belajar?</span>
-            </label>
-            <textarea class="finput tall" id="f2_penyebab_dampak" placeholder="Penyebab: ...&#10;&#10;Dampak terhadap indera penglihatan: ...&#10;&#10;Dampak terhadap indera pendengaran: ...&#10;&#10;Dampak terhadap proses belajar: ..." oninput="autoSave('f2_penyebab_dampak')"></textarea>
+            <label>Penyebab dan dampak permasalahan (ditinjau dari mekanisme kerja indera penglihatan dan pendengaran): <span class="req">*</span></label>
+            <textarea class="finput tall" id="f2_penyebab_dampak" placeholder="Penyebab: ...&#10;&#10;Dampak terhadap indera penglihatan: ...&#10;&#10;Dampak terhadap indera pendengaran: ..." oninput="autoSave('f2_penyebab_dampak')"></textarea>
           </div>
 
-          <div class="sec-div"><span>Penelusuran Sumber Digital</span></div>
-          <div class="ib ib-t"><span class="ico">🔍</span><div class="txt">Lakukan penelusuran sumber digital secara mandiri dan kelompok. Kumpulkan informasi, analisis mekanisme, lalu susun simpulan berdasarkan data yang diperoleh!<br><strong>Catatan:</strong> Gunakan bahasa sendiri, hindari plagiarisme. Cantumkan sumber yang digunakan.</div></div>
+          <div class="sec-div"><span>Rencana Studi Dokumentasi</span></div>
+          <div class="ib ib-t"><span class="ico">📚</span><div class="txt">Gunakan sumber ilmiah yang kredibel (jurnal, laporan kesehatan, buku teks). Gunakan bahasa sendiri, hindari plagiarisme. Cantumkan sumber yang digunakan.</div></div>
 
-          <div class="fgroup">
-            <label>Sumber digital yang digunakan: <span class="req">*</span>
-              <span class="hint">Tuliskan minimal 2 sumber (artikel ilmiah, buku, atau website terpercaya)</span>
-            </label>
-            <textarea class="finput" id="f2_sumber" rows="4" placeholder="1. Nama penulis. (Tahun). Judul artikel. Nama jurnal/website. URL&#10;2. ..." oninput="autoSave('f2_sumber')"></textarea>
+          <div style="overflow-x:auto;margin-bottom:14px;">
+            <table class="rencana-table">
+              <thead><tr><th>Aspek yang Dikaji</th><th>Sumber yang Akan Digunakan</th><th>Pembagian Tugas</th></tr></thead>
+              <tbody>
+                <tr><td>Struktur dan mekanisme kerja indera penglihatan</td><td><textarea id="r1_sumber" placeholder="Tuliskan sumber..." oninput="autoSave('r1_sumber')"></textarea></td><td><textarea id="r1_tugas" placeholder="Nama anggota..." oninput="autoSave('r1_tugas')"></textarea></td></tr>
+                <tr><td>Dampak cahaya biru terhadap fungsi mata</td><td><textarea id="r2_sumber" placeholder="Tuliskan sumber..." oninput="autoSave('r2_sumber')"></textarea></td><td><textarea id="r2_tugas" placeholder="Nama anggota..." oninput="autoSave('r2_tugas')"></textarea></td></tr>
+                <tr><td>Struktur dan mekanisme kerja indera pendengaran</td><td><textarea id="r3_sumber" placeholder="Tuliskan sumber..." oninput="autoSave('r3_sumber')"></textarea></td><td><textarea id="r3_tugas" placeholder="Nama anggota..." oninput="autoSave('r3_tugas')"></textarea></td></tr>
+                <tr><td>Dampak intensitas suara tinggi terhadap koklea</td><td><textarea id="r4_sumber" placeholder="Tuliskan sumber..." oninput="autoSave('r4_sumber')"></textarea></td><td><textarea id="r4_tugas" placeholder="Nama anggota..." oninput="autoSave('r4_tugas')"></textarea></td></tr>
+              </tbody>
+            </table>
           </div>
           <span class="save-ind" id="si2">✅ Tersimpan otomatis</span>
         </div>
       </div>
-
       <div class="nav-btns">
         <button class="btn btn-prev" onclick="prevFase(2)">← Kembali</button>
         <button class="btn btn-next" onclick="nextFase(2)">Membimbing Penyelidikan →</button>
       </div>
     </div>
 
-    <!-- ══ FASE 3 — MEMBIMBING PENYELIDIKAN ══ -->
+    <!-- FASE 3 -->
     <div class="fpanel" id="fase3">
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-purple">🔬</div>
-          <div><h3>Membimbing Penyelidikan</h3><p>Analisis mendalam berdasarkan hasil penelusuran sumber digital</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-purple">🔬</div><div><h3>Fase 3 — Membimbing Penyelidikan</h3><p>Studi dokumentasi, analisis, dan simpulan berbasis data</p></div></div>
         <div class="card-body">
           <div class="chips">
-            <div class="chip"><span class="ck">TP 5.3</span> Menganalisis keterkaitan cahaya biru &amp; suara keras terhadap indera <span class="ck">C4</span></div>
+            <div class="chip"><span class="ck">TP 5.3</span> Menganalisis keterkaitan cahaya biru &amp; suara keras <span class="ck">C4</span></div>
             <div class="chip"><span class="ck">TP 5.4</span> Menyimpulkan hubungan kebiasaan digital &amp; penurunan fungsi indera <span class="ck">C5</span></div>
           </div>
-          <div class="ib ib-a"><span class="ico">📌</span><div class="txt"><strong>Instruksi:</strong> Tuliskan konsep penting terkait struktur dan mekanisme kerja indera penglihatan dan pendengaran berdasarkan hasil penelusuran sumber digital, kemudian hubungkan dengan dampak paparan cahaya biru dan intensitas suara tinggi dari perangkat digital!</div></div>
+          <div class="ib ib-a"><span class="ico">📌</span><div class="txt">Lakukan studi dokumentasi dari sumber ilmiah yang kredibel sesuai rencana. Kumpulkan data, analisis mekanisme, lalu susun simpulan!</div></div>
 
           <div class="fgroup">
-            <label>Konsep penting terkait struktur dan mekanisme kerja indera penglihatan dan pendengaran berdasarkan hasil penelusuran sumber digital, kemudian hubungkan dengan dampak paparan cahaya biru dan intensitas suara tinggi dari perangkat digital: <span class="req">*</span>
-              <span class="hint">Jelaskan konsep: struktur mata (kornea, lensa, retina, fovea), mekanisme melihat, struktur telinga (koklea, sel rambut), mekanisme mendengar, dan kaitannya dengan gangguan akibat perangkat digital</span>
-            </label>
-            <textarea class="finput tall" id="f3_konsep" placeholder="Konsep penting yang saya temukan:&#10;&#10;1. Struktur &amp; mekanisme indera penglihatan: ...&#10;2. Struktur &amp; mekanisme indera pendengaran: ...&#10;3. Dampak cahaya biru terhadap mata: ...&#10;4. Dampak intensitas suara tinggi terhadap telinga: ..." oninput="autoSave('f3_konsep')"></textarea>
+            <label>Konsep penting terkait struktur dan mekanisme kerja indera penglihatan dan pendengaran berdasarkan hasil studi dokumentasi, hubungkan dengan dampak paparan cahaya biru dan intensitas suara tinggi: <span class="req">*</span></label>
+            <textarea class="finput tall" id="f3_konsep" placeholder="1. Struktur &amp; mekanisme indera penglihatan: ...&#10;2. Struktur &amp; mekanisme indera pendengaran: ...&#10;3. Dampak cahaya biru terhadap mata: ...&#10;4. Dampak intensitas suara tinggi terhadap telinga: ..." oninput="autoSave('f3_konsep')"></textarea>
           </div>
-
           <div class="fgroup">
-            <label>Berdasarkan data yang terkumpul, analisis bagaimana paparan cahaya biru dari layar dan intensitas suara tinggi dari <em>earphone</em> dapat mengganggu fungsi alat indera secara ilmiah, serta bagaimana dampaknya terhadap proses belajar remaja! <span class="req">*</span>
-              <span class="hint">Gunakan data dari sumber yang telah ditelusuri. Kaitkan mekanisme gangguan dengan proses belajar secara ilmiah dan logis.</span>
-            </label>
-            <textarea class="finput tall" id="f3_analisis" placeholder="Analisis gangguan indera akibat perangkat digital:&#10;&#10;Mekanisme gangguan penglihatan (cahaya biru): ...&#10;&#10;Mekanisme gangguan pendengaran (earphone): ...&#10;&#10;Dampak terhadap proses belajar remaja: ...&#10;&#10;Simpulan: ..." oninput="autoSave('f3_analisis')"></textarea>
+            <label>Sumber yang digunakan: <span class="req">*</span><span class="hint">Minimal 2 sumber ilmiah</span></label>
+            <textarea class="finput" id="f3_sumber" rows="4" placeholder="1. Nama penulis. (Tahun). Judul. Jurnal/Website.&#10;2. ..." oninput="autoSave('f3_sumber')"></textarea>
+          </div>
+          <div class="fgroup">
+            <label>Analisis dampak penggunaan perangkat digital — Analisis bagaimana paparan cahaya biru dari layar dan intensitas suara tinggi dari <em>earphone</em> dapat mengganggu fungsi alat indera secara ilmiah, serta bagaimana dampaknya terhadap proses belajar remaja: <span class="req">*</span></label>
+            <textarea class="finput tall" id="f3_analisis" placeholder="Mekanisme gangguan indera penglihatan (cahaya biru): ...&#10;&#10;Mekanisme gangguan indera pendengaran (earphone): ...&#10;&#10;Dampak terhadap proses belajar: ..." oninput="autoSave('f3_analisis')"></textarea>
+          </div>
+          <div class="fgroup">
+            <label>Simpulan berdasarkan hasil studi dokumentasi: <span class="req">*</span></label>
+            <textarea class="finput" id="f3_simpulan" rows="5" placeholder="Berdasarkan hasil studi dokumentasi, dapat disimpulkan bahwa..." oninput="autoSave('f3_simpulan')"></textarea>
           </div>
           <span class="save-ind" id="si3">✅ Tersimpan otomatis</span>
         </div>
       </div>
-
       <div class="nav-btns">
         <button class="btn btn-prev" onclick="prevFase(3)">← Kembali</button>
         <button class="btn btn-next" onclick="nextFase(3)">Mengembangkan Hasil →</button>
       </div>
     </div>
 
-    <!-- ══ FASE 4 — MENGEMBANGKAN HASIL ══ -->
+    <!-- FASE 4 -->
     <div class="fpanel" id="fase4">
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-emerald">💡</div>
-          <div><h3>Mengembangkan &amp; Menyajikan Hasil</h3><p>Rancang solusi dan sajikan di depan kelas (5–7 menit)</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-emerald">💡</div><div><h3>Fase 4 — Mengembangkan &amp; Menyajikan Hasil</h3><p>Rancang solusi dan sajikan melalui <em>gallery walk</em></p></div></div>
         <div class="card-body">
           <div class="chips">
             <div class="chip"><span class="ck">TP 6.1</span> Merancang solusi kebiasaan sehat digital <span class="ck">C6</span></div>
-            <div class="chip"><span class="ck">TP 6.2</span> Menyajikan hasil melalui <em>multimedia website</em> <span class="ck">C3</span></div>
+            <div class="chip"><span class="ck">TP 6.2</span> Menyajikan melalui <em>gallery walk</em> <span class="ck">C3</span></div>
           </div>
-          <div class="ib ib-t"><span class="ico">🎯</span><div class="txt"><strong>Instruksi:</strong> Kembangkan solusi kebiasaan sehat dalam penggunaan perangkat digital untuk menjaga fungsi indera penglihatan dan pendengaran, kemudian presentasikan di depan kelas dalam waktu 5–7 menit!<br><br>Rancanglah solusi yang mengacu pada <strong>fisiologi sistem regulasi indera</strong>, bukan sekadar saran umum!</div></div>
+          <div class="ib ib-t"><span class="ico">🎯</span><div class="txt">Kembangkan solusi kebiasaan sehat dalam penggunaan perangkat digital, kemudian sajikan melalui <em>gallery walk</em> kepada kelompok lain! Solusi harus mengacu pada <strong>fisiologi sistem regulasi indera</strong>, bukan sekadar saran umum!</div></div>
 
           <div class="fgroup">
-            <label>Solusi yang diusulkan: <span class="req">*</span>
-              <span class="hint">Solusi harus spesifik dan berdasarkan mekanisme fisiologi alat indera, bukan saran umum seperti "jangan main HP terlalu lama"</span>
-            </label>
-            <textarea class="finput tall" id="f4_solusi" placeholder="Solusi kebiasaan sehat yang kami usulkan:&#10;&#10;Untuk menjaga fungsi indera penglihatan:&#10;1. ...&#10;&#10;Untuk menjaga fungsi indera pendengaran:&#10;1. ..." oninput="autoSave('f4_solusi')"></textarea>
+            <label>Solusi yang diusulkan: <span class="req">*</span><span class="hint">Berbasis mekanisme fisiologi alat indera</span></label>
+            <textarea class="finput tall" id="f4_solusi" placeholder="Untuk menjaga indera penglihatan:&#10;1. ...&#10;&#10;Untuk menjaga indera pendengaran:&#10;1. ..." oninput="autoSave('f4_solusi')"></textarea>
           </div>
-
           <div class="fgroup">
-            <label>Dasar ilmiah (kaitkan dengan mekanisme kerja alat indera): <span class="req">*</span>
-              <span class="hint">Jelaskan mekanisme biologis mengapa solusimu efektif berdasarkan cara kerja indera penglihatan dan pendengaran</span>
-            </label>
-            <textarea class="finput tall" id="f4_dasar_ilmiah" placeholder="Dasar ilmiah solusi kami:&#10;&#10;Kaitannya dengan mekanisme indera penglihatan: ...&#10;&#10;Kaitannya dengan mekanisme indera pendengaran: ...&#10;&#10;Mekanisme biologisnya: ..." oninput="autoSave('f4_dasar_ilmiah')"></textarea>
+            <label>Dasar ilmiah (kaitkan dengan mekanisme kerja alat indera): <span class="req">*</span></label>
+            <textarea class="finput tall" id="f4_dasar_ilmiah" placeholder="Kaitannya dengan mekanisme indera penglihatan: ...&#10;&#10;Kaitannya dengan mekanisme indera pendengaran: ..." oninput="autoSave('f4_dasar_ilmiah')"></textarea>
           </div>
-
           <div class="fgroup">
-            <label>Tuliskan masukan atau pertanyaan yang diterima dari kelompok lain saat presentasi:</label>
-            <textarea class="finput" id="f4_masukan" rows="4" placeholder="Pertanyaan/masukan dari kelompok lain:&#10;1. ...&#10;2. ..." oninput="autoSave('f4_masukan')"></textarea>
+            <label>Masukan atau pertanyaan yang diterima dari kelompok lain saat <em>gallery walk</em>:</label>
+            <textarea class="finput" id="f4_masukan" rows="4" placeholder="1. ...&#10;2. ..." oninput="autoSave('f4_masukan')"></textarea>
           </div>
           <span class="save-ind" id="si4">✅ Tersimpan otomatis</span>
         </div>
       </div>
-
       <div class="nav-btns">
         <button class="btn btn-prev" onclick="prevFase(4)">← Kembali</button>
         <button class="btn btn-next" onclick="nextFase(4)">Analisis &amp; Evaluasi →</button>
       </div>
     </div>
 
-    <!-- ══ FASE 5 — ANALISIS & EVALUASI ══ -->
+    <!-- FASE 5 -->
     <div class="fpanel" id="fase5">
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-coral">🪞</div>
-          <div><h3>Menganalisis &amp; Mengevaluasi Pemecahan Masalah</h3><p>Evaluasi solusi dan refleksikan proses belajarmu</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-coral">🪞</div><div><h3>Fase 5 — Menganalisis &amp; Mengevaluasi Pemecahan Masalah</h3><p>Evaluasi solusi dan refleksi pembelajaran</p></div></div>
         <div class="card-body">
-          <div class="chips">
-            <div class="chip"><span class="ck">TP 6.3</span> Mengevaluasi solusi &amp; proses PBL <span class="ck">C5</span></div>
-          </div>
-          <div class="ib ib-i"><span class="ico">📊</span><div class="txt"><strong>Instruksi:</strong> Evaluasi proses pemecahan masalah dan gagasan solusi yang telah kalian temukan! Evaluasi dapat berisi kelebihan dan kekurangan dari solusi yang telah dipilih.</div></div>
+          <div class="chips"><div class="chip"><span class="ck">TP 6.3</span> Mengevaluasi solusi &amp; proses PBL <span class="ck">C5</span></div></div>
+          <div class="ib ib-i"><span class="ico">📊</span><div class="txt">Evaluasi proses pemecahan masalah dan gagasan solusi yang telah kalian temukan!</div></div>
 
           <div class="eval-grid">
             <div class="eval-card">
               <div class="eval-head eh-plus">✅ Kelebihan Solusi</div>
-              <div class="eval-body">
-                <textarea class="finput" id="f5_kelebihan" rows="5" placeholder="Kelebihan dari solusi yang kami usulkan:&#10;1. ...&#10;2. ..." oninput="autoSave('f5_kelebihan')" style="border:none;background:transparent;padding:10px 0;"></textarea>
-              </div>
+              <div class="eval-body"><textarea class="finput" id="f5_kelebihan" rows="6" placeholder="1. ...&#10;2. ...&#10;3. ..." oninput="autoSave('f5_kelebihan')" style="border:none;background:transparent;padding:10px 0;"></textarea></div>
             </div>
             <div class="eval-card">
               <div class="eval-head eh-minus">⚠️ Kekurangan Solusi</div>
-              <div class="eval-body">
-                <textarea class="finput" id="f5_kekurangan" rows="5" placeholder="Kekurangan dari solusi yang kami usulkan:&#10;1. ...&#10;2. ..." oninput="autoSave('f5_kekurangan')" style="border:none;background:transparent;padding:10px 0;"></textarea>
-              </div>
+              <div class="eval-body"><textarea class="finput" id="f5_kekurangan" rows="6" placeholder="1. ...&#10;2. ...&#10;3. ..." oninput="autoSave('f5_kekurangan')" style="border:none;background:transparent;padding:10px 0;"></textarea></div>
             </div>
           </div>
 
           <div class="fgroup">
-            <label>Tuliskan refleksi berdasarkan pembelajaran yang telah kalian lakukan! <span class="req">*</span>
-              <span class="hint">Apa yang kamu pelajari? Apa yang masih ingin kamu ketahui? Bagaimana perasaanmu setelah menyelesaikan siklus ini?</span>
-            </label>
-            <textarea class="finput tall" id="f5_refleksi" placeholder="Refleksi pembelajaran Siklus 2:&#10;&#10;Hal yang saya pelajari: ...&#10;&#10;Hal yang ingin saya ketahui lebih lanjut: ...&#10;&#10;Perasaan saya: ..." oninput="autoSave('f5_refleksi')"></textarea>
+            <label>Refleksi pembelajaran — Apa yang paling berkesan dan apa yang masih perlu diperbaiki? <span class="req">*</span></label>
+            <textarea class="finput tall" id="f5_refleksi" placeholder="Yang paling berkesan: ...&#10;&#10;Yang masih perlu diperbaiki: ...&#10;&#10;Perasaan saya: ..." oninput="autoSave('f5_refleksi')"></textarea>
           </div>
 
           <div class="sec-div"><span>Bagaimana pemahamanmu setelah Siklus 2?</span></div>
@@ -468,140 +393,103 @@ textarea.finput.tall{min-height:140px;}
           <span class="save-ind" id="si5">✅ Tersimpan otomatis</span>
         </div>
       </div>
-
       <div class="nav-btns">
         <button class="btn btn-prev" onclick="prevFase(5)">← Kembali</button>
         <button class="btn btn-submit" onclick="submitSiklus()">✅ Selesai &amp; Simpan</button>
       </div>
-
       <div class="selesai" id="selesaiBox">
         <div class="sico">🏆</div>
         <h3>Siklus 2 Selesai! Semua Siklus Tuntas!</h3>
-        <p>Luar biasa! Kamu telah menyelesaikan seluruh siklus pembelajaran sistem regulasi manusia. Coba kuis untuk menguji pemahaman atau kerjakan <em>post-test</em>!</p>
+        <p>Luar biasa! Kamu telah menyelesaikan seluruh siklus pembelajaran sistem regulasi manusia.</p>
         <div>
-          <a class="btn-lanjut" href="kuis.html">🎮 Kuis Game (<em>Drill</em> Soal)</a>
+          <a class="btn-lanjut" href="kuis.html">🎮 Kuis Game</a>
           <a class="btn-lanjut" href="posttest.html" style="background:linear-gradient(135deg,var(--emerald),var(--teal));">📝 Post-test</a>
           <a class="btn-lanjut" href="dashboard-siswa.html" style="background:linear-gradient(135deg,var(--gray),#334155);">🏠 Dashboard</a>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
 <script>
 bioRenderNav({ requireLogin: true });
-
 const KEY = 'bioregula_s2';
-let curFase = 1;
-let done = new Set();
+let curFase = 1, done = new Set();
+const ALL_FIELDS = ['id_kelompok','id_kelas','anggota1','anggota2','anggota3','anggota4','anggota5','f1_identifikasi','f1_rumusan','f2_rumusan_pilih','f2_penyebab_dampak','r1_sumber','r1_tugas','r2_sumber','r2_tugas','r3_sumber','r3_tugas','r4_sumber','r4_tugas','f3_konsep','f3_sumber','f3_analisis','f3_simpulan','f4_solusi','f4_dasar_ilmiah','f4_masukan','f5_kelebihan','f5_kekurangan','f5_refleksi'];
 
 function load() {
-  const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-  const fields = [
-    'id_kelompok','id_kelas','anggota1','anggota2','anggota3','anggota4','anggota5',
-    'f1_rumusan',
-    'f2_rumusan_pilih','f2_penyebab_dampak','f2_sumber',
-    'f3_konsep','f3_analisis',
-    'f4_solusi','f4_dasar_ilmiah','f4_masukan',
-    'f5_kelebihan','f5_kekurangan','f5_refleksi'
-  ];
-  fields.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && d[id]) { el.value = d[id]; el.classList.add('saved'); }
-  });
-  if (d.refleksi) {
-    const vals = ['sangat_paham','paham','cukup','belum'];
-    const idx = vals.indexOf(d.refleksi);
-    if (idx >= 0) document.querySelectorAll('.rcard')[idx]?.classList.add('sel');
-  }
-  if (d.done) done = new Set(d.done);
+  const d = JSON.parse(localStorage.getItem(KEY)||'{}');
+  ALL_FIELDS.forEach(id => { const el=document.getElementById(id); if(el&&d[id]){el.value=d[id];el.classList.add('saved');} });
+  if(d.refleksi){const idx=['sangat_paham','paham','cukup','belum'].indexOf(d.refleksi);if(idx>=0)document.querySelectorAll('.rcard')[idx]?.classList.add('sel');}
+  if(d.done) done=new Set(d.done);
   refreshUI();
 }
 
 let st;
 function autoSave(id) {
   clearTimeout(st);
-  st = setTimeout(() => {
-    const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-    d[id] = document.getElementById(id)?.value || '';
-    localStorage.setItem(KEY, JSON.stringify(d));
+  st=setTimeout(()=>{
+    const d=JSON.parse(localStorage.getItem(KEY)||'{}');
+    d[id]=document.getElementById(id)?.value||'';
+    localStorage.setItem(KEY,JSON.stringify(d));
     document.getElementById(id)?.classList.add('saved');
-    const si = document.getElementById('si' + curFase);
-    if (si) { si.classList.add('show'); setTimeout(() => si.classList.remove('show'), 2000); }
-  }, 600);
+    const si=document.getElementById('si'+curFase);
+    if(si){si.classList.add('show');setTimeout(()=>si.classList.remove('show'),2000);}
+  },600);
 }
 
 function goFase(n) {
-  document.getElementById('fase' + curFase)?.classList.remove('active');
-  document.getElementById('tab' + curFase)?.classList.remove('active');
-  curFase = n;
-  document.getElementById('fase' + n)?.classList.add('active');
-  document.getElementById('tab' + n)?.classList.add('active');
+  document.getElementById('fase'+curFase)?.classList.remove('active');
+  document.getElementById('tab'+curFase)?.classList.remove('active');
+  curFase=n;
+  document.getElementById('fase'+n)?.classList.add('active');
+  document.getElementById('tab'+n)?.classList.add('active');
   refreshUI();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-function nextFase(n) { done.add(n); saveDone(); goFase(n + 1); }
-function prevFase(n) { goFase(n - 1); }
-
-function saveDone() {
-  const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-  d.done = [...done];
-  localStorage.setItem(KEY, JSON.stringify(d));
-}
+function nextFase(n){done.add(n);saveDone();goFase(n+1);}
+function prevFase(n){goFase(n-1);}
+function saveDone(){const d=JSON.parse(localStorage.getItem(KEY)||'{}');d.done=[...done];localStorage.setItem(KEY,JSON.stringify(d));}
 
 function refreshUI() {
-  for (let i = 1; i <= 5; i++) {
-    const fp = document.getElementById('fp' + i);
-    const tb = document.getElementById('tab' + i);
-    if (!fp || !tb) continue;
-    if (done.has(i)) { fp.className = 'fp done'; if (i !== curFase) tb.classList.add('done'); else tb.classList.remove('done'); }
-    else if (i === curFase) { fp.className = 'fp active'; tb.classList.remove('done'); }
-    else { fp.className = 'fp'; tb.classList.remove('done'); }
+  for(let i=1;i<=5;i++){
+    const fp=document.getElementById('fp'+i),tb=document.getElementById('tab'+i);
+    if(!fp||!tb) continue;
+    if(done.has(i)){fp.className='fp done';if(i!==curFase)tb.classList.add('done');else tb.classList.remove('done');}
+    else if(i===curFase){fp.className='fp active';tb.classList.remove('done');}
+    else{fp.className='fp';tb.classList.remove('done');}
   }
-  const pct = Math.round(done.size / 5 * 100);
-  const hpv = document.getElementById('hpVal');
-  const hps = document.getElementById('hpSub');
-  if (hpv) hpv.innerHTML = pct + '<small>%</small>';
-  if (hps) hps.textContent = done.size === 0 ? 'Belum dimulai' : done.size === 5 ? 'Selesai! 🎉' : `${done.size} dari 5 fase`;
+  const pct=Math.round(done.size/5*100);
+  const hpv=document.getElementById('hpVal'),hps=document.getElementById('hpSub');
+  if(hpv)hpv.innerHTML=pct+'<small>%</small>';
+  if(hps)hps.textContent=done.size===0?'Belum dimulai':done.size===5?'Selesai! 🎉':`${done.size} dari 5 fase`;
 }
 
-function pilihRefleksi(val, el) {
-  document.querySelectorAll('.rcard').forEach(c => c.classList.remove('sel'));
+function pilihRefleksi(val,el){
+  document.querySelectorAll('.rcard').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
-  const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-  d.refleksi = val;
-  localStorage.setItem(KEY, JSON.stringify(d));
+  const d=JSON.parse(localStorage.getItem(KEY)||'{}');
+  d.refleksi=val;localStorage.setItem(KEY,JSON.stringify(d));
 }
 
-function submitSiklus() {
-  const required = ['f1_rumusan','f2_rumusan_pilih','f2_penyebab_dampak','f2_sumber','f3_konsep','f3_analisis','f4_solusi','f4_dasar_ilmiah','f5_refleksi'];
-  const kosong = required.filter(id => (document.getElementById(id)?.value || '').trim().length < 10);
-  if (kosong.length) {
-    alert(`Masih ada ${kosong.length} kolom yang belum diisi dengan lengkap. Periksa kembali setiap fase ya!`);
-    return;
-  }
-  for (let i = 1; i <= 5; i++) done.add(i);
-  saveDone(); refreshUI();
-  kirimSheets();
-  const box = document.getElementById('selesaiBox');
-  box.style.display = 'block';
-  box.scrollIntoView({ behavior: 'smooth' });
+function submitSiklus(){
+  const req=['f1_identifikasi','f1_rumusan','f2_rumusan_pilih','f2_penyebab_dampak','f3_konsep','f3_analisis','f3_simpulan','f4_solusi','f4_dasar_ilmiah','f5_refleksi'];
+  const kosong=req.filter(id=>(document.getElementById(id)?.value||'').trim().length<10);
+  if(kosong.length){alert(`Masih ada ${kosong.length} kolom yang belum diisi dengan lengkap!`);return;}
+  for(let i=1;i<=5;i++)done.add(i);
+  saveDone();refreshUI();kirimSheets();
+  const box=document.getElementById('selesaiBox');
+  box.style.display='block';box.scrollIntoView({behavior:'smooth'});
 }
 
-function kirimSheets() {
-  const url = 'https://script.google.com/macros/s/AKfycbz3tVTaZfpRPIXOi08Yhp355WN0eyjDgN0_3VDP7lt3PavCpYGvAZZyV_b7yuNqBUy2/exec';
-  if (!url) return;
-  const user = JSON.parse(localStorage.getItem('bioregula_current') || '{}');
-  const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-  fetch(url, {
-    method: 'POST', mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ siklus: 'siklus2', nama: user.nama, kelas: user.kelas, absen: user.absen, timestamp: new Date().toISOString(), ...d })
-  }).catch(() => {});
+function kirimSheets(){
+  const url='https://script.google.com/macros/s/AKfycbz3tVTaZfpRPIXOi08Yhp355WN0eyjDgN0_3VDP7lt3PavCpYGvAZZyV_b7yuNqBUy2/exec';
+  const user=JSON.parse(localStorage.getItem('bioregula_current')||'{}');
+  const d=JSON.parse(localStorage.getItem(KEY)||'{}');
+  fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({siklus:'siklus2',nama:user.nama,kelas:user.kelas,absen:user.absen,timestamp:new Date().toISOString(),...d})}).catch(()=>{});
 }
 
-window.addEventListener('load', load);
+window.addEventListener('load',load);
 </script>
 </body>
 </html>

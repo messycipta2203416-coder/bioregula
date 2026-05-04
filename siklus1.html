@@ -17,14 +17,9 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--dark);}
-p em,li em,span em,td em,label em{margin:0 1px;}
+p em,li em,span em,label em{margin:0 1px;}
 .bio-content{padding-top:var(--nav-h);}
-
-/* ── PAGE HEADER ── */
-.page-header{
-  background:linear-gradient(150deg,#0f172a 0%,#134e4a 55%,#1e1b4b 100%);
-  padding:36px 2rem 32px;position:relative;overflow:hidden;
-}
+.page-header{background:linear-gradient(150deg,#0f172a 0%,#134e4a 55%,#1e1b4b 100%);padding:36px 2rem 32px;position:relative;overflow:hidden;}
 .page-header::before{content:'';position:absolute;top:-80px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(13,148,136,.2),transparent 70%);}
 .header-inner{max-width:960px;margin:0 auto;position:relative;z-index:1;}
 .breadcrumb{display:flex;align-items:center;gap:8px;font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:12px;}
@@ -42,17 +37,11 @@ p em,li em,span em,td em,label em{margin:0 1px;}
 .hp-val{font-size:1.6rem;font-weight:800;color:#fff;}
 .hp-val small{font-size:.9rem;color:var(--teal-light);}
 .hp-sub{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:3px;}
-
-/* ── MAIN ── */
 .main{max-width:960px;margin:0 auto;padding:28px 2rem 60px;}
-
-/* ── PROGRESS BAR ── */
 .fase-progress{display:flex;gap:4px;margin-bottom:20px;}
 .fp{flex:1;height:5px;border-radius:3px;background:var(--gray-light);transition:background .3s;}
 .fp.done{background:var(--emerald);}
 .fp.active{background:var(--teal);}
-
-/* ── TABS ── */
 .fase-tabs{display:flex;gap:6px;margin-bottom:24px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none;}
 .fase-tabs::-webkit-scrollbar{display:none;}
 .ftab{flex-shrink:0;display:flex;align-items:center;gap:7px;padding:9px 16px;border-radius:30px;border:2px solid var(--gray-light);background:var(--white);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:700;color:var(--gray);transition:all .2s;white-space:nowrap;}
@@ -62,13 +51,9 @@ p em,li em,span em,td em,label em{margin:0 1px;}
 .tnum{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:800;background:rgba(255,255,255,.2);}
 .ftab:not(.active) .tnum{background:var(--gray-light);color:var(--gray);}
 .ftab.done .tnum{background:#d1fae5;color:var(--emerald);}
-
-/* ── PANELS ── */
 .fpanel{display:none;}
 .fpanel.active{display:block;animation:fadeUp .3s ease both;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
-
-/* ── CARD ── */
 .card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden;}
 .card-head{padding:15px 20px;display:flex;align-items:center;gap:11px;border-bottom:1px solid var(--gray-light);}
 .ch-icon{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
@@ -81,47 +66,29 @@ p em,li em,span em,td em,label em{margin:0 1px;}
 .card-head h3{font-size:.93rem;font-weight:800;color:var(--dark);}
 .card-head p{font-size:.76rem;color:var(--gray);margin-top:1px;}
 .card-body{padding:20px;}
-
-/* ── IDENTITAS KELOMPOK ── */
-.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
-.id-item{display:flex;flex-direction:column;gap:4px;}
-.id-item label{font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;}
-.id-input{width:100%;padding:9px 12px;border:2px solid var(--gray-light);border-radius:9px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.87rem;color:var(--dark);background:var(--off);outline:none;transition:border-color .2s;}
-.id-input:focus{border-color:var(--teal);background:#fff;}
-.id-input.saved{border-color:var(--emerald);}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;}
+.id-item label{display:block;font-size:.75rem;font-weight:700;color:var(--gray);text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px;}
 .anggota-list{display:flex;flex-direction:column;gap:8px;}
 .anggota-row{display:flex;align-items:center;gap:10px;}
 .anggota-num{width:28px;height:28px;border-radius:8px;background:var(--teal-bg);color:var(--teal);font-size:.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-
-/* ── ARTIKEL ── */
-.artikel-box{background:#f8fafc;border-radius:12px;border:1px solid var(--gray-light);padding:20px 22px;margin-bottom:16px;font-size:.87rem;line-height:1.78;color:#334155;}
-.artikel-box p{margin-bottom:10px;}
+.artikel-box{background:#f8fafc;border-radius:12px;border:1px solid var(--gray-light);border-left:4px solid var(--amber);padding:18px 20px;margin-bottom:14px;font-size:.86rem;line-height:1.78;color:#334155;}
+.artikel-box p{margin-bottom:8px;}
 .artikel-box p:last-child{margin-bottom:0;}
-.artikel-sumber{background:var(--indigo-light);border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:.78rem;color:var(--indigo);line-height:1.65;}
-.artikel-sumber strong{font-weight:700;display:block;margin-bottom:4px;}
-
-/* ── PEMANTIK ── */
-.pemantik{background:linear-gradient(135deg,#0f172a,#134e4a);border-radius:12px;padding:20px 24px;margin-bottom:14px;position:relative;overflow:hidden;}
+.artikel-sumber{background:var(--indigo-light);border-radius:8px;padding:10px 14px;margin-top:10px;font-size:.76rem;color:var(--indigo);line-height:1.65;}
+.pemantik{background:linear-gradient(135deg,#0f172a,#134e4a);border-radius:12px;padding:18px 22px;margin-bottom:14px;position:relative;overflow:hidden;}
 .pemantik::before{content:'"';position:absolute;top:-14px;left:12px;font-size:7rem;color:rgba(255,255,255,.05);font-family:serif;line-height:1;}
 .pm-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--teal-light);margin-bottom:8px;}
 .pemantik p{font-size:.88rem;color:rgba(255,255,255,.88);line-height:1.75;font-style:italic;position:relative;z-index:1;}
-
-/* ── INFO BOX ── */
 .ib{border-radius:10px;padding:12px 15px;margin-bottom:13px;display:flex;align-items:flex-start;gap:9px;}
 .ib-t{background:var(--teal-bg);border-left:3px solid var(--teal);}
 .ib-i{background:var(--indigo-light);border-left:3px solid var(--indigo);}
 .ib-a{background:var(--amber-light);border-left:3px solid var(--amber);}
-.ib-c{background:#ffe4e6;border-left:3px solid var(--coral);}
 .ib .ico{font-size:.95rem;flex-shrink:0;margin-top:1px;}
 .ib .txt{font-size:.82rem;line-height:1.65;color:#334155;}
 .ib .txt strong{font-weight:700;color:var(--dark);}
-
-/* ── TP CHIPS ── */
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
 .chip{display:inline-flex;align-items:center;gap:5px;background:var(--teal-bg);border:1px solid var(--teal-light);border-radius:7px;padding:4px 11px;font-size:.75rem;font-weight:700;color:var(--teal-dark);}
 .chip .ck{font-size:.68rem;background:var(--teal-light);border-radius:4px;padding:1px 5px;}
-
-/* ── FORM ── */
 .fgroup{margin-bottom:16px;}
 .fgroup label{display:block;font-size:.82rem;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.5;}
 .fgroup label .req{color:var(--coral);}
@@ -131,24 +98,17 @@ p em,li em,span em,td em,label em{margin:0 1px;}
 .finput.saved{border-color:var(--emerald);background:#f0fdf4;}
 textarea.finput{min-height:100px;line-height:1.65;}
 textarea.finput.tall{min-height:140px;}
-
-.save-ind{display:inline-flex;align-items:center;gap:5px;font-size:.73rem;color:var(--emerald);opacity:0;transition:opacity .3s;margin-top:4px;}
-.save-ind.show{opacity:1;}
-
-/* ── SECTION DIVIDER ── */
-.sec-div{display:flex;align-items:center;gap:10px;margin:20px 0 14px;}
-.sec-div span{font-size:.82rem;font-weight:800;color:var(--dark);white-space:nowrap;}
-.sec-div::before,.sec-div::after{content:'';flex:1;height:1px;background:var(--gray-light);}
-
-/* ── EVALUASI (kelebihan/kekurangan) ── */
+.rencana-table{width:100%;border-collapse:collapse;font-size:.83rem;margin-bottom:14px;}
+.rencana-table th{background:var(--dark);color:#fff;padding:9px 12px;text-align:left;font-weight:700;font-size:.78rem;}
+.rencana-table td{padding:6px 8px;border:1px solid var(--gray-light);vertical-align:top;}
+.rencana-table td:first-child{background:#fafafa;font-weight:600;color:var(--dark);font-size:.8rem;width:30%;}
+.rencana-table textarea{width:100%;border:none;background:transparent;font-family:'Plus Jakarta Sans',sans-serif;font-size:.82rem;color:var(--dark);outline:none;resize:none;min-height:48px;line-height:1.5;padding:2px;}
 .eval-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
 .eval-card{border-radius:12px;overflow:hidden;}
 .eval-head{padding:10px 14px;font-size:.8rem;font-weight:800;}
 .eh-plus{background:#d1fae5;color:#065f46;}
 .eh-minus{background:#ffe4e6;color:#9f1239;}
-.eval-body{padding:10px 14px 0;background:var(--off);border:1px solid var(--gray-light);border-top:none;border-radius:0 0 12px 12px;}
-
-/* ── REFLEKSI ── */
+.eval-body{padding:0 14px 10px;background:var(--off);border:1px solid var(--gray-light);border-top:none;border-radius:0 0 12px 12px;}
 .refleksi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
 .rcard{background:var(--off);border-radius:10px;border:2px solid var(--gray-light);padding:12px 8px;cursor:pointer;transition:all .2s;text-align:center;}
 .rcard:hover{border-color:var(--teal-light);}
@@ -156,8 +116,11 @@ textarea.finput.tall{min-height:140px;}
 .rcard .rem{font-size:1.5rem;margin-bottom:4px;}
 .rcard .rlbl{font-size:.72rem;font-weight:700;color:var(--dark);}
 .rcard.sel .rlbl{color:var(--teal);}
-
-/* ── NAV BTNS ── */
+.save-ind{display:inline-flex;align-items:center;gap:5px;font-size:.73rem;color:var(--emerald);opacity:0;transition:opacity .3s;margin-top:4px;}
+.save-ind.show{opacity:1;}
+.sec-div{display:flex;align-items:center;gap:10px;margin:18px 0 12px;}
+.sec-div span{font-size:.82rem;font-weight:800;color:var(--dark);white-space:nowrap;}
+.sec-div::before,.sec-div::after{content:'';flex:1;height:1px;background:var(--gray-light);}
 .nav-btns{display:flex;gap:10px;justify-content:space-between;margin-top:22px;padding-top:18px;border-top:1px solid var(--gray-light);}
 .btn{display:flex;align-items:center;gap:7px;padding:10px 22px;border-radius:30px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .2s;border:none;}
 .btn-prev{background:var(--off);border:2px solid var(--gray-light);color:var(--gray);}
@@ -166,15 +129,12 @@ textarea.finput.tall{min-height:140px;}
 .btn-next:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(13,148,136,.35);}
 .btn-submit{background:linear-gradient(135deg,var(--emerald),var(--teal));color:#fff;}
 .btn-submit:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(16,185,129,.35);}
-
-/* ── SELESAI ── */
 .selesai{text-align:center;padding:30px;background:linear-gradient(135deg,var(--teal-bg),var(--indigo-light));border-radius:var(--radius);border:1px solid var(--teal-light);margin-top:18px;display:none;}
 .selesai .sico{font-size:2.8rem;margin-bottom:10px;}
 .selesai h3{font-size:1.05rem;font-weight:800;color:var(--dark);margin-bottom:5px;}
 .selesai p{font-size:.84rem;color:var(--gray);margin-bottom:18px;line-height:1.65;}
 .btn-lanjut{display:inline-flex;align-items:center;gap:7px;padding:11px 24px;border-radius:30px;border:none;background:linear-gradient(135deg,var(--teal),var(--indigo));color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;margin:4px;text-decoration:none;}
-.btn-lanjut:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(13,148,136,.35);}
-
+.btn-lanjut:hover{transform:translateY(-2px);}
 @media(max-width:640px){
   .id-grid{grid-template-columns:1fr;}
   .eval-grid{grid-template-columns:1fr;}
@@ -186,24 +146,17 @@ textarea.finput.tall{min-height:140px;}
 </style>
 </head>
 <body>
-
 <div class="bio-content" id="bio-page-content">
-
-  <!-- HEADER -->
   <div class="page-header">
     <div class="header-inner">
-      <div class="breadcrumb">
-        <a href="dashboard-siswa.html">Dashboard</a> › <span>Siklus 1 — Sistem Saraf &amp; Sistem Hormon</span>
-      </div>
+      <div class="breadcrumb"><a href="dashboard-siswa.html">Dashboard</a> › <span>Siklus 1 — Sistem Saraf &amp; Sistem Hormon</span></div>
       <div class="header-row">
         <div>
           <h1>🔬 Siklus 1 — <span>Sistem Saraf &amp; Sistem Hormon</span></h1>
-          <p>Menganalisis dampak stres akademik terhadap mekanisme kerja sistem saraf dan respons sistem hormon secara terpadu melalui model <em>Problem-Based Learning</em>.</p>
+          <p>Menganalisis dampak stres akademik terhadap mekanisme kerja sistem saraf dan respons sistem hormon secara terpadu melalui model <em>Problem-Based Learning</em>. (Kelompok Ganjil)</p>
           <div class="htags">
-            <span class="htag">Pertemuan 1–2</span>
-            <span class="htag">5 JP × 45 menit</span>
-            <span class="htag">TP 1, 2, 3</span>
-            <span class="htag">Stres Akademik</span>
+            <span class="htag">Pertemuan 1–2</span><span class="htag">5 JP × 45 menit</span>
+            <span class="htag">TP 1, 2, 3</span><span class="htag">Kelompok Ganjil</span>
           </div>
         </div>
         <div class="h-progress">
@@ -216,17 +169,10 @@ textarea.finput.tall{min-height:140px;}
   </div>
 
   <div class="main">
-
-    <!-- Progress bar -->
     <div class="fase-progress">
-      <div class="fp active" id="fp1"></div>
-      <div class="fp" id="fp2"></div>
-      <div class="fp" id="fp3"></div>
-      <div class="fp" id="fp4"></div>
-      <div class="fp" id="fp5"></div>
+      <div class="fp active" id="fp1"></div><div class="fp" id="fp2"></div>
+      <div class="fp" id="fp3"></div><div class="fp" id="fp4"></div><div class="fp" id="fp5"></div>
     </div>
-
-    <!-- Tabs -->
     <div class="fase-tabs">
       <button class="ftab active" id="tab1" onclick="goFase(1)"><span class="tnum">1</span>Orientasi Masalah</button>
       <button class="ftab" id="tab2" onclick="goFase(2)"><span class="tnum">2</span>Mengorganisasi</button>
@@ -235,27 +181,14 @@ textarea.finput.tall{min-height:140px;}
       <button class="ftab" id="tab5" onclick="goFase(5)"><span class="tnum">5</span>Analisis &amp; Evaluasi</button>
     </div>
 
-    <!-- ══════════════════════════
-         FASE 1 — ORIENTASI MASALAH
-    ══════════════════════════ -->
+    <!-- FASE 1 -->
     <div class="fpanel active" id="fase1">
-
-      <!-- Identitas Kelompok -->
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-teal">👥</div>
-          <div><h3>Identitas Kelompok</h3><p>Lengkapi identitas kelompokmu sebelum memulai</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-teal">👥</div><div><h3>Identitas Kelompok</h3><p>Lengkapi sebelum memulai</p></div></div>
         <div class="card-body">
           <div class="id-grid" style="margin-bottom:16px;">
-            <div class="id-item">
-              <label>Nama Kelompok</label>
-              <input class="id-input finput" id="id_kelompok" type="text" placeholder="Nama kelompok..." oninput="autoSave('id_kelompok')">
-            </div>
-            <div class="id-item">
-              <label>Kelas</label>
-              <input class="id-input finput" id="id_kelas" type="text" placeholder="Contoh: XI IPA 1" oninput="autoSave('id_kelas')">
-            </div>
+            <div class="id-item"><label>Nama Kelompok</label><input class="finput" id="id_kelompok" type="text" placeholder="Nama kelompok..." oninput="autoSave('id_kelompok')" style="min-height:auto;padding:9px 12px;"></div>
+            <div class="id-item"><label>Kelas</label><input class="finput" id="id_kelas" type="text" placeholder="Contoh: XI IPA 1" oninput="autoSave('id_kelas')" style="min-height:auto;padding:9px 12px;"></div>
           </div>
           <div style="font-size:.8rem;font-weight:700;color:var(--dark);margin-bottom:8px;">Anggota Kelompok:</div>
           <div class="anggota-list">
@@ -268,230 +201,184 @@ textarea.finput.tall{min-height:140px;}
         </div>
       </div>
 
-      <!-- Pertanyaan Pemantik -->
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-indigo">💬</div>
-          <div><h3>Pertanyaan Pemantik</h3><p>Diskusikan bersama kelompokmu</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-indigo">💬</div><div><h3>Pertanyaan Pemantik</h3><p>Diskusikan bersama kelompokmu</p></div></div>
         <div class="card-body">
           <div class="pemantik">
             <div class="pm-label">💡 Pertanyaan Pemantik Siklus 1</div>
             <p>"Pernahkah kalian merasa jantung berdebar, sulit berkonsentrasi, atau mudah panik saat menghadapi ujian atau tugas menumpuk? Menurut kalian, bagaimana sistem saraf dan hormon bekerja bersama-sama dalam merespons kondisi stres akademik tersebut dan mengapa dampaknya bisa memengaruhi kondisi fisik maupun emosional kalian?"</p>
           </div>
-          <div class="ib ib-t"><span class="ico">⏱️</span><div class="txt">Diskusikan pertanyaan pemantik ini bersama kelompokmu selama <strong>5 menit</strong> sebelum membaca artikel di bawah.</div></div>
+          <div class="ib ib-t"><span class="ico">⏱️</span><div class="txt">Diskusikan pertanyaan pemantik ini bersama kelompokmu selama <strong>5 menit</strong> sebelum membaca artikel.</div></div>
         </div>
       </div>
 
-      <!-- Artikel + Orientasi -->
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-amber">📰</div>
-          <div><h3>Orientasi terhadap Masalah</h3><p>Bacalah artikel berikut dengan saksama</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-amber">📰</div><div><h3>Fase 1 — Orientasi terhadap Masalah</h3><p>Baca artikel, identifikasi, dan rumuskan masalah</p></div></div>
         <div class="card-body">
           <div class="ib ib-a"><span class="ico">📖</span><div class="txt"><strong>Instruksi:</strong> Bacalah artikel berikut dengan saksama, kemudian identifikasi permasalahan yang berkaitan dengan sistem saraf dan sistem hormon dalam merespons stres akademik!</div></div>
-
           <div class="artikel-box">
             <p>Stres akademik merupakan permasalahan yang banyak dialami peserta didik tingkat SMA. Hasil penelitian di SMA Negeri Depok menunjukkan bahwa 51,6% siswa kelas X mengalami tingkat stres akademik tinggi, sementara 48,4% berada pada tingkat stres rendah (Wahyuningsih, 2011). Temuan ini sejalan dengan penelitian Meigawati (2014) pada siswa kelas X di SMAN 19 Bandung yang menunjukkan tingkat stres pada kategori sedang, serta penelitian Rahayu (2014) di SMAN 2 Tangerang Selatan yang melaporkan 51,4% siswa akselerasi mengalami stres tinggi akibat tuntutan akademik yang berat.</p>
             <p>Saat seseorang menghadapi tekanan akademik, hipotalamus yang merupakan bagian sistem saraf pusat mendeteksi kondisi tersebut sebagai stimulus stresor. Hipotalamus kemudian mengaktifkan sistem saraf otonom cabang simpatis yang memicu respons <em>"fight or flight"</em>: denyut jantung meningkat, otot menegang, pernapasan cepat, dan konsentrasi terganggu. Secara bersamaan, hipotalamus mengaktifkan jalur hormonal melalui sumbu HPA (<em>Hypothalamic-Pituitary-Adrenal</em>), yaitu dengan melepaskan hormon CRH (<em>Corticotropin-Releasing Hormone</em>) yang merangsang kelenjar pituitari anterior mensekresi ACTH, yang selanjutnya merangsang korteks adrenal menghasilkan hormon kortisol.</p>
             <p>Selain kortisol, medula adrenal yang dikendalikan langsung oleh sistem saraf simpatis melepaskan adrenalin (epinefrin) dan noradrenalin (norepinefrin). Kedua hormon ini memperkuat respons sistem saraf simpatis, sehingga terjadi interaksi timbal balik yang erat antara sistem saraf dan sistem hormon. Apabila stres akademik berlangsung kronis, kadar kortisol yang terus-menerus tinggi dapat merusak fungsi hipokampus, bagian otak yang berperan dalam memori dan pembelajaran, serta menyebabkan gangguan tidur, penurunan imunitas, ketidakstabilan emosi, dan penurunan kemampuan pengambilan keputusan. Kondisi ini mencerminkan terganggunya <em>homeostasis</em> tubuh akibat disregulasi sistem saraf dan sistem hormon.</p>
-          </div>
-
-          <div class="artikel-sumber">
-            <strong>Sumber Artikel:</strong>
-            Meigawati, D. (2014). Profil stres akademik ditinjau dari keyakinan diri akademik siswa kelas X SMAN 19 Bandung. Universitas Pendidikan Indonesia.<br>
-            Rahayu, F. (2014). Hubungan tingkat stres dengan strategi <em>coping</em> siswa akselerasi SMAN 2 Tangerang. UIN Syarif Hidayatullah.<br>
-            Wahyuningsih, S. (2011). Hubungan stres akademik dengan motivasi belajar siswa SMA. Universitas Muhammadiyah Yogyakarta.
+            <div class="artikel-sumber"><strong>Sumber:</strong> Meigawati, D. (2014). Profil stress akademik. Universitas Pendidikan Indonesia. · Rahayu, F. (2014). Hubungan Tingkat Stres dengan strategi <em>coping</em> siswa akselerasi. UIN Syarif Hidayatullah. · Wahyuningsih, S. (2011). Hubungan Stres Akademik dengan Motivasi Belajar. Universitas Muhammadiyah Yogyakarta.</div>
           </div>
 
           <div class="chips">
             <div class="chip"><span class="ck">TP 1.1</span> Menelaah komponen SSP, SST &amp; kelenjar endokrin <span class="ck">C4</span></div>
-            <div class="chip"><span class="ck">TP 1.2</span> Menguraikan penghantaran impuls &amp; respons hormonal <span class="ck">C3</span></div>
+            <div class="chip"><span class="ck">TP 1.2</span> Menguraikan impuls &amp; respons hormonal <span class="ck">C3</span></div>
             <div class="chip"><span class="ck">TP 2.1</span> Merumuskan permasalahan <span class="ck">C4</span></div>
+          </div>
+
+          <div class="fgroup">
+            <label>Berdasarkan artikel di atas, identifikasi komponen sistem saraf dan kelenjar endokrin yang terlibat dalam respons stres akademik! <span class="req">*</span>
+              <span class="hint">Sebutkan komponen SSP, SST, dan kelenjar endokrin beserta perannya masing-masing</span>
+            </label>
+            <textarea class="finput tall" id="f1_identifikasi" placeholder="Komponen sistem saraf yang terlibat:&#10;1. Hipotalamus (SSP) — berperan sebagai ...&#10;2. ...&#10;&#10;Kelenjar endokrin yang terlibat:&#10;1. Kelenjar pituitari — berperan sebagai ...&#10;2. ..." oninput="autoSave('f1_identifikasi')"></textarea>
           </div>
 
           <div class="sec-div"><span>Rumusan Masalah</span></div>
           <div class="fgroup">
-            <label>
-              Berdasarkan artikel di atas, rumuskan <strong>5 pertanyaan masalah</strong> yang berkaitan dengan peran sistem saraf dan sistem hormon dalam merespons stres akademik! <span class="req">*</span>
-              <span class="hint">Gunakan kata tanya: Bagaimana, Mengapa, Apa, Sejauh mana. Contoh: "Bagaimana hipotalamus mendeteksi stresor akademik dan mengaktifkan respons hormonal?"</span>
+            <label>Berdasarkan artikel di atas, rumuskan <strong>5 pertanyaan masalah</strong> yang berkaitan dengan peran sistem saraf dan sistem hormon dalam merespons stres akademik! <span class="req">*</span>
+              <span class="hint">Gunakan kata tanya: Bagaimana, Mengapa, Apa, Sejauh mana</span>
             </label>
             <textarea class="finput tall" id="f1_rumusan" placeholder="1. ...&#10;2. ...&#10;3. ...&#10;4. ...&#10;5. ..." oninput="autoSave('f1_rumusan')"></textarea>
           </div>
           <span class="save-ind" id="si1">✅ Tersimpan otomatis</span>
         </div>
       </div>
-
       <div class="nav-btns"><div></div><button class="btn btn-next" onclick="nextFase(1)">Mengorganisasi →</button></div>
     </div>
 
-    <!-- ══════════════════════════
-         FASE 2 — MENGORGANISASI
-    ══════════════════════════ -->
+    <!-- FASE 2 -->
     <div class="fpanel" id="fase2">
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-indigo">🗂️</div>
-          <div><h3>Mengorganisasi Peserta Didik untuk Belajar</h3><p>Diskusikan fokus penyelidikan bersama kelompok</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-indigo">🗂️</div><div><h3>Fase 2 — Mengorganisasi Peserta Didik untuk Belajar</h3><p>Pilih fokus penyelidikan dan susun rencana studi dokumentasi</p></div></div>
         <div class="card-body">
-          <div class="chips">
-            <div class="chip"><span class="ck">TP 2.2</span> Menyusun rencana penyelidikan <span class="ck">C3</span></div>
-          </div>
-          <div class="ib ib-i"><span class="ico">🎯</span><div class="txt"><strong>Instruksi:</strong> Diskusikan bersama kelompok <strong>satu rumusan masalah</strong> yang akan menjadi fokus penyelidikan, kemudian identifikasi penyebab dan dampaknya dari perspektif sistem saraf dan sistem hormon!</div></div>
+          <div class="chips"><div class="chip"><span class="ck">TP 2.2</span> Menyusun rencana penyelidikan <span class="ck">C3</span></div></div>
+          <div class="ib ib-i"><span class="ico">🎯</span><div class="txt"><strong>Instruksi:</strong> Diskusikan bersama kelompok satu rumusan masalah yang akan menjadi fokus penyelidikan, kemudian susunlah rencana studi dokumentasi!</div></div>
 
           <div class="fgroup">
-            <label>Rumusan masalah yang dipilih kelompok: <span class="req">*</span>
-              <span class="hint">Pilih salah satu dari 5 rumusan masalah yang telah dibuat di Fase 1</span>
-            </label>
+            <label>Rumusan masalah yang dipilih kelompok: <span class="req">*</span></label>
             <textarea class="finput" id="f2_rumusan_pilih" rows="3" placeholder="Rumusan masalah yang dipilih kelompok kami adalah..." oninput="autoSave('f2_rumusan_pilih')"></textarea>
           </div>
-
           <div class="fgroup">
-            <label>Penyebab dan dampak permasalahan (ditinjau dari sistem saraf dan sistem hormon): <span class="req">*</span>
-              <span class="hint">Jelaskan: apa penyebab stres akademik memengaruhi sistem saraf & hormon, dan apa dampaknya bagi tubuh?</span>
-            </label>
+            <label>Penyebab dan dampak permasalahan (ditinjau dari sistem saraf dan sistem hormon): <span class="req">*</span></label>
             <textarea class="finput tall" id="f2_penyebab_dampak" placeholder="Penyebab: ...&#10;&#10;Dampak terhadap sistem saraf: ...&#10;&#10;Dampak terhadap sistem hormon: ..." oninput="autoSave('f2_penyebab_dampak')"></textarea>
           </div>
 
-          <div class="sec-div"><span>Penelusuran Sumber Digital</span></div>
-          <div class="ib ib-t"><span class="ico">🔍</span><div class="txt">Lakukan penelusuran sumber digital secara mandiri dan kelompok. Kumpulkan informasi, analisis mekanisme, lalu susun simpulan berdasarkan data yang diperoleh!<br><strong>Catatan:</strong> Gunakan bahasa sendiri, hindari plagiarisme. Cantumkan sumber yang digunakan.</div></div>
+          <div class="sec-div"><span>Rencana Studi Dokumentasi</span></div>
+          <div class="ib ib-t"><span class="ico">📚</span><div class="txt">Gunakan sumber ilmiah yang kredibel (jurnal, laporan kesehatan, buku teks). Gunakan bahasa sendiri, hindari plagiarisme. Cantumkan sumber yang digunakan.</div></div>
 
-          <div class="fgroup">
-            <label>Sumber digital yang digunakan: <span class="req">*</span>
-              <span class="hint">Tuliskan minimal 2 sumber (artikel ilmiah, buku, atau website terpercaya)</span>
-            </label>
-            <textarea class="finput" id="f2_sumber" rows="4" placeholder="1. Nama penulis. (Tahun). Judul artikel. Nama jurnal/website. URL&#10;2. ..." oninput="autoSave('f2_sumber')"></textarea>
+          <div style="overflow-x:auto;margin-bottom:14px;">
+            <table class="rencana-table">
+              <thead><tr><th>Aspek yang Dikaji</th><th>Sumber yang Akan Digunakan</th><th>Pembagian Tugas</th></tr></thead>
+              <tbody>
+                <tr><td>Komponen sistem saraf dalam respons stres</td><td><textarea id="r1_sumber" placeholder="Tuliskan sumber..." oninput="autoSave('r1_sumber')"></textarea></td><td><textarea id="r1_tugas" placeholder="Nama anggota..." oninput="autoSave('r1_tugas')"></textarea></td></tr>
+                <tr><td>Mekanisme hormonal (sumbu HPA, kortisol, adrenalin)</td><td><textarea id="r2_sumber" placeholder="Tuliskan sumber..." oninput="autoSave('r2_sumber')"></textarea></td><td><textarea id="r2_tugas" placeholder="Nama anggota..." oninput="autoSave('r2_tugas')"></textarea></td></tr>
+                <tr><td>Dampak stres kronis terhadap <em>homeostasis</em></td><td><textarea id="r3_sumber" placeholder="Tuliskan sumber..." oninput="autoSave('r3_sumber')"></textarea></td><td><textarea id="r3_tugas" placeholder="Nama anggota..." oninput="autoSave('r3_tugas')"></textarea></td></tr>
+                <tr><td>Solusi pengelolaan stres berbasis fisiologi</td><td><textarea id="r4_sumber" placeholder="Tuliskan sumber..." oninput="autoSave('r4_sumber')"></textarea></td><td><textarea id="r4_tugas" placeholder="Nama anggota..." oninput="autoSave('r4_tugas')"></textarea></td></tr>
+              </tbody>
+            </table>
           </div>
           <span class="save-ind" id="si2">✅ Tersimpan otomatis</span>
         </div>
       </div>
-
       <div class="nav-btns">
         <button class="btn btn-prev" onclick="prevFase(2)">← Kembali</button>
         <button class="btn btn-next" onclick="nextFase(2)">Membimbing Penyelidikan →</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════
-         FASE 3 — MEMBIMBING PENYELIDIKAN
-    ══════════════════════════ -->
+    <!-- FASE 3 -->
     <div class="fpanel" id="fase3">
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-purple">🔬</div>
-          <div><h3>Membimbing Penyelidikan</h3><p>Analisis mendalam berdasarkan hasil penelusuran sumber digital</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-purple">🔬</div><div><h3>Fase 3 — Membimbing Penyelidikan</h3><p>Studi dokumentasi, analisis, dan simpulan berbasis data</p></div></div>
         <div class="card-body">
           <div class="chips">
             <div class="chip"><span class="ck">TP 2.3</span> Menganalisis dampak stres akademik <span class="ck">C4</span></div>
             <div class="chip"><span class="ck">TP 2.4</span> Menyimpulkan hubungan gangguan &amp; <em>homeostasis</em> <span class="ck">C5</span></div>
           </div>
-          <div class="ib ib-a"><span class="ico">📌</span><div class="txt"><strong>Instruksi:</strong> Tuliskan konsep penting terkait sistem saraf dan sistem hormon berdasarkan hasil penelusuran, kemudian hubungkan dengan respons tubuh terhadap stres akademik!</div></div>
+          <div class="ib ib-a"><span class="ico">📌</span><div class="txt">Lakukan studi dokumentasi dari sumber ilmiah yang kredibel sesuai rencana. Kumpulkan data, analisis mekanisme, lalu susun simpulan!</div></div>
 
           <div class="fgroup">
-            <label>Konsep penting terkait sistem saraf dan sistem hormon berdasarkan hasil penelusuran sumber digital, kemudian hubungkan dengan respons tubuh terhadap stres akademik: <span class="req">*</span>
-              <span class="hint">Jelaskan konsep: SSP, SST, neurotransmiter, sumbu HPA, kortisol, adrenalin, dan kaitannya dengan stres</span>
-            </label>
-            <textarea class="finput tall" id="f3_konsep" placeholder="Konsep penting yang saya temukan:&#10;&#10;1. Sistem saraf dalam respons stres: ...&#10;2. Sistem hormon dalam respons stres: ...&#10;3. Keterkaitan keduanya: ..." oninput="autoSave('f3_konsep')"></textarea>
+            <label>Konsep penting sistem saraf dan sistem hormon berdasarkan hasil studi dokumentasi, hubungkan dengan respons tubuh terhadap stres akademik: <span class="req">*</span></label>
+            <textarea class="finput tall" id="f3_konsep" placeholder="1. Sistem saraf dalam respons stres: ...&#10;2. Sistem hormon dalam respons stres: ...&#10;3. Keterkaitan keduanya: ..." oninput="autoSave('f3_konsep')"></textarea>
           </div>
-
           <div class="fgroup">
-            <label>Berdasarkan data yang terkumpul, analisis bagaimana sistem saraf dan sistem hormon bekerja secara terpadu dalam merespons stres akademik, serta bagaimana dampaknya terhadap <em>homeostasis</em> tubuh! <span class="req">*</span>
-              <span class="hint">Gunakan data dari sumber yang telah ditelusuri. Kaitkan mekanisme kerja kedua sistem secara ilmiah dan logis.</span>
-            </label>
-            <textarea class="finput tall" id="f3_analisis" placeholder="Analisis sistem saraf dan hormon secara terpadu:&#10;&#10;Mekanisme respons stres: ...&#10;&#10;Dampak terhadap homeostasis tubuh: ...&#10;&#10;Simpulan: ..." oninput="autoSave('f3_analisis')"></textarea>
+            <label>Sumber yang digunakan: <span class="req">*</span><span class="hint">Minimal 2 sumber ilmiah</span></label>
+            <textarea class="finput" id="f3_sumber" rows="4" placeholder="1. Nama penulis. (Tahun). Judul. Jurnal/Website.&#10;2. ..." oninput="autoSave('f3_sumber')"></textarea>
+          </div>
+          <div class="fgroup">
+            <label>Analisis keterpaduan sistem — Analisis bagaimana sistem saraf dan sistem hormon bekerja secara terpadu dalam merespons stres akademik serta dampaknya terhadap <em>homeostasis</em> tubuh: <span class="req">*</span></label>
+            <textarea class="finput tall" id="f3_analisis" placeholder="Mekanisme respons stres: ...&#10;&#10;Dampak terhadap homeostasis: ..." oninput="autoSave('f3_analisis')"></textarea>
+          </div>
+          <div class="fgroup">
+            <label>Simpulan berdasarkan hasil studi dokumentasi: <span class="req">*</span></label>
+            <textarea class="finput" id="f3_simpulan" rows="5" placeholder="Berdasarkan hasil studi dokumentasi, dapat disimpulkan bahwa..." oninput="autoSave('f3_simpulan')"></textarea>
           </div>
           <span class="save-ind" id="si3">✅ Tersimpan otomatis</span>
         </div>
       </div>
-
       <div class="nav-btns">
         <button class="btn btn-prev" onclick="prevFase(3)">← Kembali</button>
         <button class="btn btn-next" onclick="nextFase(3)">Mengembangkan Hasil →</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════
-         FASE 4 — MENGEMBANGKAN HASIL
-    ══════════════════════════ -->
+    <!-- FASE 4 -->
     <div class="fpanel" id="fase4">
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-emerald">💡</div>
-          <div><h3>Mengembangkan &amp; Menyajikan Hasil</h3><p>Rancang solusi dan sajikan di depan kelas (5–7 menit)</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-emerald">💡</div><div><h3>Fase 4 — Mengembangkan &amp; Menyajikan Hasil</h3><p>Rancang solusi dan sajikan melalui <em>gallery walk</em></p></div></div>
         <div class="card-body">
           <div class="chips">
             <div class="chip"><span class="ck">TP 3.1</span> Merancang solusi pengelolaan stres <span class="ck">C6</span></div>
-            <div class="chip"><span class="ck">TP 3.2</span> Menyajikan hasil melalui <em>multimedia website</em> <span class="ck">C3</span></div>
+            <div class="chip"><span class="ck">TP 3.2</span> Menyajikan melalui <em>gallery walk</em> <span class="ck">C3</span></div>
           </div>
-          <div class="ib ib-t"><span class="ico">🎯</span><div class="txt"><strong>Instruksi:</strong> Kembangkan solusi pengelolaan stres akademik berdasarkan pemahaman terpadu sistem saraf dan sistem hormon, kemudian presentasikan di depan kelas dalam waktu 5–7 menit!<br><br>Rancanglah solusi yang mengacu pada <strong>fisiologi sistem regulasi</strong>, bukan sekadar saran umum!</div></div>
+          <div class="ib ib-t"><span class="ico">🎯</span><div class="txt">Kembangkan solusi pengelolaan stres akademik, kemudian sajikan melalui <em>gallery walk</em> kepada kelompok lain! Solusi harus mengacu pada <strong>fisiologi sistem regulasi</strong>, bukan sekadar saran umum!</div></div>
 
           <div class="fgroup">
-            <label>Solusi yang diusulkan: <span class="req">*</span>
-              <span class="hint">Solusi harus spesifik dan berdasarkan mekanisme fisiologi sistem saraf dan hormon, bukan saran umum seperti "jangan stres"</span>
-            </label>
-            <textarea class="finput tall" id="f4_solusi" placeholder="Solusi yang kami usulkan untuk mengelola stres akademik:&#10;&#10;1. ...&#10;2. ...&#10;3. ..." oninput="autoSave('f4_solusi')"></textarea>
+            <label>Solusi yang diusulkan: <span class="req">*</span><span class="hint">Berbasis mekanisme fisiologi sistem saraf dan hormon</span></label>
+            <textarea class="finput tall" id="f4_solusi" placeholder="1. ...&#10;2. ...&#10;3. ..." oninput="autoSave('f4_solusi')"></textarea>
           </div>
-
           <div class="fgroup">
-            <label>Dasar ilmiah (kaitkan dengan sistem saraf/hormon): <span class="req">*</span>
-              <span class="hint">Jelaskan mekanisme biologis mengapa solusimu efektif berdasarkan cara kerja sistem saraf dan hormon</span>
-            </label>
-            <textarea class="finput tall" id="f4_dasar_ilmiah" placeholder="Dasar ilmiah solusi kami:&#10;&#10;Kaitannya dengan sistem saraf: ...&#10;&#10;Kaitannya dengan sistem hormon: ...&#10;&#10;Mekanisme biologisnya: ..." oninput="autoSave('f4_dasar_ilmiah')"></textarea>
+            <label>Dasar ilmiah (kaitkan dengan sistem saraf dan sistem hormon): <span class="req">*</span></label>
+            <textarea class="finput tall" id="f4_dasar_ilmiah" placeholder="Kaitannya dengan sistem saraf: ...&#10;&#10;Kaitannya dengan sistem hormon: ..." oninput="autoSave('f4_dasar_ilmiah')"></textarea>
           </div>
-
           <div class="fgroup">
-            <label>Tuliskan masukan atau pertanyaan yang diterima dari kelompok lain saat presentasi:</label>
-            <textarea class="finput" id="f4_masukan" rows="4" placeholder="Pertanyaan/masukan dari kelompok lain:&#10;1. ...&#10;2. ..." oninput="autoSave('f4_masukan')"></textarea>
+            <label>Masukan atau pertanyaan yang diterima dari kelompok lain saat <em>gallery walk</em>:</label>
+            <textarea class="finput" id="f4_masukan" rows="4" placeholder="1. ...&#10;2. ..." oninput="autoSave('f4_masukan')"></textarea>
           </div>
           <span class="save-ind" id="si4">✅ Tersimpan otomatis</span>
         </div>
       </div>
-
       <div class="nav-btns">
         <button class="btn btn-prev" onclick="prevFase(4)">← Kembali</button>
         <button class="btn btn-next" onclick="nextFase(4)">Analisis &amp; Evaluasi →</button>
       </div>
     </div>
 
-    <!-- ══════════════════════════
-         FASE 5 — ANALISIS & EVALUASI
-    ══════════════════════════ -->
+    <!-- FASE 5 -->
     <div class="fpanel" id="fase5">
       <div class="card">
-        <div class="card-head">
-          <div class="ch-icon ci-coral">🪞</div>
-          <div><h3>Menganalisis &amp; Mengevaluasi Pemecahan Masalah</h3><p>Evaluasi solusi dan refleksikan proses belajarmu</p></div>
-        </div>
+        <div class="card-head"><div class="ch-icon ci-coral">🪞</div><div><h3>Fase 5 — Menganalisis &amp; Mengevaluasi Pemecahan Masalah</h3><p>Evaluasi solusi dan refleksi pembelajaran</p></div></div>
         <div class="card-body">
-          <div class="chips">
-            <div class="chip"><span class="ck">TP 3.3</span> Mengevaluasi solusi &amp; proses PBL <span class="ck">C5</span></div>
-          </div>
-          <div class="ib ib-i"><span class="ico">📊</span><div class="txt"><strong>Instruksi:</strong> Evaluasi proses pemecahan masalah dan gagasan solusi yang telah kalian temukan! Evaluasi dapat berisi kelebihan dan kekurangan dari solusi yang telah dipilih.</div></div>
+          <div class="chips"><div class="chip"><span class="ck">TP 3.3</span> Mengevaluasi solusi &amp; proses PBL <span class="ck">C5</span></div></div>
+          <div class="ib ib-i"><span class="ico">📊</span><div class="txt">Evaluasi proses pemecahan masalah dan gagasan solusi yang telah kalian temukan!</div></div>
 
           <div class="eval-grid">
             <div class="eval-card">
               <div class="eval-head eh-plus">✅ Kelebihan Solusi</div>
-              <div class="eval-body">
-                <textarea class="finput" id="f5_kelebihan" rows="5" placeholder="Kelebihan dari solusi yang kami usulkan:&#10;1. ...&#10;2. ..." oninput="autoSave('f5_kelebihan')" style="border:none;background:transparent;padding:10px 0;"></textarea>
-              </div>
+              <div class="eval-body"><textarea class="finput" id="f5_kelebihan" rows="6" placeholder="1. ...&#10;2. ...&#10;3. ..." oninput="autoSave('f5_kelebihan')" style="border:none;background:transparent;padding:10px 0;"></textarea></div>
             </div>
             <div class="eval-card">
               <div class="eval-head eh-minus">⚠️ Kekurangan Solusi</div>
-              <div class="eval-body">
-                <textarea class="finput" id="f5_kekurangan" rows="5" placeholder="Kekurangan dari solusi yang kami usulkan:&#10;1. ...&#10;2. ..." oninput="autoSave('f5_kekurangan')" style="border:none;background:transparent;padding:10px 0;"></textarea>
-              </div>
+              <div class="eval-body"><textarea class="finput" id="f5_kekurangan" rows="6" placeholder="1. ...&#10;2. ...&#10;3. ..." oninput="autoSave('f5_kekurangan')" style="border:none;background:transparent;padding:10px 0;"></textarea></div>
             </div>
           </div>
 
           <div class="fgroup">
-            <label>Tuliskan refleksi berdasarkan pembelajaran yang telah kalian lakukan! <span class="req">*</span>
-              <span class="hint">Apa yang kamu pelajari? Apa yang masih ingin kamu ketahui? Bagaimana perasaanmu setelah menyelesaikan siklus ini?</span>
-            </label>
-            <textarea class="finput tall" id="f5_refleksi" placeholder="Refleksi pembelajaran Siklus 1:&#10;&#10;Hal yang saya pelajari: ...&#10;&#10;Hal yang ingin saya ketahui lebih lanjut: ...&#10;&#10;Perasaan saya: ..." oninput="autoSave('f5_refleksi')"></textarea>
+            <label>Refleksi pembelajaran — Apa yang paling berkesan dan apa yang masih perlu diperbaiki? <span class="req">*</span></label>
+            <textarea class="finput tall" id="f5_refleksi" placeholder="Yang paling berkesan: ...&#10;&#10;Yang masih perlu diperbaiki: ...&#10;&#10;Perasaan saya: ..." oninput="autoSave('f5_refleksi')"></textarea>
           </div>
 
           <div class="sec-div"><span>Bagaimana pemahamanmu setelah Siklus 1?</span></div>
@@ -504,146 +391,102 @@ textarea.finput.tall{min-height:140px;}
           <span class="save-ind" id="si5">✅ Tersimpan otomatis</span>
         </div>
       </div>
-
       <div class="nav-btns">
         <button class="btn btn-prev" onclick="prevFase(5)">← Kembali</button>
         <button class="btn btn-submit" onclick="submitSiklus()">✅ Selesai &amp; Simpan</button>
       </div>
-
       <div class="selesai" id="selesaiBox">
         <div class="sico">🎉</div>
         <h3>Siklus 1 Selesai!</h3>
-        <p>Kerja bagus! Semua jawaban kelompokmu sudah tersimpan. Lanjutkan ke Siklus 2 atau coba kuis untuk menguji pemahaman!</p>
+        <p>Kerja bagus! Semua jawaban kelompokmu sudah tersimpan. Lanjutkan ke Siklus 2 atau coba kuis!</p>
         <div>
-          <a class="btn-lanjut" href="siklus2.html">👁️ Lanjut: Siklus 2 — Alat Indera</a>
+          <a class="btn-lanjut" href="siklus2.html">👁️ Lanjut: Siklus 2</a>
           <a class="btn-lanjut" href="kuis.html" style="background:linear-gradient(135deg,var(--amber),var(--coral));">🎮 Kuis Game</a>
         </div>
       </div>
     </div>
-
   </div>
 </div>
 
 <script>
 bioRenderNav({ requireLogin: true });
-
 const KEY = 'bioregula_s1';
-let curFase = 1;
-let done = new Set();
+let curFase = 1, done = new Set();
+const ALL_FIELDS = ['id_kelompok','id_kelas','anggota1','anggota2','anggota3','anggota4','anggota5','f1_identifikasi','f1_rumusan','f2_rumusan_pilih','f2_penyebab_dampak','r1_sumber','r1_tugas','r2_sumber','r2_tugas','r3_sumber','r3_tugas','r4_sumber','r4_tugas','f3_konsep','f3_sumber','f3_analisis','f3_simpulan','f4_solusi','f4_dasar_ilmiah','f4_masukan','f5_kelebihan','f5_kekurangan','f5_refleksi'];
 
-// ── Load saved data ──
 function load() {
-  const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-  const fields = [
-    'id_kelompok','id_kelas','anggota1','anggota2','anggota3','anggota4','anggota5',
-    'f1_rumusan',
-    'f2_rumusan_pilih','f2_penyebab_dampak','f2_sumber',
-    'f3_konsep','f3_analisis',
-    'f4_solusi','f4_dasar_ilmiah','f4_masukan',
-    'f5_kelebihan','f5_kekurangan','f5_refleksi'
-  ];
-  fields.forEach(id => {
-    const el = document.getElementById(id);
-    if (el && d[id]) { el.value = d[id]; el.classList.add('saved'); }
-  });
-  if (d.refleksi) {
-    const vals = ['sangat_paham','paham','cukup','belum'];
-    const idx = vals.indexOf(d.refleksi);
-    if (idx >= 0) document.querySelectorAll('.rcard')[idx]?.classList.add('sel');
-  }
-  if (d.done) done = new Set(d.done);
+  const d = JSON.parse(localStorage.getItem(KEY)||'{}');
+  ALL_FIELDS.forEach(id => { const el=document.getElementById(id); if(el&&d[id]){el.value=d[id];el.classList.add('saved');} });
+  if(d.refleksi){const idx=['sangat_paham','paham','cukup','belum'].indexOf(d.refleksi);if(idx>=0)document.querySelectorAll('.rcard')[idx]?.classList.add('sel');}
+  if(d.done) done=new Set(d.done);
   refreshUI();
 }
 
-// ── Auto save ──
 let st;
 function autoSave(id) {
   clearTimeout(st);
-  st = setTimeout(() => {
-    const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-    d[id] = document.getElementById(id)?.value || '';
-    localStorage.setItem(KEY, JSON.stringify(d));
+  st=setTimeout(()=>{
+    const d=JSON.parse(localStorage.getItem(KEY)||'{}');
+    d[id]=document.getElementById(id)?.value||'';
+    localStorage.setItem(KEY,JSON.stringify(d));
     document.getElementById(id)?.classList.add('saved');
-    const si = document.getElementById('si' + curFase);
-    if (si) { si.classList.add('show'); setTimeout(() => si.classList.remove('show'), 2000); }
-  }, 600);
+    const si=document.getElementById('si'+curFase);
+    if(si){si.classList.add('show');setTimeout(()=>si.classList.remove('show'),2000);}
+  },600);
 }
 
-// ── Fase navigation ──
 function goFase(n) {
-  document.getElementById('fase' + curFase)?.classList.remove('active');
-  document.getElementById('tab' + curFase)?.classList.remove('active');
-  curFase = n;
-  document.getElementById('fase' + n)?.classList.add('active');
-  document.getElementById('tab' + n)?.classList.add('active');
+  document.getElementById('fase'+curFase)?.classList.remove('active');
+  document.getElementById('tab'+curFase)?.classList.remove('active');
+  curFase=n;
+  document.getElementById('fase'+n)?.classList.add('active');
+  document.getElementById('tab'+n)?.classList.add('active');
   refreshUI();
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({top:0,behavior:'smooth'});
 }
-function nextFase(n) { done.add(n); saveDone(); goFase(n + 1); }
-function prevFase(n) { goFase(n - 1); }
+function nextFase(n){done.add(n);saveDone();goFase(n+1);}
+function prevFase(n){goFase(n-1);}
+function saveDone(){const d=JSON.parse(localStorage.getItem(KEY)||'{}');d.done=[...done];localStorage.setItem(KEY,JSON.stringify(d));}
 
-function saveDone() {
-  const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-  d.done = [...done];
-  localStorage.setItem(KEY, JSON.stringify(d));
-}
-
-// ── Refresh UI ──
 function refreshUI() {
-  for (let i = 1; i <= 5; i++) {
-    const fp = document.getElementById('fp' + i);
-    const tb = document.getElementById('tab' + i);
-    if (!fp || !tb) continue;
-    if (done.has(i)) { fp.className = 'fp done'; if (i !== curFase) tb.classList.add('done'); else tb.classList.remove('done'); }
-    else if (i === curFase) { fp.className = 'fp active'; tb.classList.remove('done'); }
-    else { fp.className = 'fp'; tb.classList.remove('done'); }
+  for(let i=1;i<=5;i++){
+    const fp=document.getElementById('fp'+i),tb=document.getElementById('tab'+i);
+    if(!fp||!tb) continue;
+    if(done.has(i)){fp.className='fp done';if(i!==curFase)tb.classList.add('done');else tb.classList.remove('done');}
+    else if(i===curFase){fp.className='fp active';tb.classList.remove('done');}
+    else{fp.className='fp';tb.classList.remove('done');}
   }
-  const pct = Math.round(done.size / 5 * 100);
-  const hpv = document.getElementById('hpVal');
-  const hps = document.getElementById('hpSub');
-  if (hpv) hpv.innerHTML = pct + '<small>%</small>';
-  if (hps) hps.textContent = done.size === 0 ? 'Belum dimulai' : done.size === 5 ? 'Selesai! 🎉' : `${done.size} dari 5 fase`;
+  const pct=Math.round(done.size/5*100);
+  const hpv=document.getElementById('hpVal'),hps=document.getElementById('hpSub');
+  if(hpv)hpv.innerHTML=pct+'<small>%</small>';
+  if(hps)hps.textContent=done.size===0?'Belum dimulai':done.size===5?'Selesai! 🎉':`${done.size} dari 5 fase`;
 }
 
-// ── Refleksi ──
-function pilihRefleksi(val, el) {
-  document.querySelectorAll('.rcard').forEach(c => c.classList.remove('sel'));
+function pilihRefleksi(val,el){
+  document.querySelectorAll('.rcard').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
-  const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-  d.refleksi = val;
-  localStorage.setItem(KEY, JSON.stringify(d));
+  const d=JSON.parse(localStorage.getItem(KEY)||'{}');
+  d.refleksi=val;localStorage.setItem(KEY,JSON.stringify(d));
 }
 
-// ── Submit ──
-function submitSiklus() {
-  const required = ['f1_rumusan','f2_rumusan_pilih','f2_penyebab_dampak','f2_sumber','f3_konsep','f3_analisis','f4_solusi','f4_dasar_ilmiah','f5_refleksi'];
-  const kosong = required.filter(id => (document.getElementById(id)?.value || '').trim().length < 10);
-  if (kosong.length) {
-    alert(`Masih ada ${kosong.length} kolom yang belum diisi dengan lengkap. Periksa kembali setiap fase ya!`);
-    return;
-  }
-  for (let i = 1; i <= 5; i++) done.add(i);
-  saveDone(); refreshUI();
-  kirimSheets();
-  const box = document.getElementById('selesaiBox');
-  box.style.display = 'block';
-  box.scrollIntoView({ behavior: 'smooth' });
+function submitSiklus(){
+  const req=['f1_identifikasi','f1_rumusan','f2_rumusan_pilih','f2_penyebab_dampak','f3_konsep','f3_analisis','f3_simpulan','f4_solusi','f4_dasar_ilmiah','f5_refleksi'];
+  const kosong=req.filter(id=>(document.getElementById(id)?.value||'').trim().length<10);
+  if(kosong.length){alert(`Masih ada ${kosong.length} kolom yang belum diisi dengan lengkap!`);return;}
+  for(let i=1;i<=5;i++)done.add(i);
+  saveDone();refreshUI();kirimSheets();
+  const box=document.getElementById('selesaiBox');
+  box.style.display='block';box.scrollIntoView({behavior:'smooth'});
 }
 
-// ── Kirim Google Sheets ──
-function kirimSheets() {
-  const url = 'https://script.google.com/macros/s/AKfycbz3tVTaZfpRPIXOi08Yhp355WN0eyjDgN0_3VDP7lt3PavCpYGvAZZyV_b7yuNqBUy2/exec';
-  if (!url) return;
-  const user = JSON.parse(localStorage.getItem('bioregula_current') || '{}');
-  const d = JSON.parse(localStorage.getItem(KEY) || '{}');
-  fetch(url, {
-    method: 'POST', mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ siklus: 'siklus1', nama: user.nama, kelas: user.kelas, absen: user.absen, timestamp: new Date().toISOString(), ...d })
-  }).catch(() => {});
+function kirimSheets(){
+  const url='https://script.google.com/macros/s/AKfycbz3tVTaZfpRPIXOi08Yhp355WN0eyjDgN0_3VDP7lt3PavCpYGvAZZyV_b7yuNqBUy2/exec';
+  const user=JSON.parse(localStorage.getItem('bioregula_current')||'{}');
+  const d=JSON.parse(localStorage.getItem(KEY)||'{}');
+  fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({siklus:'siklus1',nama:user.nama,kelas:user.kelas,absen:user.absen,timestamp:new Date().toISOString(),...d})}).catch(()=>{});
 }
 
-window.addEventListener('load', load);
+window.addEventListener('load',load);
 </script>
 </body>
 </html>
