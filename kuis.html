@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuis Game — BioRegula</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="nav.js"></script>
+<style>
+:root{
+  --teal:#0d9488;--teal-dark:#0f766e;--teal-light:#99f6e4;--teal-bg:#f0fdfa;
+  --indigo:#4f46e5;--indigo-light:#e0e7ff;--amber:#f59e0b;--amber-light:#fef3c7;
+  --coral:#f43f5e;--emerald:#10b981;--purple:#8b5cf6;--purple-light:#f3e8ff;
+  --white:#ffffff;--off:#f8fafc;--gray:#64748b;--gray-light:#e2e8f0;--dark:#0f172a;
+  --radius:14px;--shadow:0 4px 24px rgba(15,23,42,0.08);--nav-h:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--dark);}
+.bio-content{padding-top:var(--nav-h);}
+
+/* HEADER */
+.page-header{background:linear-gradient(150deg,#0f172a 0%,#4c1d95 50%,#134e4a 100%);padding:36px 2rem 32px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-80px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.25),transparent 70%);}
+.header-inner{max-width:760px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:12px;}
+.breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none;}
+.breadcrumb a:hover{color:#c4b5fd;}
+.breadcrumb span{color:#c4b5fd;}
+.page-header h1{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;color:#fff;margin-bottom:.4rem;}
+.page-header h1 span{color:#c4b5fd;}
+.page-header p{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.65;}
+.htags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+.htag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:4px 12px;font-size:.73rem;color:rgba(255,255,255,.8);font-weight:500;}
+
+.main{max-width:760px;margin:0 auto;padding:28px 2rem 60px;}
+
+/* START SCREEN */
+.start-screen{text-align:center;padding:32px 24px;}
+.start-screen .sico{font-size:4rem;margin-bottom:16px;}
+.start-screen h2{font-size:1.3rem;font-weight:800;color:var(--dark);margin-bottom:8px;}
+.start-screen p{font-size:.88rem;color:var(--gray);line-height:1.65;margin-bottom:24px;max-width:420px;margin-left:auto;margin-right:auto;}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:28px;}
+.info-card{background:var(--off);border-radius:12px;border:1px solid var(--gray-light);padding:14px;text-align:center;}
+.info-card .ival{font-size:1.4rem;font-weight:800;color:var(--dark);margin-bottom:3px;}
+.info-card .ilbl{font-size:.72rem;color:var(--gray);}
+.btn-start{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 36px;border-radius:30px;border:none;
+  background:linear-gradient(135deg,var(--purple),var(--indigo));
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1rem;font-weight:800;cursor:pointer;transition:all .25s;
+}
+.btn-start:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(139,92,246,.4);}
+
+/* PROGRESS */
+.quiz-progress{margin-bottom:20px;}
+.qp-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.qp-label{font-size:.82rem;color:var(--gray);}
+.qp-score{font-size:.88rem;font-weight:800;color:var(--dark);}
+.qp-track{height:8px;background:var(--gray-light);border-radius:4px;overflow:hidden;}
+.qp-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--indigo));border-radius:4px;transition:width .4s ease;}
+
+/* SOAL CARD */
+.soal-card{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);box-shadow:var(--shadow);overflow:hidden;margin-bottom:16px;animation:fadeUp .3s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.soal-head{padding:16px 20px;border-bottom:1px solid var(--gray-light);display:flex;align-items:center;gap:12px;}
+.soal-num{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--indigo));color:#fff;font-size:.85rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.soal-meta h3{font-size:.88rem;font-weight:800;color:var(--dark);}
+.soal-meta p{font-size:.73rem;color:var(--gray);margin-top:2px;}
+.tipe-badge{font-size:.68rem;font-weight:700;padding:2px 8px;border-radius:20px;}
+.tb-pg{background:var(--indigo-light);color:var(--indigo);}
+.tb-bs{background:var(--teal-bg);color:var(--teal-dark);}
+.tb-topik{background:var(--purple-light);color:var(--purple);margin-left:4px;}
+.soal-body{padding:20px;}
+.soal-text{font-size:.9rem;color:var(--dark);line-height:1.7;margin-bottom:18px;font-weight:500;}
+
+/* PILIHAN */
+.pilihan-list{display:flex;flex-direction:column;gap:10px;}
+.pilihan-btn{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;border-radius:12px;border:2px solid var(--gray-light);
+  background:var(--off);cursor:pointer;transition:all .2s;text-align:left;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:.87rem;color:var(--dark);width:100%;
+}
+.pilihan-btn:hover:not(:disabled){border-color:var(--purple);background:var(--purple-light);}
+.pilihan-btn.selected{border-color:var(--indigo);background:var(--indigo-light);}
+.pilihan-btn.correct{border-color:var(--emerald);background:#d1fae5;color:#065f46;}
+.pilihan-btn.wrong{border-color:var(--coral);background:#ffe4e6;color:#9f1239;}
+.pilihan-btn:disabled{cursor:default;}
+.pilihan-key{width:28px;height:28px;border-radius:8px;background:var(--gray-light);color:var(--gray);font-size:.78rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s;}
+.pilihan-btn.correct .pilihan-key{background:var(--emerald);color:#fff;}
+.pilihan-btn.wrong .pilihan-key{background:var(--coral);color:#fff;}
+.pilihan-btn.selected .pilihan-key{background:var(--indigo);color:#fff;}
+
+/* FEEDBACK */
+.feedback-box{margin-top:14px;padding:12px 16px;border-radius:10px;font-size:.84rem;line-height:1.65;display:none;}
+.fb-correct{background:#d1fae5;border-left:3px solid var(--emerald);color:#065f46;}
+.fb-wrong{background:#ffe4e6;border-left:3px solid var(--coral);color:#9f1239;}
+.fb-icon{font-size:1rem;margin-right:6px;}
+
+/* NAV BTNS */
+.quiz-nav{display:flex;gap:10px;justify-content:flex-end;margin-top:6px;}
+.btn-next-soal{
+  display:flex;align-items:center;gap:8px;padding:11px 24px;
+  border-radius:30px;border:none;background:linear-gradient(135deg,var(--purple),var(--indigo));
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;font-weight:700;
+  cursor:pointer;transition:all .2s;opacity:.5;pointer-events:none;
+}
+.btn-next-soal.aktif{opacity:1;pointer-events:auto;}
+.btn-next-soal.aktif:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(139,92,246,.4);}
+
+/* HASIL */
+.hasil-screen{display:none;animation:fadeUp .4s ease both;}
+.hasil-card{background:linear-gradient(135deg,#0f172a,#4c1d95);border-radius:var(--radius);padding:32px;text-align:center;margin-bottom:18px;}
+.hasil-skor{font-size:4rem;font-weight:800;color:#fff;line-height:1;}
+.hasil-skor small{font-size:1.5rem;color:rgba(255,255,255,.5);}
+.hasil-pct{font-size:1.1rem;color:#c4b5fd;margin-top:4px;}
+.hasil-kat{display:inline-block;margin-top:12px;padding:7px 20px;border-radius:20px;font-size:.88rem;font-weight:800;}
+.hk-a{background:#d1fae5;color:#065f46;}
+.hk-b{background:var(--indigo-light);color:var(--indigo);}
+.hk-c{background:var(--amber-light);color:#92400e;}
+.hk-d{background:#ffe4e6;color:#9f1239;}
+.hasil-desc{font-size:.84rem;color:rgba(255,255,255,.6);margin-top:14px;line-height:1.65;}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px;}
+.stat-item{background:rgba(255,255,255,.08);border-radius:10px;padding:12px;text-align:center;}
+.stat-val{font-size:1.4rem;font-weight:800;color:#fff;}
+.stat-lbl{font-size:.7rem;color:rgba(255,255,255,.5);margin-top:2px;}
+
+/* REVIEW */
+.review-section{background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);box-shadow:var(--shadow);padding:20px;margin-bottom:18px;}
+.review-title{font-size:.9rem;font-weight:800;color:var(--dark);margin-bottom:14px;}
+.review-item{padding:12px;border-radius:10px;margin-bottom:8px;font-size:.84rem;line-height:1.6;}
+.ri-correct{background:#f0fdf4;border:1px solid #bbf7d0;}
+.ri-wrong{background:#fff1f2;border:1px solid #fecdd3;}
+.ri-q{font-weight:700;color:var(--dark);margin-bottom:4px;}
+.ri-jawaban{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;font-size:.8rem;}
+.ri-correct-ans{color:#065f46;}
+.ri-wrong-ans{color:#9f1239;text-decoration:line-through;}
+
+.btn-ulang{
+  display:inline-flex;align-items:center;gap:8px;padding:12px 28px;
+  border-radius:30px;border:none;background:linear-gradient(135deg,var(--purple),var(--indigo));
+  color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;font-weight:700;
+  cursor:pointer;transition:all .2s;margin:4px;text-decoration:none;
+}
+.btn-ulang:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(139,92,246,.4);}
+.btn-lanjut{display:inline-flex;align-items:center;gap:8px;padding:12px 28px;border-radius:30px;border:none;background:linear-gradient(135deg,var(--teal),var(--emerald));color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:all .2s;margin:4px;text-decoration:none;}
+.btn-lanjut:hover{transform:translateY(-2px);}
+
+@media(max-width:640px){
+  .info-grid{grid-template-columns:1fr 1fr;}
+  .stat-grid{grid-template-columns:1fr 1fr;}
+  .main{padding:18px 1.2rem 48px;}
+}
+</style>
+</head>
+<body>
+<div class="bio-content" id="bio-page-content">
+
+  <div class="page-header">
+    <div class="header-inner">
+      <div class="breadcrumb"><a href="dashboard-siswa.html">Dashboard</a> › <span>Kuis Game</span></div>
+      <h1>🎮 Kuis Game — <span>Drill Soal</span></h1>
+      <p>Uji pemahamanmu tentang sistem regulasi manusia dengan soal-soal interaktif!</p>
+      <div class="htags">
+        <span class="htag">20 Soal Acak</span>
+        <span class="htag">Pilihan Ganda & Benar/Salah</span>
+        <span class="htag">Sistem Saraf · Hormon · Indera</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- START SCREEN -->
+    <div id="startScreen" style="background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-light);box-shadow:var(--shadow);">
+      <div class="start-screen">
+        <div class="sico">🎮</div>
+        <h2>Siap untuk Kuis?</h2>
+        <p>Kerjakan 20 soal acak tentang sistem regulasi manusia. Setiap soal akan langsung dikoreksi dan kamu bisa lihat penjelasannya!</p>
+        <div class="info-grid">
+          <div class="info-card"><div class="ival">20</div><div class="ilbl">Soal Acak</div></div>
+          <div class="info-card"><div class="ival">🔀</div><div class="ilbl">Urutan Diacak</div></div>
+          <div class="info-card"><div class="ival">💡</div><div class="ilbl">Ada Penjelasan</div></div>
+        </div>
+        <button class="btn-start" onclick="mulaiKuis()">🚀 Mulai Kuis!</button>
+      </div>
+    </div>
+
+    <!-- QUIZ SCREEN -->
+    <div id="quizScreen" style="display:none;">
+      <div class="quiz-progress">
+        <div class="qp-top">
+          <span class="qp-label">Soal <span id="noSoal">1</span> dari 20</span>
+          <span class="qp-score">✅ <span id="skorBenar">0</span> benar</span>
+        </div>
+        <div class="qp-track"><div class="qp-fill" id="qpFill" style="width:0%"></div></div>
+      </div>
+
+      <div class="soal-card" id="soalCard">
+        <div class="soal-head">
+          <div class="soal-num" id="soalNum">1</div>
+          <div class="soal-meta">
+            <h3 id="soalTipe">Pilihan Ganda</h3>
+            <p><span class="tipe-badge" id="badgeTipe">PG</span><span class="tipe-badge tb-topik" id="badgeTopik">Sistem Saraf</span></p>
+          </div>
+        </div>
+        <div class="soal-body">
+          <div class="soal-text" id="soalText"></div>
+          <div class="pilihan-list" id="pilihanList"></div>
+          <div class="feedback-box" id="feedbackBox"></div>
+        </div>
+      </div>
+
+      <div class="quiz-nav">
+        <button class="btn-next-soal" id="btnNext" onclick="nextSoal()">Soal Berikutnya →</button>
+      </div>
+    </div>
+
+    <!-- HASIL SCREEN -->
+    <div class="hasil-screen" id="hasilScreen">
+      <div class="hasil-card">
+        <div style="font-size:.8rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Hasil Kuis Sistem Regulasi</div>
+        <div class="hasil-skor" id="hasilSkor">0<small>/20</small></div>
+        <div class="hasil-pct" id="hasilPct">0%</div>
+        <div class="hasil-kat" id="hasilKat">—</div>
+        <div class="hasil-desc" id="hasilDesc">—</div>
+        <div class="stat-grid">
+          <div class="stat-item"><div class="stat-val" id="statBenar">0</div><div class="stat-lbl">Benar</div></div>
+          <div class="stat-item"><div class="stat-val" id="statSalah">0</div><div class="stat-lbl">Salah</div></div>
+          <div class="stat-item"><div class="stat-val" id="statPct">0%</div><div class="stat-lbl">Skor</div></div>
+        </div>
+      </div>
+
+      <div class="review-section">
+        <div class="review-title">📋 Review Jawaban</div>
+        <div id="reviewList"></div>
+      </div>
+
+      <div style="text-align:center;">
+        <button class="btn-ulang" onclick="ulangKuis()">🔄 Ulangi Kuis</button>
+        <a class="btn-lanjut" href="dashboard-siswa.html">🏠 Dashboard</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+bioRenderNav({ requireLogin: true });
+
+// ══════════════════════════════════════════════
+//  BANK SOAL — 40 soal (diambil 20 secara acak)
+// ══════════════════════════════════════════════
+const BANK_SOAL = [
+  // ── SISTEM SARAF (PG) ──
+  { topik:'Sistem Saraf', tipe:'pg', soal:'Bagian neuron yang berfungsi menerima impuls dari neuron lain dan membawanya ke badan sel adalah...', opsi:['Akson','Dendrit','Sinapsis','Selubung mielin'], jawaban:1, penjelasan:'Dendrit adalah percabangan pendek neuron yang menerima impuls dan membawanya ke badan sel.' },
+  { topik:'Sistem Saraf', tipe:'pg', soal:'Sistem saraf otonom terdiri atas dua divisi, yaitu...', opsi:['Somatik dan sensorik','Simpatis dan parasimpatis','Aferen dan eferen','Pusat dan tepi'], jawaban:1, penjelasan:'Sistem saraf otonom terdiri atas divisi simpatis (fight or flight) dan parasimpatis (rest and digest).' },
+  { topik:'Sistem Saraf', tipe:'pg', soal:'Respons "fight or flight" diaktifkan oleh...', opsi:['Sistem saraf parasimpatis','Sistem saraf somatik','Sistem saraf simpatis','Sistem saraf pusat'], jawaban:2, penjelasan:'Sistem saraf simpatis mengaktifkan respons "fight or flight" saat tubuh menghadapi stres atau bahaya.' },
+  { topik:'Sistem Saraf', tipe:'pg', soal:'Neurotransmiter adalah...', opsi:['Sel saraf penghantar impuls','Zat kimia pengantar sinyal di sinapsis','Lapisan pelindung akson','Reseptor di ujung dendrit'], jawaban:1, penjelasan:'Neurotransmiter adalah zat kimia yang dilepaskan di sinapsis untuk meneruskan impuls antar neuron.' },
+  { topik:'Sistem Saraf', tipe:'pg', soal:'Bagian otak yang berperan penting dalam pembentukan memori dan rentan rusak akibat kortisol kronis adalah...', opsi:['Hipotalamus','Serebellum','Hipokampus','Amigdala'], jawaban:2, penjelasan:'Hipokampus berperan dalam pembentukan memori dan pembelajaran, serta rentan rusak akibat paparan kortisol yang berkepanjangan.' },
+  { topik:'Sistem Saraf', tipe:'pg', soal:'Selubung mielin pada akson berfungsi untuk...', opsi:['Menerima impuls dari lingkungan','Mempercepat penghantaran impuls saraf','Menyimpan neurotransmiter','Menghubungkan dua neuron'], jawaban:1, penjelasan:'Selubung mielin adalah lapisan lemak yang menyelubungi akson dan mempercepat penghantaran impuls saraf.' },
+  { topik:'Sistem Saraf', tipe:'pg', soal:'Hipotalamus berperan dalam respons stres akademik dengan cara...', opsi:['Menghasilkan kortisol secara langsung','Mengaktifkan sistem saraf simpatis dan jalur hormonal HPA','Menghambat kerja kelenjar adrenal','Meningkatkan produksi sel darah putih'], jawaban:1, penjelasan:'Hipotalamus mendeteksi stresor dan mengaktifkan sistem saraf simpatis serta jalur hormonal melalui sumbu HPA.' },
+
+  // ── SISTEM SARAF (BS) ──
+  { topik:'Sistem Saraf', tipe:'bs', soal:'Sistem saraf parasimpatis berperan mengaktifkan respons "fight or flight" saat tubuh menghadapi bahaya.', jawaban:false, penjelasan:'SALAH. Yang mengaktifkan "fight or flight" adalah sistem saraf SIMPATIS. Parasimpatis berperan saat istirahat (rest and digest).' },
+  { topik:'Sistem Saraf', tipe:'bs', soal:'Sinapsis adalah celah sempit antara dua neuron tempat terjadinya transfer sinyal kimia.', jawaban:true, penjelasan:'BENAR. Sinapsis adalah celah antara neuron prasinaps dan pascasinaps, tempat neurotransmiter dilepaskan.' },
+  { topik:'Sistem Saraf', tipe:'bs', soal:'Otak dan sumsum tulang belakang merupakan komponen Sistem Saraf Tepi (SST).', jawaban:false, penjelasan:'SALAH. Otak dan sumsum tulang belakang adalah komponen Sistem Saraf PUSAT (SSP), bukan SST.' },
+
+  // ── SISTEM HORMON (PG) ──
+  { topik:'Sistem Hormon', tipe:'pg', soal:'Kortisol dihasilkan oleh...', opsi:['Kelenjar tiroid','Medula adrenal','Korteks adrenal','Kelenjar pituitari'], jawaban:2, penjelasan:'Kortisol adalah hormon steroid yang dihasilkan oleh korteks adrenal melalui aktivasi sumbu HPA.' },
+  { topik:'Sistem Hormon', tipe:'pg', soal:'Urutan aktivasi sumbu HPA yang benar adalah...', opsi:['Hipofisis → Hipotalamus → Adrenal','Hipotalamus → CRH → Pituitari → ACTH → Adrenal → Kortisol','Adrenal → Kortisol → Hipotalamus → ACTH','Kortisol → CRH → Hipotalamus → Pituitari'], jawaban:1, penjelasan:'Sumbu HPA: Hipotalamus melepas CRH → merangsang pituitari melepas ACTH → merangsang korteks adrenal menghasilkan kortisol.' },
+  { topik:'Sistem Hormon', tipe:'pg', soal:'Hormon yang dikenal sebagai "master gland" karena mengontrol banyak kelenjar endokrin lain adalah...', opsi:['Kelenjar tiroid','Kelenjar adrenal','Kelenjar pituitari (hipofisis)','Hipotalamus'], jawaban:2, penjelasan:'Kelenjar pituitari (hipofisis) disebut master gland karena mengontrol aktivitas kelenjar endokrin lainnya.' },
+  { topik:'Sistem Hormon', tipe:'pg', soal:'Melatonin berperan dalam mengatur...', opsi:['Kadar glukosa darah','Respons stres akut','Ritme sirkadian dan siklus tidur-bangun','Pertumbuhan tulang'], jawaban:2, penjelasan:'Melatonin diproduksi kelenjar pineal dan mengatur ritme sirkadian. Produksinya terganggu oleh cahaya biru dari layar.' },
+  { topik:'Sistem Hormon', tipe:'pg', soal:'Adrenalin (epinefrin) yang dilepaskan saat stres akut berfungsi untuk...', opsi:['Menurunkan detak jantung','Meningkatkan pencernaan','Mempercepat detak jantung dan memobilisasi energi','Menurunkan tekanan darah'], jawaban:2, penjelasan:'Adrenalin mempercepat detak jantung, meningkatkan tekanan darah, dan memobilisasi energi sebagai respons terhadap stres akut.' },
+  { topik:'Sistem Hormon', tipe:'pg', soal:'Homeostasis tubuh terganggu akibat stres akademik kronis karena...', opsi:['Kadar kortisol terus-menerus tinggi merusak fungsi tubuh','Tubuh kekurangan oksigen','Sel darah merah berkurang','Suhu tubuh meningkat drastis'], jawaban:0, penjelasan:'Kadar kortisol yang terus tinggi akibat stres kronis dapat merusak hipokampus, mengganggu tidur, menurunkan imunitas, dan mengacaukan homeostasis.' },
+
+  // ── SISTEM HORMON (BS) ──
+  { topik:'Sistem Hormon', tipe:'bs', soal:'Adrenalin dihasilkan oleh korteks adrenal melalui jalur sumbu HPA.', jawaban:false, penjelasan:'SALAH. Adrenalin dihasilkan oleh MEDULA adrenal, dikendalikan langsung oleh sistem saraf simpatis — bukan melalui sumbu HPA.' },
+  { topik:'Sistem Hormon', tipe:'bs', soal:'Mekanisme umpan balik negatif berfungsi menjaga keseimbangan kadar hormon dalam tubuh.', jawaban:true, penjelasan:'BENAR. Umpan balik negatif adalah mekanisme di mana produk akhir menghambat aktivasi jalurnya sendiri untuk menjaga keseimbangan.' },
+  { topik:'Sistem Hormon', tipe:'bs', soal:'CRH adalah hormon yang dilepaskan kelenjar pituitari untuk merangsang produksi kortisol.', jawaban:false, penjelasan:'SALAH. CRH dilepaskan oleh HIPOTALAMUS, bukan pituitari. Pituitari melepaskan ACTH sebagai respons terhadap CRH.' },
+
+  // ── ALAT INDERA (PG) ──
+  { topik:'Alat Indera', tipe:'pg', soal:'Digital Eye Strain (DES) ditandai dengan gejala berikut, kecuali...', opsi:['Mata kering','Penglihatan kabur','Peningkatan ketajaman penglihatan','Sakit kepala'], jawaban:2, penjelasan:'DES ditandai dengan mata kering, penglihatan kabur, sakit kepala, dan kesulitan fokus — bukan peningkatan ketajaman penglihatan.' },
+  { topik:'Alat Indera', tipe:'pg', soal:'Sel reseptor pendengaran di dalam koklea yang mengubah getaran mekanik menjadi sinyal listrik adalah...', opsi:['Sel batang','Sel kerucut','Sel rambut','Sel fotoreseptor'], jawaban:2, penjelasan:'Sel rambut (hair cells) di dalam koklea mengubah getaran suara menjadi sinyal listrik yang diteruskan ke saraf auditori.' },
+  { topik:'Alat Indera', tipe:'pg', soal:'Mengapa kerusakan sel rambut koklea akibat earphone bersifat permanen?', opsi:['Karena sel rambut sangat besar','Karena sel rambut koklea tidak dapat beregenerasi','Karena koklea terbuat dari tulang keras','Karena suara menghancurkan seluruh telinga'], jawaban:1, penjelasan:'Sel rambut koklea tidak memiliki kemampuan regenerasi. Sekali rusak akibat paparan suara keras, tidak bisa pulih kembali.' },
+  { topik:'Alat Indera', tipe:'pg', soal:'Berapa persentase prevalensi digital eye strain pada pengguna perangkat digital menurut Sheppard & Wolffsohn (2018)?', opsi:['10% atau lebih','25% atau lebih','50% atau lebih','75% atau lebih'], jawaban:2, penjelasan:'Sheppard & Wolffsohn (2018) melaporkan prevalensi DES diperkirakan mencapai 50% atau lebih pada pengguna perangkat digital.' },
+  { topik:'Alat Indera', tipe:'pg', soal:'Struktur yang memfokuskan cahaya masuk ke retina dengan mengubah kecembungannya (akomodasi) adalah...', opsi:['Kornea','Pupil','Iris','Lensa mata'], jawaban:3, penjelasan:'Lensa mata adalah struktur elastis yang mengubah kecembungannya untuk memfokuskan objek pada jarak berbeda (akomodasi).' },
+  { topik:'Alat Indera', tipe:'pg', soal:'WHO (2015) memperingatkan berapa miliar remaja yang berisiko gangguan pendengaran akibat earphone?', opsi:['0,5 miliar','1,1 miliar','2,3 miliar','0,8 miliar'], jawaban:1, penjelasan:'WHO (2015) memperingatkan sekitar 1,1 miliar remaja dan dewasa muda usia 12–35 tahun berisiko mengalami gangguan pendengaran.' },
+  { topik:'Alat Indera', tipe:'pg', soal:'Cahaya biru dari layar digital dapat mengganggu kualitas tidur remaja karena...', opsi:['Merusak kornea secara langsung','Mengganggu produksi melatonin dan ritme sirkadian','Meningkatkan produksi kortisol secara langsung','Melemahkan otot mata'], jawaban:1, penjelasan:'Cahaya biru menghambat produksi melatonin oleh kelenjar pineal, sehingga mengganggu ritme sirkadian dan menurunkan kualitas tidur.' },
+
+  // ── ALAT INDERA (BS) ──
+  { topik:'Alat Indera', tipe:'bs', soal:'Fovea adalah bagian retina dengan kepadatan sel batang tertinggi untuk penglihatan malam.', jawaban:false, penjelasan:'SALAH. Fovea memiliki kepadatan SEL KERUCUT tertinggi untuk penglihatan warna yang tajam, bukan sel batang.' },
+  { topik:'Alat Indera', tipe:'bs', soal:'Tinnitus adalah gejala awal kerusakan sel rambut koklea akibat paparan suara keras.', jawaban:true, penjelasan:'BENAR. Tinnitus (telinga berdenging) adalah gejala awal yang sering muncul akibat kerusakan sel rambut koklea karena paparan suara keras berulang.' },
+  { topik:'Alat Indera', tipe:'bs', soal:'Paparan cahaya biru dari layar digital hanya memengaruhi fungsi penglihatan saja dan tidak berdampak pada tidur.', jawaban:false, penjelasan:'SALAH. Cahaya biru JUGA mengganggu ritme sirkadian dengan menghambat produksi melatonin, sehingga kualitas tidur remaja turut terganggu.' },
+
+  // ── LINTAS TOPIK (PG) ──
+  { topik:'Sistem Regulasi', tipe:'pg', soal:'Ketiga komponen sistem regulasi manusia adalah...', opsi:['Sistem saraf, sistem pencernaan, dan sistem peredaran darah','Sistem saraf, sistem hormon, dan alat indera','Sistem saraf, sistem ekskresi, dan alat indera','Sistem hormon, sistem imun, dan alat indera'], jawaban:1, penjelasan:'Sistem regulasi manusia terdiri atas sistem saraf, sistem hormon (endokrin), dan alat indera yang bekerja secara terpadu.' },
+  { topik:'Sistem Regulasi', tipe:'pg', soal:'Stres akademik dapat memperburuk gangguan alat indera karena...', opsi:['Stres menurunkan kadar kortisol','Stres memperpanjang durasi penggunaan perangkat digital untuk belajar','Stres meningkatkan kemampuan fokus','Stres memperkuat sel rambut koklea'], jawaban:1, penjelasan:'Stres akademik mendorong siswa menggunakan perangkat digital lebih lama (belajar malam, scrolling), sehingga memperberat gangguan alat indera.' },
+  { topik:'Sistem Regulasi', tipe:'pg', soal:'Dalam studi kasus sistem regulasi, "studi dokumentasi" berarti...', opsi:['Mendokumentasikan kegiatan praktikum','Menelusuri dan menganalisis sumber ilmiah yang kredibel','Membuat foto atau video percobaan','Menulis laporan akhir'], jawaban:1, penjelasan:'Studi dokumentasi adalah metode pengumpulan data dengan menelusuri, membaca, dan menganalisis sumber-sumber tertulis yang relevan dan kredibel.' },
+  { topik:'Sistem Regulasi', tipe:'bs', soal:'Sistem saraf dan sistem hormon bekerja secara terpadu dalam merespons stres akademik dengan interaksi timbal balik.', jawaban:true, penjelasan:'BENAR. Hipotalamus mengaktifkan saraf simpatis sekaligus jalur HPA hormonal — keduanya saling memperkuat dalam merespons stres.' },
+  { topik:'Sistem Regulasi', tipe:'bs', soal:'Homeostasis adalah kemampuan tubuh untuk selalu berubah mengikuti tekanan lingkungan tanpa batas.', jawaban:false, penjelasan:'SALAH. Homeostasis adalah kemampuan tubuh MEMPERTAHANKAN keseimbangan lingkungan internalnya agar tetap STABIL, bukan berubah tanpa batas.' },
+];
+
+let soalSesi = [];
+let idxSoal = 0;
+let skorBenar = 0;
+let sudahJawab = false;
+let riwayat = [];
+
+function mulaiKuis() {
+  // Acak dan ambil 20 soal
+  soalSesi = [...BANK_SOAL].sort(() => Math.random() - 0.5).slice(0, 20);
+  idxSoal = 0; skorBenar = 0; sudahJawab = false; riwayat = [];
+  document.getElementById('startScreen').style.display = 'none';
+  document.getElementById('hasilScreen').style.display = 'none';
+  document.getElementById('quizScreen').style.display = 'block';
+  tampilSoal();
+}
+
+function tampilSoal() {
+  const s = soalSesi[idxSoal];
+  sudahJawab = false;
+
+  // Progress
+  document.getElementById('noSoal').textContent = idxSoal + 1;
+  document.getElementById('skorBenar').textContent = skorBenar;
+  document.getElementById('qpFill').style.width = ((idxSoal) / 20 * 100) + '%';
+  document.getElementById('soalNum').textContent = idxSoal + 1;
+
+  // Tipe & topik
+  const isPG = s.tipe === 'pg';
+  document.getElementById('soalTipe').textContent = isPG ? 'Pilihan Ganda' : 'Benar / Salah';
+  document.getElementById('badgeTipe').textContent = isPG ? 'PG' : 'B/S';
+  document.getElementById('badgeTipe').className = 'tipe-badge ' + (isPG ? 'tb-pg' : 'tb-bs');
+  document.getElementById('badgeTopik').textContent = s.topik;
+  document.getElementById('soalText').textContent = s.soal;
+
+  // Feedback
+  const fb = document.getElementById('feedbackBox');
+  fb.style.display = 'none'; fb.className = 'feedback-box'; fb.innerHTML = '';
+
+  // Pilihan
+  const list = document.getElementById('pilihanList');
+  list.innerHTML = '';
+
+  if (isPG) {
+    s.opsi.forEach((op, i) => {
+      const keys = ['A','B','C','D'];
+      const btn = document.createElement('button');
+      btn.className = 'pilihan-btn';
+      btn.innerHTML = `<span class="pilihan-key">${keys[i]}</span><span>${op}</span>`;
+      btn.onclick = () => jawabPG(i, btn);
+      list.appendChild(btn);
+    });
+  } else {
+    ['Benar','Salah'].forEach((label, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'pilihan-btn';
+      btn.innerHTML = `<span class="pilihan-key">${label === 'Benar' ? '✓' : '✗'}</span><span>${label}</span>`;
+      btn.onclick = () => jawabBS(label === 'Benar', btn);
+      list.appendChild(btn);
+    });
+  }
+
+  // Tombol next
+  const btnNext = document.getElementById('btnNext');
+  btnNext.classList.remove('aktif');
+  btnNext.textContent = idxSoal < 19 ? 'Soal Berikutnya →' : 'Lihat Hasil 🎯';
+}
+
+function jawabPG(idx, btn) {
+  if (sudahJawab) return;
+  sudahJawab = true;
+  const s = soalSesi[idxSoal];
+  const btns = document.querySelectorAll('.pilihan-btn');
+  const benar = idx === s.jawaban;
+
+  btns.forEach((b, i) => {
+    b.disabled = true;
+    if (i === s.jawaban) b.classList.add('correct');
+    else if (i === idx && !benar) b.classList.add('wrong');
+  });
+
+  tampilFeedback(benar, s.penjelasan);
+  if (benar) skorBenar++;
+  riwayat.push({ soal: s.soal, benar, jawabSiswa: s.opsi[idx], jawabanBenar: s.opsi[s.jawaban] });
+  document.getElementById('btnNext').classList.add('aktif');
+  document.getElementById('skorBenar').textContent = skorBenar;
+}
+
+function jawabBS(jawaban, btn) {
+  if (sudahJawab) return;
+  sudahJawab = true;
+  const s = soalSesi[idxSoal];
+  const benar = jawaban === s.jawaban;
+  const btns = document.querySelectorAll('.pilihan-btn');
+
+  btns.forEach(b => {
+    b.disabled = true;
+    const isBenarBtn = b.textContent.trim().startsWith('Benar') || b.querySelector('span:last-child')?.textContent === 'Benar';
+    const isJawabanBenar = s.jawaban === true;
+    if (isBenarBtn && isJawabanBenar) b.classList.add('correct');
+    else if (!isBenarBtn && !isJawabanBenar) b.classList.add('correct');
+    else if (b === btn) b.classList.add('wrong');
+  });
+
+  tampilFeedback(benar, s.penjelasan);
+  if (benar) skorBenar++;
+  riwayat.push({ soal: s.soal, benar, jawabSiswa: jawaban ? 'Benar' : 'Salah', jawabanBenar: s.jawaban ? 'Benar' : 'Salah' });
+  document.getElementById('btnNext').classList.add('aktif');
+  document.getElementById('skorBenar').textContent = skorBenar;
+}
+
+function tampilFeedback(benar, penjelasan) {
+  const fb = document.getElementById('feedbackBox');
+  fb.style.display = 'block';
+  fb.className = 'feedback-box ' + (benar ? 'fb-correct' : 'fb-wrong');
+  fb.innerHTML = `<span class="fb-icon">${benar ? '✅' : '❌'}</span><strong>${benar ? 'Benar!' : 'Kurang tepat.'}</strong> ${penjelasan}`;
+}
+
+function nextSoal() {
+  if (!sudahJawab) return;
+  if (idxSoal < 19) {
+    idxSoal++;
+    tampilSoal();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    tampilHasil();
+  }
+}
+
+function tampilHasil() {
+  document.getElementById('quizScreen').style.display = 'none';
+  const hs = document.getElementById('hasilScreen');
+  hs.style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const pct = Math.round(skorBenar / 20 * 100);
+  document.getElementById('hasilSkor').innerHTML = skorBenar + '<small>/20</small>';
+  document.getElementById('hasilPct').textContent = pct + '%';
+  document.getElementById('statBenar').textContent = skorBenar;
+  document.getElementById('statSalah').textContent = 20 - skorBenar;
+  document.getElementById('statPct').textContent = pct + '%';
+
+  let kat, katClass, desc;
+  if (pct >= 85) { kat = '🏆 Sangat Baik!'; katClass = 'hk-a'; desc = 'Luar biasa! Pemahamanmu tentang sistem regulasi sangat baik. Pertahankan terus!'; }
+  else if (pct >= 70) { kat = '👍 Baik'; katClass = 'hk-b'; desc = 'Bagus! Kamu sudah memahami sebagian besar materi. Pelajari kembali bagian yang masih keliru ya!'; }
+  else if (pct >= 55) { kat = '📚 Cukup'; katClass = 'hk-c'; desc = 'Lumayan! Masih ada beberapa konsep yang perlu dipelajari ulang. Semangat!'; }
+  else { kat = '💪 Perlu Belajar Lagi'; katClass = 'hk-d'; desc = 'Jangan menyerah! Pelajari kembali materi sistem saraf, hormon, dan alat indera ya. Kamu pasti bisa!'; }
+
+  document.getElementById('hasilKat').textContent = kat;
+  document.getElementById('hasilKat').className = 'hasil-kat ' + katClass;
+  document.getElementById('hasilDesc').textContent = desc;
+
+  // Review
+  const reviewList = document.getElementById('reviewList');
+  reviewList.innerHTML = riwayat.map((r, i) => `
+    <div class="review-item ${r.benar ? 'ri-correct' : 'ri-wrong'}">
+      <div class="ri-q">${i+1}. ${r.soal}</div>
+      <div class="ri-jawaban">
+        <span>${r.benar ? '✅' : '❌'} Jawabanmu: <strong>${r.jawabSiswa}</strong></span>
+        ${!r.benar ? `<span class="ri-correct-ans">✅ Jawaban benar: <strong>${r.jawabanBenar}</strong></span>` : ''}
+      </div>
+    </div>`).join('');
+
+  // Kirim ke Sheets
+  kirimSheets(skorBenar, pct);
+}
+
+function ulangKuis() {
+  mulaiKuis();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function kirimSheets(skor, pct) {
+  const url = 'https://script.google.com/macros/s/AKfycbz3tVTaZfpRPIXOi08Yhp355WN0eyjDgN0_3VDP7lt3PavCpYGvAZZyV_b7yuNqBUy2/exec';
+  const user = JSON.parse(localStorage.getItem('bioregula_current') || '{}');
+  fetch(url, {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tipe: 'kuis', nama: user.nama, kelas: user.kelas, absen: user.absen, skor, pct, timestamp: new Date().toISOString() })
+  }).catch(() => {});
+}
+</script>
+</body>
+</html>
