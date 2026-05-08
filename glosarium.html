@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glosarium — BioRegula</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="nav.js"></script>
+<style>
+:root{
+  --teal:#0d9488;--teal-dark:#0f766e;--teal-light:#99f6e4;--teal-bg:#f0fdfa;
+  --indigo:#4f46e5;--indigo-light:#e0e7ff;--amber:#f59e0b;--amber-light:#fef3c7;
+  --coral:#f43f5e;--emerald:#10b981;--purple:#8b5cf6;--purple-light:#f3e8ff;
+  --white:#ffffff;--off:#f8fafc;--gray:#64748b;--gray-light:#e2e8f0;--dark:#0f172a;
+  --radius:14px;--shadow:0 4px 24px rgba(15,23,42,0.08);--nav-h:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--off);color:var(--dark);}
+.bio-content{padding-top:var(--nav-h);}
+
+.page-header{background:linear-gradient(150deg,#0f172a 0%,#134e4a 50%,#1e1b4b 100%);padding:36px 2rem 32px;position:relative;overflow:hidden;}
+.page-header::before{content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(13,148,136,.2),transparent 70%);}
+.header-inner{max-width:960px;margin:0 auto;position:relative;z-index:1;}
+.breadcrumb{display:flex;align-items:center;gap:8px;font-size:.75rem;color:rgba(255,255,255,.5);margin-bottom:12px;}
+.breadcrumb a{color:rgba(255,255,255,.5);text-decoration:none;}
+.breadcrumb a:hover{color:var(--teal-light);}
+.breadcrumb span{color:var(--teal-light);}
+.page-header h1{font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;color:#fff;margin-bottom:.4rem;}
+.page-header h1 span{color:var(--teal-light);}
+.page-header p{font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.65;max-width:560px;}
+.htags{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px;}
+.htag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:4px 12px;font-size:.73rem;color:rgba(255,255,255,.8);font-weight:500;}
+
+.main{max-width:960px;margin:0 auto;padding:28px 2rem 60px;}
+
+/* SEARCH */
+.search-wrap{position:relative;margin-bottom:20px;}
+.search-input{
+  width:100%;padding:13px 18px 13px 46px;border-radius:12px;
+  border:2px solid var(--gray-light);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.9rem;color:var(--dark);background:var(--white);outline:none;
+  transition:border-color .2s;box-shadow:var(--shadow);
+}
+.search-input:focus{border-color:var(--teal);}
+.search-icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);font-size:1.1rem;pointer-events:none;}
+.search-count{font-size:.78rem;color:var(--gray);margin-top:8px;margin-left:4px;}
+
+/* FILTER TABS */
+.filter-tabs{display:flex;gap:6px;margin-bottom:20px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;}
+.filter-tabs::-webkit-scrollbar{display:none;}
+.ftab{flex-shrink:0;padding:7px 16px;border-radius:20px;border:2px solid var(--gray-light);background:var(--white);font-family:'Plus Jakarta Sans',sans-serif;font-size:.8rem;font-weight:700;color:var(--gray);cursor:pointer;transition:all .2s;white-space:nowrap;}
+.ftab:hover{border-color:var(--teal-light);color:var(--teal);}
+.ftab.active{border-color:var(--teal);background:var(--teal);color:#fff;}
+
+/* ALFABET NAV */
+.alfa-nav{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px;}
+.alfa-btn{
+  width:32px;height:32px;border-radius:8px;border:1px solid var(--gray-light);
+  background:var(--white);font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:.8rem;font-weight:700;color:var(--gray);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.alfa-btn:hover{border-color:var(--teal);color:var(--teal);}
+.alfa-btn.has{background:var(--teal-bg);border-color:var(--teal-light);color:var(--teal-dark);}
+
+/* KATEGORI SECTION */
+.kategori-section{margin-bottom:28px;}
+.kategori-head{
+  display:flex;align-items:center;gap:10px;margin-bottom:14px;
+  padding-bottom:10px;border-bottom:2px solid var(--gray-light);
+}
+.kategori-badge{
+  padding:5px 14px;border-radius:20px;font-size:.78rem;font-weight:800;
+}
+.kb-saraf{background:var(--teal-bg);color:var(--teal-dark);}
+.kb-hormon{background:var(--amber-light);color:#92400e;}
+.kb-indera{background:var(--indigo-light);color:var(--indigo);}
+.kb-umum{background:var(--purple-light);color:var(--purple);}
+.kb-ld{background:#d1fae5;color:#065f46;}
+.kategori-head h3{font-size:.9rem;font-weight:800;color:var(--dark);}
+
+/* GLOSARIUM GRID */
+.glos-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.glos-card{
+  background:var(--white);border-radius:12px;border:1px solid var(--gray-light);
+  padding:14px 16px;transition:all .2s;box-shadow:0 2px 8px rgba(15,23,42,.05);
+}
+.glos-card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--teal-light);}
+.glos-card.hidden{display:none;}
+.gc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:6px;}
+.gc-term{font-size:.9rem;font-weight:800;color:var(--dark);}
+.gc-term em{font-style:italic;color:var(--teal-dark);}
+.gc-badge{font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:20px;flex-shrink:0;margin-top:2px;}
+.gc-def{font-size:.82rem;color:#334155;line-height:1.65;}
+.gc-def em{font-style:italic;color:var(--gray);}
+
+/* ALFABET HEADER */
+.alfa-header{
+  font-size:1.4rem;font-weight:800;color:var(--teal);
+  padding:8px 0;margin-bottom:10px;margin-top:4px;
+}
+
+/* EMPTY */
+.empty-state{text-align:center;padding:48px 20px;display:none;}
+.empty-state .eico{font-size:3rem;margin-bottom:12px;}
+.empty-state h3{font-size:.95rem;font-weight:700;color:var(--dark);margin-bottom:6px;}
+.empty-state p{font-size:.83rem;color:var(--gray);}
+
+@media(max-width:640px){
+  .glos-grid{grid-template-columns:1fr;}
+  .main{padding:18px 1.2rem 48px;}
+}
+</style>
+</head>
+<body>
+<div class="bio-content" id="bio-page-content">
+
+  <div class="page-header">
+    <div class="header-inner">
+      <div class="breadcrumb"><a href="dashboard-siswa.html">Dashboard</a> › <span>Glosarium</span></div>
+      <h1>📖 <span>Glosarium</span> Sistem Regulasi</h1>
+      <p>Kumpulan istilah penting dalam pembelajaran sistem saraf, sistem hormon, dan alat indera manusia.</p>
+      <div class="htags">
+        <span class="htag">Sistem Saraf</span>
+        <span class="htag">Sistem Hormon</span>
+        <span class="htag">Alat Indera</span>
+        <span class="htag">Literasi Digital</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- SEARCH -->
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input class="search-input" id="searchInput" type="text" placeholder="Cari istilah..." oninput="filterGlos()">
+    </div>
+    <div class="search-count" id="searchCount">Menampilkan semua 70 istilah</div>
+
+    <!-- FILTER -->
+    <div class="filter-tabs">
+      <button class="ftab active" onclick="filterKategori('semua',this)">🔎 Semua</button>
+      <button class="ftab" onclick="filterKategori('saraf',this)">🧠 Sistem Saraf</button>
+      <button class="ftab" onclick="filterKategori('hormon',this)">💉 Sistem Hormon</button>
+      <button class="ftab" onclick="filterKategori('indera',this)">👁️ Alat Indera</button>
+      <button class="ftab" onclick="filterKategori('umum',this)">⚗️ Umum</button>
+      <button class="ftab" onclick="filterKategori('ld',this)">💻 Literasi Digital</button>
+    </div>
+
+    <!-- ISTILAH -->
+    <div id="glosContainer"></div>
+
+    <!-- EMPTY STATE -->
+    <div class="empty-state" id="emptyState">
+      <div class="eico">🔍</div>
+      <h3>Istilah tidak ditemukan</h3>
+      <p>Coba kata kunci lain atau reset filter.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+bioRenderNav({ requireLogin: true });
+
+const GLOSARIUM = [
+  // ── SISTEM SARAF ──
+  { term:'Neuron', kategori:'saraf', def:'Sel saraf yang merupakan unit fungsional terkecil sistem saraf, terdiri atas badan sel, dendrit, dan akson.' },
+  { term:'Dendrit', kategori:'saraf', def:'Percabangan pendek pada neuron yang berfungsi menerima impuls dari neuron lain dan membawanya ke badan sel.' },
+  { term:'Akson', kategori:'saraf', def:'Serabut panjang neuron yang meneruskan impuls dari badan sel ke neuron lain, otot, atau kelenjar.' },
+  { term:'Sinapsis', kategori:'saraf', def:'Celah sempit antara dua neuron tempat terjadinya transfer sinyal kimia (neurotransmiter) dari neuron prasinaps ke pascasinaps.' },
+  { term:'Neurotransmiter', kategori:'saraf', def:'Zat kimia yang dilepaskan di sinapsis untuk meneruskan impuls dari satu neuron ke neuron berikutnya. Contoh: asetilkolin, dopamin, serotonin.' },
+  { term:'Impuls saraf', kategori:'saraf', def:'Sinyal elektrokimia yang merambat sepanjang akson neuron akibat perubahan muatan listrik membran sel.' },
+  { term:'Potensial aksi', kategori:'saraf', def:'Perubahan mendadak pada potensial membran neuron yang menjadi dasar penghantaran impuls saraf.' },
+  { term:'SSP (Sistem Saraf Pusat)', kategori:'saraf', def:'Bagian sistem saraf yang terdiri atas otak dan sumsum tulang belakang; berfungsi mengintegrasikan dan merespons semua informasi saraf.' },
+  { term:'SST (Sistem Saraf Tepi)', kategori:'saraf', def:'Bagian sistem saraf di luar SSP yang menghubungkan tubuh dengan SSP, terdiri atas saraf somatik dan otonom.' },
+  { term:'Sistem saraf otonom', kategori:'saraf', def:'Bagian SST yang mengatur fungsi tubuh involunter, terdiri atas divisi simpatis dan parasimpatis.' },
+  { term:'Sistem saraf simpatis', kategori:'saraf', def:'Divisi saraf otonom yang mengaktifkan respons "fight or flight" saat tubuh menghadapi stres atau bahaya.' },
+  { term:'Sistem saraf parasimpatis', kategori:'saraf', def:'Divisi saraf otonom yang mengatur fungsi tubuh saat istirahat (rest and digest), memperlambat detak jantung dan meningkatkan pencernaan.' },
+  { term:'Hipotalamus', kategori:'saraf', def:'Bagian otak yang berperan sebagai pusat integrasi sistem saraf otonom dan sistem endokrin; mendeteksi stresor dan mengaktifkan respons stres.' },
+  { term:'Hipokampus', kategori:'saraf', def:'Bagian otak yang berperan penting dalam pembentukan memori dan pembelajaran; rentan rusak akibat paparan kortisol kronis.' },
+  { term:'Selubung mielin', kategori:'saraf', def:'Lapisan lemak yang menyelubungi akson neuron, mempercepat penghantaran impuls saraf.' },
+  { term:'Refleks', kategori:'saraf', def:'Respons otomatis dan cepat tubuh terhadap stimulus tertentu yang tidak memerlukan pengolahan di otak.' },
+  { term:'Fight or flight', kategori:'saraf', def:'Respons fisiologis tubuh terhadap ancaman atau stres: detak jantung meningkat, napas cepat, otot menegang, pupil melebar.' },
+
+  // ── SISTEM HORMON ──
+  { term:'Hormon', kategori:'hormon', def:'Zat kimia yang diproduksi kelenjar endokrin dan dilepaskan ke aliran darah untuk mengatur berbagai fungsi tubuh.' },
+  { term:'Kelenjar endokrin', kategori:'hormon', def:'Kelenjar yang menghasilkan hormon dan melepaskannya langsung ke aliran darah tanpa saluran khusus.' },
+  { term:'Kortisol', kategori:'hormon', def:'Hormon steroid yang dihasilkan korteks adrenal melalui aktivasi sumbu HPA; dikenal sebagai hormon stres utama.' },
+  { term:'Adrenalin (Epinefrin)', kategori:'hormon', def:'Hormon yang dihasilkan medula adrenal; mempercepat detak jantung, meningkatkan tekanan darah, dan memobilisasi energi saat stres akut.' },
+  { term:'Noradrenalin (Norepinefrin)', kategori:'hormon', def:'Hormon dan neurotransmiter yang dilepaskan bersama adrenalin; memperkuat respons sistem saraf simpatis terhadap stres.' },
+  { term:'Sumbu HPA', kategori:'hormon', def:'Jalur hormonal Hypothalamic-Pituitary-Adrenal yang mengatur pelepasan kortisol saat stres: hipotalamus → CRH → pituitari → ACTH → adrenal → kortisol.' },
+  { term:'CRH', kategori:'hormon', def:'Corticotropin-Releasing Hormone; hormon yang dilepaskan hipotalamus untuk merangsang kelenjar pituitari anterior mensekresi ACTH.' },
+  { term:'ACTH', kategori:'hormon', def:'Adrenocorticotropic Hormone; hormon yang dilepaskan pituitari anterior untuk merangsang korteks adrenal menghasilkan kortisol.' },
+  { term:'Kelenjar adrenal', kategori:'hormon', def:'Kelenjar di atas ginjal yang terdiri atas korteks (penghasil kortisol) dan medula (penghasil adrenalin dan noradrenalin).' },
+  { term:'Kelenjar pituitari', kategori:'hormon', def:'Kelenjar hipofisis di dasar otak yang mengontrol banyak kelenjar endokrin lain; disebut "master gland".' },
+  { term:'Homeostasis', kategori:'hormon', def:'Kemampuan tubuh untuk mempertahankan keseimbangan lingkungan internalnya (suhu, pH, kadar hormon, dll.) agar tetap stabil.' },
+  { term:'Umpan balik negatif', kategori:'hormon', def:'Mekanisme regulasi di mana produk akhir suatu jalur menghambat aktivasi jalur tersebut; menjaga keseimbangan kadar hormon.' },
+  { term:'Disregulasi', kategori:'hormon', def:'Gangguan pada mekanisme regulasi normal tubuh, misalnya disregulasi sumbu HPA akibat stres kronis.' },
+  { term:'Insulin', kategori:'hormon', def:'Hormon yang diproduksi pankreas untuk mengatur kadar glukosa darah dengan mendorong sel menyerap glukosa.' },
+  { term:'Tiroksin', kategori:'hormon', def:'Hormon yang dihasilkan kelenjar tiroid, mengatur metabolisme tubuh, pertumbuhan, dan perkembangan.' },
+  { term:'Melatonin', kategori:'hormon', def:'Hormon yang diproduksi kelenjar pineal; mengatur ritme sirkadian dan siklus tidur-bangun. Produksinya terganggu oleh cahaya biru dari layar.' },
+
+  // ── ALAT INDERA ──
+  { term:'Fotoreseptor', kategori:'indera', def:'Sel reseptor di retina mata yang peka terhadap cahaya, terdiri atas sel batang (penglihatan gelap) dan sel kerucut (penglihatan warna).' },
+  { term:'Retina', kategori:'indera', def:'Lapisan paling dalam bola mata yang mengandung sel fotoreseptor; tempat bayangan benda difokuskan.' },
+  { term:'Fovea', kategori:'indera', def:'Cekungan kecil di tengah retina dengan kepadatan sel kerucut tertinggi; titik penglihatan paling tajam.' },
+  { term:'Kornea', kategori:'indera', def:'Lapisan bening di bagian depan bola mata yang membantu memfokuskan cahaya masuk ke lensa.' },
+  { term:'Lensa mata', kategori:'indera', def:'Struktur bening dan elastis di balik pupil yang memfokuskan cahaya ke retina dengan cara mengubah kecembungannya (akomodasi).' },
+  { term:'Akomodasi mata', kategori:'indera', def:'Kemampuan lensa mata mengubah kecembungannya untuk memfokuskan objek pada jarak berbeda.' },
+  { term:'Saraf optik', kategori:'indera', def:'Saraf yang meneruskan impuls visual dari retina ke otak (korteks visual di lobus oksipital).' },
+  { term:'Digital Eye Strain (DES)', kategori:'indera', def:'Kelelahan mata digital akibat menatap layar terlalu lama; ditandai mata kering, penglihatan kabur, sakit kepala, dan kesulitan fokus.' },
+  { term:'Cahaya biru (Blue light)', kategori:'indera', def:'Gelombang cahaya berenergi tinggi (380–500 nm) yang dipancarkan layar digital; dapat mengganggu akomodasi mata dan ritme sirkadian.' },
+  { term:'Ritme sirkadian', kategori:'indera', def:'Jam biologis tubuh yang mengatur siklus tidur-bangun dalam 24 jam; dapat terganggu oleh paparan cahaya biru malam hari.' },
+  { term:'Koklea', kategori:'indera', def:'Struktur berbentuk siput di telinga dalam yang mengubah getaran suara menjadi impuls saraf melalui sel rambut.' },
+  { term:'Sel rambut (koklea)', kategori:'indera', def:'Sel reseptor pendengaran di dalam koklea yang mengubah getaran mekanik menjadi sinyal listrik. Kerusakannya bersifat permanen.' },
+  { term:'Tinnitus', kategori:'indera', def:'Kondisi telinga berdenging atau berdengung tanpa sumber suara eksternal; gejala awal kerusakan sel rambut koklea.' },
+  { term:'Saraf auditori', kategori:'indera', def:'Saraf yang meneruskan impuls suara dari koklea ke korteks auditori di otak.' },
+  { term:'Membran timpani (Gendang telinga)', kategori:'indera', def:'Selaput tipis di saluran telinga yang bergetar saat menerima gelombang suara dan meneruskannya ke tulang pendengaran.' },
+  { term:'Osikel', kategori:'indera', def:'Tiga tulang kecil di telinga tengah (martil/maleus, landasan/inkus, sanggurdi/stapes) yang meneruskan dan memperkuat getaran dari gendang telinga ke koklea.' },
+  { term:'Intensitas suara', kategori:'indera', def:'Kekuatan atau kekerasan suara yang diukur dalam desibel (dB). Paparan > 85 dB dalam jangka panjang dapat merusak pendengaran.' },
+  { term:'Fototransduksi', kategori:'indera', def:'Proses konversi energi cahaya menjadi sinyal listrik oleh sel fotoreseptor di retina.' },
+
+  // ── UMUM ──
+  { term:'Stimulus', kategori:'umum', def:'Rangsangan atau perubahan lingkungan (internal/eksternal) yang dapat dideteksi oleh reseptor dan memicu respons tubuh.' },
+  { term:'Respons', kategori:'umum', def:'Reaksi tubuh terhadap stimulus yang diterima, dapat berupa gerakan, sekresi hormon, atau perubahan fisiologis lainnya.' },
+  { term:'Reseptor', kategori:'umum', def:'Sel atau organ yang mendeteksi stimulus tertentu (cahaya, suara, sentuhan, dll.) dan mengubahnya menjadi sinyal saraf.' },
+  { term:'Efektor', kategori:'umum', def:'Organ yang melakukan respons atas perintah sistem saraf; biasanya berupa otot atau kelenjar.' },
+  { term:'Sistem regulasi', kategori:'umum', def:'Sistem yang mengatur dan mengoordinasikan fungsi tubuh agar tetap seimbang, meliputi sistem saraf, endokrin, dan alat indera.' },
+  { term:'Problem-Based Learning (PBL)', kategori:'umum', def:'Model pembelajaran yang menggunakan masalah nyata sebagai titik tolak untuk mengembangkan pengetahuan dan keterampilan berpikir kritis siswa.' },
+  { term:'Stres akademik', kategori:'umum', def:'Respons fisiologis dan psikologis terhadap tekanan akademik yang mengaktifkan sistem saraf simpatis dan sumbu HPA.' },
+  { term:'Stres kronis', kategori:'umum', def:'Kondisi stres yang berlangsung dalam waktu lama sehingga menyebabkan gangguan permanen pada homeostasis tubuh.' },
+  { term:'Korteks serebral', kategori:'umum', def:'Lapisan luar otak besar yang berperan dalam fungsi kognitif tinggi seperti persepsi, berpikir, bahasa, dan pengambilan keputusan.' },
+
+  // ── LITERASI DIGITAL ──
+  { term:'Literasi digital', kategori:'ld', def:'Kemampuan menggunakan teknologi digital secara efektif, kritis, dan bertanggung jawab untuk mencari, mengevaluasi, dan mengomunikasikan informasi.' },
+  { term:'Literasi digital kognitif', kategori:'ld', def:'Kemampuan mengevaluasi kredibilitas sumber, memilih strategi pencarian, mencegah plagiarisme, dan memecahkan masalah berbasis informasi digital (Ng, 2012).' },
+  { term:'Literasi digital teknis', kategori:'ld', def:'Kemampuan mengoperasikan perangkat TIK, menavigasi internet, menjaga keamanan digital, dan mengintegrasikan alat digital dalam pembelajaran (Ng, 2012).' },
+  { term:'Literasi digital sosial-emosional', kategori:'ld', def:'Kemampuan berkomunikasi etis di forum digital, menjaga keamanan data pribadi, dan menggunakan platform secara bertanggung jawab (Ng, 2012).' },
+  { term:'Kredibilitas sumber', kategori:'ld', def:'Tingkat kepercayaan suatu sumber informasi berdasarkan penulis, penerbit, referensi, dan proses review ilmiah.' },
+  { term:'Plagiarisme', kategori:'ld', def:'Tindakan mengambil karya, ide, atau tulisan orang lain tanpa mencantumkan sumber, dianggap sebagai pelanggaran akademik.' },
+  { term:'Keterampilan berpikir kritis (KBK)', kategori:'ld', def:'Kemampuan menganalisis, mengevaluasi, mensintesis, dan menggunakan data untuk memecahkan masalah secara ilmiah (Greenstein, 2012).' },
+  { term:'Keamanan digital', kategori:'ld', def:'Upaya menjaga data pribadi dan keamanan akun saat menggunakan platform digital, meliputi penggunaan kata sandi kuat dan kewaspadaan terhadap phishing.' },
+  { term:'Multimedia website pembelajaran', kategori:'ld', def:'Platform pembelajaran berbasis web yang mengintegrasikan teks, gambar, video, dan aktivitas interaktif untuk mendukung proses belajar.' },
+  { term:'Studi dokumentasi', kategori:'ld', def:'Metode pengumpulan data dengan cara menelusuri, membaca, dan menganalisis sumber-sumber tertulis yang relevan dan kredibel.' },
+];
+
+let aktifKategori = 'semua';
+let searchVal = '';
+
+function renderGlos() {
+  const container = document.getElementById('glosContainer');
+  const query = searchVal.toLowerCase();
+
+  const filtered = GLOSARIUM.filter(g => {
+    const matchKat = aktifKategori === 'semua' || g.kategori === aktifKategori;
+    const matchSearch = !query || g.term.toLowerCase().includes(query) || g.def.toLowerCase().includes(query);
+    return matchKat && matchSearch;
+  });
+
+  document.getElementById('searchCount').textContent =
+    filtered.length === GLOSARIUM.length ? `Menampilkan semua ${GLOSARIUM.length} istilah` :
+    `Menampilkan ${filtered.length} dari ${GLOSARIUM.length} istilah`;
+
+  document.getElementById('emptyState').style.display = filtered.length === 0 ? 'block' : 'none';
+
+  if (filtered.length === 0) { container.innerHTML = ''; return; }
+
+  // Group by kategori
+  const katOrder = ['saraf','hormon','indera','umum','ld'];
+  const katLabel = {
+    saraf: { label:'🧠 Sistem Saraf', badge:'kb-saraf' },
+    hormon: { label:'💉 Sistem Hormon', badge:'kb-hormon' },
+    indera: { label:'👁️ Alat Indera', badge:'kb-indera' },
+    umum: { label:'⚗️ Umum / Biologi', badge:'kb-umum' },
+    ld: { label:'💻 Literasi Digital', badge:'kb-ld' }
+  };
+  const katBadgeColor = {
+    saraf:'background:var(--teal-bg);color:var(--teal-dark)',
+    hormon:'background:var(--amber-light);color:#92400e',
+    indera:'background:var(--indigo-light);color:var(--indigo)',
+    umum:'background:var(--purple-light);color:var(--purple)',
+    ld:'background:#d1fae5;color:#065f46'
+  };
+
+  let html = '';
+  const groups = aktifKategori === 'semua' ? katOrder : [aktifKategori];
+
+  groups.forEach(kat => {
+    const items = filtered.filter(g => g.kategori === kat);
+    if (!items.length) return;
+    const sorted = [...items].sort((a,b) => a.term.localeCompare(b.term,'id'));
+
+    html += `<div class="kategori-section">
+      <div class="kategori-head">
+        <span class="kategori-badge" style="${katBadgeColor[kat]}">${katLabel[kat].label}</span>
+        <span style="font-size:.78rem;color:var(--gray)">${sorted.length} istilah</span>
+      </div>
+      <div class="glos-grid">`;
+
+    sorted.forEach(g => {
+      const termHighlight = query ? g.term.replace(new RegExp(`(${escapeRegex(query)})`, 'gi'), '<mark style="background:#fef9c3;border-radius:3px;">$1</mark>') : g.term;
+      const defHighlight  = query ? g.def.replace(new RegExp(`(${escapeRegex(query)})`, 'gi'), '<mark style="background:#fef9c3;border-radius:3px;">$1</mark>') : g.def;
+      html += `<div class="glos-card">
+        <div class="gc-top">
+          <div class="gc-term">${termHighlight}</div>
+        </div>
+        <div class="gc-def">${defHighlight}</div>
+      </div>`;
+    });
+
+    html += `</div></div>`;
+  });
+
+  container.innerHTML = html;
+}
+
+function filterKategori(kat, el) {
+  aktifKategori = kat;
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderGlos();
+}
+
+function filterGlos() {
+  searchVal = document.getElementById('searchInput').value;
+  renderGlos();
+}
+
+function escapeRegex(str) {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+window.addEventListener('load', renderGlos);
+</script>
+</body>
+</html>

@@ -24,9 +24,10 @@ const NAV_PAGES = {
     { label: 'Siklus 1',             href: 'siklus1.html',         icon: '🔬', single: true },
     { label: 'Siklus 2',             href: 'siklus2.html',         icon: '👁️', single: true },
     { label: 'Glosarium',            href: 'glosarium.html',       icon: '📖', single: true },
-    { label: 'Pre-test & Post-test', href: 'pretest.html',         icon: '✏️', single: true },
-    { label: 'Kuis Game (Drill Soal)', href: 'kuis.html',          icon: '🎮', single: true },
-    { label: 'Self-Assessment',      href: 'self-assessment.html', icon: '🪞', single: true },
+    { label: 'Pre-test',               href: 'pretest.html',         icon: '✏️', single: true },
+    { label: 'Post-test',              href: 'posttest.html',        icon: '📝', single: true },
+    { label: 'Kuis Game (Drill Soal)', href: 'kuis.html',            icon: '🎮', single: true },
+    { label: 'Self-Assessment',        href: 'self-assessment.html', icon: '🪞', single: true },
   ],
   guru: [
     {
@@ -43,14 +44,15 @@ const NAV_PAGES = {
         { label: 'Materi Siklus 2',  href: 'materi-siklus2.html', icon: '👁️' },
       ]
     },
-    { label: 'Siklus 1',             href: 'siklus1.html',         icon: '🔬', single: true },
-    { label: 'Siklus 2',             href: 'siklus2.html',         icon: '👁️', single: true },
-    { label: 'Glosarium',            href: 'glosarium.html',       icon: '📖', single: true },
-    { label: 'Pre-test & Post-test', href: 'pretest.html',         icon: '✏️', single: true },
-    { label: 'Kuis Game (Drill Soal)', href: 'kuis.html',          icon: '🎮', single: true },
-    { label: 'Self-Assessment',      href: 'self-assessment.html', icon: '🪞', single: true },
-    { label: 'Dashboard',            href: 'dashboard-guru.html',  icon: '📊', single: true, guruOnly: true },
-    { label: 'Kelola Soal',          href: 'kelola-soal.html',     icon: '⚙️', single: true, guruOnly: true },
+    { label: 'Siklus 1',               href: 'siklus1.html',         icon: '🔬', single: true },
+    { label: 'Siklus 2',               href: 'siklus2.html',         icon: '👁️', single: true },
+    { label: 'Glosarium',              href: 'glosarium.html',       icon: '📖', single: true },
+    { label: 'Pre-test',               href: 'pretest.html',         icon: '✏️', single: true },
+    { label: 'Post-test',              href: 'posttest.html',        icon: '📝', single: true },
+    { label: 'Kuis Game (Drill Soal)', href: 'kuis.html',            icon: '🎮', single: true },
+    { label: 'Self-Assessment',        href: 'self-assessment.html', icon: '🪞', single: true },
+    { label: 'Dashboard',              href: 'dashboard-guru.html',  icon: '📊', single: true, guruOnly: true },
+    { label: 'Kelola Soal',            href: 'kelola-soal.html',     icon: '⚙️', single: true, guruOnly: true },
   ]
 };
 
