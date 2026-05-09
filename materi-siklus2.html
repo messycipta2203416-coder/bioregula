@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Materi Siklus 2 – BioRegula</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="nav.js" defer></script>
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #43a047;
+      --primary-pale: #e8f5e9;
+      --secondary: #1565c0;
+      --secondary-pale: #e3f2fd;
+      --teal: #00695c;
+      --teal-pale: #e0f2f1;
+      --purple: #6a1b9a;
+      --purple-pale: #f3e5f5;
+      --accent: #f57f17;
+      --accent-pale: #fff8e1;
+      --danger: #c62828;
+      --danger-pale: #ffebee;
+      --text: #212121;
+      --text-muted: #616161;
+      --bg: #f9fbe7;
+      --card: #ffffff;
+      --border: #e0e0e0;
+      --radius: 12px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ===== TAB NAVIGATION ===== */
+    .tab-wrapper {
+      background: var(--card);
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 60px;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .tab-nav {
+      display: flex;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 16px 24px;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .tab-btn:hover { color: var(--teal); background: var(--teal-pale); }
+    .tab-btn.active {
+      color: var(--teal);
+      border-bottom-color: var(--teal);
+      background: var(--teal-pale);
+    }
+    .tab-btn.tab-telinga:hover { color: var(--purple); background: var(--purple-pale); }
+    .tab-btn.tab-telinga.active { color: var(--purple); border-bottom-color: var(--purple); background: var(--purple-pale); }
+    .tab-btn i { font-size: 1.1rem; }
+
+    /* ===== TAB CONTENT ===== */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ===== PAGE LAYOUT ===== */
+    .page-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* ===== HERO BANNER ===== */
+    .materi-hero {
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+    .materi-hero.mata { background: linear-gradient(135deg, #004d40 0%, #00796b 60%, #26a69a 100%); }
+    .materi-hero.telinga { background: linear-gradient(135deg, #4a148c 0%, #7b1fa2 60%, #ab47bc 100%); }
+    .materi-hero::before {
+      content: '';
+      position: absolute;
+      right: -40px; top: -40px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .materi-hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .materi-hero p { font-size: 1.05rem; opacity: 0.9; max-width: 620px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    /* ===== SECTION CARDS ===== */
+    .section-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+    }
+    .section-header:hover { background: #fafafa; }
+    .section-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .icon-teal { background: var(--teal-pale); color: var(--teal); }
+    .icon-purple { background: var(--purple-pale); color: var(--purple); }
+    .icon-orange { background: var(--accent-pale); color: var(--accent); }
+    .icon-red { background: var(--danger-pale); color: var(--danger); }
+
+    .section-title { font-size: 1.1rem; font-weight: 700; flex: 1; }
+    .toggle-icon { color: var(--text-muted); transition: transform 0.3s; }
+    .section-body { padding: 24px; display: block; }
+    .section-body.collapsed { display: none; }
+
+    /* ===== VIDEO EMBED ===== */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background: #000;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .video-caption {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: -12px;
+      margin-bottom: 24px;
+    }
+
+    /* ===== PROSE ===== */
+    .prose p { margin-bottom: 14px; }
+    .prose h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--teal);
+      margin: 22px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .prose h3.purple { color: var(--purple); }
+    .prose h3.orange { color: var(--accent); }
+    .prose h3.red { color: var(--danger); }
+    .prose h3::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 18px;
+      background: currentColor;
+      border-radius: 2px;
+    }
+
+    /* ===== TABLE ===== */
+    .bio-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      font-size: 0.92rem;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    .bio-table thead tr { background: var(--teal); color: white; }
+    .bio-table.purple thead tr { background: var(--purple); }
+    .bio-table.orange thead tr { background: var(--accent); }
+    .bio-table.red thead tr { background: var(--danger); }
+    .bio-table th, .bio-table td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .bio-table tbody tr:nth-child(even) { background: #f5f5f5; }
+    .bio-table tbody tr:hover { background: var(--teal-pale); }
+    .bio-table.purple tbody tr:hover { background: var(--purple-pale); }
+
+    /* ===== INFO BOXES ===== */
+    .info-box {
+      display: flex;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 10px;
+      margin: 16px 0;
+      font-size: 0.93rem;
+    }
+    .info-box i { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .info-box.teal { background: var(--teal-pale); border-left: 4px solid var(--teal); color: #004d40; }
+    .info-box.purple { background: var(--purple-pale); border-left: 4px solid var(--purple); color: #4a148c; }
+    .info-box.orange { background: var(--accent-pale); border-left: 4px solid var(--accent); color: #e65100; }
+    .info-box.red { background: var(--danger-pale); border-left: 4px solid var(--danger); color: var(--danger); }
+
+    /* ===== STEP LIST ===== */
+    .step-list { list-style: none; margin: 12px 0; }
+    .step-list li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+    .step-num {
+      background: var(--teal);
+      color: white;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-num.purple { background: var(--purple); }
+
+    /* ===== GRID ===== */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+    @media(max-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+    .mini-card {
+      background: #f9f9f9;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .mini-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; color: var(--teal); }
+    .mini-card.purple h4 { color: var(--purple); }
+    .mini-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* ===== BADGE ===== */
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .badge-teal { background: var(--teal-pale); color: var(--teal); }
+    .badge-purple { background: var(--purple-pale); color: var(--purple); }
+    .badge-orange { background: var(--accent-pale); color: var(--accent); }
+    .badge-red { background: var(--danger-pale); color: var(--danger); }
+
+    /* ===== ALUR BOX ===== */
+    .alur-box {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-size: 0.92rem;
+      font-weight: 500;
+      text-align: center;
+    }
+    .alur-box.teal {
+      background: linear-gradient(135deg, var(--teal-pale), #e0f7fa);
+      border: 1px solid #80cbc4;
+      color: #004d40;
+    }
+    .alur-box.purple {
+      background: linear-gradient(135deg, var(--purple-pale), #ede7f6);
+      border: 1px solid #ce93d8;
+      color: #4a148c;
+    }
+    .alur-arrow { font-weight: 700; margin: 0 4px; }
+
+    /* ===== ANATOMY VISUAL ===== */
+    .anatomy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .anatomy-item {
+      background: #f9f9f9;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+    }
+    .anatomy-item .part-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--teal);
+      margin-bottom: 4px;
+    }
+    .anatomy-item.purple .part-name { color: var(--purple); }
+    .anatomy-item p { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* ===== BACK BUTTON ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--teal);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      padding: 8px 16px;
+      background: var(--teal-pale);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .back-link:hover { background: #b2dfdb; }
+    .back-link.purple { color: var(--purple); background: var(--purple-pale); }
+    .back-link.purple:hover { background: #e1bee7; }
+  </style>
+</head>
+<body>
+
+<div id="navbar-placeholder"></div>
+
+<!-- ===== TAB NAVIGATION ===== -->
+<div class="tab-wrapper">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('mata')" id="btn-mata">
+      <i class="fas fa-eye"></i> Indera Penglihatan (Mata)
+    </button>
+    <button class="tab-btn tab-telinga" onclick="switchTab('telinga')" id="btn-telinga">
+      <i class="fas fa-assistive-listening-systems"></i> Indera Pendengaran (Telinga)
+    </button>
+  </div>
+</div>
+
+
+<!-- ==================== TAB 1: INDERA PENGLIHATAN (MATA) ==================== -->
+<div class="tab-content active" id="tab-mata">
+  <div class="page-container">
+
+    <a href="siklus2.html" class="back-link"><i class="fas fa-arrow-left"></i> Kembali ke Siklus 2</a>
+
+    <!-- Hero -->
+    <div class="materi-hero mata">
+      <span class="hero-badge"><i class="fas fa-graduation-cap"></i> Siklus 2 · Pertemuan 3</span>
+      <h1><i class="fas fa-eye"></i> Indera Penglihatan (Mata)</h1>
+      <p>Memahami struktur anatomi mata, mekanisme pembentukan bayangan, proses penglihatan, akomodasi, serta gangguan/kelainan pada mata.</p>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-teal"><i class="fas fa-play-circle"></i></div>
+        <span class="section-title">Video Pembelajaran – Indera Penglihatan (Mata)</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="video-wrapper">
+          <!-- Video: Sistem Koordinasi - Indera Mata | Biologi Kelas 11 -->
+          <iframe src="https://www.youtube.com/embed/e7gcSNlS_zg" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-caption"><i class="fas fa-info-circle"></i> Sistem Koordinasi (Indera Mata) – Biologi Kelas 11 | GIA Academy</p>
+      </div>
+    </div>
+
+    <!-- 1. PENDAHULUAN MATA -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-teal"><i class="fas fa-info-circle"></i></div>
+        <span class="section-title">1. Mengenal Indera Penglihatan</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>Mata adalah sistem optik yang berfungsi sebagai <strong>fotoreseptor</strong> — organ yang mampu mendeteksi dan merespons rangsangan berupa cahaya. Mata menangkap cahaya tampak dari lingkungan, memfokuskannya menjadi bayangan, lalu mengubah energi cahaya menjadi impuls saraf yang dikirim ke otak untuk diinterpretasikan sebagai penglihatan.</p>
+          <p>Reseptor utama mata adalah <strong>fovea centralis</strong> pada retina — titik dengan ketajaman penglihatan tertinggi. Informasi visual dari retina dikirim ke <strong>lobus oksipital</strong> otak besar melalui saraf optik (CN II) untuk diproses menjadi persepsi visual.</p>
+        </div>
+        <div class="info-box teal">
+          <i class="fas fa-camera"></i>
+          <div><strong>Analogi:</strong> Mata bekerja seperti kamera: kornea & lensa memfokuskan cahaya, pupil mengatur intensitasnya, dan retina bertindak seperti sensor/film yang menangkap bayangan untuk diteruskan ke "prosesor" (otak).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. STRUKTUR ANATOMI MATA -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-teal"><i class="fas fa-search"></i></div>
+        <span class="section-title">2. Struktur Anatomi Bola Mata</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>Bola mata terdiri dari <strong>tiga lapisan utama</strong> yang mengelilingi rongga berisi cairan:</p>
+          <h3>Lapisan 1 – Tunika Fibrosa (Lapisan Terluar)</h3>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card">
+            <h4>🔵 Sklera</h4>
+            <p>Lapisan putih keras di bagian belakang; melindungi bola mata & memberikan bentuk. Tempat perlekatan otot bola mata.</p>
+          </div>
+          <div class="mini-card">
+            <h4>🔵 Kornea</h4>
+            <p>Bagian depan sklera yang transparan & melengkung; menerima cahaya pertama kali & membiaskannya. Tidak memiliki pembuluh darah (nutrisi dari aqueous humor).</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h3>Lapisan 2 – Tunika Vaskulosa / Uvea (Lapisan Tengah)</h3>
+        </div>
+        <div class="anatomy-grid">
+          <div class="anatomy-item">
+            <div class="part-name">🟤 Koroid</div>
+            <p>Lapisan kaya pembuluh darah; mensuplai nutrisi & oksigen ke retina. Pigmen gelap mencegah pemantulan cahaya di dalam mata.</p>
+          </div>
+          <div class="anatomy-item">
+            <div class="part-name">🌈 Iris (Selaput Pelangi)</div>
+            <p>Bagian koroid berpigmen yang membentuk warna mata; mengandung otot sfingter (menutup pupil) & dilator (membuka pupil) untuk mengatur intensitas cahaya.</p>
+          </div>
+          <div class="anatomy-item">
+            <div class="part-name">⚫ Pupil</div>
+            <p>Celah/lubang di tengah iris sebagai jalan masuk cahaya. Mengecil (miosis) di tempat terang; membesar (midriasis) di tempat gelap.</p>
+          </div>
+          <div class="anatomy-item">
+            <div class="part-name">🔩 Badan Siliaris</div>
+            <p>Menghasilkan aqueous humor & mengandung otot siliaris yang mengontrol ketebalan lensa (akomodasi).</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h3>Lapisan 3 – Tunika Nervosa (Retina – Lapisan Terdalam)</h3>
+          <p>Retina adalah lapisan paling dalam yang mengandung sel-sel fotoreseptor:</p>
+        </div>
+        <table class="bio-table">
+          <thead><tr><th>Sel</th><th>Jumlah</th><th>Sensitivitas</th><th>Pigmen</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Sel Batang (Basil)</strong></td>
+              <td>~120 juta</td>
+              <td>Intensitas cahaya rendah (malam/remang)</td>
+              <td>Rodopsin (vit. A + opsin)</td>
+              <td>Penglihatan hitam-putih; tidak peka warna</td>
+            </tr>
+            <tr>
+              <td><strong>Sel Kerucut (Konus)</strong></td>
+              <td>~6 juta</td>
+              <td>Intensitas cahaya tinggi (siang)</td>
+              <td>Iodopsin (merah, hijau, biru)</td>
+              <td>Penglihatan warna & detail; terkonsentrasi di fovea</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="prose">
+          <p>Bagian penting retina:</p>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card">
+            <h4>🎯 Fovea Centralis</h4>
+            <p>Titik penglihatan paling tajam; hanya mengandung sel kerucut; memberikan penglihatan detail & warna terbaik.</p>
+          </div>
+          <div class="mini-card">
+            <h4>⚪ Titik Buta (Blind Spot)</h4>
+            <p>Titik di retina tempat saraf optik keluar; tidak ada sel fotoreseptor → tidak dapat menerima bayangan.</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h3>Cairan Mata & Struktur Tambahan</h3>
+        </div>
+        <table class="bio-table">
+          <thead><tr><th>Struktur</th><th>Lokasi</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Lensa</strong></td><td>Di belakang pupil</td><td>Membiaskan cahaya agar jatuh tepat di fovea; elastis untuk akomodasi (mencembung/memipih).</td></tr>
+            <tr><td><strong>Aqueous Humor</strong></td><td>Antara kornea & lensa</td><td>Memberi nutrisi kornea & lensa; membiaskan cahaya; mengatur tekanan intraokular.</td></tr>
+            <tr><td><strong>Vitreous Humor</strong></td><td>Antara lensa & retina</td><td>Mempertahankan bentuk bola mata; bening agar cahaya dapat melewatinya.</td></tr>
+            <tr><td><strong>Kanal Schlemm</strong></td><td>Di tepi kornea</td><td>Mengalirkan aqueous humor ke pembuluh darah; menjaga tekanan intraokular normal.</td></tr>
+            <tr><td><strong>Ligamentum Suspensor</strong></td><td>Menghubungkan badan siliaris & lensa</td><td>Memegang lensa & meneruskan tegangan/relaksasi otot siliaris untuk akomodasi.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h3>Aksesori Mata (Pelindung)</h3>
+        </div>
+        <div class="grid-3">
+          <div class="mini-card">
+            <h4>👁️ Kelopak Mata</h4>
+            <p>Melindungi mata dari debu & cahaya berlebih; membantu pemerataan air mata saat berkedip.</p>
+          </div>
+          <div class="mini-card">
+            <h4>💧 Kelenjar Lakrimal</h4>
+            <p>Menghasilkan air mata: menjaga kelembapan kornea, mengandung lisozim (antibakteri), membersihkan partikel asing.</p>
+          </div>
+          <div class="mini-card">
+            <h4>💪 Otot Ekstraokuler</h4>
+            <p>6 otot yang menggerakkan bola mata ke berbagai arah; dikendalikan oleh CN III, IV, VI.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. MEKANISME PENGLIHATAN -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-teal"><i class="fas fa-route"></i></div>
+        <span class="section-title">3. Mekanisme Penglihatan</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>Proses melihat melibatkan serangkaian langkah yang mengubah cahaya menjadi persepsi visual di otak:</p>
+        </div>
+        <ul class="step-list">
+          <li><span class="step-num">1</span><span><strong>Cahaya masuk</strong> melalui kornea → dibiaskan pertama kali.</span></li>
+          <li><span class="step-num">2</span><span><strong>Melewati aqueous humor</strong> → menuju pupil (intensitas diatur oleh iris).</span></li>
+          <li><span class="step-num">3</span><span><strong>Lensa memfokuskan</strong> cahaya → membentuk bayangan terbalik (inverted) di retina.</span></li>
+          <li><span class="step-num">4</span><span><strong>Sel fotoreseptor di retina</strong> (batang/kerucut) menyerap cahaya → mengubah energi cahaya menjadi sinyal listrik (transduksi).</span></li>
+          <li><span class="step-num">5</span><span><strong>Sinyal diteruskan</strong> melalui sel bipolar → sel ganglion → saraf optik (CN II).</span></li>
+          <li><span class="step-num">6</span><span><strong>Kiasma optik</strong>: serabut dari sisi nasal menyilang ke sisi otak yang berlawanan; serabut dari sisi temporal tetap di sisi yang sama.</span></li>
+          <li><span class="step-num">7</span><span><strong>Lobus oksipital</strong> menerima & menginterpretasikan sinyal visual sebagai gambar yang benar (otak membalik kembali bayangan).</span></li>
+        </ul>
+        <div class="alur-box teal">
+          Cahaya <span class="alur-arrow">→</span> Kornea <span class="alur-arrow">→</span> Pupil <span class="alur-arrow">→</span> Lensa <span class="alur-arrow">→</span> Vitreous Humor <span class="alur-arrow">→</span> Retina (Fotoreseptor) <span class="alur-arrow">→</span> Saraf Optik (CN II) <span class="alur-arrow">→</span> Kiasma Optik <span class="alur-arrow">→</span> Lobus Oksipital (Persepsi Visual)
+        </div>
+
+        <div class="prose">
+          <h3>Akomodasi Lensa</h3>
+          <p>Kemampuan lensa untuk mengubah kecembungannya agar bayangan jatuh tepat di fovea disebut <strong>daya akomodasi</strong>. Dikontrol oleh otot siliaris:</p>
+        </div>
+        <table class="bio-table">
+          <thead><tr><th>Kondisi</th><th>Otot Siliaris</th><th>Ligamentum Suspensor</th><th>Lensa</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Melihat benda DEKAT</strong></td><td>Berkontraksi</td><td>Mengendur/Relaks</td><td>Mencembung (konvergen kuat)</td></tr>
+            <tr><td><strong>Melihat benda JAUH</strong></td><td>Relaksasi</td><td>Menegang/Tertarik</td><td>Memipih (konvergen lemah)</td></tr>
+          </tbody>
+        </table>
+        <div class="info-box teal">
+          <i class="fas fa-birthday-cake"></i>
+          <div><strong>Presbiopi:</strong> Seiring bertambahnya usia, elastisitas lensa berkurang sehingga kemampuan akomodasi menurun. Orang berusia lanjut kesulitan melihat benda dekat (perlu kacamata baca).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. GANGGUAN MATA -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-red"><i class="fas fa-exclamation-circle"></i></div>
+        <span class="section-title">4. Gangguan / Kelainan pada Mata</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <h3 class="red">A. Gangguan Refraksi (Kelainan Daya Bias)</h3>
+        </div>
+        <table class="bio-table red">
+          <thead><tr><th>Kelainan</th><th>Penyebab</th><th>Bayangan Jatuh</th><th>Koreksi</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Miopi (Rabun Jauh)</strong></td>
+              <td>Bola mata terlalu panjang / lensa terlalu cembung</td>
+              <td>Di depan retina</td>
+              <td>Lensa cekung (divergen / minus)</td>
+            </tr>
+            <tr>
+              <td><strong>Hipermetropi (Rabun Dekat)</strong></td>
+              <td>Bola mata terlalu pendek / lensa terlalu pipih</td>
+              <td>Di belakang retina</td>
+              <td>Lensa cembung (konvergen / plus)</td>
+            </tr>
+            <tr>
+              <td><strong>Presbiopi (Rabun Tua)</strong></td>
+              <td>Lensa tidak elastis (usia lanjut)</td>
+              <td>Tidak tepat di retina (jauh maupun dekat)</td>
+              <td>Lensa bifokus (cembung + cekung)</td>
+            </tr>
+            <tr>
+              <td><strong>Astigmatisme</strong></td>
+              <td>Kornea / lensa tidak simetris permukaannya</td>
+              <td>Bayangan kabur/garis tidak fokus</td>
+              <td>Lensa silindris</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h3 class="red">B. Gangguan Lainnya</h3>
+        </div>
+        <table class="bio-table red">
+          <thead><tr><th>Gangguan</th><th>Penyebab</th><th>Gejala / Dampak</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Buta Warna</strong></td><td>Sel kerucut merah/hijau/biru tidak berfungsi normal (genetik, terkait kromosom X)</td><td>Tidak dapat membedakan warna tertentu (merah-hijau paling umum)</td></tr>
+            <tr><td><strong>Katarak</strong></td><td>Lensa mata keruh/buram (faktor usia, radiasi UV, DM)</td><td>Penglihatan kabur seperti melalui kaca buram; dapat menyebabkan kebutaan jika tidak dioperasi</td></tr>
+            <tr><td><strong>Glaukoma</strong></td><td>Tekanan intraokular meningkat (kanal Schlemm tersumbat → aqueous humor menumpuk)</td><td>Kerusakan saraf optik; kehilangan penglihatan tepi → terowongan penglihatan → kebutaan</td></tr>
+            <tr><td><strong>Rabun Senja (Hemeralopi)</strong></td><td>Kekurangan vitamin A → rodopsin tidak terbentuk cukup</td><td>Kesulitan melihat di tempat remang/gelap; sel batang tidak berfungsi optimal</td></tr>
+            <tr><td><strong>Kebutaan Kortikal</strong></td><td>Kerusakan lobus oksipital otak</td><td>Mata sehat tetapi tidak dapat mempersepsi penglihatan; bola mata & retina normal</td></tr>
+            <tr><td><strong>Strabismus (Juling)</strong></td><td>Ketidakseimbangan otot ekstraokuler; gangguan saraf CN III/IV/VI</td><td>Kedua mata tidak sejajar saat menatap suatu objek</td></tr>
+            <tr><td><strong>Konjungtivitis (Mata Merah)</strong></td><td>Infeksi bakteri/virus pada konjungtiva</td><td>Mata merah, berair, berlendir, gatal</td></tr>
+          </tbody>
+        </table>
+
+        <div class="info-box orange">
+          <i class="fas fa-carrot"></i>
+          <div><strong>Pencegahan Rabun Senja:</strong> Konsumsi vitamin A yang cukup (wortel, bayam, hati). Vitamin A adalah bahan baku retinol yang diperlukan untuk sintesis rodopsin di sel batang.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. RINGKASAN -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-teal"><i class="fas fa-list-check"></i></div>
+        <span class="section-title">5. Ringkasan Bagian-Bagian Mata & Fungsinya</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <table class="bio-table" style="overflow-x:auto; display:block;">
+          <thead><tr><th>Bagian Mata</th><th>Fungsi Utama</th><th>Analogi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Kornea</strong></td><td>Membiaskan cahaya pertama; melindungi bagian dalam mata</td><td>Lensa depan kamera</td></tr>
+            <tr><td><strong>Aqueous Humor</strong></td><td>Nutrisi kornea & lensa; membiaskan cahaya</td><td>Cairan pelumas kamera</td></tr>
+            <tr><td><strong>Iris</strong></td><td>Mengatur ukuran pupil sesuai intensitas cahaya</td><td>Diafragma kamera</td></tr>
+            <tr><td><strong>Pupil</strong></td><td>Jalan masuk cahaya; lebih besar di gelap, lebih kecil di terang</td><td>Aperture/lubang kamera</td></tr>
+            <tr><td><strong>Lensa</strong></td><td>Memfokuskan cahaya tepat di retina; berakomodasi</td><td>Lensa autofokus kamera</td></tr>
+            <tr><td><strong>Vitreous Humor</strong></td><td>Mempertahankan bentuk bola mata; transparan</td><td>Ruang dalam body kamera</td></tr>
+            <tr><td><strong>Retina</strong></td><td>Menangkap cahaya & mengubahnya menjadi impuls saraf</td><td>Sensor/film kamera</td></tr>
+            <tr><td><strong>Sel Batang</strong></td><td>Penglihatan malam/cahaya rendah; hitam-putih</td><td>Mode malam kamera</td></tr>
+            <tr><td><strong>Sel Kerucut</strong></td><td>Penglihatan siang/cahaya terang; warna & detail</td><td>Mode foto normal (full color)</td></tr>
+            <tr><td><strong>Fovea Centralis</strong></td><td>Titik penglihatan paling tajam</td><td>Titik fokus sensor kamera</td></tr>
+            <tr><td><strong>Saraf Optik (CN II)</strong></td><td>Mengirimkan impuls dari retina ke otak</td><td>Kabel data kamera → komputer</td></tr>
+            <tr><td><strong>Sklera</strong></td><td>Perlindungan bola mata; tempat otot melekat</td><td>Body/casing kamera</td></tr>
+            <tr><td><strong>Koroid</strong></td><td>Suplai darah ke retina; mencegah pemantulan internal</td><td>Lapisan anti-reflektif dalam kamera</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /page-container mata -->
+</div><!-- /tab-mata -->
+
+
+<!-- ==================== TAB 2: INDERA PENDENGARAN (TELINGA) ==================== -->
+<div class="tab-content" id="tab-telinga">
+  <div class="page-container">
+
+    <a href="siklus2.html" class="back-link purple"><i class="fas fa-arrow-left"></i> Kembali ke Siklus 2</a>
+
+    <!-- Hero -->
+    <div class="materi-hero telinga">
+      <span class="hero-badge"><i class="fas fa-graduation-cap"></i> Siklus 2 · Pertemuan 4</span>
+      <h1><i class="fas fa-assistive-listening-systems"></i> Indera Pendengaran (Telinga)</h1>
+      <p>Memahami struktur anatomi telinga, mekanisme pendengaran, fungsi keseimbangan, serta gangguan yang dapat terjadi pada telinga.</p>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-purple"><i class="fas fa-play-circle"></i></div>
+        <span class="section-title">Video Pembelajaran – Indera Pendengaran (Telinga)</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="video-wrapper">
+          <!-- Video: Sistem Koordinasi - Indera Telinga | Biologi Kelas 11 -->
+          <iframe src="https://www.youtube.com/embed/VLHPI8A_O7s" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-caption"><i class="fas fa-info-circle"></i> Sistem Saraf & Indera Telinga – Biologi Kelas 11 | Mencakup: anatomi telinga, mekanisme pendengaran & keseimbangan</p>
+      </div>
+    </div>
+
+    <!-- 1. PENDAHULUAN TELINGA -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-purple"><i class="fas fa-info-circle"></i></div>
+        <span class="section-title">1. Mengenal Indera Pendengaran</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>Telinga adalah organ indera yang memiliki dua fungsi utama:</p>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card purple">
+            <h4>🎵 Pendengaran (Audioreseptor)</h4>
+            <p>Mendeteksi gelombang suara (getaran udara) dan mengubahnya menjadi impuls saraf. Reseptor: <strong>sel rambut di Organ Korti</strong> dalam koklea.</p>
+          </div>
+          <div class="mini-card purple">
+            <h4>⚖️ Keseimbangan (Ekuilibrium)</h4>
+            <p>Mendeteksi posisi & pergerakan kepala untuk menjaga keseimbangan tubuh. Reseptor: <strong>sel rambut di vestibulum & kanalis semisirkularis</strong>.</p>
+          </div>
+        </div>
+        <div class="prose">
+          <p>Suara adalah gelombang tekanan mekanik yang merambat melalui udara. Karakteristik suara:</p>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card purple">
+            <h4>🔊 Amplitudo (Kekerasan)</h4>
+            <p>Besarnya getaran/tekanan gelombang suara; diukur dalam desibel (dB). Semakin besar amplitudo → semakin keras suara.</p>
+          </div>
+          <div class="mini-card purple">
+            <h4>🎶 Frekuensi (Nada/Pitch)</h4>
+            <p>Jumlah getaran per detik; diukur dalam Hertz (Hz). Semakin tinggi frekuensi → semakin tinggi nada suara. Manusia mendengar 20–20.000 Hz.</p>
+          </div>
+        </div>
+        <div class="info-box purple">
+          <i class="fas fa-volume-up"></i>
+          <div>Informasi pendengaran dari telinga dikirim ke <strong>lobus temporal</strong> otak besar (area auditori primer) melalui saraf vestibulokoklear (CN VIII). Informasi keseimbangan diteruskan ke serebelum dan batang otak.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. STRUKTUR ANATOMI TELINGA -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-purple"><i class="fas fa-search"></i></div>
+        <span class="section-title">2. Struktur Anatomi Telinga</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+
+        <div class="prose">
+          <h3 class="purple">A. Telinga Luar (Auris Externa)</h3>
+          <p>Berfungsi menangkap dan meneruskan gelombang suara ke telinga tengah.</p>
+        </div>
+        <div class="anatomy-grid">
+          <div class="anatomy-item purple">
+            <div class="part-name">👂 Daun Telinga (Aurikula/Pinna)</div>
+            <p>Tulang rawan elastis yang berfungsi mengumpulkan & mengarahkan gelombang suara masuk ke liang telinga. Bentuknya membantu menentukan arah datangnya suara.</p>
+          </div>
+          <div class="anatomy-item purple">
+            <div class="part-name">🌀 Liang Telinga (Meatus Akustikus Eksternus)</div>
+            <p>Saluran sepanjang ~2,5 cm menuju gendang telinga. Dilapisi rambut halus & kelenjar serumen (kotoran telinga) yang mencegah masuknya benda asing & serangga.</p>
+          </div>
+          <div class="anatomy-item purple">
+            <div class="part-name">🥁 Membran Timpani (Gendang Telinga)</div>
+            <p>Membran tipis elastis yang memisahkan telinga luar & tengah. Bergetar ketika terkena gelombang suara; getaran diteruskan ke tulang-tulang pendengaran.</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h3 class="purple">B. Telinga Tengah (Auris Media)</h3>
+          <p>Berisi udara; berfungsi memperkuat dan meneruskan getaran dari gendang telinga ke telinga dalam.</p>
+        </div>
+        <div class="anatomy-grid">
+          <div class="anatomy-item purple">
+            <div class="part-name">🔨 Maleus (Martil)</div>
+            <p>Tulang pendengaran pertama; melekat langsung pada membran timpani. Menerima dan meneruskan getaran ke inkus.</p>
+          </div>
+          <div class="anatomy-item purple">
+            <div class="part-name">⚓ Inkus (Landasan)</div>
+            <p>Tulang pendengaran kedua; menjadi penghubung antara maleus dan stapes.</p>
+          </div>
+          <div class="anatomy-item purple">
+            <div class="part-name">🪘 Stapes (Sanggurdi)</div>
+            <p>Tulang pendengaran terkecil di tubuh manusia; melekat pada foramen ovale (jendela oval) yang menghubungkan telinga tengah & dalam. Mengamplifikasi tekanan ~20× lipat.</p>
+          </div>
+          <div class="anatomy-item purple">
+            <div class="part-name">🌬️ Tuba Eustachius</div>
+            <p>Saluran yang menghubungkan telinga tengah dengan faring (tenggorokan); berfungsi menyeimbangkan tekanan udara antara telinga tengah & lingkungan luar (seperti saat naik pesawat).</p>
+          </div>
+        </div>
+        <div class="info-box purple">
+          <i class="fas fa-compress-arrows-alt"></i>
+          <div><strong>Fungsi 3 tulang pendengaran (ossikula):</strong> Meneruskan & memperkuat getaran dari membran timpani (luas permukaan besar) ke foramen ovale (luas permukaan kecil) → amplifikasi tekanan ~20× sehingga getaran cukup kuat untuk menggerakkan cairan di koklea.</div>
+        </div>
+
+        <div class="prose">
+          <h3 class="purple">C. Telinga Dalam (Auris Interna) – Labirin</h3>
+          <p>Terdiri dari <strong>labirin tulang</strong> yang berisi perilimfe, dan di dalamnya terdapat <strong>labirin membranosa</strong> yang berisi endolimfe.</p>
+        </div>
+
+        <div class="prose">
+          <h4 style="color:var(--purple); margin: 14px 0 8px;">🐚 Koklea (Rumah Siput) — untuk PENDENGARAN</h4>
+          <p>Struktur berbentuk spiral (2,5 putaran) yang mengandung organ pendengaran sebenarnya. Terbagi menjadi tiga saluran (skala):</p>
+        </div>
+        <table class="bio-table purple">
+          <thead><tr><th>Skala</th><th>Cairan</th><th>Letak</th><th>Keterangan</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Skala Vestibuli</strong></td><td>Perilimfe</td><td>Atas</td><td>Dimulai dari foramen ovale; meneruskan gelombang tekanan dari stapes.</td></tr>
+            <tr><td><strong>Skala Media (Duktus Koklearis)</strong></td><td>Endolimfe</td><td>Tengah</td><td>Mengandung Organ Korti (reseptor pendengaran sesungguhnya); dibatasi membran Reissner (atas) & membran basilaris (bawah).</td></tr>
+            <tr><td><strong>Skala Timpani</strong></td><td>Perilimfe</td><td>Bawah</td><td>Berakhir di foramen rotundum (jendela bundar); menyerap getaran yang telah diproses.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h4 style="color:var(--purple); margin: 14px 0 8px;">🎼 Organ Korti — Reseptor Pendengaran</h4>
+          <p>Terletak di atas membran basilaris dalam skala media. Terdiri dari:</p>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card purple">
+            <h4>💈 Sel Rambut (Hair Cells)</h4>
+            <p>Sel reseptor yang memiliki stereosilia (rambut-rambut kaku) di atasnya. Ketika membran basilaris bergetar, stereosilia menekuk → kanal ion terbuka → impuls saraf terbentuk.</p>
+          </div>
+          <div class="mini-card purple">
+            <h4>🧢 Membran Tektorial</h4>
+            <p>Membran gelatinosa di atas sel rambut; bersentuhan dengan ujung stereosilia. Pergeseran relatif antara membran basilaris & tektorial menyebabkan defleksi stereosilia.</p>
+          </div>
+        </div>
+        <div class="info-box purple">
+          <i class="fas fa-music"></i>
+          <div><strong>Tonotopi Koklea:</strong> Frekuensi suara dideteksi di lokasi yang berbeda pada membran basilaris. Suara berfrekuensi tinggi menggerakkan bagian basal (dekat stapes), sedangkan suara berfrekuensi rendah menggerakkan bagian apikal (ujung koklea).</div>
+        </div>
+
+        <div class="prose">
+          <h4 style="color:var(--purple); margin: 14px 0 8px;">🌀 Vestibulum & Kanalis Semisirkularis — untuk KESEIMBANGAN</h4>
+        </div>
+        <div class="anatomy-grid">
+          <div class="anatomy-item purple">
+            <div class="part-name">🏠 Vestibulum</div>
+            <p>Terdiri dari utrikulus & sakulus, berisi otolith (kristal kalsium karbonat) pada membran otolitik. Mendeteksi akselerasi linear & posisi kepala terhadap gravitasi (keseimbangan statis).</p>
+          </div>
+          <div class="anatomy-item purple">
+            <div class="part-name">⭕ Kanalis Semisirkularis (3 buah)</div>
+            <p>Tiga saluran melingkar yang saling tegak lurus (bidang horizontal, frontal, sagital). Berisi endolimfe & sel rambut di ampula. Mendeteksi akselerasi rotasi kepala (keseimbangan dinamis).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. MEKANISME PENDENGARAN -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-purple"><i class="fas fa-route"></i></div>
+        <span class="section-title">3. Mekanisme Pendengaran</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>Proses mendengar melibatkan konversi gelombang suara menjadi impuls saraf melalui serangkaian tahapan:</p>
+        </div>
+        <ul class="step-list">
+          <li><span class="step-num purple">1</span><span><strong>Gelombang suara</strong> dikumpulkan oleh daun telinga & masuk melalui liang telinga.</span></li>
+          <li><span class="step-num purple">2</span><span><strong>Membran timpani bergetar</strong> sesuai frekuensi & amplitudo suara yang datang.</span></li>
+          <li><span class="step-num purple">3</span><span><strong>Tulang-tulang pendengaran (maleus → inkus → stapes)</strong> memperkuat & meneruskan getaran.</span></li>
+          <li><span class="step-num purple">4</span><span><strong>Stapes menggerakkan foramen ovale</strong> → menghasilkan gelombang tekanan pada perilimfe di skala vestibuli.</span></li>
+          <li><span class="step-num purple">5</span><span><strong>Gelombang perilimfe</strong> menyebabkan membran basilaris bergetar secara tonotopik (lokasi tergantung frekuensi).</span></li>
+          <li><span class="step-num purple">6</span><span><strong>Stereosilia sel rambut Organ Korti</strong> menekuk karena gesekan dengan membran tektorial → kanal ion K⁺ terbuka → depolarisasi → impuls saraf.</span></li>
+          <li><span class="step-num purple">7</span><span><strong>Saraf Vestibulokoklear (CN VIII)</strong> — cabang koklear — menghantarkan impuls ke <strong>lobus temporal</strong> (area auditori primer) untuk diinterpretasikan sebagai suara.</span></li>
+          <li><span class="step-num purple">8</span><span><strong>Gelombang tekanan diserap</strong> oleh foramen rotundum (jendela bundar) di akhir skala timpani.</span></li>
+        </ul>
+        <div class="alur-box purple">
+          Suara <span class="alur-arrow">→</span> Daun Telinga <span class="alur-arrow">→</span> Liang Telinga <span class="alur-arrow">→</span> Membran Timpani <span class="alur-arrow">→</span> Maleus → Inkus → Stapes <span class="alur-arrow">→</span> Foramen Ovale <span class="alur-arrow">→</span> Perilimfe (Skala Vestibuli) <span class="alur-arrow">→</span> Membran Basilaris <span class="alur-arrow">→</span> Organ Korti (Sel Rambut) <span class="alur-arrow">→</span> CN VIII <span class="alur-arrow">→</span> Lobus Temporal (Persepsi Suara)
+        </div>
+
+        <div class="prose">
+          <h3 class="purple">Mekanisme Keseimbangan</h3>
+          <h4 style="color:var(--purple); margin: 14px 0 8px;">Keseimbangan Statis (Vestibulum)</h4>
+          <p>Saat kepala bergerak lurus atau miring terhadap gravitasi, otolith (kristal kalsium) bergeser karena gravitasi → menekan membran otolitik → menekuk stereosilia sel rambut → impuls ke otak tentang posisi kepala.</p>
+          <h4 style="color:var(--purple); margin: 14px 0 8px;">Keseimbangan Dinamis (Kanalis Semisirkularis)</h4>
+          <p>Saat kepala berputar/berotasi, endolimfe di kanalis semisirkularis bergerak relatif terhadap sel rambut di ampula → kupula (struktur gelatinosa) menekuk → stereosilia menekuk → impuls ke otak tentang rotasi & percepatan angular kepala.</p>
+        </div>
+        <div class="info-box purple">
+          <i class="fas fa-dizzy"></i>
+          <div><strong>Mengapa kita pusing setelah berputar?</strong> Saat berputar berhenti, endolimfe dalam kanalis semisirkularis masih bergerak beberapa saat karena inersia → otak masih menerima sinyal "berputar" meskipun tubuh sudah berhenti → sensasi pusing sementara.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. GANGGUAN TELINGA -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-red"><i class="fas fa-exclamation-circle"></i></div>
+        <span class="section-title">4. Gangguan / Kelainan pada Telinga</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <h3 class="red">A. Gangguan Pendengaran</h3>
+        </div>
+        <table class="bio-table red">
+          <thead><tr><th>Gangguan</th><th>Penyebab</th><th>Gejala / Dampak</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Tuli Konduktif</strong></td>
+              <td>Hambatan penghantaran suara di telinga luar/tengah (serumen padat, gendang telinga pecah, otosklerosis)</td>
+              <td>Suara terdengar lebih pelan; dapat dibantu alat bantu dengar atau operasi</td>
+            </tr>
+            <tr>
+              <td><strong>Tuli Sensorineural</strong></td>
+              <td>Kerusakan sel rambut Organ Korti / saraf CN VIII (paparan suara keras, penuaan, obat ototoksik)</td>
+              <td>Kehilangan pendengaran permanen; alat bantu dengar membantu tetapi tidak menyembuhkan</td>
+            </tr>
+            <tr>
+              <td><strong>Presbikusis</strong></td>
+              <td>Degenerasi sel rambut & saraf pendengaran akibat usia lanjut</td>
+              <td>Penurunan pendengaran terutama pada frekuensi tinggi; gejala bertahap</td>
+            </tr>
+            <tr>
+              <td><strong>Otitis Media</strong></td>
+              <td>Infeksi bakteri/virus pada telinga tengah (melalui tuba Eustachius)</td>
+              <td>Nyeri telinga hebat, demam, gangguan pendengaran; bisa menyebabkan penumpukan cairan</td>
+            </tr>
+            <tr>
+              <td><strong>Otitis Eksterna</strong></td>
+              <td>Infeksi telinga luar; sering pada perenang (swimmer's ear)</td>
+              <td>Nyeri, gatal, kemerahan di liang telinga; dapat mengganggu pendengaran jika bengkak</td>
+            </tr>
+            <tr>
+              <td><strong>Tinnitus</strong></td>
+              <td>Kerusakan sel rambut, paparan suara keras, atau penyakit Meniere</td>
+              <td>Suara denging/berdering di telinga meskipun tidak ada suara dari luar</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h3 class="red">B. Gangguan Keseimbangan</h3>
+        </div>
+        <table class="bio-table red">
+          <thead><tr><th>Gangguan</th><th>Penyebab</th><th>Gejala</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Vertigo (BPPV)</strong></td>
+              <td>Kristal otolith terlepas & masuk ke kanalis semisirkularis</td>
+              <td>Sensasi berputar hebat tiba-tiba; dipicu perubahan posisi kepala; membaik dengan manuver Epley</td>
+            </tr>
+            <tr>
+              <td><strong>Penyakit Meniere</strong></td>
+              <td>Penumpukan endolimfe berlebih di labirin (etiologi belum pasti)</td>
+              <td>Vertigo episodik, tinnitus, pendengaran menurun; dapat memburuk secara progresif</td>
+            </tr>
+            <tr>
+              <td><strong>Labirinitis</strong></td>
+              <td>Infeksi/radang labirin (bakteri/virus)</td>
+              <td>Vertigo, mual, kehilangan pendengaran mendadak</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="info-box orange">
+          <i class="fas fa-headphones"></i>
+          <div><strong>Menjaga Kesehatan Telinga:</strong> Hindari paparan suara >85 dB dalam jangka panjang. Gunakan earplug di lingkungan bising. Hindari memasukkan benda ke liang telinga. Segera berobat jika ada infeksi telinga.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. RINGKASAN -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-purple"><i class="fas fa-list-check"></i></div>
+        <span class="section-title">5. Ringkasan Bagian-Bagian Telinga & Fungsinya</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body" style="overflow-x:auto;">
+        <table class="bio-table purple">
+          <thead><tr><th>Bagian</th><th>Lokasi</th><th>Fungsi Utama</th></tr></thead>
+          <tbody>
+            <tr><td colspan="3" style="background:#f3e5f5; font-weight:700; color:var(--purple);">🔵 TELINGA LUAR</td></tr>
+            <tr><td>Daun Telinga (Pinna)</td><td>Luar</td><td>Mengumpulkan & mengarahkan suara ke liang telinga</td></tr>
+            <tr><td>Liang Telinga</td><td>Luar</td><td>Meneruskan suara ke membran timpani; serumen sebagai pelindung</td></tr>
+            <tr><td>Membran Timpani</td><td>Batas luar-tengah</td><td>Bergetar sesuai frekuensi suara; meneruskan ke ossikula</td></tr>
+            <tr><td colspan="3" style="background:#f3e5f5; font-weight:700; color:var(--purple);">🟣 TELINGA TENGAH</td></tr>
+            <tr><td>Maleus</td><td>Tengah</td><td>Menerima getaran dari timpani; meneruskan ke inkus</td></tr>
+            <tr><td>Inkus</td><td>Tengah</td><td>Menghubungkan maleus & stapes</td></tr>
+            <tr><td>Stapes</td><td>Tengah</td><td>Menggerakkan foramen ovale; mengamplifikasi tekanan</td></tr>
+            <tr><td>Tuba Eustachius</td><td>Tengah</td><td>Menyeimbangkan tekanan udara telinga tengah & luar</td></tr>
+            <tr><td colspan="3" style="background:#f3e5f5; font-weight:700; color:var(--purple);">🔷 TELINGA DALAM</td></tr>
+            <tr><td>Koklea (Rumah Siput)</td><td>Dalam</td><td>Mengandung Organ Korti; mengubah getaran → impuls saraf</td></tr>
+            <tr><td>Organ Korti</td><td>Dalam (skala media)</td><td>Reseptor pendengaran sesungguhnya; sel rambut menghasilkan impuls</td></tr>
+            <tr><td>Membran Basilaris</td><td>Dalam</td><td>Bergetar sesuai frekuensi; tonotopi frekuensi tinggi-rendah</td></tr>
+            <tr><td>Foramen Ovale</td><td>Batas tengah-dalam</td><td>Pintu masuk getaran dari stapes ke perilimfe koklea</td></tr>
+            <tr><td>Foramen Rotundum</td><td>Dalam</td><td>Menyerap gelombang tekanan di akhir skala timpani</td></tr>
+            <tr><td>Vestibulum (Utrikulus & Sakulus)</td><td>Dalam</td><td>Keseimbangan statis; mendeteksi posisi kepala & akselerasi linear</td></tr>
+            <tr><td>Kanalis Semisirkularis</td><td>Dalam</td><td>Keseimbangan dinamis; mendeteksi rotasi & akselerasi angular</td></tr>
+            <tr><td>CN VIII (Vestibulokoklear)</td><td>Saraf</td><td>Mengirimkan impuls pendengaran ke lobus temporal & impuls keseimbangan ke serebelum</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /page-container telinga -->
+</div><!-- /tab-telinga -->
+
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('btn-' + tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const icon = header.querySelector('.toggle-icon');
+    body.classList.toggle('collapsed');
+    icon.style.transform = body.classList.contains('collapsed') ? 'rotate(-90deg)' : 'rotate(0deg)';
+  }
+</script>
+
+</body>
+</html>

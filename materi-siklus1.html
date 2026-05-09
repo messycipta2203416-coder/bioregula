@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Materi Siklus 1 – BioRegula</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <script src="nav.js" defer></script>
+  <style>
+    :root {
+      --primary: #2e7d32;
+      --primary-light: #43a047;
+      --primary-pale: #e8f5e9;
+      --secondary: #1565c0;
+      --secondary-pale: #e3f2fd;
+      --accent: #f57f17;
+      --accent-pale: #fff8e1;
+      --danger: #c62828;
+      --danger-pale: #ffebee;
+      --text: #212121;
+      --text-muted: #616161;
+      --bg: #f9fbe7;
+      --card: #ffffff;
+      --border: #e0e0e0;
+      --radius: 12px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ===== TAB NAVIGATION ===== */
+    .tab-wrapper {
+      background: var(--card);
+      border-bottom: 2px solid var(--border);
+      position: sticky;
+      top: 60px;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .tab-nav {
+      display: flex;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 16px 24px;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .tab-btn:hover { color: var(--primary); background: var(--primary-pale); }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      background: var(--primary-pale);
+    }
+    .tab-btn i { font-size: 1.1rem; }
+
+    /* ===== TAB CONTENT ===== */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ===== PAGE LAYOUT ===== */
+    .page-container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    /* ===== HERO BANNER ===== */
+    .materi-hero {
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+      color: white;
+    }
+    .materi-hero.saraf { background: linear-gradient(135deg, #1b5e20 0%, #388e3c 60%, #66bb6a 100%); }
+    .materi-hero.hormon { background: linear-gradient(135deg, #0d47a1 0%, #1976d2 60%, #42a5f5 100%); }
+    .materi-hero::before {
+      content: '';
+      position: absolute;
+      right: -40px; top: -40px;
+      width: 200px; height: 200px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+    }
+    .materi-hero::after {
+      content: '';
+      position: absolute;
+      right: 40px; bottom: -60px;
+      width: 150px; height: 150px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .materi-hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .materi-hero p { font-size: 1.05rem; opacity: 0.9; max-width: 600px; }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    /* ===== SECTION CARDS ===== */
+    .section-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      overflow: hidden;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+    }
+    .section-header:hover { background: #fafafa; }
+    .section-icon {
+      width: 42px; height: 42px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .icon-green { background: var(--primary-pale); color: var(--primary); }
+    .icon-blue { background: var(--secondary-pale); color: var(--secondary); }
+    .icon-orange { background: var(--accent-pale); color: var(--accent); }
+    .icon-red { background: var(--danger-pale); color: var(--danger); }
+
+    .section-title { font-size: 1.1rem; font-weight: 700; flex: 1; }
+    .toggle-icon { color: var(--text-muted); transition: transform 0.3s; }
+    .section-body { padding: 24px; display: block; }
+    .section-body.collapsed { display: none; }
+
+    /* ===== VIDEO EMBED ===== */
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background: #000;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+    .video-caption {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: -12px;
+      margin-bottom: 24px;
+    }
+
+    /* ===== PROSE ===== */
+    .prose p { margin-bottom: 14px; }
+    .prose h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 22px 0 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .prose h3.blue { color: var(--secondary); }
+    .prose h3.orange { color: var(--accent); }
+    .prose h3.red { color: var(--danger); }
+    .prose h3::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 18px;
+      background: currentColor;
+      border-radius: 2px;
+    }
+
+    /* ===== TABLE ===== */
+    .bio-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 20px;
+      font-size: 0.92rem;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    .bio-table thead tr { background: var(--primary); color: white; }
+    .bio-table.blue thead tr { background: var(--secondary); }
+    .bio-table.orange thead tr { background: var(--accent); }
+    .bio-table.red thead tr { background: var(--danger); }
+    .bio-table th, .bio-table td {
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .bio-table tbody tr:nth-child(even) { background: #f5f5f5; }
+    .bio-table tbody tr:hover { background: var(--primary-pale); }
+    .bio-table.blue tbody tr:hover { background: var(--secondary-pale); }
+
+    /* ===== INFO BOXES ===== */
+    .info-box {
+      display: flex;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 10px;
+      margin: 16px 0;
+      font-size: 0.93rem;
+    }
+    .info-box i { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+    .info-box.green { background: var(--primary-pale); border-left: 4px solid var(--primary); color: #1b5e20; }
+    .info-box.blue { background: var(--secondary-pale); border-left: 4px solid var(--secondary); color: #0d47a1; }
+    .info-box.orange { background: var(--accent-pale); border-left: 4px solid var(--accent); color: #e65100; }
+    .info-box.red { background: var(--danger-pale); border-left: 4px solid var(--danger); color: var(--danger); }
+
+    /* ===== STEP LIST ===== */
+    .step-list { list-style: none; margin: 12px 0; }
+    .step-list li {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 10px;
+      align-items: flex-start;
+    }
+    .step-num {
+      background: var(--primary);
+      color: white;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-num.blue { background: var(--secondary); }
+
+    /* ===== GRID CARDS ===== */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 16px 0; }
+    @media(max-width: 640px) {
+      .grid-2 { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+    }
+    .mini-card {
+      background: #f9f9f9;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .mini-card h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--primary);
+    }
+    .mini-card.blue h4 { color: var(--secondary); }
+    .mini-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+    /* ===== BADGE ===== */
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .badge-green { background: var(--primary-pale); color: var(--primary); }
+    .badge-blue { background: var(--secondary-pale); color: var(--secondary); }
+    .badge-orange { background: var(--accent-pale); color: var(--accent); }
+    .badge-red { background: var(--danger-pale); color: var(--danger); }
+
+    /* ===== ALUR BOX ===== */
+    .alur-box {
+      background: linear-gradient(135deg, var(--primary-pale), #f1f8e9);
+      border: 1px solid #a5d6a7;
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 14px 0;
+      font-size: 0.92rem;
+      font-weight: 500;
+      text-align: center;
+      color: #1b5e20;
+    }
+    .alur-box.blue {
+      background: linear-gradient(135deg, var(--secondary-pale), #e8eaf6);
+      border-color: #90caf9;
+      color: #0d47a1;
+    }
+    .alur-arrow { color: var(--primary); font-weight: 700; margin: 0 4px; }
+    .alur-arrow.blue { color: var(--secondary); }
+
+    /* ===== FIGURE / GAMBAR ===== */
+    .fig-wrap {
+      margin: 18px 0 6px;
+      text-align: center;
+    }
+    .fig-wrap img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+      display: inline-block;
+    }
+    .fig-caption {
+      text-align: center;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    /* ===== BACK BUTTON ===== */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      padding: 8px 16px;
+      background: var(--primary-pale);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .back-link:hover { background: #c8e6c9; }
+  </style>
+</head>
+<body>
+
+<!-- Nav placeholder (nav.js akan mengisi ini) -->
+<div id="navbar-placeholder"></div>
+
+<!-- ===== TAB NAVIGATION ===== -->
+<div class="tab-wrapper">
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="switchTab('saraf')" id="btn-saraf">
+      <i class="fas fa-brain"></i> Sistem Saraf
+    </button>
+    <button class="tab-btn" onclick="switchTab('hormon')" id="btn-hormon">
+      <i class="fas fa-flask"></i> Sistem Hormon
+    </button>
+  </div>
+</div>
+
+<!-- ==================== TAB 1: SISTEM SARAF ==================== -->
+<div class="tab-content active" id="tab-saraf">
+  <div class="page-container">
+
+    <a href="siklus1.html" class="back-link"><i class="fas fa-arrow-left"></i> Kembali ke Siklus 1</a>
+
+    <!-- Hero -->
+    <div class="materi-hero saraf">
+      <span class="hero-badge"><i class="fas fa-graduation-cap"></i> Siklus 1 · Pertemuan 1</span>
+      <h1><i class="fas fa-brain"></i> Sistem Saraf</h1>
+      <p>Memahami struktur neuron, mekanisme impuls saraf, gerak refleks, sistem saraf pusat & tepi, serta gangguan yang dapat terjadi.</p>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-green"><i class="fas fa-play-circle"></i></div>
+        <span class="section-title">Video Pembelajaran – Sistem Saraf</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/OwRBNBmbHLI" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-caption"><i class="fas fa-info-circle"></i> Sistem Saraf – Biologi Kelas 11 SMA | Mencakup: neuron, neuroglia, mekanisme impuls, gerak refleks, SSP & SST</p>
+      </div>
+    </div>
+
+    <!-- 1. KOMPONEN SISTEM KOORDINASI -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-green"><i class="fas fa-network-wired"></i></div>
+        <span class="section-title">1. Komponen Sistem Koordinasi</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>Untuk bereaksi terhadap perubahan lingkungan (stimulus), tubuh manusia memerlukan tiga komponen utama yang bekerja sinergis: <strong>reseptor</strong> yang mendeteksi stimulus, <strong>sistem saraf</strong> yang mengolah dan meneruskan informasi, serta <strong>efektor</strong> yang memberikan respons.</p>
+        </div>
+        <table class="bio-table">
+          <thead><tr><th>Komponen</th><th>Fungsi Utama</th><th>Cara Kerja</th><th>Kecepatan Respons</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Sistem Saraf</strong></td><td>Mendeteksi stimulus, menghantarkan & mengolah impuls</td><td>Sinyal listrik (potensial aksi) & kimia (neurotransmitter)</td><td>Sangat cepat (milidetik)</td></tr>
+            <tr><td><strong>Sistem Endokrin</strong></td><td>Mengatur metabolisme, pertumbuhan, reproduksi</td><td>Hormon diedarkan melalui darah</td><td>Lambat (detik–jam), efek lama</td></tr>
+            <tr><td><strong>Sistem Indera</strong></td><td>Menerima & mengubah rangsangan menjadi impuls</td><td>Reseptor khusus di organ indera</td><td>Bergantung jenis stimulus</td></tr>
+          </tbody>
+        </table>
+        <div class="info-box green">
+          <i class="fas fa-lightbulb"></i>
+          <div><strong>Hubungan Ketiga Komponen:</strong> Sistem indera → <em>input</em> (penerima rangsangan), sistem saraf → <em>integrator</em> (pengolah informasi), efektor (otot/kelenjar) → <em>output</em> (pelaksana respons).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. SEL SARAF -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-green"><i class="fas fa-atom"></i></div>
+        <span class="section-title">2. Sel Saraf (Neuron) & Neuroglia</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>Jaringan saraf tersusun atas dua jenis sel utama: <strong>neuron</strong> (penghantaran impuls) dan <strong>neuroglia</strong> (mendukung & melindungi neuron). Neuron tidak dapat membelah diri, sehingga kerusakannya bersifat permanen.</p>
+
+          <h3>A. Struktur Neuron</h3>
+        </div>
+        <div class="fig-wrap">
+          <img src="img/struktur_sel_saraf.png" alt="Gambar Struktur Sel Saraf (Neuron)">
+        </div>
+        <p class="fig-caption">Gambar 1. Struktur Sel Saraf (Neuron) | Sumber: Silverthorn (2016: 254)</p>
+        <table class="bio-table">
+          <thead><tr><th>Bagian</th><th>Nama Lain</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Dendrit</strong></td><td>–</td><td>Menerima impuls dari reseptor/neuron lain → badan sel. Luas permukaan diperluas oleh spina dendritik (penting untuk memori & belajar).</td></tr>
+            <tr><td><strong>Badan Sel</strong></td><td>Perikarion/Soma</td><td>Pusat metabolisme; mengandung nukleus & badan Nissl (RE kasar) untuk sintesis protein.</td></tr>
+            <tr><td><strong>Akson</strong></td><td>Neurit</td><td>Menghantarkan impuls dari badan sel ke neuron lain/efektor. Ujung awal = akson hillock; ujung akhir = terminal akson.</td></tr>
+            <tr><td><strong>Selubung Mielin</strong></td><td>–</td><td>Lapisan lipoprotein yang mempercepat penghantaran impuls (konduksi saltatori). Dibentuk oleh sel Schwann (SST) & oligodendrosit (SSP).</td></tr>
+            <tr><td><strong>Nodus Ranvier</strong></td><td>–</td><td>Celah antara segmen mielin; tempat impuls "melompat" pada konduksi saltatori.</td></tr>
+            <tr><td><strong>Sel Schwann</strong></td><td>–</td><td>Membentuk mielin di SST & mendukung regenerasi akson rusak.</td></tr>
+            <tr><td><strong>Terminal Akson</strong></td><td>Tombol sinapsis</td><td>Tempat penyimpanan & pelepasan neurotransmitter ke celah sinapsis.</td></tr>
+            <tr><td><strong>Sinapsis</strong></td><td>–</td><td>Daerah hubungan fungsional antar neuron; memungkinkan impuls diteruskan melalui neurotransmitter.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h3>B. Neuroglia (Sel Penyokong)</h3>
+          <p>Jumlah neuroglia ~10× lebih banyak dari neuron. Tidak menghantarkan impuls, tetapi vital untuk mendukung fungsi neuron.</p>
+        </div>
+        <table class="bio-table">
+          <thead><tr><th>Jenis</th><th>Lokasi</th><th>Fungsi Spesifik</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Astrosit</strong></td><td>SSP</td><td>Sel bintang; menyediakan nutrisi; membentuk sawar darah-otak (blood-brain barrier).</td></tr>
+            <tr><td><strong>Oligodendrosit</strong></td><td>SSP</td><td>Membentuk selubung mielin di SSP; satu sel dapat menyelubungi beberapa akson.</td></tr>
+            <tr><td><strong>Mikroglia</strong></td><td>SSP</td><td>Sistem imun otak; sel fagosit yang membuang debris seluler dan patogen.</td></tr>
+            <tr><td><strong>Sel Ependimal</strong></td><td>SSP</td><td>Menghasilkan & mengatur cairan serebrospinal (CSS).</td></tr>
+            <tr><td><strong>Sel Schwann</strong></td><td>SST</td><td>Membentuk mielin di SST; mendukung regenerasi akson rusak.</td></tr>
+            <tr><td><strong>Sel Satelit</strong></td><td>SST</td><td>Mengelilingi badan sel di ganglion SST; mengatur lingkungan ion sekitar neuron.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="fig-wrap">
+          <img src="img/struktur_neuron_bermielin.png" alt="Struktur Neuron Bermielin dengan Sel Schwann dan Nodus Ranvier">
+        </div>
+        <p class="fig-caption">Gambar 2. Struktur Neuron Bermielin dengan Sel Schwann dan Nodus Ranvier | Sumber: Ruang Guru</p>
+
+        <div class="prose">
+          <h3>C. Pengelompokan Neuron</h3>
+          <p><strong>Berdasarkan Fungsi (Fisiologis):</strong></p>
+        </div>
+        <div class="grid-3">
+          <div class="mini-card">
+            <h4>🔵 Neuron Sensorik (Aferen)</h4>
+            <p>Menghantarkan impuls dari reseptor → SSP. Arah: Perifer → SSP.</p>
+          </div>
+          <div class="mini-card">
+            <h4>🟢 Interneuron (Asosiasi)</h4>
+            <p>Mengolah & mengintegrasikan informasi di dalam SSP. Terbanyak di SSP.</p>
+          </div>
+          <div class="mini-card">
+            <h4>🔴 Neuron Motorik (Eferen)</h4>
+            <p>Menghantarkan perintah dari SSP → efektor (otot/kelenjar). Arah: SSP → Perifer.</p>
+          </div>
+        </div>
+        <div class="prose">
+          <p><strong>Berdasarkan Bentuk (Struktural):</strong> Multipolar (1 akson, banyak dendrit – paling umum), Bipolar (1 akson, 1 dendrit – organ indera), Unipolar/Pseudounipolar (1 juluran bercabang – neuron sensorik ganglion), Anaksonik (tidak ada akson – interneuron tertentu).</p>
+        </div>
+        <div class="fig-wrap">
+          <img src="img/pengelompokkan_neuron_berdasarkan_bentuk.png" alt="Pengelompokan Neuron Berdasarkan Bentuk">
+        </div>
+        <p class="fig-caption">Gambar 3. Pengelompokan Neuron Berdasarkan Bentuk (Fungsional & Struktural) | Sumber: Silverthorn (2016: 254)</p>
+      </div>
+    </div>
+
+    <!-- 3. MEKANISME IMPULS -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-orange"><i class="fas fa-bolt"></i></div>
+        <span class="section-title">3. Mekanisme Penghantaran Impuls</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <h3 class="orange">A. Potensial Membran & Potensial Aksi</h3>
+          <p>Saat istirahat, potensial membran = <strong>−70 mV</strong> (potensial istirahat). Jika rangsangan melebihi ambang batas <strong>−55 mV</strong>, potensial aksi terbentuk.</p>
+        </div>
+        <table class="bio-table orange">
+          <thead><tr><th>Tahap</th><th>Nama</th><th>Mekanisme</th></tr></thead>
+          <tbody>
+            <tr><td><span class="badge badge-orange">1</span></td><td><strong>Polarisasi (Istirahat)</strong></td><td>Membran −70 mV; kanal Na⁺ & K⁺ tertutup. Na⁺ banyak di luar, K⁺ banyak di dalam. Pompa Na⁺/K⁺ aktif (3 Na⁺ keluar, 2 K⁺ masuk).</td></tr>
+            <tr><td><span class="badge badge-orange">2</span></td><td><strong>Depolarisasi</strong></td><td>Stimulus > −55 mV → kanal Na⁺ terbuka → Na⁺ masuk → membran naik ke +30 mV (overshoot). Prinsip: semua-atau-tidak (all-or-nothing).</td></tr>
+            <tr><td><span class="badge badge-orange">3</span></td><td><strong>Repolarisasi</strong></td><td>Kanal Na⁺ inaktif → refraksi absolut. Kanal K⁺ terbuka → K⁺ keluar → membran kembali negatif (~−70 mV).</td></tr>
+            <tr><td><span class="badge badge-orange">4</span></td><td><strong>Hiperpolarisasi</strong></td><td>K⁺ terlalu banyak keluar → membran mencapai −80 hingga −90 mV → refraksi relatif. Pompa Na⁺/K⁺ memulihkan distribusi ion (butuh ATP).</td></tr>
+          </tbody>
+        </table>
+        <div class="info-box orange">
+          <i class="fas fa-running"></i>
+          <div><strong>Faktor Kecepatan Impuls:</strong> (1) Diameter akson: lebih besar = lebih cepat. (2) Selubung mielin: konduksi saltatori (impuls melompat dari nodus ke nodus) jauh lebih cepat & hemat energi dibanding konduksi kontinu.</div>
+        </div>
+        <div class="fig-wrap">
+          <img src="img/grafik_perubahan_potensial_membran_selama_potensial_aksi.png" alt="Grafik Perubahan Potensial Membran selama Potensial Aksi">
+        </div>
+        <p class="fig-caption">Gambar 4. Grafik Perubahan Potensial Membran selama Potensial Aksi | Sumber: Ruang Guru</p>
+        <div class="fig-wrap">
+          <img src="img/Tahap_.png" alt="Ilustrasi Tahap Polarisasi, Depolarisasi, Repolarisasi, Hiperpolarisasi">
+        </div>
+        <p class="fig-caption">Gambar 5. Ilustrasi Tahap-Tahap Potensial Aksi pada Membran Sel Saraf | Sumber: Ruang Guru</p>
+        <div class="fig-wrap">
+          <img src="img/perbandingan_akson_bermielin_dan_tidak_bermielin.png" alt="Perbandingan Akson Bermielin dan Tidak Bermielin">
+        </div>
+        <p class="fig-caption">Gambar 6. Perbandingan Akson Bermielin dan Tidak Bermielin | Sumber: Ruang Guru</p>
+
+        <div class="prose">
+          <h3 class="orange">B. Penghantaran Melalui Sinapsis Kimia</h3>
+        </div>
+        <ul class="step-list">
+          <li><span class="step-num" style="background:#f57f17">1</span><span>Potensial aksi tiba di terminal akson → kanal Ca²⁺ terbuka → Ca²⁺ masuk.</span></li>
+          <li><span class="step-num" style="background:#f57f17">2</span><span>Ca²⁺ memicu vesikel sinapsis bergabung dengan membran pra-sinapsis (eksositosis) → neurotransmitter dilepaskan ke celah sinapsis (~20–40 nm).</span></li>
+          <li><span class="step-num" style="background:#f57f17">3</span><span>Neurotransmitter berdifusi & berikatan dengan reseptor membran post-sinapsis → membuka kanal ion → EPSP (eksitatori) atau IPSP (inhibitori).</span></li>
+          <li><span class="step-num" style="background:#f57f17">4</span><span>Penghentian sinyal: degradasi enzimatis (mis. asetilkolinesterase), reuptake ke terminal pra-sinapsis, atau difusi menjauhi celah.</span></li>
+        </ul>
+
+        <div class="prose">
+          <h3 class="orange">C. Jenis Neurotransmitter Utama</h3>
+        </div>
+        <div class="fig-wrap">
+          <img src="img/peta_distribusi_neurotransmitter_di_otak.png" alt="Peta Distribusi Neurotransmitter di Otak">
+        </div>
+        <p class="fig-caption">Gambar 7. Peta Distribusi Neurotransmitter di Otak | Sumber: Silverthorn (2016: 319)</p>
+        <table class="bio-table orange">
+          <thead><tr><th>Neurotransmitter</th><th>Jenis</th><th>Fungsi Utama & Implikasi Klinis</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Asetilkolin (ACh)</strong></td><td>Eks/Inh</td><td>Penghantaran ke otot rangka, memori, tidur. Defisit → Alzheimer.</td></tr>
+            <tr><td><strong>Dopamin</strong></td><td>Eksitatori</td><td>Gerak motorik, motivasi, sistem reward. Defisit → Parkinson. Kelebihan → Skizofrenia.</td></tr>
+            <tr><td><strong>Serotonin</strong></td><td>Eks/Inh</td><td>Suasana hati, tidur, nafsu makan. Defisit → depresi. Target SSRI.</td></tr>
+            <tr><td><strong>Norepinefrin</strong></td><td>Eksitatori</td><td>Kewaspadaan, denyut jantung, fight-or-flight. Defisit → depresi.</td></tr>
+            <tr><td><strong>GABA</strong></td><td>Inhibitori</td><td>Mengurangi eksitabilitas neuron. Disfungsi → epilepsi, kecemasan.</td></tr>
+            <tr><td><strong>Glutamat</strong></td><td>Eksitatori</td><td>Memori & belajar (LTP). Kelebihan (eksitotoksisitas) → kerusakan neuron saat stroke.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. GERAK SADAR & REFLEKS -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-green"><i class="fas fa-hand-point-up"></i></div>
+        <span class="section-title">4. Gerak Sadar & Gerak Refleks</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <table class="bio-table">
+          <thead><tr><th>Aspek</th><th>Gerak Sadar</th><th>Gerak Refleks</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Definisi</strong></td><td>Direncanakan & dilakukan secara sadar</td><td>Cepat, tiba-tiba, tidak disadari</td></tr>
+            <tr><td><strong>Pusat Pengolahan</strong></td><td>Korteks serebri (otak besar)</td><td>Sumsum tulang belakang (STB)</td></tr>
+            <tr><td><strong>Jenis Gerak</strong></td><td>Volunter (disengaja)</td><td>Involunter (otomatis)</td></tr>
+            <tr><td><strong>Kecepatan</strong></td><td>Lebih lambat</td><td>Sangat cepat (~20 ms)</td></tr>
+            <tr><td><strong>Contoh</strong></td><td>Menulis, berjalan, menyetir</td><td>Menarik tangan dari api, refleks lutut</td></tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h3>Bagan Alur Impuls</h3>
+        </div>
+        <div class="alur-box">
+          <strong>Gerak Sadar:</strong><br>
+          Rangsangan <span class="alur-arrow">→</span> Reseptor <span class="alur-arrow">→</span> Saraf Sensorik <span class="alur-arrow">→</span> STB <span class="alur-arrow">→</span> Otak (Korteks) <span class="alur-arrow">→</span> STB <span class="alur-arrow">→</span> Saraf Motorik <span class="alur-arrow">→</span> Efektor <span class="alur-arrow">→</span> Reaksi
+        </div>
+        <div class="alur-box">
+          <strong>Gerak Refleks:</strong><br>
+          Rangsangan <span class="alur-arrow">→</span> Reseptor <span class="alur-arrow">→</span> Saraf Sensorik <span class="alur-arrow">→</span> Interneuron (STB) <span class="alur-arrow">→</span> Saraf Motorik <span class="alur-arrow">→</span> Efektor <span class="alur-arrow">→</span> Reaksi Refleks
+        </div>
+
+        <div class="prose">
+          <h3>Komponen Busur Refleks</h3>
+        </div>
+        <ul class="step-list">
+          <li><span class="step-num">1</span><span><strong>Reseptor</strong> – mendeteksi stimulus (mis. nosiseptor di kulit).</span></li>
+          <li><span class="step-num">2</span><span><strong>Neuron Aferen (Sensorik)</strong> – membawa impuls ke STB melalui akar dorsal.</span></li>
+          <li><span class="step-num">3</span><span><strong>Interneuron</strong> – mengolah impuls di dalam STB & menghubungkan neuron sensorik–motorik.</span></li>
+          <li><span class="step-num">4</span><span><strong>Neuron Eferen (Motorik)</strong> – membawa perintah ke efektor melalui akar ventral.</span></li>
+          <li><span class="step-num">5</span><span><strong>Efektor</strong> – otot/kelenjar yang melaksanakan respons.</span></li>
+        </ul>
+        <div class="info-box green">
+          <i class="fas fa-fire"></i>
+          <div><strong>Contoh Kontekstual:</strong> Saat tangan menyentuh kompor panas → reseptor mendeteksi → impuls ke STB → tangan tertarik dalam ~20 ms (refleks). Bersamaan itu, impuls diteruskan ke otak → rasa sakit disadari ~500 ms kemudian.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. SISTEM SARAF PUSAT -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-green"><i class="fas fa-brain"></i></div>
+        <span class="section-title">5. Sistem Saraf Pusat (SSP)</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>SSP terdiri dari <strong>otak</strong> dan <strong>sumsum tulang belakang (medula spinalis)</strong>, dilindungi oleh tengkorak/tulang belakang, tiga lapisan <em>meninges</em> (duramater, araknoid, piamater), dan cairan serebrospinal (CSS).</p>
+          <h3>A. Serebrum (Otak Besar) – 85% massa otak</h3>
+        </div>
+        <div class="fig-wrap">
+          <img src="img/otak.png" alt="Anatomi Otak – Sistem Saraf Pusat">
+        </div>
+        <p class="fig-caption">Gambar 8. Anatomi Otak (Sistem Saraf Pusat) | Sumber: Silverthorn (2016: 310)</p>
+        <table class="bio-table">
+          <thead><tr><th>Lobus</th><th>Letak</th><th>Fungsi Utama</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Frontal</strong></td><td>Dahi</td><td>Kognisi tinggi (perencanaan, pengambilan keputusan), produksi bicara (Area Broca), kontrol motorik sadar.</td></tr>
+            <tr><td><strong>Temporal</strong></td><td>Pelipis</td><td>Pendengaran, pemahaman bahasa (Area Wernicke), memori deklaratif, pengenalan wajah.</td></tr>
+            <tr><td><strong>Parietal</strong></td><td>Ubun-ubun</td><td>Persepsi somatosensorik (sentuhan, suhu, nyeri), penalaran spasial, integrasi multisensor.</td></tr>
+            <tr><td><strong>Oksipital</strong></td><td>Belakang</td><td>Pemrosesan visual: warna, bentuk, gerak. Kerusakan → kebutaan kortikal.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h3>B. Diensefalon</h3>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card">
+            <h4>🔵 Talamus</h4>
+            <p>Pusat relay & integrasi informasi sensorik. Semua impuls sensorik (kecuali penciuman) melewati talamus sebelum ke korteks.</p>
+          </div>
+          <div class="mini-card">
+            <h4>🟢 Hipotalamus</h4>
+            <p>"Master regulator" homeostasis: suhu, lapar, haus, tidur, stres, reproduksi. Menghubungkan SSP & sistem endokrin melalui hipofisis.</p>
+          </div>
+          <div class="mini-card">
+            <h4>🌙 Kelenjar Pineal</h4>
+            <p>Menghasilkan melatonin → mengatur ritme sirkadian (siklus tidur-bangun 24 jam).</p>
+          </div>
+          <div class="mini-card">
+            <h4>👑 Kelenjar Hipofisis</h4>
+            <p>"Master gland" sistem endokrin; menghasilkan berbagai hormon tropik yang mengatur kelenjar lain.</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h3>C. Batang Otak</h3>
+        </div>
+        <table class="bio-table">
+          <thead><tr><th>Bagian</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Mesensefalon</strong></td><td>Refleks visual & auditori; memelihara kesadaran; mengandung substansia nigra (penghasil dopamin).</td></tr>
+            <tr><td><strong>Pons Varoli</strong></td><td>Jembatan antara serebelum kiri-kanan; pusat pernapasan; lintasan saraf kranial V, VI, VII, VIII.</td></tr>
+            <tr><td><strong>Medula Oblongata</strong></td><td>Pusat vital otonom: denyut jantung, pernapasan, tekanan darah. Refleks menelan, batuk, bersin, muntah. Kerusakan → fatal.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h3>D. Serebelum (Otak Kecil)</h3>
+          <p>Mengandung >50% total neuron otak. Tidak memulai gerakan, tetapi sebagai <em>koordinator</em>: menghaluskan gerak motorik sadar, menjaga keseimbangan & postur, dan memungkinkan otomatisasi gerak berulang (seperti bersepeda).</p>
+          <h3>E. Sumsum Tulang Belakang (Medula Spinalis)</h3>
+          <p>Menghantarkan informasi sensorik (naik/asendens) dari tubuh ke otak dan perintah motorik (turun/desendens). Juga pusat koordinasi gerak refleks. Struktur irisan melintang: substansi putih (luar, traktus), substansi abu (dalam, bentuk H), akar dorsal (sensorik), akar ventral (motorik).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. SISTEM SARAF TEPI -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-blue"><i class="fas fa-sitemap"></i></div>
+        <span class="section-title">6. Sistem Saraf Tepi (SST)</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>SST mencakup semua jaringan saraf di luar otak & STB. Terdiri dari divisi aferen (sensorik: perifer → SSP) dan eferen (motorik: SSP → efektor).</p>
+          <h3 class="blue">Saraf Kranial (12 Pasang)</h3>
+        </div>
+        <table class="bio-table blue">
+          <thead><tr><th>No.</th><th>Nama</th><th>Sifat</th><th>Fungsi Utama</th></tr></thead>
+          <tbody>
+            <tr><td>CN I</td><td>Olfaktori</td><td>Sensoris</td><td>Penciuman → korteks olfaktori</td></tr>
+            <tr><td>CN II</td><td>Optikus</td><td>Sensoris</td><td>Penglihatan → korteks visual</td></tr>
+            <tr><td>CN III</td><td>Okulomotor</td><td>Motoris</td><td>Gerak bola mata; ukuran pupil & lensa</td></tr>
+            <tr><td>CN V</td><td>Trigeminal</td><td>Campuran</td><td>Sensasi wajah; otot pengunyah</td></tr>
+            <tr><td>CN VII</td><td>Fasial</td><td>Campuran</td><td>Ekspresi wajah; pengecap 2/3 anterior lidah</td></tr>
+            <tr><td>CN VIII</td><td>Vestibulokoklear</td><td>Sensoris</td><td>Pendengaran (koklear) & keseimbangan (vestibular)</td></tr>
+            <tr><td>CN X</td><td>Vagus</td><td>Campuran</td><td>Saraf terluas; organ toraks & abdomen; parasimpatik utama</td></tr>
+            <tr><td>CN XII</td><td>Hipoglosal</td><td>Motoris</td><td>Semua gerak otot lidah</td></tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h3 class="blue">Saraf Simpatik vs Parasimpatik</h3>
+        </div>
+        <table class="bio-table blue">
+          <thead><tr><th>Organ</th><th>Saraf Simpatik (fight-or-flight)</th><th>Saraf Parasimpatik (rest-and-digest)</th></tr></thead>
+          <tbody>
+            <tr><td>Pupil mata</td><td>Dilatasi (melebar)</td><td>Konstriksi (menyempit)</td></tr>
+            <tr><td>Jantung</td><td>Denyut meningkat (takikardia)</td><td>Denyut menurun (bradikardia)</td></tr>
+            <tr><td>Saluran napas</td><td>Bronkodilatasi</td><td>Bronkokonstriksi</td></tr>
+            <tr><td>Lambung & Usus</td><td>Menghambat peristaltik</td><td>Menstimulasi pencernaan</td></tr>
+            <tr><td>Kandung kemih</td><td>Relaksasi dinding; menahan urin</td><td>Kontraksi dinding; pengeluaran urin</td></tr>
+          </tbody>
+        </table>
+        <div class="info-box blue">
+          <i class="fas fa-user-graduate"></i>
+          <div><strong>Konteks Sehari-hari:</strong> Saat panik karena ujian mendadak → simpatik aktif (jantung berdegup, berkeringat, pupil melebar). Setelah ujian selesai & rileks → parasimpatik aktif (detak melambat, pencernaan kembali aktif).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. GANGGUAN -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-red"><i class="fas fa-heartbeat"></i></div>
+        <span class="section-title">7. Gangguan pada Sistem Saraf</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <table class="bio-table red">
+          <thead><tr><th>Gangguan</th><th>Penyebab Utama</th><th>Gejala Khas</th><th>Dampak pada Respons Tubuh</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Alzheimer</strong></td><td>Plak beta-amyloid, kematian sel otak</td><td>Penurunan daya ingat progresif, disorientasi</td><td>Interneuron korteks tidak mampu menyimpan informasi</td></tr>
+            <tr><td><strong>Parkinson</strong></td><td>Matinya sel penghasil dopamin di substansia nigra</td><td>Tremor, kekakuan, bradikinesia</td><td>Sinyal motorik ke efektor terganggu</td></tr>
+            <tr><td><strong>Epilepsi</strong></td><td>Disfungsi reseptor GABA, trauma kepala</td><td>Kejang berulang, hilang kesadaran</td><td>Impuls menyebar tidak terkontrol di SSP</td></tr>
+            <tr><td><strong>Stroke</strong></td><td>Sumbatan/pecahnya pembuluh darah otak</td><td>Kelumpuhan satu sisi, gangguan bicara</td><td>Area otak rusak tidak meneruskan impuls motorik/sensorik</td></tr>
+            <tr><td><strong>Multiple Sclerosis</strong></td><td>Degenerasi mielin di SSP (autoimun)</td><td>Kelemahan otot, gangguan koordinasi</td><td>Konduksi saltatori gagal → impuls melambat/terputus</td></tr>
+            <tr><td><strong>Meningitis</strong></td><td>Infeksi bakteri/virus pada meninges</td><td>Demam tinggi, sakit kepala hebat, kaku leher</td><td>Peradangan menekan jaringan saraf</td></tr>
+            <tr><td><strong>Poliomielitis</strong></td><td>Infeksi Poliovirus pada neuron motorik</td><td>Kelumpuhan lemas (flaccid)</td><td>Neuron motorik rusak → efektor tidak merespons</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /page-container saraf -->
+</div><!-- /tab-saraf -->
+
+
+<!-- ==================== TAB 2: SISTEM HORMON ==================== -->
+<div class="tab-content" id="tab-hormon">
+  <div class="page-container">
+
+    <a href="siklus1.html" class="back-link"><i class="fas fa-arrow-left"></i> Kembali ke Siklus 1</a>
+
+    <!-- Hero -->
+    <div class="materi-hero hormon">
+      <span class="hero-badge"><i class="fas fa-graduation-cap"></i> Siklus 1 · Pertemuan 2</span>
+      <h1><i class="fas fa-flask"></i> Sistem Hormon (Endokrin)</h1>
+      <p>Memahami kelenjar endokrin, mekanisme kerja hormon, klasifikasi hormon, umpan balik negatif/positif, serta gangguan yang terkait sistem hormon.</p>
+    </div>
+
+    <!-- VIDEO -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-blue"><i class="fas fa-play-circle"></i></div>
+        <span class="section-title">Video Pembelajaran – Sistem Hormon (Endokrin)</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/zJMKww2ETY0" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <p class="video-caption"><i class="fas fa-info-circle"></i> Sistem Endokrin – Biologi SMA Kelas 11 | Mencakup: kelenjar endokrin, hormon, mekanisme kerja, dan gangguan</p>
+      </div>
+    </div>
+
+    <!-- 1. PENDAHULUAN -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-blue"><i class="fas fa-book-open"></i></div>
+        <span class="section-title">1. Mengenal Sistem Endokrin</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>Sistem endokrin adalah sistem komunikasi kimiawi dalam tubuh yang menggunakan <strong>hormon</strong> sebagai pembawa pesan. Hormon adalah zat kimia yang disekresikan ke dalam darah untuk dikirim ke sel target yang jauh, dan bekerja dalam konsentrasi sangat kecil (nanomolar hingga pikomolar).</p>
+        </div>
+        <div class="info-box blue">
+          <i class="fas fa-city"></i>
+          <div><strong>Analogi:</strong> Bayangkan tubuhmu seperti kota besar. Sistem saraf = sambungan telepon (cepat & langsung). Sistem endokrin = layanan kurir (lebih lambat, tetapi bisa menjangkau seluruh tubuh dengan satu pengiriman).</div>
+        </div>
+        <table class="bio-table blue">
+          <thead><tr><th>Aspek</th><th>Sistem Saraf</th><th>Sistem Endokrin</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Pembawa sinyal</strong></td><td>Impuls listrik + neurotransmitter</td><td>Hormon (zat kimia)</td></tr>
+            <tr><td><strong>Jalur pengiriman</strong></td><td>Serabut saraf</td><td>Aliran darah</td></tr>
+            <tr><td><strong>Kecepatan respons</strong></td><td>Sangat cepat (milidetik)</td><td>Lambat (detik–jam)</td></tr>
+            <tr><td><strong>Durasi efek</strong></td><td>Singkat</td><td>Lebih lama</td></tr>
+            <tr><td><strong>Target</strong></td><td>Spesifik (sel tertentu)</td><td>Luas (banyak jaringan)</td></tr>
+          </tbody>
+        </table>
+        <div class="info-box blue">
+          <i class="fas fa-thermometer-half"></i>
+          <div><strong>Homeostasis & Umpan Balik Negatif:</strong> Sistem endokrin menjaga homeostasis seperti termostat — saat nilai terlalu tinggi, hormon menekannya kembali ke normal; saat terlalu rendah, hormon menaikkannya kembali.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. KOMPONEN KELENJAR ENDOKRIN -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-blue"><i class="fas fa-map-marker-alt"></i></div>
+        <span class="section-title">2. Kelenjar Endokrin Utama & Hormonnya</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+
+        <div class="prose">
+          <h3 class="blue">a. Hipotalamus</h3>
+          <p>Letak: Di bagian bawah otak besar, di atas hipofisis. <strong>Penghubung utama antara sistem saraf & sistem endokrin.</strong> Menghasilkan hormon <em>releasing</em> (TRH, CRH, GnRH, GHRH) yang merangsang hipofisis anterior, dan hormon <em>inhibiting</em> (dopamin, somatostatin) yang menghambatnya. Dua neurohormone (oksitosin & ADH) diproduksi di hipotalamus namun disimpan di hipofisis posterior.</p>
+        </div>
+        <div class="fig-wrap">
+          <img src="img/hipotalamus.png" alt="Hipotalamus – Jalur Portal Hipotalamus-Hipofisis">
+        </div>
+        <p class="fig-caption">Gambar 9. Hipotalamus dan Jalur Portal Hipotalamus–Hipofisis | Sumber: Silverthorn (2016: 234)</p>
+        <div class="prose">
+          <h3 class="blue">b. Hipofisis Anterior (Adenohipofisis) – "Master Gland"</h3>
+        </div>
+        <table class="bio-table blue">
+          <thead><tr><th>Hormon</th><th>Singkatan</th><th>Target</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr><td>Prolaktin</td><td>PRL</td><td>Kelenjar mammae</td><td>Merangsang produksi ASI</td></tr>
+            <tr><td>Hormon Pertumbuhan</td><td>GH/Somatotropin</td><td>Hati, tulang, otot</td><td>Pertumbuhan & metabolisme</td></tr>
+            <tr><td>Kortikotropin</td><td>ACTH</td><td>Korteks adrenal</td><td>Merangsang sekresi kortisol</td></tr>
+            <tr><td>Tirotropin</td><td>TSH</td><td>Kelenjar tiroid</td><td>Merangsang sintesis hormon tiroid</td></tr>
+            <tr><td>Hormon Perangsang Folikel</td><td>FSH</td><td>Gonad</td><td>Produksi sel telur/sperma</td></tr>
+            <tr><td>Hormon Lutein</td><td>LH</td><td>Gonad</td><td>Produksi hormon seks & ovulasi</td></tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h3 class="blue">c. Hipofisis Posterior – menyimpan & melepaskan</h3>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card blue">
+            <h4>💧 Oksitosin</h4>
+            <p>Target: rahim & kelenjar mammae. Fungsi: kontraksi rahim saat persalinan; pengeluaran ASI; ikatan sosial ("hormon cinta").</p>
+          </div>
+          <div class="mini-card blue">
+            <h4>🫧 ADH (Vasopresin)</h4>
+            <p>Target: ginjal. Fungsi: meningkatkan reabsorpsi air → urin berkurang. Kekurangan ADH → diabetes insipidus.</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h3 class="blue">d. Kelenjar Tiroid</h3>
+          <p>Letak: di leher, mengelilingi trakea, berbentuk seperti kupu-kupu. Memerlukan iodin dari makanan untuk membuat T3 & T4.</p>
+        </div>
+        <table class="bio-table blue">
+          <thead><tr><th>Hormon</th><th>Bahan Baku</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr><td>Tiroksin (T4)</td><td>Tirosin + 4 atom iodin</td><td>Metabolisme, pertumbuhan, perkembangan otak</td></tr>
+            <tr><td>Triiodotironin (T3)</td><td>Tirosin + 3 atom iodin</td><td>Lebih aktif dari T4; efek sama</td></tr>
+            <tr><td>Kalsitonin</td><td>Peptida</td><td>Menurunkan kadar kalsium darah</td></tr>
+          </tbody>
+        </table>
+
+        <div class="prose">
+          <h3 class="blue">e. Kelenjar Paratiroid</h3>
+          <p>Empat kelenjar kecil di belakang tiroid. Menghasilkan <strong>PTH (Parathormon)</strong>: meningkatkan kalsium darah dengan merangsang pelepasan kalsium dari tulang, reabsorpsi di ginjal, dan aktivasi vitamin D di usus.</p>
+          <div class="info-box orange"><i class="fas fa-exclamation-triangle"></i><div>Kalsium bukan hanya untuk tulang — penting juga untuk kontraksi otot & transmisi sinyal saraf. Kekurangan Ca²⁺ → tetani (kejang otot).</div></div>
+
+          <h3 class="blue">f. Kelenjar Adrenal (Anak Ginjal)</h3>
+          <p>Terletak di atas masing-masing ginjal, terdiri dari dua bagian:</p>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card blue">
+            <h4>🏛️ Korteks Adrenal (Luar)</h4>
+            <p><strong>Glukokortikoid (Kortisol):</strong> respons stres jangka panjang, meningkatkan gula darah, antiinflamasi.<br>
+            <strong>Mineralokortikoid (Aldosteron):</strong> mengatur Na⁺/K⁺; meningkatkan volume darah & tekanan darah.<br>
+            <strong>Androgen (DHEA):</strong> dorongan seksual; bahan baku hormon seks.</p>
+          </div>
+          <div class="mini-card blue">
+            <h4>⚡ Medula Adrenal (Dalam)</h4>
+            <p><strong>Epinefrin (Adrenalin):</strong> fight-or-flight; meningkatkan denyut jantung, melebarkan saluran napas, meningkatkan gula darah.<br>
+            <strong>Norepinefrin:</strong> efek serupa; juga neurotransmitter SSP.</p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h3 class="blue">g. Pankreas (Bagian Endokrin – Pulau Langerhans)</h3>
+        </div>
+        <table class="bio-table blue">
+          <thead><tr><th>Sel</th><th>Hormon</th><th>Target</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr><td>Sel Beta (β)</td><td>Insulin</td><td>Otot, hati, lemak</td><td>Menurunkan gula darah; merangsang penyerapan glukosa</td></tr>
+            <tr><td>Sel Alfa (α)</td><td>Glukagon</td><td>Hati</td><td>Meningkatkan gula darah; merangsang pemecahan glikogen</td></tr>
+            <tr><td>Sel Delta (δ)</td><td>Somatostatin</td><td>Sel α & β</td><td>Menghambat sekresi insulin & glukagon</td></tr>
+          </tbody>
+        </table>
+        <div class="alur-box blue">
+          <strong>Setelah makan:</strong> Gula darah ↑ <span class="alur-arrow blue">→</span> Sel β sekresi insulin <span class="alur-arrow blue">→</span> Glukosa diserap sel <span class="alur-arrow blue">→</span> Gula darah ↓<br>
+          <strong>Saat puasa:</strong> Gula darah ↓ <span class="alur-arrow blue">→</span> Sel α sekresi glukagon <span class="alur-arrow blue">→</span> Hati melepas glukosa <span class="alur-arrow blue">→</span> Gula darah ↑
+        </div>
+
+        <div class="prose">
+          <h3 class="blue">h. Kelenjar Timus, Ovarium & Testis</h3>
+        </div>
+        <table class="bio-table blue">
+          <thead><tr><th>Kelenjar</th><th>Hormon</th><th>Fungsi</th></tr></thead>
+          <tbody>
+            <tr><td>Timus</td><td>Timosin, Timopoietin</td><td>Perkembangan & pematangan limfosit T (imunitas)</td></tr>
+            <tr><td>Ovarium</td><td>Estrogen, Progesteron</td><td>Ciri kelamin sekunder ♀; siklus menstruasi; menjaga kehamilan</td></tr>
+            <tr><td>Testis</td><td>Testosteron</td><td>Ciri kelamin sekunder ♂; produksi sperma; pertumbuhan otot & tulang</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3. MEKANISME KERJA HORMON -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-blue"><i class="fas fa-cogs"></i></div>
+        <span class="section-title">3. Mekanisme Kerja Hormon</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="info-box blue">
+          <i class="fas fa-key"></i>
+          <div><strong>Analogi Kunci-Gembok:</strong> Hormon = kunci; Reseptor = gembok. Hanya kunci yang tepat yang membuka gembok tertentu, meskipun banyak hormon beredar di darah.</div>
+        </div>
+        <div class="grid-2">
+          <div class="mini-card blue">
+            <h4>💉 Hormon Peptida (Larut Air)</h4>
+            <p>Reseptor di membran sel. Mengaktifkan second messenger (cAMP) → enzim aktif → respons cepat (detik–menit).<br><em>Contoh: insulin, glukagon, ADH, GH.</em></p>
+          </div>
+          <div class="mini-card blue">
+            <h4>🧬 Hormon Steroid (Larut Lemak)</h4>
+            <p>Menembus membran sel → reseptor intraselular → masuk nukleus → aktivasi gen → sintesis protein baru → respons lambat (jam–hari), efek bertahan lama.<br><em>Contoh: kortisol, estrogen, testosteron.</em></p>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h3 class="blue">Umpan Balik Negatif & Positif</h3>
+          <p><strong>Umpan balik negatif</strong> (paling umum): hasil proses menghambat proses itu sendiri untuk mencegah perubahan berlebih.</p>
+        </div>
+        <div class="alur-box blue">
+          <strong>Contoh: Regulasi Hormon Tiroid</strong><br>
+          Hipotalamus → TRH <span class="alur-arrow blue">→</span> Hipofisis → TSH <span class="alur-arrow blue">→</span> Tiroid → T3/T4 <span class="alur-arrow blue">→</span> Kadar T3/T4 tinggi menghambat TRH & TSH <span class="alur-arrow blue">→</span> Produksi T3/T4 berkurang
+        </div>
+        <div class="prose">
+          <p><strong>Umpan balik positif</strong> (jarang): hasil proses memperkuat proses itu sendiri menuju titik akhir.</p>
+        </div>
+        <div class="alur-box blue">
+          <strong>Contoh: Persalinan</strong><br>
+          Kontraksi rahim <span class="alur-arrow blue">→</span> Oksitosin ↑ <span class="alur-arrow blue">→</span> Kontraksi makin kuat <span class="alur-arrow blue">→</span> Oksitosin makin banyak <span class="alur-arrow blue">→</span> (berlanjut hingga bayi lahir)
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. KLASIFIKASI HORMON -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-blue"><i class="fas fa-layer-group"></i></div>
+        <span class="section-title">4. Klasifikasi Hormon</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <table class="bio-table blue">
+          <thead><tr><th>Aspek</th><th>Peptida</th><th>Steroid</th><th>Amin (Tiroid)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Bahan dasar</strong></td><td>Asam amino</td><td>Kolesterol</td><td>Tirosin/Triptofan</td></tr>
+            <tr><td><strong>Kelarutan</strong></td><td>Air (hidrofilik)</td><td>Lemak (lipofilik)</td><td>Lemak (T3/T4)</td></tr>
+            <tr><td><strong>Penyimpanan</strong></td><td>Vesikel sekretori</td><td>Tidak disimpan</td><td>Dalam vesikel prekursor</td></tr>
+            <tr><td><strong>Waktu paruh</strong></td><td>Pendek (menit)</td><td>Panjang (menit–jam)</td><td>Panjang (hari)</td></tr>
+            <tr><td><strong>Lokasi reseptor</strong></td><td>Membran sel</td><td>Di dalam sel</td><td>Di dalam sel (nukleus)</td></tr>
+            <tr><td><strong>Jenis respons</strong></td><td>Cepat</td><td>Lambat</td><td>Lambat</td></tr>
+            <tr><td><strong>Contoh</strong></td><td>Insulin, ADH, GH</td><td>Kortisol, estrogen, testosteron</td><td>T3, T4, melatonin</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5. GANGGUAN ENDOKRIN -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-red"><i class="fas fa-stethoscope"></i></div>
+        <span class="section-title">5. Gangguan / Kelainan Sistem Hormon</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="prose">
+          <p>Gangguan endokrin umumnya disebabkan oleh: <span class="badge badge-red">hiposekresi</span> (hormon terlalu sedikit), <span class="badge badge-orange">hipersekresi</span> (hormon terlalu banyak), atau <span class="badge badge-blue">kelainan reseptor</span> (resistensi hormon).</p>
+        </div>
+        <table class="bio-table red">
+          <thead><tr><th>Gangguan</th><th>Kelenjar</th><th>Masalah</th><th>Gejala Khas</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Diabetes Melitus Tipe 1</strong></td><td>Pankreas</td><td>Insulin ↓↓ (hiposekresi)</td><td>Sering kencing, haus, lapar, lemas</td></tr>
+            <tr><td><strong>Diabetes Melitus Tipe 2</strong></td><td>Pankreas</td><td>Resistensi insulin</td><td>Gula darah tinggi kronis</td></tr>
+            <tr><td><strong>Hipertiroidisme</strong></td><td>Tiroid</td><td>T3/T4 ↑ (hipersekresi)</td><td>Jantung berdebar, kurus, tremor, mata menonjol (Graves)</td></tr>
+            <tr><td><strong>Hipotiroidisme</strong></td><td>Tiroid</td><td>T3/T4 ↓ (hiposekresi)</td><td>Lemas, kedinginan, gemuk, kulit kering</td></tr>
+            <tr><td><strong>Kretinisme</strong></td><td>Tiroid</td><td>T3/T4 ↓ sejak lahir</td><td>Tubuh sangat pendek, retardasi mental</td></tr>
+            <tr><td><strong>Gigantisme</strong></td><td>Hipofisis</td><td>GH ↑ (sebelum dewasa)</td><td>Tinggi badan tidak normal (>2,1 m)</td></tr>
+            <tr><td><strong>Akromegali</strong></td><td>Hipofisis</td><td>GH ↑ (sesudah dewasa)</td><td>Tangan, kaki, rahang membesar</td></tr>
+            <tr><td><strong>Sindrom Cushing</strong></td><td>Adrenal/Hipofisis</td><td>Kortisol ↑ (hipersekresi)</td><td>Moon face, perut buncit, lengan kurus, osteoporosis</td></tr>
+            <tr><td><strong>Penyakit Addison</strong></td><td>Adrenal</td><td>Kortisol/Aldosteron ↓</td><td>Lemas ekstrem, tekanan darah rendah, pigmentasi kulit gelap</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 6. SISTEM HORMON KEHIDUPAN SEHARI-HARI -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-blue"><i class="fas fa-sun"></i></div>
+        <span class="section-title">6. Sistem Hormon dalam Kehidupan Sehari-hari</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body">
+        <div class="grid-2">
+          <div class="mini-card blue">
+            <h4>📈 Pertumbuhan & Pubertas</h4>
+            <p>GH dari hipofisis merangsang pertumbuhan tulang. Pubertas dipicu GnRH → FSH & LH → estrogen (♀) / testosteron (♂).</p>
+          </div>
+          <div class="mini-card blue">
+            <h4>🍚 Pengaturan Gula Darah</h4>
+            <p>Setelah makan → insulin aktif. Saat puasa/olahraga → glukagon aktif. Tanpa ini, gula darah bisa terlalu tinggi (merusak pembuluh darah) atau terlalu rendah (otak kekurangan energi).</p>
+          </div>
+          <div class="mini-card blue">
+            <h4>😰 Respons Stres</h4>
+            <p>Tahap cepat (detik): epinefrin → fight-or-flight. Tahap lambat (menit–jam): kortisol → energi bertahan dari stres berkepanjangan. Stres kronis → kortisol terus tinggi → imun melemah.</p>
+          </div>
+          <div class="mini-card blue">
+            <h4>🌙 Siklus Tidur</h4>
+            <p>Melatonin (kelenjar pineal): gelap → melatonin ↑ → ngantuk; cahaya → melatonin ↓ → terjaga. Cahaya biru HP di malam hari menghambat melatonin → sulit tidur.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RINGKASAN TABEL HORMON -->
+    <div class="section-card">
+      <div class="section-header" onclick="toggleSection(this)">
+        <div class="section-icon icon-blue"><i class="fas fa-table"></i></div>
+        <span class="section-title">Ringkasan: Tabel Lengkap Hormon Utama Manusia</span>
+        <i class="fas fa-chevron-down toggle-icon"></i>
+      </div>
+      <div class="section-body" style="overflow-x:auto;">
+        <table class="bio-table blue">
+          <thead><tr><th>Kelenjar</th><th>Hormon</th><th>Target Utama</th><th>Fungsi Utama</th></tr></thead>
+          <tbody>
+            <tr><td>Hipotalamus</td><td>TRH, CRH, GnRH, GHRH</td><td>Hipofisis anterior</td><td>Merangsang pelepasan hormon hipofisis</td></tr>
+            <tr><td>Hipofisis Posterior</td><td>Oksitosin</td><td>Rahim, kel. mammae</td><td>Kontraksi persalinan, pengeluaran ASI</td></tr>
+            <tr><td>Hipofisis Posterior</td><td>ADH (Vasopresin)</td><td>Ginjal</td><td>Reabsorpsi air, volume darah</td></tr>
+            <tr><td>Hipofisis Anterior</td><td>GH (Somatotropin)</td><td>Hati, tulang, otot</td><td>Pertumbuhan & metabolisme</td></tr>
+            <tr><td>Hipofisis Anterior</td><td>TSH</td><td>Tiroid</td><td>Sintesis hormon tiroid</td></tr>
+            <tr><td>Hipofisis Anterior</td><td>ACTH</td><td>Korteks adrenal</td><td>Sekresi kortisol</td></tr>
+            <tr><td>Hipofisis Anterior</td><td>FSH & LH</td><td>Gonad</td><td>Produksi sel kelamin & hormon seks</td></tr>
+            <tr><td>Hipofisis Anterior</td><td>Prolaktin</td><td>Kel. mammae</td><td>Produksi ASI</td></tr>
+            <tr><td>Pineal</td><td>Melatonin</td><td>Otak</td><td>Ritme sirkadian, tidur</td></tr>
+            <tr><td>Tiroid</td><td>T3, T4</td><td>Hampir semua sel</td><td>Metabolisme, pertumbuhan, suhu tubuh</td></tr>
+            <tr><td>Tiroid</td><td>Kalsitonin</td><td>Tulang</td><td>Menurunkan kalsium darah</td></tr>
+            <tr><td>Paratiroid</td><td>PTH</td><td>Tulang, ginjal, usus</td><td>Meningkatkan kalsium darah</td></tr>
+            <tr><td>Korteks Adrenal</td><td>Kortisol</td><td>Hampir semua sel</td><td>Respons stres, metabolisme, antiinflamasi</td></tr>
+            <tr><td>Korteks Adrenal</td><td>Aldosteron</td><td>Ginjal</td><td>Keseimbangan Na⁺/K⁺, tekanan darah</td></tr>
+            <tr><td>Medula Adrenal</td><td>Epinefrin, Norepinefrin</td><td>Jantung, otot, hati</td><td>Respons fight-or-flight</td></tr>
+            <tr><td>Pankreas (β)</td><td>Insulin</td><td>Hati, otot, lemak</td><td>Menurunkan gula darah</td></tr>
+            <tr><td>Pankreas (α)</td><td>Glukagon</td><td>Hati</td><td>Meningkatkan gula darah</td></tr>
+            <tr><td>Timus</td><td>Timosin</td><td>Limfosit T</td><td>Perkembangan imunitas</td></tr>
+            <tr><td>Ovarium</td><td>Estrogen, Progesteron</td><td>Banyak jaringan</td><td>Ciri kelamin ♀, siklus menstruasi, kehamilan</td></tr>
+            <tr><td>Testis</td><td>Testosteron</td><td>Banyak jaringan</td><td>Ciri kelamin ♂, produksi sperma</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /page-container hormon -->
+</div><!-- /tab-hormon -->
+
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    document.getElementById('btn-' + tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function toggleSection(header) {
+    const body = header.nextElementSibling;
+    const icon = header.querySelector('.toggle-icon');
+    body.classList.toggle('collapsed');
+    icon.style.transform = body.classList.contains('collapsed') ? 'rotate(-90deg)' : 'rotate(0deg)';
+  }
+</script>
+
+</body>
+</html>
