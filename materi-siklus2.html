@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Materi Siklus 2 – BioRegula</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-  <script src="nav.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <script src="nav.js"></script>
   <style>
     :root {
       --primary: #2e7d32;
@@ -33,7 +34,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.7;
@@ -44,7 +45,7 @@
       background: var(--card);
       border-bottom: 2px solid var(--border);
       position: sticky;
-      top: 60px;
+      top: 64px;
       z-index: 100;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
@@ -355,8 +356,7 @@
   </style>
 </head>
 <body>
-
-<div id="navbar-placeholder"></div>
+<div class="bio-content" id="bio-page-content">
 
 <!-- ===== TAB NAVIGATION ===== -->
 <div class="tab-wrapper">
@@ -1022,7 +1022,10 @@
     body.classList.toggle('collapsed');
     icon.style.transform = body.classList.contains('collapsed') ? 'rotate(-90deg)' : 'rotate(0deg)';
   }
+
+  bioRenderNav({ requireLogin: true });
 </script>
 
+</div><!-- /bio-page-content -->
 </body>
 </html>
