@@ -201,8 +201,8 @@ textarea.finput.tall{min-height:160px;}
       <h1>✏️ <em>Post-test</em> — <span>Sistem Regulasi Manusia</span></h1>
       <p>Tes akhir untuk mengukur peningkatan literasi digital dan keterampilan berpikir kritis peserta didik setelah seluruh pembelajaran sistem regulasi selesai.</p>
       <div class="htags">
-        <span class="htag">8 Soal Esai</span>
-        <span class="htag">3 Soal Literasi Digital</span>
+        <span class="htag">8 Soal Esai (14 Sub-pertanyaan)</span>
+        <span class="htag">3 Soal Literasi Digital (a,b,c)</span>
         <span class="htag">5 Soal KBK</span>
         <span class="htag">Kerjakan Secara Mandiri</span>
       </div>
@@ -250,7 +250,7 @@ textarea.finput.tall{min-height:160px;}
 
     <!-- PROGRESS -->
     <div class="progress-wrap">
-      <div class="prog-top"><span>Soal terjawab</span><strong><span id="progCount">0</span> / 8</strong></div>
+      <div class="prog-top"><span>Soal terjawab</span><strong><span id="progCount">0</span> / 14</strong></div>
       <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
     </div>
 
@@ -270,7 +270,7 @@ textarea.finput.tall{min-height:160px;}
           <div class="soal-header">
             <div class="soal-num sn-ld">1</div>
             <div class="soal-meta">
-              <h4>Soal 1 — Literasi Digital</h4>
+              <h4>Soal 1 — Literasi Digital · Kognitif</h4>
               <div class="soal-badges">
                 <span class="sbadge sb-ld">Literasi Digital</span>
                 <span class="sbadge sb-kognitif">Kognitif [LD-K]</span>
@@ -279,19 +279,27 @@ textarea.finput.tall{min-height:160px;}
           </div>
           <div class="wacana-box">
             <div class="wacana-label">📖 Wacana</div>
-            <p>Untuk memahami mekanisme stres akademik terhadap sistem saraf dan sistem hormon secara ilmiah, peserta didik perlu mencari, mengevaluasi, dan mengorganisasikan informasi dari berbagai sumber digital. Namun, tidak semua informasi yang tersedia di internet dapat dipercaya — banyak konten tentang stres, kesehatan otak, dan hormon yang beredar di media sosial tanpa dasar ilmiah yang kuat.</p>
+            <p>Stres akademik seperti tumpukan tugas dan persiapan ujian merupakan hal yang umum dialami siswa SMA. Ilmu pengetahuan menjelaskan bahwa stres ini memengaruhi sistem saraf dan sistem hormon secara nyata. Bacalah ringkasan dua artikel ilmiah berikut, kemudian jawab pertanyaan di bawah ini.</p>
+            <p><strong>Artikel 1:</strong> Joëls, M. &amp; Baram, T.Z. (2009). The neuro-symphony of stress. <em>Nature Reviews Neuroscience</em>, 10(6), 459–466. — Menjelaskan dua jalur respons stres otak: (1) jalur cepat melalui sistem saraf otonom → adrenalin &amp; noradrenalin dari medula adrenal (hitungan detik); (2) jalur lambat melalui sumbu HPA → hormon kortisol (menit–jam). Kortisol berperan menyediakan energi tambahan, namun bila terus-menerus dilepaskan dapat merusak fungsi hipokampus (memori &amp; belajar).</p>
+            <p><strong>Artikel 2:</strong> Yuksel, D., et al. (2023). Academic stress and neuroendocrine regulation in adolescents. <em>Frontiers in Psychiatry</em>, 14, 1098824. — Mengukur respons fisiologis 120 remaja SMA selama ujian: stres akademik tinggi berkorelasi dengan peningkatan kortisol saliva, penurunan HRV (indikator keseimbangan saraf otonom), dan gangguan kualitas tidur.</p>
             <div class="link-artikel">
               <p>🔗 Artikel Ilmiah:</p>
-              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5718343/" target="_blank">1. https://pmc.ncbi.nlm.nih.gov/articles/PMC5718343/</a>
-              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10041935/" target="_blank">2. https://pmc.ncbi.nlm.nih.gov/articles/PMC10041935/</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5718343/" target="_blank">1. Joëls &amp; Baram (2009) — PMC5718343</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10041935/" target="_blank">2. Yuksel et al. (2023) — PMC10041935</a>
             </div>
           </div>
           <div class="pertanyaan-box">
-            <div class="pertanyaan-label">❓ Pertanyaan</div>
-            <p>Berdasarkan artikel ilmiah yang tersedia, evaluasilah kredibilitas dan relevansi kedua sumber tersebut sebagai referensi untuk memahami hubungan stres akademik dengan sistem saraf dan sistem hormon, bandingkan dengan sumber non-ilmiah seperti blog atau media sosial, kemudian organisasikan informasi yang paling relevan untuk menyimpulkan solusi ilmiah bagaimana stres akademik memengaruhi keseimbangan sistem regulasi tubuh!</p>
+            <div class="pertanyaan-label">❓ Pertanyaan (a, b, c)</div>
+            <p><strong>a.</strong> Jelaskan mengapa kedua artikel di atas dapat dianggap sebagai sumber informasi yang kredibel dibandingkan dengan blog atau postingan media sosial!</p>
+            <p style="margin-top:8px;"><strong>b.</strong> Identifikasi bagian artikel yang paling relevan untuk memahami hubungan stres akademik dengan sistem regulasi tubuh, dan jelaskan alasanmu!</p>
+            <p style="margin-top:8px;"><strong>c.</strong> Jika kamu ingin menggunakan informasi dari artikel tersebut dalam laporan, bagaimana cara yang benar agar terhindar dari plagiarisme?</p>
           </div>
-          <div class="jawab-label">Jawaban <span class="req">*</span></div>
-          <textarea class="finput tall" id="ld1" placeholder="Tuliskan jawabanmu di sini secara lengkap dan sistematis..." oninput="autoSave('ld1');updateProgress()"></textarea>
+          <div class="jawab-label">Jawaban a <span class="req">*</span></div>
+          <textarea class="finput tall" id="ld1a" placeholder="a. Jelaskan kredibilitas sumber ilmiah dibanding blog/medsos..." oninput="autoSave('ld1a');updateProgress()"></textarea>
+          <div class="jawab-label" style="margin-top:10px;">Jawaban b <span class="req">*</span></div>
+          <textarea class="finput" id="ld1b" placeholder="b. Identifikasi bagian artikel paling relevan dan alasannya..." oninput="autoSave('ld1b');updateProgress()"></textarea>
+          <div class="jawab-label" style="margin-top:10px;">Jawaban c <span class="req">*</span></div>
+          <textarea class="finput" id="ld1c" placeholder="c. Cara menghindari plagiarisme saat menggunakan sumber..." oninput="autoSave('ld1c');updateProgress()"></textarea>
         </div>
 
         <!-- SOAL LD 2 -->
@@ -299,7 +307,7 @@ textarea.finput.tall{min-height:160px;}
           <div class="soal-header">
             <div class="soal-num sn-ld">2</div>
             <div class="soal-meta">
-              <h4>Soal 2 — Literasi Digital</h4>
+              <h4>Soal 2 — Literasi Digital · Teknis</h4>
               <div class="soal-badges">
                 <span class="sbadge sb-ld">Literasi Digital</span>
                 <span class="sbadge sb-teknis">Teknis [LD-T]</span>
@@ -308,14 +316,20 @@ textarea.finput.tall{min-height:160px;}
           </div>
           <div class="wacana-box">
             <div class="wacana-label">📖 Wacana</div>
-            <p>Dalam proses mengkaji kasus stres akademik dan dampaknya terhadap sistem regulasi manusia, peserta didik diminta memanfaatkan sumber belajar digital seperti jurnal ilmiah, <em>multimedia website</em> pembelajaran, dan platform pencarian akademik. Kemampuan teknis dalam mengoperasikan perangkat, menavigasi internet secara efektif, dan mengintegrasikan alat digital menjadi keterampilan yang sangat dibutuhkan agar penyelidikan ilmiah dapat berjalan optimal. Dalam prosesnya, peserta didik juga sering menghadapi kendala teknis seperti kesulitan mengakses artikel ilmiah atau gagal mengunggah hasil kerja pada platform pembelajaran.</p>
+            <p>Dalam proses mengkaji dampak stres akademik terhadap sistem regulasi, kamu diminta memanfaatkan artikel ilmiah digital. Untuk menemukan artikel seperti yang tersedia pada soal sebelumnya, dibutuhkan keterampilan teknis navigasi digital. Kamu juga mungkin menghadapi kendala seperti koneksi lambat atau gagal mengunggah tugas ke platform pembelajaran.</p>
           </div>
           <div class="pertanyaan-box">
-            <div class="pertanyaan-label">❓ Pertanyaan</div>
-            <p>Jelaskan bagaimana kamu mengoperasikan perangkat dan menavigasi sumber digital untuk menemukan informasi ilmiah tentang mekanisme sistem saraf dan sistem hormon dalam merespons stres akademik, integrasikan penggunaan alat digital tersebut dalam proses penyelidikan, serta jelaskan langkah pemecahan masalah teknis yang kamu lakukan apabila mengalami kendala saat mengakses sumber digital tersebut!</p>
+            <div class="pertanyaan-label">❓ Pertanyaan (a, b, c)</div>
+            <p><strong>a.</strong> Jelaskan langkah-langkah yang kamu lakukan untuk menemukan artikel ilmiah tentang sistem saraf dan stres akademik menggunakan mesin pencari akademik!</p>
+            <p style="margin-top:8px;"><strong>b.</strong> Sebutkan satu risiko keamanan digital yang mungkin terjadi saat mengakses platform pembelajaran daring, dan bagaimana cara kamu mencegahnya!</p>
+            <p style="margin-top:8px;"><strong>c.</strong> Jika kamu mengalami kendala teknis saat mengakses artikel ilmiah (misalnya laman tidak bisa dibuka), langkah apa yang akan kamu lakukan untuk tetap bisa mendapatkan informasi yang dibutuhkan?</p>
           </div>
-          <div class="jawab-label">Jawaban <span class="req">*</span></div>
-          <textarea class="finput tall" id="ld2" placeholder="Tuliskan jawabanmu di sini secara lengkap dan sistematis..." oninput="autoSave('ld2');updateProgress()"></textarea>
+          <div class="jawab-label">Jawaban a <span class="req">*</span></div>
+          <textarea class="finput tall" id="ld2a" placeholder="a. Langkah-langkah mencari artikel ilmiah secara digital..." oninput="autoSave('ld2a');updateProgress()"></textarea>
+          <div class="jawab-label" style="margin-top:10px;">Jawaban b <span class="req">*</span></div>
+          <textarea class="finput" id="ld2b" placeholder="b. Risiko keamanan digital dan cara mencegahnya..." oninput="autoSave('ld2b');updateProgress()"></textarea>
+          <div class="jawab-label" style="margin-top:10px;">Jawaban c <span class="req">*</span></div>
+          <textarea class="finput" id="ld2c" placeholder="c. Langkah pemecahan masalah teknis saat artikel tidak bisa diakses..." oninput="autoSave('ld2c');updateProgress()"></textarea>
         </div>
 
         <!-- SOAL LD 3 -->
@@ -323,7 +337,7 @@ textarea.finput.tall{min-height:160px;}
           <div class="soal-header">
             <div class="soal-num sn-ld">3</div>
             <div class="soal-meta">
-              <h4>Soal 3 — Literasi Digital</h4>
+              <h4>Soal 3 — Literasi Digital · Sosial-Emosional</h4>
               <div class="soal-badges">
                 <span class="sbadge sb-ld">Literasi Digital</span>
                 <span class="sbadge sb-se">Sosial-Emosional [LD-SE]</span>
@@ -332,25 +346,31 @@ textarea.finput.tall{min-height:160px;}
           </div>
           <div class="wacana-box">
             <div class="wacana-label">📖 Wacana</div>
-            <p>Berdasarkan pengalamanmu selama proses penyelidikan sistem regulasi manusia, peserta didik mengakses berbagai sumber digital seperti artikel ilmiah, <em>multimedia website</em>, dan platform diskusi kelompok. Penggunaan sumber digital ini menuntut tanggung jawab etika akademik, mulai dari cara mengutip informasi tentang mekanisme sistem saraf dan hormon, cara berkomunikasi saat berdiskusi hasil penyelidikan di forum digital, hingga menjaga keamanan data pribadi saat mengakses platform pembelajaran. Tanpa kesadaran sosial-emosional yang baik, penggunaan teknologi dalam belajar Biologi justru dapat menimbulkan pelanggaran etika dan risiko keamanan.</p>
+            <p>Selama proses penyelidikan sistem regulasi manusia, kamu mengakses berbagai sumber digital, termasuk artikel ilmiah dan berdiskusi hasil penyelidikan di forum kelompok daring. Penggunaan teknologi ini menuntut tanggung jawab etika akademik dan kesadaran keamanan digital.</p>
           </div>
           <div class="pertanyaan-box">
-            <div class="pertanyaan-label">❓ Pertanyaan</div>
-            <p>Berdasarkan pengalamanmu selama proses penyelidikan sistem regulasi manusia secara digital, refleksikan bagaimana kamu menerapkan etika dalam mengambil dan menggunakan informasi Biologi dari sumber digital (termasuk cara menghindari plagiarisme), bagaimana kamu berkomunikasi secara bertanggung jawab saat berdiskusi hasil penyelidikan di forum digital, serta bagaimana bentuk tanggung jawabmu dalam menjaga keamanan data pribadi saat mengakses platform pembelajaran!</p>
+            <div class="pertanyaan-label">❓ Pertanyaan (a, b, c)</div>
+            <p><strong>a.</strong> Refleksikan bagaimana kamu menerapkan etika akademik saat mengutip informasi Biologi dari artikel ilmiah untuk menghindari plagiarisme!</p>
+            <p style="margin-top:8px;"><strong>b.</strong> Bagaimana cara kamu berkomunikasi secara bertanggung jawab saat berdiskusi hasil penyelidikan di forum digital bersama teman sekelompok?</p>
+            <p style="margin-top:8px;"><strong>c.</strong> Jelaskan satu bentuk tanggung jawabmu dalam menjaga keamanan data pribadi saat mengakses platform pembelajaran!</p>
           </div>
-          <div class="jawab-label">Jawaban <span class="req">*</span></div>
-          <textarea class="finput tall" id="ld3" placeholder="Tuliskan jawabanmu di sini secara lengkap dan sistematis..." oninput="autoSave('ld3');updateProgress()"></textarea>
+          <div class="jawab-label">Jawaban a <span class="req">*</span></div>
+          <textarea class="finput tall" id="ld3a" placeholder="a. Refleksi etika akademik dalam mengutip sumber ilmiah..." oninput="autoSave('ld3a');updateProgress()"></textarea>
+          <div class="jawab-label" style="margin-top:10px;">Jawaban b <span class="req">*</span></div>
+          <textarea class="finput" id="ld3b" placeholder="b. Cara berkomunikasi bertanggung jawab di forum digital..." oninput="autoSave('ld3b');updateProgress()"></textarea>
+          <div class="jawab-label" style="margin-top:10px;">Jawaban c <span class="req">*</span></div>
+          <textarea class="finput" id="ld3c" placeholder="c. Tanggung jawab menjaga keamanan data pribadi di platform belajar..." oninput="autoSave('ld3c');updateProgress()"></textarea>
         </div>
 
         <!-- ══ BAGIAN B: KBK ══ -->
         <div class="sec-div"><span class="sd-label sd-kbk">🧠 Bagian B — Soal Keterampilan Berpikir Kritis (No. 4–8)</span></div>
 
-        <!-- SOAL KBK 1 -->
+        <!-- SOAL KBK 1 — APPLY -->
         <div class="soal-block">
           <div class="soal-header">
             <div class="soal-num sn-kbk">4</div>
             <div class="soal-meta">
-              <h4>Soal 4 — Keterampilan Berpikir Kritis</h4>
+              <h4>Soal 4 — KBK · Apply (Menerapkan)</h4>
               <div class="soal-badges">
                 <span class="sbadge sb-kbk">KBK</span>
                 <span class="sbadge sb-ap">Apply [KBK-AP]</span>
@@ -359,28 +379,29 @@ textarea.finput.tall{min-height:160px;}
           </div>
           <div class="wacana-box">
             <div class="wacana-label">📖 Wacana</div>
-            <p>Dalam kehidupan sehari-hari, peserta didik sering mengalami tekanan akademik seperti tugas menumpuk, persiapan ujian, dan gangguan pola tidur. Stimulus stres pertama kali diterima oleh alat indera, kemudian diproses oleh sistem saraf pusat untuk menghasilkan respons yang sesuai. Respons awal ditandai dengan aktivasi sistem saraf simpatis yang memicu pelepasan hormon adrenalin dan noradrenalin dari medula adrenal, serta aktivasi sumbu HPA (<em>Hypothalamic-Pituitary-Adrenal</em>) yang menghasilkan hormon kortisol. Jika stres berlangsung terus-menerus, keseimbangan antara sistem saraf simpatis dan parasimpatis dapat terganggu dan memengaruhi kondisi fisik maupun psikologis peserta didik.</p>
+            <p>Stres akademik, seperti tugas menumpuk, persiapan ujian, dan gangguan pola tidur merupakan pengalaman nyata yang sering kita alami sebagai akademisi. Bacalah ringkasan dua artikel ilmiah berikut.</p>
+            <p><strong>Artikel 1 (Joëls &amp; Baram, 2009):</strong> Otak merespons stres melalui dua jalur: (1) jalur cepat via sistem saraf otonom → adrenalin &amp; noradrenalin dari medula adrenal; (2) jalur lambat via sumbu HPA → kortisol. Kortisol menyediakan energi tambahan namun jika terus-menerus tinggi dapat merusak hipokampus (memori &amp; belajar).</p>
+            <p><strong>Artikel 2 (Yuksel et al., 2023):</strong> Remaja dengan stres akademik tinggi menunjukkan kortisol ↑, HRV ↓, dan gangguan kualitas tidur. Remaja dengan coping strategy baik (olahraga, tidur cukup) menunjukkan kortisol lebih rendah dan HRV lebih tinggi.</p>
             <div class="link-artikel">
               <p>🔗 Artikel Ilmiah:</p>
-              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5718343/" target="_blank">1. https://pmc.ncbi.nlm.nih.gov/articles/PMC5718343/</a>
-              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10041935/" target="_blank">2. https://pmc.ncbi.nlm.nih.gov/articles/PMC10041935/</a>
-              <a href="https://pubmed.ncbi.nlm.nih.gov/29126903/" target="_blank">3. https://pubmed.ncbi.nlm.nih.gov/29126903/</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5718343/" target="_blank">1. Joëls &amp; Baram (2009) — PMC5718343</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10041935/" target="_blank">2. Yuksel et al. (2023) — PMC10041935</a>
             </div>
           </div>
           <div class="pertanyaan-box">
             <div class="pertanyaan-label">❓ Pertanyaan</div>
-            <p>Berdasarkan minimal dua sumber ilmiah yang tersedia dan pengalaman kamu sebagai peserta didik, jelaskan bagaimana sistem saraf dan sistem hormon bekerja secara terpadu dalam merespons stres akademik dan kaitkan dengan situasi yang pernah kamu alami di lingkungan sekolah! Cantumkan sumber yang kalian gunakan!</p>
+            <p>Jelaskan bagaimana sistem saraf dan sistem hormon merespons stres akademik berdasarkan minimal dua sumber ilmiah di atas, dan kaitkan dengan situasi nyata yang pernah kamu alami di lingkungan sekolah!</p>
           </div>
           <div class="jawab-label">Jawaban <span class="req">*</span></div>
-          <textarea class="finput tall" id="kbk1" placeholder="Tuliskan jawabanmu di sini. Cantumkan sumber yang digunakan..." oninput="autoSave('kbk1');updateProgress()"></textarea>
+          <textarea class="finput tall" id="kbk1" placeholder="Jelaskan respons sistem saraf & hormon terhadap stres akademik, kaitkan dengan pengalamanmu. Cantumkan sumber!" oninput="autoSave('kbk1');updateProgress()"></textarea>
         </div>
 
-        <!-- SOAL KBK 2 -->
+        <!-- SOAL KBK 2 — EVALUATE -->
         <div class="soal-block">
           <div class="soal-header">
             <div class="soal-num sn-kbk">5</div>
             <div class="soal-meta">
-              <h4>Soal 5 — Keterampilan Berpikir Kritis</h4>
+              <h4>Soal 5 — KBK · Evaluate (Mengevaluasi)</h4>
               <div class="soal-badges">
                 <span class="sbadge sb-kbk">KBK</span>
                 <span class="sbadge sb-ev">Evaluate [KBK-EV]</span>
@@ -389,27 +410,29 @@ textarea.finput.tall{min-height:160px;}
           </div>
           <div class="wacana-box">
             <div class="wacana-label">📖 Wacana</div>
-            <p>Sheppard &amp; Wolffsohn (2018) melaporkan bahwa prevalensi <em>digital eye strain</em> diperkirakan mencapai 50% atau lebih pada pengguna perangkat digital, ditandai dengan mata kering, penglihatan kabur, dan sakit kepala akibat paparan cahaya biru berlebihan. Sementara itu, WHO (2015) memperingatkan bahwa sekitar 1,1 miliar remaja usia 12–35 tahun berisiko mengalami gangguan pendengaran akibat kebiasaan mendengarkan yang tidak aman, dengan hampir 50% terpapar tingkat suara tidak aman dari perangkat audio pribadi. Kedua kondisi tersebut secara langsung memengaruhi efektivitas penerimaan stimulus selama proses belajar berbasis digital.</p>
+            <p>Penggunaan perangkat digital dalam belajar dapat berdampak pada fungsi indera. Bacalah ringkasan dua bukti ilmiah berikut.</p>
+            <p><strong>Bukti 1 — Sheppard &amp; Wolffsohn (2018):</strong> Lebih dari 50% pengguna perangkat digital melaporkan gejala <em>digital eye strain</em> (DES): mata kering, penglihatan kabur, sakit kepala, ketegangan leher. Paparan cahaya biru &amp; berkurangnya frekuensi berkedip (15×/menit → 5×/menit saat menatap layar) menjadi penyebab utama. Gejala ini mengurangi kemampuan membaca &amp; konsentrasi terutama setelah 2 jam paparan terus-menerus.</p>
+            <p><strong>Bukti 2 — WHO (2015):</strong> ~1,1 miliar remaja usia 12–35 tahun berisiko gangguan pendengaran akibat mendengarkan musik via earphone pada volume tidak aman (&gt;85 dB). Paparan suara keras menyebabkan kerusakan permanen pada sel rambut koklea → menghambat penerimaan stimulus auditori termasuk penjelasan guru.</p>
             <div class="link-artikel">
               <p>📚 Sumber:</p>
-              <a href="#" style="cursor:default;color:var(--gray);">Sheppard, A.L., &amp; Wolffsohn, J.S. (2018). <em>Digital eye strain</em>. BMJ Open Ophthalmology, 3(1), e000146.</a>
+              <a href="#" style="cursor:default;color:var(--gray);">Sheppard, A.L. &amp; Wolffsohn, J.S. (2018). Digital eye strain. BMJ Open Ophthalmology, 3(1), e000146.</a>
               <a href="#" style="cursor:default;color:var(--gray);">World Health Organization. (2015). 1.1 billion people at risk of hearing loss. WHO Press.</a>
             </div>
           </div>
           <div class="pertanyaan-box">
             <div class="pertanyaan-label">❓ Pertanyaan</div>
-            <p>Berdasarkan kedua bukti ilmiah di atas, nilailah dampak kebiasaan penggunaan perangkat digital peserta didik saat ini terhadap fungsi indera penglihatan dan pendengaran, serta hubungkan penilaian tersebut dengan efektivitas proses belajar di sekolah!</p>
+            <p>Berdasarkan kedua bukti ilmiah, evaluasilah apakah kebiasaan penggunaan perangkat digital peserta didik saat ini sudah mengancam efektivitas belajar secara signifikan atau belum. Berikan penilaianmu disertai argumen dari bukti ilmiah dan perspektif kritismu sebagai peserta didik!</p>
           </div>
           <div class="jawab-label">Jawaban <span class="req">*</span></div>
-          <textarea class="finput tall" id="kbk2" placeholder="Tuliskan jawabanmu di sini..." oninput="autoSave('kbk2');updateProgress()"></textarea>
+          <textarea class="finput tall" id="kbk2" placeholder="Evaluasi dampak perangkat digital terhadap indera & efektivitas belajar disertai argumen ilmiah..." oninput="autoSave('kbk2');updateProgress()"></textarea>
         </div>
 
-        <!-- SOAL KBK 3 -->
+        <!-- SOAL KBK 3 — USE DATA -->
         <div class="soal-block">
           <div class="soal-header">
             <div class="soal-num sn-kbk">6</div>
             <div class="soal-meta">
-              <h4>Soal 6 — Keterampilan Berpikir Kritis</h4>
+              <h4>Soal 6 — KBK · Use Data to Develop Critical Insight</h4>
               <div class="soal-badges">
                 <span class="sbadge sb-kbk">KBK</span>
                 <span class="sbadge sb-ud">Use Data [KBK-UD]</span>
@@ -417,37 +440,38 @@ textarea.finput.tall{min-height:160px;}
             </div>
           </div>
           <div class="wacana-box">
-            <div class="wacana-label">📊 Data</div>
-            <p style="margin-bottom:10px;">Tabel berikut menyajikan data hasil penelitian mengenai hubungan tingkat stres akademik dengan respons fisiologis tubuh pada remaja.</p>
+            <div class="wacana-label">📊 Data Respons Fisiologis terhadap Stres Akademik</div>
             <div class="data-table-wrap">
               <table class="data-table">
-                <thead><tr><th>Tingkat Stres</th><th>Kadar Kortisol (nmol/L)</th><th>Detak Jantung (bpm)</th><th>HRV (ms)</th><th>Kualitas Tidur</th></tr></thead>
+                <thead><tr><th>Tingkat Stres Akademik</th><th>Kadar Kortisol (µg/dL)</th><th>HRV (RMSSD, ms)</th></tr></thead>
                 <tbody>
-                  <tr><td>Rendah</td><td>150–200</td><td>65–75</td><td>60–80</td><td>Baik</td></tr>
-                  <tr><td>Sedang</td><td>250–350</td><td>80–90</td><td>40–55</td><td>Terganggu</td></tr>
-                  <tr><td>Tinggi</td><td>400–600</td><td>95–110</td><td>20–35</td><td>Buruk</td></tr>
+                  <tr><td>Rendah</td><td>8,2</td><td>45</td></tr>
+                  <tr><td>Sedang</td><td>10,7</td><td>37</td></tr>
+                  <tr><td>Tinggi</td><td>13,5</td><td>31</td></tr>
                 </tbody>
               </table>
             </div>
             <div class="tabel-keterangan">
-              <strong>Keterangan:</strong> Kortisol = hormon stres yang dilepaskan melalui aktivasi sumbu HPA. HRV (<em>Heart Rate Variability</em>) = mencerminkan keseimbangan aktivitas sistem saraf simpatis dan parasimpatis; nilai HRV tinggi → dominasi parasimpatis (tubuh rileks), nilai HRV rendah → dominasi simpatis (tubuh stres).
+              <strong>Keterangan:</strong><br>
+              • <strong>Kortisol:</strong> hormon stres yang dilepaskan melalui aktivasi sumbu HPA.<br>
+              • <strong>HRV (Heart Rate Variability):</strong> mencerminkan keseimbangan aktivitas sistem saraf simpatik dan parasimpatik. Nilai HRV <em>tinggi</em> = dominasi parasimpatik (tubuh rileks); nilai HRV <em>rendah</em> = dominasi simpatik (tubuh dalam kondisi stres).
             </div>
-            <p class="tabel-sumber">Sumber data diadaptasi dari: Herman et al. (2016); Thayer &amp; Lane (2009); Yuksel et al. (2023)</p>
+            <p class="tabel-sumber">Sumber data diadaptasi dari: Herman et al., 2016; Thayer &amp; Lane, 2009; Yuksel et al., 2023</p>
           </div>
           <div class="pertanyaan-box">
             <div class="pertanyaan-label">❓ Pertanyaan</div>
-            <p>Gunakan data pada tabel di atas secara akurat untuk menarik kesimpulan tentang bagaimana tingkat stres akademik memengaruhi keseimbangan sistem saraf otonom dan sistem hormon pada peserta didik, serta apa implikasinya terhadap <em>homeostasis</em> tubuh!</p>
+            <p>Gunakan data pada tabel di atas secara akurat untuk menarik kesimpulan tentang bagaimana tingkat stres akademik memengaruhi keseimbangan sistem saraf otonom dan sistem hormon pada peserta didik, serta apa implikasinya terhadap homeostasis tubuh!</p>
           </div>
           <div class="jawab-label">Jawaban <span class="req">*</span></div>
-          <textarea class="finput tall" id="kbk3" placeholder="Tuliskan jawabanmu berdasarkan data tabel di atas..." oninput="autoSave('kbk3');updateProgress()"></textarea>
+          <textarea class="finput tall" id="kbk3" placeholder="Gunakan data tabel untuk menarik kesimpulan tentang stres, kortisol, HRV, dan homeostasis..." oninput="autoSave('kbk3');updateProgress()"></textarea>
         </div>
 
-        <!-- SOAL KBK 4 -->
+        <!-- SOAL KBK 4 — ANALYZE -->
         <div class="soal-block">
           <div class="soal-header">
             <div class="soal-num sn-kbk">7</div>
             <div class="soal-meta">
-              <h4>Soal 7 — Keterampilan Berpikir Kritis</h4>
+              <h4>Soal 7 — KBK · Analyze (Analisis)</h4>
               <div class="soal-badges">
                 <span class="sbadge sb-kbk">KBK</span>
                 <span class="sbadge sb-an">Analyze [KBK-AN]</span>
@@ -456,25 +480,25 @@ textarea.finput.tall{min-height:160px;}
           </div>
           <div class="wacana-box">
             <div class="wacana-label">📊 Data</div>
-            <p style="margin-bottom:10px;font-weight:700;">Tabel 1. Durasi Penggunaan Layar dan Kondisi Indera Penglihatan</p>
+            <p style="margin-bottom:10px;"><strong>Tabel 1. Durasi Penggunaan Layar dan Kondisi Indera Penglihatan</strong></p>
             <div class="data-table-wrap">
               <table class="data-table">
                 <thead><tr><th>Durasi Penggunaan Layar/Hari</th><th>Frekuensi Kedipan Mata (kali/menit)</th><th>Keluhan Mata Kering (%)</th></tr></thead>
                 <tbody>
-                  <tr><td>&lt; 2 jam</td><td>18</td><td>12%</td></tr>
-                  <tr><td>2–4 jam</td><td>14</td><td>38%</td></tr>
-                  <tr><td>&gt; 4 jam</td><td>9</td><td>67%</td></tr>
+                  <tr><td>&lt; 2 jam</td><td>18</td><td>12</td></tr>
+                  <tr><td>2–4 jam</td><td>14</td><td>38</td></tr>
+                  <tr><td>&gt; 4 jam</td><td>9</td><td>67</td></tr>
                 </tbody>
               </table>
             </div>
-            <p style="margin:10px 0;font-weight:700;">Tabel 2. Durasi Penggunaan <em>Earphone</em> dan Kondisi Indera Pendengaran</p>
+            <p style="margin:12px 0 10px;"><strong>Tabel 2. Durasi Penggunaan Earphone dan Kondisi Indera Pendengaran</strong></p>
             <div class="data-table-wrap">
               <table class="data-table">
-                <thead><tr><th>Durasi Penggunaan <em>Earphone</em>/Hari</th><th>Volume Rata-rata (dB)</th><th>Keluhan <em>Tinnitus</em> (%)</th></tr></thead>
+                <thead><tr><th>Durasi Penggunaan Earphone/Hari</th><th>Volume Rata-rata (dB)</th><th>Keluhan Tinitus (%)</th></tr></thead>
                 <tbody>
-                  <tr><td>&lt; 1 jam</td><td>65 dB</td><td>8%</td></tr>
-                  <tr><td>1–3 jam</td><td>78 dB</td><td>24%</td></tr>
-                  <tr><td>&gt; 3 jam</td><td>89 dB</td><td>51%</td></tr>
+                  <tr><td>&lt; 1 jam</td><td>72</td><td>8</td></tr>
+                  <tr><td>1–3 jam</td><td>78</td><td>24</td></tr>
+                  <tr><td>&gt; 3 jam</td><td>85</td><td>51</td></tr>
                 </tbody>
               </table>
             </div>
@@ -484,15 +508,15 @@ textarea.finput.tall{min-height:160px;}
             <p>Berdasarkan kedua tabel di atas, identifikasi masalah utama yang paling diprioritaskan terkait gangguan alat indera akibat penggunaan perangkat digital berlebihan, jelaskan implikasinya terhadap proses belajar peserta didik, dan analisis dari berbagai perspektif termasuk perspektifmu sebagai peserta didik!</p>
           </div>
           <div class="jawab-label">Jawaban <span class="req">*</span></div>
-          <textarea class="finput tall" id="kbk4" placeholder="Tuliskan jawabanmu berdasarkan analisis kedua tabel di atas..." oninput="autoSave('kbk4');updateProgress()"></textarea>
+          <textarea class="finput tall" id="kbk4" placeholder="Identifikasi masalah prioritas, implikasi terhadap belajar, dan analisis dari berbagai perspektif..." oninput="autoSave('kbk4');updateProgress()"></textarea>
         </div>
 
-        <!-- SOAL KBK 5 -->
+        <!-- SOAL KBK 5 — SYNTHESIZE -->
         <div class="soal-block">
           <div class="soal-header">
             <div class="soal-num sn-kbk">8</div>
             <div class="soal-meta">
-              <h4>Soal 8 — Keterampilan Berpikir Kritis</h4>
+              <h4>Soal 8 — KBK · Synthesize (Sintesis)</h4>
               <div class="soal-badges">
                 <span class="sbadge sb-kbk">KBK</span>
                 <span class="sbadge sb-sy">Synthesize [KBK-SY]</span>
@@ -501,23 +525,18 @@ textarea.finput.tall{min-height:160px;}
           </div>
           <div class="wacana-box">
             <div class="wacana-label">📖 Wacana</div>
-            <p>Sistem regulasi manusia terdiri atas tiga komponen yang saling berkaitan: sistem saraf, sistem hormon, dan alat indera. Stres akademik mengaktifkan sistem saraf simpatis dan sumbu HPA sehingga memicu pelepasan kortisol dan adrenalin yang memengaruhi <em>homeostasis</em> tubuh. Di sisi lain, penggunaan perangkat digital berlebihan menyebabkan <em>digital eye strain</em> pada indera penglihatan dan kerusakan sel rambut koklea pada indera pendengaran. Kedua permasalahan tersebut saling memperburuk: stres akademik memperpanjang durasi penggunaan perangkat digital, sementara gangguan alat indera justru menghambat efektivitas belajar dan memperparah stres.</p>
-            <div class="link-artikel">
-              <p>📚 Sumber:</p>
-              <a href="#" style="cursor:default;color:var(--gray);">Sheppard, A.L., &amp; Wolffsohn, J.S. (2018). <em>Digital eye strain</em>. BMJ Open Ophthalmology, 3(1), e000146.</a>
-              <a href="#" style="cursor:default;color:var(--gray);">World Health Organization. (2015). 1.1 billion people at risk of hearing loss. WHO Press.</a>
-              <a href="#" style="cursor:default;color:var(--gray);">Herman, J.P., et al. (2016). Regulation of the hypothalamic-pituitary-adrenocortical stress response. Comprehensive Physiology, 6(2), 603–621.</a>
-            </div>
+            <p>Sistem regulasi manusia terdiri atas tiga komponen yang saling berkaitan: sistem saraf, sistem hormon, dan alat indera. Stres akademik mengaktifkan sistem saraf simpatis dan sumbu HPA sehingga memicu pelepasan kortisol dan adrenalin yang memengaruhi homeostasis tubuh. Di sisi lain, penggunaan perangkat digital berlebihan menyebabkan <em>digital eye strain</em> pada indera penglihatan dan kerusakan sel rambut koklea pada indera pendengaran.</p>
+            <p>Kedua permasalahan tersebut saling memperburuk: stres akademik memperpanjang durasi penggunaan perangkat digital, sementara gangguan alat indera justru menghambat efektivitas belajar dan memperparah stres.</p>
           </div>
           <div class="pertanyaan-box">
             <div class="pertanyaan-label">❓ Pertanyaan</div>
-            <p>Berdasarkan wacana di atas, buatlah ringkasan yang kohesif dengan menggabungkan peran ketiga komponen sistem regulasi (sistem saraf, sistem hormon, dan alat indera) dalam menjelaskan bagaimana stres akademik dan penggunaan perangkat digital berlebihan secara bersamaan dapat menurunkan kualitas belajar peserta didik lebih besar dibandingkan jika hanya mengalami salah satunya!</p>
+            <p>Buatlah ringkasan yang kohesif dengan menggabungkan peran ketiga komponen sistem regulasi (sistem saraf, sistem hormon, dan alat indera) dalam menjelaskan bagaimana stres akademik dan penggunaan perangkat digital berlebihan secara bersamaan dapat menurunkan kualitas belajar peserta didik lebih besar dibandingkan jika hanya mengalami salah satunya!</p>
           </div>
           <div class="jawab-label">Jawaban <span class="req">*</span></div>
-          <textarea class="finput tall" id="kbk5" placeholder="Tuliskan ringkasan kohesifmu di sini..." oninput="autoSave('kbk5');updateProgress()"></textarea>
+          <textarea class="finput tall" id="kbk5" placeholder="Buat ringkasan kohesif yang menggabungkan peran sistem saraf, hormon, dan alat indera..." oninput="autoSave('kbk5');updateProgress()"></textarea>
         </div>
 
-        <span class="save-ind" id="saveInd">✅ Tersimpan otomatis</span>
+        <span class="save-ind" id="saveInd">✅ Tersimpan otomatis</span>✅ Tersimpan otomatis</span>
       </div>
     </div>
 
@@ -544,8 +563,8 @@ textarea.finput.tall{min-height:160px;}
 bioRenderNav({ requireLogin: true });
 
 const KEY = 'bioregula_posttest';
-const FIELDS = ['pt_nama','pt_kelas','pt_absen','pt_tanggal','ld1','ld2','ld3','kbk1','kbk2','kbk3','kbk4','kbk5'];
-const SOAL_FIELDS = ['ld1','ld2','ld3','kbk1','kbk2','kbk3','kbk4','kbk5'];
+const FIELDS = ['pt_nama','pt_kelas','pt_absen','pt_tanggal','ld1a','ld1b','ld1c','ld2a','ld2b','ld2c','ld3a','ld3b','ld3c','kbk1','kbk2','kbk3','kbk4','kbk5'];
+const SOAL_FIELDS = ['ld1a','ld1b','ld1c','ld2a','ld2b','ld2c','ld3a','ld3b','ld3c','kbk1','kbk2','kbk3','kbk4','kbk5'];
 
 function getAll(){ return JSON.parse(localStorage.getItem(KEY)||'{}'); }
 function saveAll(d){ localStorage.setItem(KEY,JSON.stringify(d)); }
@@ -567,8 +586,8 @@ function autoSave(id){
 function updateProgress(){
   const count = SOAL_FIELDS.filter(id=>(document.getElementById(id)?.value||'').trim().length > 10).length;
   document.getElementById('progCount').textContent = count;
-  document.getElementById('progFill').style.width = (count/8*100)+'%';
-  document.getElementById('btnSubmit').disabled = count < 8;
+  document.getElementById('progFill').style.width = (count/14*100)+'%';
+  document.getElementById('btnSubmit').disabled = count < 14;
 }
 
 function loadSaved(){
